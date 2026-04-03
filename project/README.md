@@ -22,6 +22,7 @@ Datasets:
 ```bash
 pip install -r requirements.txt
 python src/run_dataset_setup.py
+python src/rung_generate_missingness.py
 ```
 
 ## Notes
