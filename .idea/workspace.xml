@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/INS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/1year.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/2year.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/3year.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/4year.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/5year.arff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_13_year_10_11_12.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_14_year_11_12_13.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_15_year_12_13_14.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_16_year_13_14_15.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/data/raw/taiwan/data.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/data_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/dataset_registry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/missingness.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/prepare_raw_datasets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/run_dataset_setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/src/run_generate_missingness.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3BqaA65gFKObMzrmmQPjaRZF5kT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.FSDFSD.executor": "Run",
+    "Python.run_dataset_setup.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\INS\project\data\raw\polish" />
+      <recent name="D:\INS\project\data\raw\taiwan" />
+      <recent name="D:\INS\project" />
+      <recent name="D:\INS\data\raw\slovak" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
+        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="" />
+      <created>1775218907861</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775218907861</updated>
+      <workItem from="1775218908874" duration="1242000" />
+      <workItem from="1775220448632" duration="1773000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/INS$FSDFSD.coverage" NAME="FSDFSD Coverage Results" MODIFIED="1775218951565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/INS$run_dataset_setup.coverage" NAME="run_dataset_setup Coverage Results" MODIFIED="1775221461224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
