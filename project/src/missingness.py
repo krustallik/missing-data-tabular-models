@@ -177,6 +177,83 @@ def inject_mar(
     return df
 
 
+def inject_mnar(
+    X: pd.DataFrame,
+    target_final_missing_rate: float,
+    random_state: int = 42,
+    exclude_columns=None,
+) -> pd.DataFrame:
+    """Inject MNAR missingness where masking in a feature depends on its own value.
+
+    Note: True MNAR involves dependence on unobserved values. For simulation, we
+    use the observed values of the same feature to decide which cells become
+    missing (then mask them), which is a common synthetic MNAR construction.
+    """
+    df = X.copy(deep=True)
+    cols = _numeric_feature_columns(df, exclude_columns=exclude_columns)
+    subset = df[cols]
+
+    total_cells = subset.shape[0] * subset.shape[1]
+    current_missing = int(subset.isna().sum().sum())
+    desired_missing = _target_missing_cells(total_cells, target_final_missing_rate)
+
+    if current_missing >= desired_missing:
+        print(
+            f"[WARN][MNAR] Current missing fraction ({current_missing / total_cells:.4f}) "
+            f">= target ({target_final_missing_rate:.4f}). No additional masking applied."
+        )
+        return df
+
+    missing_to_add = desired_missing - current_missing
+    rng = np.random.default_rng(random_state)
+
+    candidate_pairs: List[Tuple[int, str]] = []
+    candidate_weights: List[float] = []
+
+    for masked_col in cols:
+        values = df[masked_col]
+        rows, row_probs = _weighted_row_candidates(values)
+        if len(rows) == 0:
+            continue
+
+        observed_in_masked = df.loc[rows, masked_col].notna().to_numpy()
+        rows = rows[observed_in_masked]
+        row_probs = row_probs[observed_in_masked]
+        if len(rows) == 0:
+            continue
+
+        row_probs = row_probs / row_probs.sum()
+
+        for r, p in zip(rows, row_probs):
+            candidate_pairs.append((int(r), masked_col))
+            candidate_weights.append(float(p))
+
+    if not candidate_pairs:
+        print("[WARN][MNAR] No eligible MNAR candidates found for additional masking.")
+        return df
+
+    weights_arr = np.array(candidate_weights, dtype=float)
+    if weights_arr.sum() == 0:
+        weights_arr = np.ones_like(weights_arr, dtype=float)
+    weights_arr = weights_arr / weights_arr.sum()
+
+    max_addable = len(candidate_pairs)
+    if missing_to_add > max_addable:
+        print(
+            f"[WARN][MNAR] Requested {missing_to_add} new missing cells, "
+            f"but only {max_addable} MNAR candidates available. Masking all available."
+        )
+        missing_to_add = max_addable
+
+    chosen_idx = rng.choice(np.arange(max_addable), size=missing_to_add, replace=False, p=weights_arr)
+
+    for idx in chosen_idx:
+        row_i, col_name = candidate_pairs[int(idx)]
+        df.at[row_i, col_name] = np.nan
+
+    return df
+
+
 def summarize_missingness_change(
     before_df: pd.DataFrame,
     after_df: pd.DataFrame,

@@ -11,6 +11,7 @@ from missingness import (
     calculate_missing_fraction,
     inject_mar,
     inject_mcar,
+    inject_mnar,
     summarize_missingness_change,
 )
 
@@ -66,6 +67,8 @@ def _run_for_one(df: pd.DataFrame, missing_type: str, rate: float, seed: int) ->
         masked_X = inject_mcar(features, target_final_missing_rate=rate, random_state=seed, exclude_columns=exclude)
     elif missing_type == "MAR":
         masked_X = inject_mar(features, target_final_missing_rate=rate, random_state=seed, exclude_columns=exclude)
+    elif missing_type == "MNAR":
+        masked_X = inject_mnar(features, target_final_missing_rate=rate, random_state=seed, exclude_columns=exclude)
     else:
         raise ValueError(f"Unsupported missing type: {missing_type}")
 
@@ -84,6 +87,11 @@ MAR generation:
 - For each masked numeric feature, chooses another numeric feature as a control.
 - Rows with control values above the median receive higher masking probability.
 - Samples observed candidate cells with weighted probabilities to approximate target FINAL missing fraction.
+
+MNAR generation (synthetic):
+- For each masked numeric feature, uses that feature's own observed values as the control.
+- Rows with values above the median receive higher masking probability.
+- Then masks those selected cells (making them missing), approximating the target FINAL missing fraction.
 
 General rules:
 - Target column is excluded from masking.
@@ -113,7 +121,7 @@ def run_generation() -> None:
             base_X = base_df.drop(columns=[TARGET_COLUMN])
             initial_rate = calculate_missing_fraction(base_X, exclude_columns=[])
 
-            for missing_type in ["MCAR", "MAR"]:
+            for missing_type in ["MCAR", "MAR", "MNAR"]:
                 for rate in TARGET_RATES:
                     seed = RANDOM_STATE + int(rate * 1000) + (0 if split_name == "train" else 1)
 

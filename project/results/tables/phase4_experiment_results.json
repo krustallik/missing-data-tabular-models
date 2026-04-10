@@ -1,0 +1,329 @@
+[
+  {
+    "dataset": "taiwan_bankruptcy",
+    "timestamp": "2026-04-10T18:11:37.064945",
+    "n_train": 5455,
+    "n_test": 1364,
+    "n_features": 95,
+    "n_classes": 2,
+    "preprocessing": {
+      "median": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 10,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9620865147339026,
+            "test_metrics": {
+              "accuracy": 0.9626099706744868,
+              "f1": 0.9561562781579014,
+              "precision": 0.9518330811295528,
+              "recall": 0.9626099706744868,
+              "roc_auc": 0.8469180440771349
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 10,
+              "min_samples_split": 10,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.9601976612084006,
+            "test_metrics": {
+              "accuracy": 0.9721407624633431,
+              "f1": 0.9643478020916691,
+              "precision": 0.9668829929375835,
+              "recall": 0.9721407624633431,
+              "roc_auc": 0.9366563360881542
+            }
+          }
+        }
+      },
+      "mice": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 10,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9620865147339026,
+            "test_metrics": {
+              "accuracy": 0.9626099706744868,
+              "f1": 0.9561562781579014,
+              "precision": 0.9518330811295528,
+              "recall": 0.9626099706744868,
+              "roc_auc": 0.8469180440771349
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 10,
+              "min_samples_split": 10,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.9601976612084006,
+            "test_metrics": {
+              "accuracy": 0.9721407624633431,
+              "f1": 0.9643478020916691,
+              "precision": 0.9668829929375835,
+              "recall": 0.9721407624633431,
+              "roc_auc": 0.9366563360881542
+            }
+          }
+        }
+      },
+      "mice_indicator": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 10,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9620865147339026,
+            "test_metrics": {
+              "accuracy": 0.9618768328445748,
+              "f1": 0.95568050540058,
+              "precision": 0.9513244555550214,
+              "recall": 0.9618768328445748,
+              "roc_auc": 0.846935261707989
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 20,
+              "min_samples_split": 2,
+              "n_estimators": 100
+            },
+            "best_cv_score": 0.9603926366948743,
+            "test_metrics": {
+              "accuracy": 0.9699413489736071,
+              "f1": 0.9619419377297967,
+              "precision": 0.9618057022369241,
+              "recall": 0.9699413489736071,
+              "roc_auc": 0.9203168044077136
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "dataset": "polish_1year",
+    "timestamp": "2026-04-10T18:13:01.977777",
+    "n_train": 5621,
+    "n_test": 1406,
+    "n_features": 64,
+    "n_classes": 2,
+    "preprocessing": {
+      "median": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 0.01,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9426308491322605,
+            "test_metrics": {
+              "accuracy": 0.9615931721194879,
+              "f1": 0.9441237591684464,
+              "precision": 0.9444971287076551,
+              "recall": 0.9615931721194879,
+              "roc_auc": 0.6400531448608372
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": null,
+              "min_samples_split": 10,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.9520151168742899,
+            "test_metrics": {
+              "accuracy": 0.9644381223328592,
+              "f1": 0.9505235039200767,
+              "precision": 0.9599431009957327,
+              "recall": 0.9644381223328592,
+              "roc_auc": 0.9348633026517642
+            }
+          }
+        }
+      },
+      "mice": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 0.01,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9429053319885077,
+            "test_metrics": {
+              "accuracy": 0.9601706970128022,
+              "f1": 0.9420542687672777,
+              "precision": 0.9246088193456614,
+              "recall": 0.9601706970128022,
+              "roc_auc": 0.6494082840236686
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": null,
+              "min_samples_split": 5,
+              "n_estimators": 200
+            },
+            "best_cv_score": 0.960888768905674,
+            "test_metrics": {
+              "accuracy": 0.9722617354196301,
+              "f1": 0.9646198521012798,
+              "precision": 0.9730394437723507,
+              "recall": 0.9722617354196301,
+              "roc_auc": 0.9279873438527284
+            }
+          }
+        }
+      },
+      "mice_indicator": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 10,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9587092123657529,
+            "test_metrics": {
+              "accuracy": 0.9623044096728307,
+              "f1": 0.9527367404033108,
+              "precision": 0.9507730721179156,
+              "recall": 0.9623044096728307,
+              "roc_auc": 0.8816294104755643
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 20,
+              "min_samples_split": 10,
+              "n_estimators": 100
+            },
+            "best_cv_score": 0.9719059162058719,
+            "test_metrics": {
+              "accuracy": 0.9786628733997155,
+              "f1": 0.9753817635717508,
+              "precision": 0.9777177517991817,
+              "recall": 0.9786628733997155,
+              "roc_auc": 0.9315075060267368
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "dataset": "slovak_manufacture_13",
+    "timestamp": "2026-04-10T18:15:08.875376",
+    "n_train": 3285,
+    "n_test": 822,
+    "n_features": 64,
+    "n_classes": 2,
+    "preprocessing": {
+      "median": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 0.1,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9897131012382381,
+            "test_metrics": {
+              "accuracy": 0.9914841849148418,
+              "f1": 0.9884558275998911,
+              "precision": 0.9854459133867369,
+              "recall": 0.9914841849148418,
+              "roc_auc": 0.9877450980392157
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": null,
+              "min_samples_split": 10,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.992788334691608,
+            "test_metrics": {
+              "accuracy": 0.9914841849148418,
+              "f1": 0.9900726950750389,
+              "precision": 0.9890733759346898,
+              "recall": 0.9914841849148418,
+              "roc_auc": 0.9955065359477123
+            }
+          }
+        }
+      },
+      "mice": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 0.001,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9890545826384323,
+            "test_metrics": {
+              "accuracy": 0.948905109489051,
+              "f1": 0.9669741207697412,
+              "precision": 0.9865618164284539,
+              "recall": 0.948905109489051,
+              "roc_auc": 0.7881944444444444
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 20,
+              "min_samples_split": 2,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.9902192979793908,
+            "test_metrics": {
+              "accuracy": 0.9939172749391727,
+              "f1": 0.992909067910742,
+              "precision": 0.9927185547623504,
+              "recall": 0.9939172749391727,
+              "roc_auc": 0.9653799019607843
+            }
+          }
+        }
+      },
+      "mice_indicator": {
+        "models": {
+          "logistic_regression": {
+            "best_params": {
+              "C": 0.001,
+              "penalty": "l2"
+            },
+            "best_cv_score": 0.9890545826384323,
+            "test_metrics": {
+              "accuracy": 0.9476885644768857,
+              "f1": 0.9663296251154538,
+              "precision": 0.9865488055772476,
+              "recall": 0.9476885644768857,
+              "roc_auc": 0.7904411764705882
+            }
+          },
+          "random_forest": {
+            "best_params": {
+              "max_depth": 10,
+              "min_samples_split": 10,
+              "n_estimators": 50
+            },
+            "best_cv_score": 0.9897131012382381,
+            "test_metrics": {
+              "accuracy": 0.9939172749391727,
+              "f1": 0.9917541625713509,
+              "precision": 0.9939543195497745,
+              "recall": 0.9939172749391727,
+              "roc_auc": 0.9707924836601307
+            }
+          }
+        }
+      }
+    }
+  }
+]

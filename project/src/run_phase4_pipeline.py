@@ -1,0 +1,120 @@
+"""End-to-end pipeline for dataset preparation, Phase 4.1, and Phase 4.2."""
+
+from pathlib import Path
+import subprocess
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def run_raw_standardization():
+    """Convert raw files into standardized processed CSV datasets."""
+    print("\n" + "=" * 80)
+    print("RAW DATA STANDARDIZATION")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "prepare_raw_datasets.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Raw data standardization failed")
+        return False
+
+    print("✓ Raw data standardization completed successfully")
+    return True
+
+
+def run_phase_3_setup():
+    """Run Phase 3.1 dataset preparation."""
+    print("\n" + "=" * 80)
+    print("PHASE 3.1: Dataset Preparation")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_dataset_setup.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 3.1 failed")
+        return False
+
+    print("✓ Phase 3.1 completed successfully")
+    return True
+
+
+def run_phase_4_experiments():
+    """Run Phase 4.1 model evaluation."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.1: Model Training and Evaluation")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "phase4_experiment_runner.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.1 failed")
+        return False
+
+    print("✓ Phase 4.1 completed successfully")
+    return True
+
+
+def run_phase_4_2_experiments():
+    """Run Phase 4.2 extended model evaluation."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.2: Extended Model Training and Evaluation")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_phase4_2_experiments.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.2 failed")
+        return False
+
+    print("✓ Phase 4.2 completed successfully")
+    return True
+
+
+def main():
+    """Run complete end-to-end pipeline."""
+    print("\n" + "=" * 80)
+    print("END-TO-END PIPELINE")
+    print("=" * 80)
+    print("This script will execute:")
+    print("  1. Raw data standardization")
+    print("  2. Phase 3.1: Dataset setup and splits")
+    print("  3. Phase 4.1: Model training and evaluation")
+    print("  4. Phase 4.2: Extended model training and evaluation")
+
+    if not run_raw_standardization():
+        sys.exit(1)
+
+    if not run_phase_3_setup():
+        sys.exit(1)
+
+    if not run_phase_4_experiments():
+        sys.exit(1)
+
+    if not run_phase_4_2_experiments():
+        sys.exit(1)
+
+    print("\n" + "=" * 80)
+    print("✓ ALL PHASES COMPLETED SUCCESSFULLY")
+    print("=" * 80)
+    print("\nResults saved to:")
+    print(f"  - Dataset overview: {PROJECT_ROOT}/results/tables/dataset_overview.csv")
+    print(f"  - Phase 4.1 results: {PROJECT_ROOT}/results/tables/phase4_experiment_results.json")
+    print(f"  - Phase 4.2 results: {PROJECT_ROOT}/results/tables/phase4_2_experiment_results.json")
+    print(f"  - Logs: {PROJECT_ROOT}/results/logs/")
+
+
+if __name__ == "__main__":
+    main()
