@@ -1,4 +1,4 @@
-"""End-to-end pipeline for dataset preparation, Phases 4.1-4.6."""
+"""End-to-end pipeline for dataset preparation, Phases 4.1-4.7."""
 
 from pathlib import Path
 import subprocess
@@ -159,6 +159,25 @@ def run_phase_4_6_documentation():
     return True
 
 
+def run_phase_4_7_evaluation():
+    """Run Phase 4.7 Practical Usability Evaluation."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.7: Practical Usability Evaluation")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_phase4_7_experiments.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.7 failed")
+        return False
+
+    print("✓ Phase 4.7 completed successfully")
+    return True
+
+
 def main():
     """Run complete end-to-end pipeline."""
     print("\n" + "=" * 80)
@@ -173,6 +192,7 @@ def main():
     print("  6. Phase 4.4: CatBoost foundation model testing")
     print("  7. Phase 4.5: Final analysis and visualization")
     print("  8. Phase 4.6: Documentation and Report Generation")
+    print("  9. Phase 4.7: Practical Usability Evaluation")
 
     if not run_raw_standardization():
         sys.exit(1)
@@ -198,6 +218,9 @@ def main():
     if not run_phase_4_6_documentation():
         sys.exit(1)
 
+    if not run_phase_4_7_evaluation():
+        sys.exit(1)
+
     print("\n" + "=" * 80)
     print("✓ ALL PHASES COMPLETED SUCCESSFULLY")
     print("=" * 80)
@@ -213,6 +236,8 @@ def main():
     print(f"  - Phase 4.6 report: {PROJECT_ROOT}/results/reports/phase4_6_student2_report.md")
     print(f"  - Phase 4.6 interpretation: {PROJECT_ROOT}/results/reports/phase4_6_interpretation_guide.md")
     print(f"  - Phase 4.6 presentation: {PROJECT_ROOT}/results/reports/phase4_6_presentation_points.txt")
+    print(f"  - Phase 4.7 usability: {PROJECT_ROOT}/results/reports/phase4_7_practical_usability_report.md")
+    print(f"  - Phase 4.7 deployment: {PROJECT_ROOT}/results/reports/phase4_7_deployment_guide.md")
     print(f"  - Logs: {PROJECT_ROOT}/results/logs/")
 
 

@@ -37,7 +37,7 @@ RESULTS_DIR = PROJECT_ROOT / "results" / "tables"
 SPLITS_DIR = PROJECT_ROOT / "data" / "splits"
 TARGET_COLUMN = "target"
 
-PREPROCESSING_METHODS = ["median", "mice"]
+PREPROCESSING_METHODS = ["median", "mice", "mice_indicator"]
 
 
 def _setup_logging(experiment_name: str) -> logging.Logger:
@@ -112,6 +112,13 @@ def _impute(X_train: pd.DataFrame, X_test: pd.DataFrame, method: str):
             return _impute(X_train, X_test, "median")
     else:
         raise ValueError(f"Unknown method: {method}")
+
+
+def _append_missing_indicators(X_missing: pd.DataFrame, X_imputed: pd.DataFrame) -> pd.DataFrame:
+    """Append binary indicators marking where values were originally missing."""
+    indicator = X_missing.isna().astype(float)
+    indicator.columns = [f"{c}__was_missing" for c in X_missing.columns]
+    return pd.concat([X_imputed, indicator], axis=1)
 
 
 def _compute_metrics(y_test, y_pred, y_proba=None) -> Dict[str, float]:
@@ -244,7 +251,12 @@ def run_phase4_4_experiment(dataset_path: Path, dataset_name: str,
     logger.info("\n--- TabICL WITH imputation ---")
     for method in PREPROCESSING_METHODS:
         logger.info(f"  preprocessing: {method}")
-        X_tr_imp, X_te_imp = _impute(X_train.copy(), X_test.copy(), method)
+        if method == "mice_indicator":
+            X_tr_base, X_te_base = _impute(X_train.copy(), X_test.copy(), "mice")
+            X_tr_imp = _append_missing_indicators(X_train, X_tr_base)
+            X_te_imp = _append_missing_indicators(X_test, X_te_base)
+        else:
+            X_tr_imp, X_te_imp = _impute(X_train.copy(), X_test.copy(), method)
         results["tabicl_with_imputation"][method] = _test_tabicl(
             X_tr_imp, X_te_imp, y_train, y_test, logger
         )
@@ -259,7 +271,12 @@ def run_phase4_4_experiment(dataset_path: Path, dataset_name: str,
     logger.info("\n--- CatBoost WITH imputation (bonus) ---")
     for method in PREPROCESSING_METHODS:
         logger.info(f"  preprocessing: {method}")
-        X_tr_imp, X_te_imp = _impute(X_train.copy(), X_test.copy(), method)
+        if method == "mice_indicator":
+            X_tr_base, X_te_base = _impute(X_train.copy(), X_test.copy(), "mice")
+            X_tr_imp = _append_missing_indicators(X_train, X_tr_base)
+            X_te_imp = _append_missing_indicators(X_test, X_te_base)
+        else:
+            X_tr_imp, X_te_imp = _impute(X_train.copy(), X_test.copy(), method)
         results["catboost_with_imputation"][method] = _test_catboost(
             X_tr_imp.to_numpy(), X_te_imp.to_numpy(), y_train, y_test, logger
         )

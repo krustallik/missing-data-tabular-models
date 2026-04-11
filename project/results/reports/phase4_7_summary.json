@@ -1,0 +1,24 @@
+{
+  "phase": 4.7,
+  "title": "Practical Usability Evaluation",
+  "timestamp": "2026-04-11T15:53:52.637044",
+  "model_availability": {
+    "CatBoost": true,
+    "TabPFN": false,
+    "TabICL": true
+  },
+  "total_experiments_analyzed": 270,
+  "key_findings": {
+    "recommended_model": "CatBoost (for missingness scenarios)",
+    "deployment_complexity_easiest": "Logistic Regression",
+    "deployment_complexity_hardest": "TabPFN",
+    "practical_winner": "CatBoost (98.2% accuracy, native NaN)",
+    "robustness_at_40_percent_missing": "CatBoost 96.5%"
+  },
+  "files_generated": [
+    "C:\\Users\\TaroM\\Documents\\\u0443\u043d\u0456\u043a \u043a\u043e\u0434\u0438\\project\\results\\reports\\phase4_7_deployment_complexity.csv",
+    "C:\\Users\\TaroM\\Documents\\\u0443\u043d\u0456\u043a \u043a\u043e\u0434\u0438\\project\\results\\reports\\phase4_7_suitability_matrix.csv",
+    "C:\\Users\\TaroM\\Documents\\\u0443\u043d\u0456\u043a \u043a\u043e\u0434\u0438\\project\\results\\reports\\phase4_7_deployment_guide.md",
+    "C:\\Users\\TaroM\\Documents\\\u0443\u043d\u0456\u043a \u043a\u043e\u0434\u0438\\project\\results\\reports\\phase4_7_practical_usability_report.md"
+  ]
+}
