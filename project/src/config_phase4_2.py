@@ -30,8 +30,12 @@ CV_FOLDS = 5
 SCALING_ENABLED = True
 
 # Preprocessing / missing-data handling options evaluated in Phase 4.2
+# REQUIRED: mice_indicator must be included for Student 2's missingness analysis
+# - median: Simple median imputation + scaling
+# - mice: IterativeImputer (MICE algorithm) + scaling  
+# - mice_indicator: MICE + binary missing indicator features (REQUIRED for sensitivity analysis)
 PREPROCESSING_METHODS = [
     "median",
     "mice",
-    "mice_indicator",
+    "mice_indicator",  # REQUIRED: Missing indicator strategy for robustness testing
 ]

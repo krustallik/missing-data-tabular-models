@@ -1,4 +1,13 @@
-"""Phase 4.2 experiment runner - Extended models."""
+"""Phase 4.2 experiment runner - Extended models (SVM, MLP, XGBoost, LightGBM).
+
+This phase evaluates extended models across three preprocessing strategies:
+- median: Simple median imputation
+- mice: Multiple Imputation by Chained Equations (IterativeImputer)
+- mice_indicator: MICE + binary missing indicators (REQUIRED for Student 2 sensitivity analysis)
+
+The missing indicator preprocessing is essential for detecting if models are sensitive
+to missingness patterns through explicit binary features indicating which values were missing.
+"""
 
 import json
 import logging

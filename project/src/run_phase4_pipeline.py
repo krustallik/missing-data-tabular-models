@@ -83,6 +83,25 @@ def run_phase_4_2_experiments():
     return True
 
 
+def run_phase_4_3_experiments():
+    """Run Phase 4.3 Gradient Boosting robustness testing (Student 2)."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.3: Gradient Boosting Robustness with Missingness Injection")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_phase4_3_experiments.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.3 failed")
+        return False
+
+    print("✓ Phase 4.3 completed successfully")
+    return True
+
+
 def main():
     """Run complete end-to-end pipeline."""
     print("\n" + "=" * 80)
@@ -91,8 +110,9 @@ def main():
     print("This script will execute:")
     print("  1. Raw data standardization")
     print("  2. Phase 3.1: Dataset setup and splits")
-    print("  3. Phase 4.1: Model training and evaluation")
-    print("  4. Phase 4.2: Extended model training and evaluation")
+    print("  3. Phase 4.1: Model training and evaluation (baseline + MICE)")
+    print("  4. Phase 4.2: Extended model training (SVM, MLP, XGBoost, LightGBM)")
+    print("  5. Phase 4.3: Gradient Boosting robustness (Student 2) with missingness")
 
     if not run_raw_standardization():
         sys.exit(1)
@@ -106,13 +126,18 @@ def main():
     if not run_phase_4_2_experiments():
         sys.exit(1)
 
+    if not run_phase_4_3_experiments():
+        sys.exit(1)
+
     print("\n" + "=" * 80)
     print("✓ ALL PHASES COMPLETED SUCCESSFULLY")
     print("=" * 80)
     print("\nResults saved to:")
     print(f"  - Dataset overview: {PROJECT_ROOT}/results/tables/dataset_overview.csv")
+    print(f"  - Split indices: {PROJECT_ROOT}/results/tables/split_indices.json")
     print(f"  - Phase 4.1 results: {PROJECT_ROOT}/results/tables/phase4_experiment_results.json")
     print(f"  - Phase 4.2 results: {PROJECT_ROOT}/results/tables/phase4_2_experiment_results.json")
+    print(f"  - Phase 4.3 results: {PROJECT_ROOT}/results/tables/phase4_3_gradient_boosting_results.json")
     print(f"  - Logs: {PROJECT_ROOT}/results/logs/")
 
 
