@@ -1,4 +1,4 @@
-"""End-to-end pipeline for dataset preparation, Phase 4.1, and Phase 4.2."""
+"""End-to-end pipeline for dataset preparation, Phases 4.1-4.5."""
 
 from pathlib import Path
 import subprocess
@@ -103,9 +103,9 @@ def run_phase_4_3_experiments():
 
 
 def run_phase_4_4_experiments():
-    """Run Phase 4.4 TabICL foundation model testing."""
+    """Run Phase 4.4 CatBoost foundation model testing."""
     print("\n" + "=" * 80)
-    print("PHASE 4.4: TabICL Foundation Model Testing")
+    print("PHASE 4.4: CatBoost Foundation Model Testing")
     print("=" * 80)
 
     result = subprocess.run(
@@ -121,6 +121,25 @@ def run_phase_4_4_experiments():
     return True
 
 
+def run_phase_4_5_analysis():
+    """Run Phase 4.5 final analysis and visualization."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.5: Final Analysis and Visualization")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_phase4_5_experiments.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.5 failed")
+        return False
+
+    print("✓ Phase 4.5 completed successfully")
+    return True
+
+
 def main():
     """Run complete end-to-end pipeline."""
     print("\n" + "=" * 80)
@@ -131,8 +150,9 @@ def main():
     print("  2. Phase 3.1: Dataset setup and splits")
     print("  3. Phase 4.1: Model training and evaluation (baseline + MICE)")
     print("  4. Phase 4.2: Extended model training (SVM, MLP, XGBoost, LightGBM)")
-    print("  5. Phase 4.3: Gradient Boosting robustness (Student 2) with missingness")
-    print("  6. Phase 4.4: TabICL foundation model testing")
+    print("  5. Phase 4.3: Gradient Boosting robustness with missingness injection (MCAR/MAR/MNAR)")
+    print("  6. Phase 4.4: CatBoost foundation model testing")
+    print("  7. Phase 4.5: Final analysis and visualization")
 
     if not run_raw_standardization():
         sys.exit(1)
@@ -152,6 +172,9 @@ def main():
     if not run_phase_4_4_experiments():
         sys.exit(1)
 
+    if not run_phase_4_5_analysis():
+        sys.exit(1)
+
     print("\n" + "=" * 80)
     print("✓ ALL PHASES COMPLETED SUCCESSFULLY")
     print("=" * 80)
@@ -162,6 +185,9 @@ def main():
     print(f"  - Phase 4.2 results: {PROJECT_ROOT}/results/tables/phase4_2_experiment_results.json")
     print(f"  - Phase 4.3 results: {PROJECT_ROOT}/results/tables/phase4_3_gradient_boosting_results.json")
     print(f"  - Phase 4.4 results: {PROJECT_ROOT}/results/tables/phase4_4_catboost_results.json")
+    print(f"  - Phase 4.5 consolidated: {PROJECT_ROOT}/results/tables/phase4_5_consolidated_results.csv")
+    print(f"  - Phase 4.5 robustness: {PROJECT_ROOT}/results/tables/phase4_5_robustness_analysis.csv")
+    print(f"  - Phase 4.5 visualizations: {PROJECT_ROOT}/results/visualizations/")
     print(f"  - Logs: {PROJECT_ROOT}/results/logs/")
 
 

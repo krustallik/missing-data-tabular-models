@@ -1,0 +1,9 @@
+,,accuracy,accuracy,accuracy,accuracy,f1,f1
+,,mean,std,min,max,mean,std
+model,missing_mechanism,,,,,,
+Lightgbm,MAR,0.9782,0.0108,0.9637,0.9964,0.9727,0.0149
+Lightgbm,MCAR,0.9779,0.0117,0.963,0.9964,0.9718,0.0163
+Lightgbm,MNAR,0.9777,0.0112,0.9637,0.9964,0.9722,0.0155
+Xgboost,MAR,0.9768,0.0109,0.9633,0.9951,0.9722,0.0143
+Xgboost,MCAR,0.9765,0.0121,0.9616,0.9964,0.971,0.0161
+Xgboost,MNAR,0.9767,0.0111,0.9623,0.9951,0.9716,0.0151

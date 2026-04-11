@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="full 4.1 and 4.2 and 4.3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="full 4.1 and 4.2 and 4.3 and 4.4">
       <change beforePath="$PROJECT_DIR$/project.zip" beforeDir="false" afterPath="$PROJECT_DIR$/project.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_experiment_results.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_experiment_results.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/run_phase4_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/run_phase4_pipeline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +86,7 @@
       <workItem from="1775218908874" duration="1242000" />
       <workItem from="1775220448632" duration="1773000" />
       <workItem from="1775831768266" duration="6774000" />
-      <workItem from="1775899330275" duration="5813000" />
+      <workItem from="1775899330275" duration="6487000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -106,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775903751695</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="full 4.1 and 4.2 and 4.3 and 4.4">
+      <option name="closed" value="true" />
+      <created>1775909685603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775909685603</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +121,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="4.1 and 4.2" />
     <MESSAGE value="full 4.1 and 4.2 and 4.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="full 4.1 and 4.2 and 4.3" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3 and 4.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="full 4.1 and 4.2 and 4.3 and 4.4" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/INS$FSDFSD.coverage" NAME="FSDFSD Coverage Results" MODIFIED="1775218951565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
