@@ -1,0 +1,69 @@
+2026-04-11 13:27:04,086 - phase4_4_tabl - INFO - ================================================================================
+2026-04-11 13:27:04,086 - phase4_4_tabl - INFO - PHASE 4.4: TabICL Foundation Model Testing
+2026-04-11 13:27:04,086 - phase4_4_tabl - INFO - ================================================================================
+2026-04-11 13:27:04,086 - phase4_4_tabl - INFO - TabICL Available: False
+2026-04-11 13:27:04,086 - phase4_4_tabl - INFO - 
+================================================================================
+2026-04-11 13:27:04,087 - phase4_4_tabl - INFO - Starting Phase 4.4 experiment on taiwan_bankruptcy
+2026-04-11 13:27:04,087 - phase4_4_tabl - INFO - ================================================================================
+2026-04-11 13:27:04,173 - phase4_4_tabl - INFO - Loaded 6819 samples with 95 features
+2026-04-11 13:27:04,258 - phase4_4_tabl - INFO - Using precomputed split from data/splits
+2026-04-11 13:27:04,258 - phase4_4_tabl - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:27:04,258 - phase4_4_tabl - INFO - 
+Preprocessing: median
+2026-04-11 13:27:04,325 - phase4_4_tabl - INFO - Testing TabICL with median
+2026-04-11 13:27:04,326 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:04,326 - phase4_4_tabl - INFO - 
+Preprocessing: mice
+2026-04-11 13:27:08,137 - phase4_4_tabl - INFO - Testing TabICL with mice
+2026-04-11 13:27:08,138 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:08,138 - phase4_4_tabl - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:27:08,168 - phase4_4_tabl - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:27:08,168 - phase4_4_tabl - INFO - Testing TabICL's native NaN handling capability...
+2026-04-11 13:27:08,171 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:08,173 - phase4_4_tabl - INFO - 
+================================================================================
+2026-04-11 13:27:08,174 - phase4_4_tabl - INFO - Starting Phase 4.4 experiment on polish_1year
+2026-04-11 13:27:08,174 - phase4_4_tabl - INFO - ================================================================================
+2026-04-11 13:27:08,213 - phase4_4_tabl - INFO - Loaded 7027 samples with 64 features
+2026-04-11 13:27:08,253 - phase4_4_tabl - INFO - Using precomputed split from data/splits
+2026-04-11 13:27:08,253 - phase4_4_tabl - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:27:08,253 - phase4_4_tabl - INFO - 
+Preprocessing: median
+2026-04-11 13:27:08,309 - phase4_4_tabl - INFO - Testing TabICL with median
+2026-04-11 13:27:08,310 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:08,310 - phase4_4_tabl - INFO - 
+Preprocessing: mice
+2026-04-11 13:27:22,697 - phase4_4_tabl - INFO - Testing TabICL with mice
+2026-04-11 13:27:22,698 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:22,698 - phase4_4_tabl - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:27:22,717 - phase4_4_tabl - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:27:22,717 - phase4_4_tabl - INFO - Testing TabICL's native NaN handling capability...
+2026-04-11 13:27:22,719 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:22,724 - phase4_4_tabl - INFO - 
+================================================================================
+2026-04-11 13:27:22,724 - phase4_4_tabl - INFO - Starting Phase 4.4 experiment on slovak_manufacture_13
+2026-04-11 13:27:22,724 - phase4_4_tabl - INFO - ================================================================================
+2026-04-11 13:27:22,779 - phase4_4_tabl - INFO - Loaded 4107 samples with 64 features
+2026-04-11 13:27:22,830 - phase4_4_tabl - INFO - Using precomputed split from data/splits
+2026-04-11 13:27:22,830 - phase4_4_tabl - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:27:22,830 - phase4_4_tabl - INFO - 
+Preprocessing: median
+2026-04-11 13:27:23,044 - phase4_4_tabl - INFO - Testing TabICL with median
+2026-04-11 13:27:23,045 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:23,045 - phase4_4_tabl - INFO - 
+Preprocessing: mice
+2026-04-11 13:27:30,798 - phase4_4_tabl - INFO - Testing TabICL with mice
+2026-04-11 13:27:30,798 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:30,798 - phase4_4_tabl - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:27:30,992 - phase4_4_tabl - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:27:30,992 - phase4_4_tabl - INFO - Testing TabICL's native NaN handling capability...
+2026-04-11 13:27:30,994 - phase4_4_tabl - WARNING - TabICL not available: No module named 'tabl'
+2026-04-11 13:27:31,001 - phase4_4_tabl - INFO - 
+✓ Phase 4.4 experiments complete. Results: C:\Users\TaroM\Documents\унік коди\project\results\tables\phase4_4_tabl_results.json

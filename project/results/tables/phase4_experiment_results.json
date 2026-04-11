@@ -1,7 +1,7 @@
 [
   {
     "dataset": "taiwan_bankruptcy",
-    "timestamp": "2026-04-10T19:01:29.696107",
+    "timestamp": "2026-04-11T13:31:19.850923",
     "n_train": 5455,
     "n_test": 1364,
     "n_features": 95,
@@ -110,7 +110,7 @@
   },
   {
     "dataset": "polish_1year",
-    "timestamp": "2026-04-10T19:02:52.257335",
+    "timestamp": "2026-04-11T13:32:48.141864",
     "n_train": 5621,
     "n_test": 1406,
     "n_features": 64,
@@ -219,7 +219,7 @@
   },
   {
     "dataset": "slovak_manufacture_13",
-    "timestamp": "2026-04-10T19:04:54.748302",
+    "timestamp": "2026-04-11T13:34:51.537309",
     "n_train": 3285,
     "n_test": 822,
     "n_features": 64,

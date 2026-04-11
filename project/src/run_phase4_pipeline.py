@@ -102,6 +102,25 @@ def run_phase_4_3_experiments():
     return True
 
 
+def run_phase_4_4_experiments():
+    """Run Phase 4.4 TabICL foundation model testing."""
+    print("\n" + "=" * 80)
+    print("PHASE 4.4: TabICL Foundation Model Testing")
+    print("=" * 80)
+
+    result = subprocess.run(
+        [sys.executable, str(PROJECT_ROOT / "src" / "run_phase4_4_experiments.py")],
+        cwd=str(PROJECT_ROOT),
+    )
+
+    if result.returncode != 0:
+        print("ERROR: Phase 4.4 failed")
+        return False
+
+    print("✓ Phase 4.4 completed successfully")
+    return True
+
+
 def main():
     """Run complete end-to-end pipeline."""
     print("\n" + "=" * 80)
@@ -113,6 +132,7 @@ def main():
     print("  3. Phase 4.1: Model training and evaluation (baseline + MICE)")
     print("  4. Phase 4.2: Extended model training (SVM, MLP, XGBoost, LightGBM)")
     print("  5. Phase 4.3: Gradient Boosting robustness (Student 2) with missingness")
+    print("  6. Phase 4.4: TabICL foundation model testing")
 
     if not run_raw_standardization():
         sys.exit(1)
@@ -129,6 +149,9 @@ def main():
     if not run_phase_4_3_experiments():
         sys.exit(1)
 
+    if not run_phase_4_4_experiments():
+        sys.exit(1)
+
     print("\n" + "=" * 80)
     print("✓ ALL PHASES COMPLETED SUCCESSFULLY")
     print("=" * 80)
@@ -138,6 +161,7 @@ def main():
     print(f"  - Phase 4.1 results: {PROJECT_ROOT}/results/tables/phase4_experiment_results.json")
     print(f"  - Phase 4.2 results: {PROJECT_ROOT}/results/tables/phase4_2_experiment_results.json")
     print(f"  - Phase 4.3 results: {PROJECT_ROOT}/results/tables/phase4_3_gradient_boosting_results.json")
+    print(f"  - Phase 4.4 results: {PROJECT_ROOT}/results/tables/phase4_4_catboost_results.json")
     print(f"  - Logs: {PROJECT_ROOT}/results/logs/")
 
 

@@ -1,0 +1,96 @@
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - ================================================================================
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - PHASE 4.4: CatBoost Foundation Model Testing
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - ================================================================================
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - CatBoost Available: True
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - 
+================================================================================
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - Starting Phase 4.4 experiment on taiwan_bankruptcy
+2026-04-11 13:37:18,408 - phase4_4_catboost - INFO - ================================================================================
+2026-04-11 13:37:18,496 - phase4_4_catboost - INFO - Loaded 6819 samples with 95 features
+2026-04-11 13:37:18,588 - phase4_4_catboost - INFO - Using precomputed split from data/splits
+2026-04-11 13:37:18,589 - phase4_4_catboost - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:37:18,589 - phase4_4_catboost - INFO - 
+Preprocessing: median
+2026-04-11 13:37:18,656 - phase4_4_catboost - INFO - Testing CatBoost with median
+2026-04-11 13:37:18,656 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:18,656 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:19,372 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:19,385 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.73s
+2026-04-11 13:37:19,385 - phase4_4_catboost - INFO - 
+Preprocessing: mice
+2026-04-11 13:37:23,259 - phase4_4_catboost - INFO - Testing CatBoost with mice
+2026-04-11 13:37:23,260 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:23,260 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:23,836 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:23,847 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.59s
+2026-04-11 13:37:23,847 - phase4_4_catboost - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:37:23,874 - phase4_4_catboost - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:37:23,874 - phase4_4_catboost - INFO - Testing CatBoost's native NaN handling capability...
+2026-04-11 13:37:23,876 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:23,876 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:24,465 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:24,476 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.60s
+2026-04-11 13:37:24,479 - phase4_4_catboost - INFO - 
+================================================================================
+2026-04-11 13:37:24,479 - phase4_4_catboost - INFO - Starting Phase 4.4 experiment on polish_1year
+2026-04-11 13:37:24,479 - phase4_4_catboost - INFO - ================================================================================
+2026-04-11 13:37:24,516 - phase4_4_catboost - INFO - Loaded 7027 samples with 64 features
+2026-04-11 13:37:24,565 - phase4_4_catboost - INFO - Using precomputed split from data/splits
+2026-04-11 13:37:24,565 - phase4_4_catboost - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:37:24,565 - phase4_4_catboost - INFO - 
+Preprocessing: median
+2026-04-11 13:37:24,617 - phase4_4_catboost - INFO - Testing CatBoost with median
+2026-04-11 13:37:24,617 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:24,617 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:25,085 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:25,098 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.48s
+2026-04-11 13:37:25,098 - phase4_4_catboost - INFO - 
+Preprocessing: mice
+2026-04-11 13:37:39,398 - phase4_4_catboost - INFO - Testing CatBoost with mice
+2026-04-11 13:37:39,398 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:39,399 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:39,765 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:39,776 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.38s
+2026-04-11 13:37:39,776 - phase4_4_catboost - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:37:39,795 - phase4_4_catboost - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:37:39,795 - phase4_4_catboost - INFO - Testing CatBoost's native NaN handling capability...
+2026-04-11 13:37:39,796 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:39,796 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:40,259 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:40,270 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.47s
+2026-04-11 13:37:40,275 - phase4_4_catboost - INFO - 
+================================================================================
+2026-04-11 13:37:40,275 - phase4_4_catboost - INFO - Starting Phase 4.4 experiment on slovak_manufacture_13
+2026-04-11 13:37:40,275 - phase4_4_catboost - INFO - ================================================================================
+2026-04-11 13:37:40,322 - phase4_4_catboost - INFO - Loaded 4107 samples with 64 features
+2026-04-11 13:37:40,374 - phase4_4_catboost - INFO - Using precomputed split from data/splits
+2026-04-11 13:37:40,374 - phase4_4_catboost - INFO - 
+=== Testing WITH Imputation ===
+2026-04-11 13:37:40,374 - phase4_4_catboost - INFO - 
+Preprocessing: median
+2026-04-11 13:37:40,593 - phase4_4_catboost - INFO - Testing CatBoost with median
+2026-04-11 13:37:40,594 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:40,594 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:40,815 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:40,824 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.23s
+2026-04-11 13:37:40,825 - phase4_4_catboost - INFO - 
+Preprocessing: mice
+2026-04-11 13:37:48,602 - phase4_4_catboost - INFO - Testing CatBoost with mice
+2026-04-11 13:37:48,602 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:48,602 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:49,035 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:49,045 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.44s
+2026-04-11 13:37:49,045 - phase4_4_catboost - INFO - 
+=== Testing WITHOUT Imputation (Raw NaN values) ===
+2026-04-11 13:37:49,241 - phase4_4_catboost - WARNING - Note: StandardScaler cannot handle NaN values directly
+2026-04-11 13:37:49,241 - phase4_4_catboost - INFO - Testing CatBoost's native NaN handling capability...
+2026-04-11 13:37:49,242 - phase4_4_catboost - INFO - CatBoost imported successfully
+2026-04-11 13:37:49,242 - phase4_4_catboost - INFO - CatBoost model initialized
+2026-04-11 13:37:49,464 - phase4_4_catboost - INFO - CatBoost training completed
+2026-04-11 13:37:49,474 - phase4_4_catboost - INFO - CatBoost evaluation completed in 0.23s
+2026-04-11 13:37:49,483 - phase4_4_catboost - INFO - 
+✓ Phase 4.4 experiments complete. Results: C:\Users\TaroM\Documents\унік коди\project\results\tables\phase4_4_catboost_results.json
