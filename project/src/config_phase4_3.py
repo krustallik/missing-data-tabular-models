@@ -10,7 +10,7 @@ from config import RANDOM_STATE, TEST_SIZE
 
 # Gradient Boosting models (Student 2 focus)
 # Falls back to SVM/MLP if XGBoost/LightGBM not available
-GRADIENT_BOOSTING_MODELS = ["xgboost", "lightgbm"]
+GRADIENT_BOOSTING_MODELS = ["gradient_boosting", "xgboost", "lightgbm"]
 FALLBACK_MODELS = ["svm", "mlp"]
 
 # Missing value rates to inject

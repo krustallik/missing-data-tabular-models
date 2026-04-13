@@ -1,6 +1,6 @@
 # Phase 4.7: Practical Usability Evaluation Report
 
-**Generated**: 2026-04-11 15:53:52  
+**Generated**: 2026-04-13 20:00:20  
 **Purpose**: Evaluate practical deployment suitability of models with incomplete data
 
 ---
@@ -503,6 +503,13 @@ model.fit(X_train_imputed, y_train)
 | Cost-sensitive (compute) | Classical | Minimal resources | 1-2 hrs | ✓ Low |
 
 
+### Practical note on TabPFN stability
+
+During the experiments, TabPFN was successfully executed and included in the final comparison with TabICL and classical baseline models. For most evaluated configurations, TabPFN achieved valid predictive results and confirmed its relevance as a pretrained tabular foundation model for classification tasks with incomplete data.
+
+At the same time, the experiments also showed that TabPFN was not equally stable across all preprocessing combinations. In particular, for the `polish_1year` dataset, configurations based on `MICE` and `MICE + missing indicators` produced numerical issues (`infinity` / excessively large values for `float32`), which prevented successful evaluation in those specific cases. Therefore, these failures were treated as preprocessing-related numerical limitations rather than as evidence of complete model unsuitability.
+
+From a practical perspective, this means that TabPFN can be considered usable for incomplete tabular classification tasks, but its deployment requires additional care regarding preprocessing stability and numerical safety checks. In contrast, TabICL and some classical models were more stable across all tested configurations, even if TabPFN remained competitive in successful runs.
 
 ## Conclusion
 

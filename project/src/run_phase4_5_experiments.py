@@ -52,7 +52,7 @@ RESULTS_DIR = PROJECT_ROOT / "results" / "tables"
 VIZ_DIR     = PROJECT_ROOT / "results" / "visualizations"
 
 # ── Model classification ──────────────────────────────────────────────────────
-FOUNDATION_MODEL_NAMES = {"TabICL", "CatBoost"}   # CatBoost = bonus foundation
+FOUNDATION_MODEL_NAMES = {"TabPFN", "TabICL", "CatBoost"}   # CatBoost = bonus foundation
 CLASSICAL_MODEL_NAMES  = {
     "Logistic-Regression", "Random-Forest", "Svm", "Mlp", "Xgboost", "Lightgbm",
 }
@@ -165,13 +165,33 @@ def _parse_43(results: List[Dict]) -> List[Dict]:
     return rows
 
 
-# ── Phase 4.4 parser (TabICL + CatBoost) ─────────────────────────────────────
+# ── Phase 4.4 parser (TabPFN + TabICL + CatBoost) ────────────────────────────
 
 def _parse_44_tabicl(results: List[Dict]) -> List[Dict]:
-    """Parse phase4_4_tabicl_results.json — contains TabICL and CatBoost."""
+    """Parse phase4_4_tabicl_results.json — contains TabPFN, TabICL and CatBoost."""
     rows = []
     for ds in results:
         dataset = ds.get("dataset")
+
+        # TabPFN with imputation
+        for prep, r in ds.get("tabpfn_with_imputation", {}).items():
+            if r.get("available") and r.get("metrics"):
+                m = r["metrics"]
+                rows.append({
+                    "phase": 4.4,
+                    "dataset": dataset,
+                    "model": "TabPFN",
+                    "model_type": "Foundation",
+                    "preprocessing": prep,
+                    "accuracy": m.get("accuracy"),
+                    "f1": m.get("f1"),
+                    "precision": m.get("precision"),
+                    "recall": m.get("recall"),
+                    "roc_auc": m.get("roc_auc"),
+                    "training_time_seconds": r.get("training_time_seconds"),
+                    "missing_mechanism": None,
+                    "missing_rate": None,
+                })
 
         # TabICL with imputation
         for prep, r in ds.get("tabicl_with_imputation", {}).items():
@@ -449,7 +469,7 @@ def main() -> None:
     if r44:
         before = len(rows)
         rows += _parse_44_tabicl(r44)
-        logger.info(f"Phase 4.4 (TabICL + CatBoost): {len(rows)-before} rows")
+        logger.info(f"Phase 4.4 (TabPFN + TabICL + CatBoost): {len(rows)-before} rows")
 
     df_all = pd.DataFrame(rows)
     logger.info(f"Total consolidated rows: {len(df_all)}")

@@ -32,6 +32,7 @@ from config_phase4_3 import (
 )
 from data_utils import load_dataset_from_csv
 from missingness import inject_mcar, inject_mar, inject_mnar
+from sklearn.ensemble import GradientBoostingClassifier
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -123,8 +124,20 @@ def _get_model(model_name: str):
         return SVC(kernel='rbf', random_state=RANDOM_STATE, probability=True)
     elif model_name == "mlp":
         from sklearn.neural_network import MLPClassifier
-        return MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500, random_state=RANDOM_STATE, early_stopping=True)
-
+        return MLPClassifier(
+            hidden_layer_sizes=(100, 50),
+            max_iter=500,
+            random_state=RANDOM_STATE,
+            early_stopping=True
+        )
+    elif model_name == "gradient_boosting":
+        from sklearn.ensemble import GradientBoostingClassifier
+        return GradientBoostingClassifier(
+            n_estimators=100,
+            learning_rate=0.1,
+            max_depth=3,
+            random_state=RANDOM_STATE
+        )
     raise ValueError(f"Model {model_name} not available")
 
 

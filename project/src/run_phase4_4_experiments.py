@@ -1,14 +1,16 @@
-"""Phase 4.4 - TabICL Foundation Model Testing (Student 2).
+"""Phase 4.4 - Foundation Model Testing (Student 2).
 
-TabICL is a pretrained tabular foundation model that uses In-Context Learning.
-This phase tests TabICL performance with different imputation strategies and
-compares it with CatBoost as an additional baseline.
+Tests pretrained tabular foundation models:
+- TabPFN
+- TabICL
+
+Also includes CatBoost as an additional bonus comparison.
 
 Tasks:
-- Test TabICL on same datasets and splits as other models
-- Test with imputation (median, MICE) and without (TabICL handles NaN natively)
-- Record computation time, performance metrics
-- Compare with CatBoost as gradient boosting baseline
+- Test TabPFN and TabICL on same datasets and splits as other models
+- Test TabPFN with imputation
+- Test TabICL with and without explicit imputation
+- Record computation time and performance metrics
 
 Outputs:
 - results/tables/phase4_4_tabicl_results.json
@@ -177,6 +179,82 @@ def _test_tabicl(X_train: pd.DataFrame, X_test: pd.DataFrame,
 
     return result
 
+# TABFN
+
+def _test_tabpfn(
+    X_train: pd.DataFrame,
+    X_test: pd.DataFrame,
+    y_train,
+    y_test,
+    logger: logging.Logger,
+) -> Dict[str, Any]:
+    """
+    Train and evaluate TabPFN.
+    TabPFN usually requires numeric arrays and does NOT reliably handle NaN directly,
+    so use this mainly with imputed data.
+    """
+    result = {
+        "available": False,
+        "error": None,
+        "metrics": None,
+        "training_time_seconds": None,
+    }
+
+    try:
+        import os
+
+        token = os.getenv("TABPFN_TOKEN")
+        if not token:
+            raise RuntimeError(
+                "TABPFN_TOKEN is not set. Set it before running, e.g. "
+                "PowerShell: $env:TABPFN_TOKEN='your_token'"
+            )
+        logger.info("TABPFN_TOKEN detected in environment")
+
+        from tabpfn import TabPFNClassifier
+        result["available"] = True
+        logger.info("TabPFN imported successfully")
+
+        # TabPFN expects numeric input
+        X_train_np = X_train.to_numpy(dtype=np.float32)
+        X_test_np = X_test.to_numpy(dtype=np.float32)
+
+        # Safety check: TabPFN generally should not receive NaN here
+        if np.isnan(X_train_np).any() or np.isnan(X_test_np).any():
+            raise ValueError("TabPFN received NaN values. Use imputation before TabPFN.")
+
+        start = time.time()
+
+        # Minimal constructor compatible with newer versions
+        model = TabPFNClassifier(device="cpu", ignore_pretraining_limits=True)
+        model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+
+        y_pred = model.predict(X_test_np)
+
+        y_proba = None
+        if hasattr(model, "predict_proba"):
+            try:
+                y_proba = model.predict_proba(X_test_np)
+            except Exception:
+                pass
+
+        elapsed = time.time() - start
+        result["metrics"] = _compute_metrics(
+            y_test.to_numpy() if hasattr(y_test, "to_numpy") else y_test,
+            y_pred,
+            y_proba,
+        )
+        result["training_time_seconds"] = elapsed
+        logger.info(f"TabPFN done in {elapsed:.2f}s | acc={result['metrics']['accuracy']:.4f}")
+
+    except ImportError as e:
+        result["error"] = f"TabPFN not available: {e}. Run: pip install tabpfn"
+        logger.warning(result["error"])
+    except Exception as e:
+        result["error"] = str(e)
+        logger.error(f"TabPFN failed: {e}", exc_info=True)
+
+    return result
 
 # ── CatBoost (bonus baseline) ─────────────────────────────────────────────────
 
@@ -238,14 +316,33 @@ def run_phase4_4_experiment(dataset_path: Path, dataset_name: str,
         "n_test": int(X_test.shape[0]),
         "n_features": int(X.shape[1]),
         "n_classes": int(y.nunique()),
-        # ── TabICL with imputation ──────────────────────────────────────────
+
+        # TabPFN
+        "tabpfn_with_imputation": {},
+
+        # TabICL
         "tabicl_with_imputation": {},
-        # ── TabICL WITHOUT imputation (native NaN handling) ─────────────────
         "tabicl_without_imputation": {},
-        # ── CatBoost bonus ──────────────────────────────────────────────────
+
+        # CatBoost bonus
         "catboost_with_imputation": {},
         "catboost_without_imputation": {},
     }
+
+    # 0. TabPFN WITH imputation
+    logger.info("\n--- TabPFN WITH imputation ---")
+    for method in PREPROCESSING_METHODS:
+        logger.info(f"  preprocessing: {method}")
+        if method == "mice_indicator":
+            X_tr_base, X_te_base = _impute(X_train.copy(), X_test.copy(), "mice")
+            X_tr_imp = _append_missing_indicators(X_train, X_tr_base)
+            X_te_imp = _append_missing_indicators(X_test, X_te_base)
+        else:
+            X_tr_imp, X_te_imp = _impute(X_train.copy(), X_test.copy(), method)
+
+        results["tabpfn_with_imputation"][method] = _test_tabpfn(
+            X_tr_imp, X_te_imp, y_train, y_test, logger
+        )
 
     # 1. TabICL WITH imputation
     logger.info("\n--- TabICL WITH imputation ---")

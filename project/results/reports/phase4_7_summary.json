@@ -1,13 +1,13 @@
 {
   "phase": 4.7,
   "title": "Practical Usability Evaluation",
-  "timestamp": "2026-04-11T15:53:52.637044",
+  "timestamp": "2026-04-13T20:00:20.619786",
   "model_availability": {
     "CatBoost": true,
-    "TabPFN": false,
+    "TabPFN": true,
     "TabICL": true
   },
-  "total_experiments_analyzed": 270,
+  "total_experiments_analyzed": 391,
   "key_findings": {
     "recommended_model": "CatBoost (for missingness scenarios)",
     "deployment_complexity_easiest": "Logistic Regression",
