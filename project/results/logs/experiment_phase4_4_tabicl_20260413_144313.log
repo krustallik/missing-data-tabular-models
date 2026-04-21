@@ -1,0 +1,561 @@
+2026-04-13 14:43:13,247 - phase4_4_tabicl - INFO - ================================================================================
+2026-04-13 14:43:13,247 - phase4_4_tabicl - INFO - PHASE 4.4: TabICL Foundation Model (Student 2)
+2026-04-13 14:43:13,247 - phase4_4_tabicl - INFO - ================================================================================
+2026-04-13 14:43:13,247 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: taiwan_bankruptcy
+================================================================================
+2026-04-13 14:43:13,338 - phase4_4_tabicl - INFO - Loaded 6819 samples, 95 features
+2026-04-13 14:43:13,454 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 14:43:13,454 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 14:43:13,485 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:43:17,363 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:43:18,478 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:43:18,483 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 14:43:22,122 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:43:22,122 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:43:22,937 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:43:22,938 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 14:43:26,582 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:43:26,582 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:43:27,171 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:43:27,172 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 14:43:27,172 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 14:43:27,367 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 14:46:58,029 - phase4_4_tabicl - INFO - TabICL done in 210.65s | acc=0.9721
+2026-04-13 14:46:58,031 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 14:47:01,713 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 14:50:32,519 - phase4_4_tabicl - INFO - TabICL done in 210.80s | acc=0.9721
+2026-04-13 14:50:32,520 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 14:50:36,206 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 14:54:07,118 - phase4_4_tabicl - INFO - TabICL done in 210.91s | acc=0.9721
+2026-04-13 14:54:07,119 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 14:54:07,124 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 14:57:37,460 - phase4_4_tabicl - INFO - TabICL done in 210.33s | acc=0.9721
+2026-04-13 14:57:37,461 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 14:57:37,461 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 14:57:38,286 - phase4_4_tabicl - INFO - CatBoost done in 0.76s | acc=0.9714
+2026-04-13 14:57:38,286 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 14:57:42,609 - phase4_4_tabicl - INFO - CatBoost done in 0.63s | acc=0.9714
+2026-04-13 14:57:42,610 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 14:57:47,120 - phase4_4_tabicl - INFO - CatBoost done in 0.82s | acc=0.9714
+2026-04-13 14:57:47,121 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 14:57:47,734 - phase4_4_tabicl - INFO - CatBoost done in 0.61s | acc=0.9714
+2026-04-13 14:57:47,738 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: polish_1year
+================================================================================
+2026-04-13 14:57:47,775 - phase4_4_tabicl - INFO - Loaded 7027 samples, 64 features
+2026-04-13 14:57:47,833 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 14:57:47,833 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 14:57:47,858 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:57:47,858 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:57:48,543 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:57:48,544 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 14:58:02,777 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:58:02,777 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:58:03,364 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:58:03,365 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 14:58:17,618 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 14:58:17,618 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 14:58:18,204 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 14:58:18,205 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 14:58:18,205 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 14:58:18,229 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:01:02,251 - phase4_4_tabicl - INFO - TabICL done in 164.02s | acc=0.9765
+2026-04-13 15:01:02,252 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 15:01:16,501 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:04:01,494 - phase4_4_tabicl - INFO - TabICL done in 164.99s | acc=0.9858
+2026-04-13 15:04:01,495 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 15:04:15,688 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:08:24,269 - phase4_4_tabicl - INFO - TabICL done in 248.57s | acc=0.9858
+2026-04-13 15:08:24,271 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 15:08:24,275 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:11:10,047 - phase4_4_tabicl - INFO - TabICL done in 165.77s | acc=0.9943
+2026-04-13 15:11:10,048 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 15:11:10,048 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 15:11:10,587 - phase4_4_tabicl - INFO - CatBoost done in 0.50s | acc=0.9801
+2026-04-13 15:11:10,587 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 15:11:25,327 - phase4_4_tabicl - INFO - CatBoost done in 0.51s | acc=0.9822
+2026-04-13 15:11:25,327 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 15:11:40,025 - phase4_4_tabicl - INFO - CatBoost done in 0.53s | acc=0.9844
+2026-04-13 15:11:40,025 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 15:11:40,524 - phase4_4_tabicl - INFO - CatBoost done in 0.49s | acc=0.9829
+2026-04-13 15:11:40,526 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: slovak_manufacture_13
+================================================================================
+2026-04-13 15:11:40,574 - phase4_4_tabicl - INFO - Loaded 4107 samples, 64 features
+2026-04-13 15:11:40,816 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 15:11:40,816 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 15:11:40,838 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 15:11:40,838 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 15:11:41,502 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 15:11:41,503 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 15:11:49,368 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 15:11:49,368 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 15:11:49,980 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 15:11:49,981 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 15:11:57,877 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 15:11:57,877 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 15:11:58,472 - phase4_4_tabicl - ERROR - TabPFN failed: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 762, in fit
+    byte_size = self._initialize_model_variables()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 572, in _initialize_model_variables
+    return initialize_model_variables_helper(self, self.estimator_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 379, in initialize_model_variables_helper
+    initialize_tabpfn_model(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\base.py", line 185, in initialize_tabpfn_model
+    load_model_criterion_config(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 647, in load_model_criterion_config
+    raise res[0]
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\model_loading.py", line 472, in _download_model
+    ensure_license_accepted(hf_repo_id=_HF_REPOS[version])
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\browser_auth.py", line 602, in ensure_license_accepted
+    raise TabPFNLicenseError(
+tabpfn.errors.TabPFNLicenseError: TabPFN requires a one-time license acceptance to download
+model weights for local inference, but no interactive terminal
+is available.
+
+To authenticate in a non-interactive environment:
+  1. Open https://ux.priorlabs.ai in a browser and log in (or register)
+  2. Accept the license on the Licenses tab
+  3. Copy your API Key from https://ux.priorlabs.ai/account
+  4. Set the environment variable: export TABPFN_TOKEN="<your-api-key>"
+     or in Python (before calling .fit()): import os; os.environ["TABPFN_TOKEN"] = "<your-api-key>"
+2026-04-13 15:11:58,473 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 15:11:58,473 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 15:11:58,494 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:13:26,220 - phase4_4_tabicl - INFO - TabICL done in 87.72s | acc=0.9903
+2026-04-13 15:13:26,221 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 15:13:34,123 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:15:02,296 - phase4_4_tabicl - INFO - TabICL done in 88.17s | acc=0.9903
+2026-04-13 15:15:02,297 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 15:15:10,250 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:17:41,040 - phase4_4_tabicl - INFO - TabICL done in 150.78s | acc=0.9891
+2026-04-13 15:17:41,041 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 15:17:41,044 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 15:19:09,086 - phase4_4_tabicl - INFO - TabICL done in 88.04s | acc=0.9891
+2026-04-13 15:19:09,087 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 15:19:09,087 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 15:19:09,359 - phase4_4_tabicl - INFO - CatBoost done in 0.24s | acc=0.9903
+2026-04-13 15:19:09,360 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 15:19:17,542 - phase4_4_tabicl - INFO - CatBoost done in 0.42s | acc=0.9927
+2026-04-13 15:19:17,543 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 15:19:25,829 - phase4_4_tabicl - INFO - CatBoost done in 0.49s | acc=0.9927
+2026-04-13 15:19:25,830 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 15:19:26,060 - phase4_4_tabicl - INFO - CatBoost done in 0.22s | acc=0.9951

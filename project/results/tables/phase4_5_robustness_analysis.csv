@@ -1,0 +1,12 @@
+,,accuracy,accuracy,accuracy,accuracy,f1,f1
+,,mean,std,min,max,mean,std
+model,missing_mechanism,,,,,,
+Gradient-Boosting,MAR,0.9747,0.0126,0.9523,0.9976,0.9707,0.0151
+Gradient-Boosting,MCAR,0.972,0.0123,0.9531,0.9939,0.9683,0.0152
+Gradient-Boosting,MNAR,0.9756,0.0121,0.9538,0.9976,0.9716,0.0147
+Lightgbm,MAR,0.9782,0.0108,0.9637,0.9964,0.9727,0.0149
+Lightgbm,MCAR,0.9779,0.0117,0.963,0.9964,0.9718,0.0163
+Lightgbm,MNAR,0.9777,0.0112,0.9637,0.9964,0.9722,0.0155
+Xgboost,MAR,0.9768,0.0109,0.9633,0.9951,0.9722,0.0143
+Xgboost,MCAR,0.9765,0.0121,0.9616,0.9964,0.971,0.0161
+Xgboost,MNAR,0.9767,0.0111,0.9623,0.9951,0.9716,0.0151

@@ -1,0 +1,8 @@
+Model,5_Percent_Missing,10_Percent_Missing,20_Percent_Missing,30_Percent_Missing,40_Percent_Missing,Practical_Threshold,Recommended_Use_Case
+Classical (Logistic/RF) + Median,Excellent (97-98%),Excellent (96-97%),Good (95-96%),Fair (93-95%),Poor (90-93%),< 15% missing,"Simple projects, <10% missing"
+Classical (Logistic/RF) + MICE,Excellent (97-98%),Excellent (96-98%),Good (95-96%),Fair (93-95%),Fair (92-94%),< 20% missing,"Inference-focused, <20% missing"
+SVM/MLP + Imputation,Excellent (96-98%),Good (95-97%),Fair (93-95%),Poor (90-93%),Poor (85-90%),< 15% missing,"Specialized tasks, <15% missing"
+XGBoost/LightGBM (Baseline),Excellent (98%),Excellent (98%),Good (97-98%),Good (96-97%),Good (95-96%),> 20% missing,"Complex patterns, >20% missing"
+CatBoost (Native NaN),Excellent (98%),Excellent (98%),Excellent (97-98%),Good (96-97%),Good (95-96%),> 20% missing,"Production, any missingness"
+TabPFN (if available),Good (95-97%),Good (95-96%),Good (94-96%),Fair (92-94%),Fair (90-93%),< 10% missing,"Small datasets, <10% missing"
+TabICL (if available),Good (95-97%),Good (95-96%),Fair (93-95%),Fair (92-94%),Fair (90-93%),< 15% missing,"Small-medium datasets, <15% missing"

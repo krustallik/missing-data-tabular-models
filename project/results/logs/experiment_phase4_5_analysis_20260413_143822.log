@@ -1,0 +1,41 @@
+2026-04-13 14:38:22,471 - phase4_5_analysis - INFO - ================================================================================
+2026-04-13 14:38:22,471 - phase4_5_analysis - INFO - PHASE 4.5: Final Analysis and Visualization
+2026-04-13 14:38:22,471 - phase4_5_analysis - INFO - ================================================================================
+2026-04-13 14:38:22,471 - phase4_5_analysis - INFO - Loaded phase4_experiment_results.json
+2026-04-13 14:38:22,472 - phase4_5_analysis - INFO - Loaded phase4_2_experiment_results.json
+2026-04-13 14:38:22,473 - phase4_5_analysis - INFO - Loaded phase4_3_gradient_boosting_results.json
+2026-04-13 14:38:22,474 - phase4_5_analysis - INFO - Loaded phase4_4_tabicl_results.json
+2026-04-13 14:38:22,474 - phase4_5_analysis - INFO - Phase 4.1: 18 rows
+2026-04-13 14:38:22,474 - phase4_5_analysis - INFO - Phase 4.2: 18 rows
+2026-04-13 14:38:22,474 - phase4_5_analysis - INFO - Phase 4.3: 324 rows
+2026-04-13 14:38:22,474 - phase4_5_analysis - INFO - Phase 4.4 (TabPFN + TabICL + CatBoost): 24 rows
+2026-04-13 14:38:22,476 - phase4_5_analysis - INFO - Total consolidated rows: 384
+2026-04-13 14:38:22,477 - phase4_5_analysis - INFO - Models: ['CatBoost', 'Gradient-Boosting', 'Lightgbm', 'Logistic-Regression', 'Mlp', 'Random-Forest', 'Svm', 'TabICL', 'Xgboost']
+2026-04-13 14:38:22,485 - phase4_5_analysis - INFO - Saved phase4_5_consolidated_results.csv
+2026-04-13 14:38:22,492 - phase4_5_analysis - INFO - Classical rows: 360, Foundation rows: 24
+2026-04-13 14:38:22,508 - phase4_5_analysis - INFO - Robustness summary:
+                                    accuracy          ...      f1        
+                                        mean     std  ...    mean     std
+model             missing_mechanism                   ...                
+Gradient-Boosting MAR                 0.9747  0.0126  ...  0.9707  0.0151
+                  MCAR                0.9720  0.0123  ...  0.9683  0.0152
+                  MNAR                0.9756  0.0121  ...  0.9716  0.0147
+Lightgbm          MAR                 0.9782  0.0108  ...  0.9727  0.0149
+                  MCAR                0.9779  0.0117  ...  0.9718  0.0163
+                  MNAR                0.9777  0.0112  ...  0.9722  0.0155
+Xgboost           MAR                 0.9768  0.0109  ...  0.9722  0.0143
+                  MCAR                0.9765  0.0121  ...  0.9710  0.0161
+                  MNAR                0.9767  0.0111  ...  0.9716  0.0151
+
+[9 rows x 6 columns]
+2026-04-13 14:38:22,510 - phase4_5_analysis - INFO - Saved phase4_5_robustness_analysis.csv
+2026-04-13 14:38:22,511 - phase4_5_analysis - INFO - Creating missing-rate comparison plots...
+2026-04-13 14:38:22,976 - phase4_5_analysis - INFO - Saved phase4_5_missing_rate_MCAR.png
+2026-04-13 14:38:23,393 - phase4_5_analysis - INFO - Saved phase4_5_missing_rate_MAR.png
+2026-04-13 14:38:23,812 - phase4_5_analysis - INFO - Saved phase4_5_missing_rate_MNAR.png
+2026-04-13 14:38:23,812 - phase4_5_analysis - INFO - Creating classical vs. foundation comparison plot...
+2026-04-13 14:38:24,221 - phase4_5_analysis - INFO - Saved phase4_5_model_comparison.png
+2026-04-13 14:38:24,221 - phase4_5_analysis - INFO - Creating stability heatmap...
+2026-04-13 14:38:24,433 - phase4_5_analysis - INFO - Saved phase4_5_stability_heatmap.png
+2026-04-13 14:38:24,433 - phase4_5_analysis - INFO - Creating per-dataset model ranking chart...
+2026-04-13 14:38:24,830 - phase4_5_analysis - INFO - Saved phase4_5_per_dataset_ranking.png

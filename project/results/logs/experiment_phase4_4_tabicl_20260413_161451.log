@@ -1,0 +1,429 @@
+2026-04-13 16:14:51,126 - phase4_4_tabicl - INFO - ================================================================================
+2026-04-13 16:14:51,126 - phase4_4_tabicl - INFO - PHASE 4.4: TabICL Foundation Model (Student 2)
+2026-04-13 16:14:51,126 - phase4_4_tabicl - INFO - ================================================================================
+2026-04-13 16:14:51,127 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: taiwan_bankruptcy
+================================================================================
+2026-04-13 16:14:51,213 - phase4_4_tabicl - INFO - Loaded 6819 samples, 95 features
+2026-04-13 16:14:51,324 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 16:14:51,325 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:14:51,355 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:14:55,234 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:14:59,632 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:14:59,636 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:15:03,306 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:15:03,306 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:15:03,420 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:15:03,422 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:15:07,109 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:15:07,109 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:15:07,223 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:15:07,225 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 16:15:07,225 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:15:07,275 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:18:36,045 - phase4_4_tabicl - INFO - TabICL done in 208.76s | acc=0.9721
+2026-04-13 16:18:36,046 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:18:39,741 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:22:09,763 - phase4_4_tabicl - INFO - TabICL done in 210.02s | acc=0.9721
+2026-04-13 16:22:09,764 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:22:13,491 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:25:42,370 - phase4_4_tabicl - INFO - TabICL done in 208.87s | acc=0.9721
+2026-04-13 16:25:42,372 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 16:25:42,376 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:29:11,751 - phase4_4_tabicl - INFO - TabICL done in 209.37s | acc=0.9721
+2026-04-13 16:29:11,753 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 16:29:11,753 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:29:12,581 - phase4_4_tabicl - INFO - CatBoost done in 0.76s | acc=0.9714
+2026-04-13 16:29:12,581 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:29:16,883 - phase4_4_tabicl - INFO - CatBoost done in 0.63s | acc=0.9714
+2026-04-13 16:29:16,883 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:29:21,190 - phase4_4_tabicl - INFO - CatBoost done in 0.63s | acc=0.9714
+2026-04-13 16:29:21,191 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 16:29:21,790 - phase4_4_tabicl - INFO - CatBoost done in 0.59s | acc=0.9714
+2026-04-13 16:29:21,794 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: polish_1year
+================================================================================
+2026-04-13 16:29:21,834 - phase4_4_tabicl - INFO - Loaded 7027 samples, 64 features
+2026-04-13 16:29:21,891 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 16:29:21,891 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:29:21,916 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:29:21,916 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:29:22,110 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:29:22,112 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:29:36,489 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:29:36,489 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:29:36,620 - phase4_4_tabicl - ERROR - TabPFN failed: Input X contains infinity or a value too large for dtype('float32').
+Traceback (most recent call last):
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 166, in ensure_compatible_fit_inputs_sklearn
+    X, y = validate_data(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 2919, in validate_data
+    X, y = check_X_y(X, y, **check_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 1314, in check_X_y
+    X = check_array(
+        ^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 1074, in check_array
+    _assert_all_finite(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 133, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 182, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains infinity or a value too large for dtype('float32').
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 69, in ensure_compatible_fit_inputs
+    X, y, feature_names_in, n_features_in = ensure_compatible_fit_inputs_sklearn(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 196, in ensure_compatible_fit_inputs_sklearn
+    raise TabPFNValidationError(str(e)) from e
+tabpfn.errors.TabPFNValidationError: Input X contains infinity or a value too large for dtype('float32').
+2026-04-13 16:29:36,623 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:29:50,922 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:29:50,922 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:29:51,039 - phase4_4_tabicl - ERROR - TabPFN failed: Input X contains infinity or a value too large for dtype('float32').
+Traceback (most recent call last):
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 166, in ensure_compatible_fit_inputs_sklearn
+    X, y = validate_data(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 2919, in validate_data
+    X, y = check_X_y(X, y, **check_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 1314, in check_X_y
+    X = check_array(
+        ^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 1074, in check_array
+    _assert_all_finite(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 133, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\sklearn\utils\validation.py", line 182, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains infinity or a value too large for dtype('float32').
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 69, in ensure_compatible_fit_inputs
+    X, y, feature_names_in, n_features_in = ensure_compatible_fit_inputs_sklearn(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 196, in ensure_compatible_fit_inputs_sklearn
+    raise TabPFNValidationError(str(e)) from e
+tabpfn.errors.TabPFNValidationError: Input X contains infinity or a value too large for dtype('float32').
+2026-04-13 16:29:51,041 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 16:29:51,041 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:29:51,067 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:32:34,213 - phase4_4_tabicl - INFO - TabICL done in 163.14s | acc=0.9765
+2026-04-13 16:32:34,214 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:32:48,474 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:35:31,891 - phase4_4_tabicl - INFO - TabICL done in 163.41s | acc=0.9858
+2026-04-13 16:35:31,892 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:35:46,225 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:39:51,773 - phase4_4_tabicl - INFO - TabICL done in 245.54s | acc=0.9858
+2026-04-13 16:39:51,775 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 16:39:51,778 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:42:36,451 - phase4_4_tabicl - INFO - TabICL done in 164.67s | acc=0.9943
+2026-04-13 16:42:36,451 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 16:42:36,451 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:42:36,984 - phase4_4_tabicl - INFO - CatBoost done in 0.50s | acc=0.9801
+2026-04-13 16:42:36,985 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:42:51,773 - phase4_4_tabicl - INFO - CatBoost done in 0.51s | acc=0.9822
+2026-04-13 16:42:51,773 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:43:06,641 - phase4_4_tabicl - INFO - CatBoost done in 0.52s | acc=0.9844
+2026-04-13 16:43:06,641 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 16:43:07,127 - phase4_4_tabicl - INFO - CatBoost done in 0.48s | acc=0.9829
+2026-04-13 16:43:07,130 - phase4_4_tabicl - INFO - 
+================================================================================
+Phase 4.4: slovak_manufacture_13
+================================================================================
+2026-04-13 16:43:07,179 - phase4_4_tabicl - INFO - Loaded 4107 samples, 64 features
+2026-04-13 16:43:07,418 - phase4_4_tabicl - INFO - 
+--- TabPFN WITH imputation ---
+2026-04-13 16:43:07,418 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:43:07,440 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:43:07,440 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:43:07,622 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:43:07,624 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:43:15,384 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:43:15,384 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:43:15,507 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:43:15,509 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:43:23,252 - phase4_4_tabicl - INFO - TABPFN_TOKEN detected in environment
+2026-04-13 16:43:23,252 - phase4_4_tabicl - INFO - TabPFN imported successfully
+2026-04-13 16:43:23,374 - phase4_4_tabicl - ERROR - TabPFN failed: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+Traceback (most recent call last):
+  File "C:\Users\TaroM\Documents\унік коди\project\src\run_phase4_4_experiments.py", line 230, in _test_tabpfn
+    model.fit(X_train_np, y_train.to_numpy() if hasattr(y_train, "to_numpy") else y_train)
+  File "C:\Users\TaroM\miniconda3\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 763, in fit
+    ensemble_configs, X, y = self._initialize_dataset_preprocessing(
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\classifier.py", line 642, in _initialize_dataset_preprocessing
+    X, y, feature_names, n_features, original_y_name = ensure_compatible_fit_inputs(
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 75, in ensure_compatible_fit_inputs
+    validate_dataset_size(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 137, in validate_dataset_size
+    _validate_num_samples_for_cpu(
+  File "C:\Users\TaroM\miniconda3\Lib\site-packages\tabpfn\validation.py", line 274, in _validate_num_samples_for_cpu
+    raise RuntimeError(
+RuntimeError: Running on CPU with more than 1000 samples is not allowed by default due to slow performance.
+To override this behavior, set the environment variable TABPFN_ALLOW_CPU_LARGE_DATASET=1 or set ignore_pretraining_limits=True.
+Alternatively, consider using a GPU or the tabpfn-client API: https://github.com/PriorLabs/tabpfn-client
+2026-04-13 16:43:23,376 - phase4_4_tabicl - INFO - 
+--- TabICL WITH imputation ---
+2026-04-13 16:43:23,376 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:43:23,398 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:44:51,327 - phase4_4_tabicl - INFO - TabICL done in 87.92s | acc=0.9903
+2026-04-13 16:44:51,328 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:44:58,984 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:46:26,691 - phase4_4_tabicl - INFO - TabICL done in 87.70s | acc=0.9903
+2026-04-13 16:46:26,692 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:46:34,351 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:49:04,861 - phase4_4_tabicl - INFO - TabICL done in 150.50s | acc=0.9891
+2026-04-13 16:49:04,862 - phase4_4_tabicl - INFO - 
+--- TabICL WITHOUT imputation (raw NaN) ---
+2026-04-13 16:49:04,864 - phase4_4_tabicl - INFO - TabICL imported successfully
+2026-04-13 16:50:33,077 - phase4_4_tabicl - INFO - TabICL done in 88.21s | acc=0.9891
+2026-04-13 16:50:33,078 - phase4_4_tabicl - INFO - 
+--- CatBoost WITH imputation (bonus) ---
+2026-04-13 16:50:33,078 - phase4_4_tabicl - INFO -   preprocessing: median
+2026-04-13 16:50:33,345 - phase4_4_tabicl - INFO - CatBoost done in 0.24s | acc=0.9903
+2026-04-13 16:50:33,345 - phase4_4_tabicl - INFO -   preprocessing: mice
+2026-04-13 16:50:41,505 - phase4_4_tabicl - INFO - CatBoost done in 0.45s | acc=0.9927
+2026-04-13 16:50:41,505 - phase4_4_tabicl - INFO -   preprocessing: mice_indicator
+2026-04-13 16:50:49,782 - phase4_4_tabicl - INFO - CatBoost done in 0.47s | acc=0.9927
+2026-04-13 16:50:49,783 - phase4_4_tabicl - INFO - 
+--- CatBoost WITHOUT imputation (raw NaN, bonus) ---
+2026-04-13 16:50:50,009 - phase4_4_tabicl - INFO - CatBoost done in 0.22s | acc=0.9951

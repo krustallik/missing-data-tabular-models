@@ -4,61 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/INS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/1year.arff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/2year.arff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/3year.arff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/4year.arff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/polish/5year.arff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_agriculture_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_construction_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_manufacture_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/bankrupt_retail_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_agriculture_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_construction_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_manufacture_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_13_year_10_11_12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_14_year_11_12_13.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_15_year_12_13_14.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/slovak/nonbankrupt_retail_16_year_13_14_15.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/data/raw/taiwan/data.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/data_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/dataset_registry.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/missingness.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/prepare_raw_datasets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/run_dataset_setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/src/run_generate_missingness.py" afterDir="false" />
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="full 4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/catboost_info/catboost_training.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/catboost_info/catboost_training.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/catboost_info/learn/events.out.tfevents" beforeDir="false" afterPath="$PROJECT_DIR$/project/catboost_info/learn/events.out.tfevents" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/catboost_info/time_left.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/project/catboost_info/time_left.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/reports/phase4_7_practical_usability_report.md" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/reports/phase4_7_practical_usability_report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/reports/phase4_7_summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/reports/phase4_7_summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_3_gradient_boosting_results.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_3_gradient_boosting_results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_4_tabicl_results.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_4_tabicl_results.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_5_classical_models.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_5_classical_models.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_5_consolidated_results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_5_consolidated_results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_5_foundation_models.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_5_foundation_models.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/tables/phase4_5_robustness_analysis.csv" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/tables/phase4_5_robustness_analysis.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MAR.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MAR.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MCAR.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MCAR.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MNAR.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/visualizations/phase4_5_missing_rate_MNAR.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/visualizations/phase4_5_model_comparison.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/visualizations/phase4_5_model_comparison.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results/visualizations/phase4_5_stability_heatmap.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/results/visualizations/phase4_5_stability_heatmap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/catboost_info/catboost_training.json" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/catboost_info/catboost_training.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/catboost_info/learn/events.out.tfevents" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/catboost_info/learn/events.out.tfevents" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/catboost_info/time_left.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/catboost_info/time_left.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/config_phase4_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/config_phase4_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/run_phase4_3_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/run_phase4_3_experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/run_phase4_4_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/run_phase4_4_experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/run_phase4_5_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/run_phase4_5_experiments.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +44,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;berlin-web&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/krustallik/missing-data-tabular-models.git&quot;,
+    &quot;accountId&quot;: &quot;58e612ba-0b61-4148-87a6-4049af39cda1&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -90,9 +78,17 @@
   "keyToString": {
     "Python.FSDFSD.executor": "Run",
     "Python.run_dataset_setup.executor": "Run",
+    "Python.run_phase4_2_experiments.executor": "Run",
+    "Python.run_phase4_3_experiments.executor": "Run",
+    "Python.run_phase4_4_experiments.executor": "Run",
+    "Python.run_phase4_4_tabpfn.executor": "Run",
+    "Python.run_phase4_5_experiments.executor": "Run",
+    "Python.run_phase4_6_experiments.executor": "Run",
+    "Python.run_phase4_7_experiments.executor": "Run",
+    "Python.run_phase4_pipeline.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "#1 on taras__branch",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,11 +106,52 @@
       <recent name="D:\INS\data\raw\slovak" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="run_phase4_4_experiments" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="INS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="TABPFN_TOKEN" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYjRkMjM4N2QtYWFjYi00ODc2LWIyYWEtNTc3OGM2YTg3NjZmIiwiZXhwIjoxODA3NjE0NzI2fQ.vlU4bGcrdemxTuO742HIQOVz8ucXxZgatvBfGyPnKUQ" />
+        <env name="TABPFN_ALLOW_CPU_LARGE_DATASET" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/src/run_phase4_4_experiments.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.run_phase4_4_experiments" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
-        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
@@ -128,15 +165,103 @@
       <updated>1775218907861</updated>
       <workItem from="1775218908874" duration="1242000" />
       <workItem from="1775220448632" duration="1773000" />
+      <workItem from="1775831768266" duration="6774000" />
+      <workItem from="1775899330275" duration="10291000" />
+      <workItem from="1775918277276" duration="568000" />
+      <workItem from="1775986559955" duration="2052000" />
+      <workItem from="1776070345402" duration="13387000" />
     </task>
+    <task id="LOCAL-00001" summary="4.1 and 4.2">
+      <option name="closed" value="true" />
+      <created>1775838809842</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1775838809842</updated>
+    </task>
+    <task id="LOCAL-00002" summary="full 4.1 and 4.2 and 4.3">
+      <option name="closed" value="true" />
+      <created>1775903751695</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775903751695</updated>
+    </task>
+    <task id="LOCAL-00003" summary="full 4.1 and 4.2 and 4.3 and 4.4">
+      <option name="closed" value="true" />
+      <created>1775909685603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775909685603</updated>
+    </task>
+    <task id="LOCAL-00004" summary="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5">
+      <option name="closed" value="true" />
+      <created>1775910883660</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775910883660</updated>
+    </task>
+    <task id="LOCAL-00005" summary="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5 and 4.6">
+      <option name="closed" value="true" />
+      <created>1775912709109</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775912709109</updated>
+    </task>
+    <task id="LOCAL-00006" summary="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5 and 4.6">
+      <option name="closed" value="true" />
+      <created>1775914936425</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775914936425</updated>
+    </task>
+    <task id="LOCAL-00007" summary="full 4">
+      <option name="closed" value="true" />
+      <created>1775914957187</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775914957187</updated>
+    </task>
+    <task id="LOCAL-00008" summary="full 4">
+      <option name="closed" value="true" />
+      <created>1775989612276</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1775989612276</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="4.1 and 4.2" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3 and 4.4" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5 and 4.6 and 4.7" />
+    <MESSAGE value="full 4.1 and 4.2 and 4.3 and 4.4 and 4.5 and 4.6" />
+    <MESSAGE value="full 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="full 4" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/_$run_phase4_7_experiments.coverage" NAME="run_phase4_7_experiments Coverage Results" MODIFIED="1776092576073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/INS$FSDFSD.coverage" NAME="FSDFSD Coverage Results" MODIFIED="1775218951565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_6_experiments.coverage" NAME="run_phase4_6_experiments Coverage Results" MODIFIED="1775988827219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_4_tabpfn.coverage" NAME="run_phase4_4_tabpfn Coverage Results" MODIFIED="1775989484208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_3_experiments.coverage" NAME="run_phase4_3_experiments Coverage Results" MODIFIED="1776071001140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_pipeline.coverage" NAME="run_phase4_pipeline Coverage Results" MODIFIED="1775840482327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/INS$run_dataset_setup.coverage" NAME="run_dataset_setup Coverage Results" MODIFIED="1775221461224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_4_experiments.coverage" NAME="run_phase4_4_experiments Coverage Results" MODIFIED="1776093009349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project" />
+    <SUITE FILE_PATH="coverage/_$run_phase4_5_experiments.coverage" NAME="run_phase4_5_experiments Coverage Results" MODIFIED="1776092560689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

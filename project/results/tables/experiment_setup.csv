@@ -1,0 +1,4 @@
+dataset,random_state,test_size,metrics,target_column,n_samples,n_features,n_classes,task_type,native_missing_values_present
+taiwan_bankruptcy,42,0.2,"accuracy,f1,roc_auc",target,6819,95,2,binary,False
+polish_1year,42,0.2,"accuracy,f1,roc_auc",target,7027,64,2,binary,True
+slovak_manufacture_13,42,0.2,"accuracy,f1,roc_auc",target,4107,64,2,binary,True

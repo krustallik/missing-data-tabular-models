@@ -1,0 +1,440 @@
+[
+  {
+    "dataset": "taiwan_bankruptcy",
+    "timestamp": "2026-04-13T17:10:11.975090",
+    "n_train": 5455,
+    "n_test": 1364,
+    "n_features": 95,
+    "n_classes": 2,
+    "tabpfn_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9758064516129032,
+          "f1": 0.9705746062545989,
+          "precision": 0.9727541278742979,
+          "recall": 0.9758064516129032,
+          "roc_auc": 0.9658574380165289
+        },
+        "training_time_seconds": 1447.946620941162
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9758064516129032,
+          "f1": 0.9705746062545989,
+          "precision": 0.9727541278742979,
+          "recall": 0.9758064516129032,
+          "roc_auc": 0.9658574380165289
+        },
+        "training_time_seconds": 1455.717678308487
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9758064516129032,
+          "f1": 0.9705746062545989,
+          "precision": 0.9727541278742979,
+          "recall": 0.9758064516129032,
+          "roc_auc": 0.9658574380165289
+        },
+        "training_time_seconds": 1452.566061258316
+      }
+    },
+    "tabicl_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9721407624633431,
+          "f1": 0.9664351571763908,
+          "precision": 0.9662400741344325,
+          "recall": 0.9721407624633431,
+          "roc_auc": 0.9579373278236915
+        },
+        "training_time_seconds": 209.8739459514618
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9721407624633431,
+          "f1": 0.9664351571763908,
+          "precision": 0.9662400741344325,
+          "recall": 0.9721407624633431,
+          "roc_auc": 0.9579373278236915
+        },
+        "training_time_seconds": 241.3114414215088
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9721407624633431,
+          "f1": 0.9664351571763908,
+          "precision": 0.9662400741344325,
+          "recall": 0.9721407624633431,
+          "roc_auc": 0.9579373278236915
+        },
+        "training_time_seconds": 228.2151119709015
+      }
+    },
+    "tabicl_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9721407624633431,
+          "f1": 0.9664351571763908,
+          "precision": 0.9662400741344325,
+          "recall": 0.9721407624633431,
+          "roc_auc": 0.9579373278236915
+        },
+        "training_time_seconds": 208.96473670005798
+      }
+    },
+    "catboost_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9714076246334311,
+          "f1": 0.9658686448615639,
+          "precision": 0.9650911064686539,
+          "recall": 0.9714076246334311,
+          "roc_auc": 0.956301652892562
+        },
+        "training_time_seconds": 0.7600095272064209
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9714076246334311,
+          "f1": 0.9658686448615639,
+          "precision": 0.9650911064686539,
+          "recall": 0.9714076246334311,
+          "roc_auc": 0.956301652892562
+        },
+        "training_time_seconds": 0.6246659755706787
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9714076246334311,
+          "f1": 0.9658686448615639,
+          "precision": 0.9650911064686539,
+          "recall": 0.9714076246334311,
+          "roc_auc": 0.956301652892562
+        },
+        "training_time_seconds": 0.6526451110839844
+      }
+    },
+    "catboost_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9714076246334311,
+          "f1": 0.9658686448615639,
+          "precision": 0.9650911064686539,
+          "recall": 0.9714076246334311,
+          "roc_auc": 0.956301652892562
+        },
+        "training_time_seconds": 0.6016583442687988
+      }
+    }
+  },
+  {
+    "dataset": "polish_1year",
+    "timestamp": "2026-04-13T18:38:06.773226",
+    "n_train": 5621,
+    "n_test": 1406,
+    "n_features": 64,
+    "n_classes": 2,
+    "tabpfn_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9914651493598862,
+          "f1": 0.991136343609562,
+          "precision": 0.9912595998879482,
+          "recall": 0.9914651493598862,
+          "roc_auc": 0.997370151216305
+        },
+        "training_time_seconds": 1070.8351306915283
+      },
+      "mice": {
+        "available": true,
+        "error": "Input X contains infinity or a value too large for dtype('float32').",
+        "metrics": null,
+        "training_time_seconds": null
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": "Input X contains infinity or a value too large for dtype('float32').",
+        "metrics": null,
+        "training_time_seconds": null
+      }
+    },
+    "tabicl_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9765291607396871,
+          "f1": 0.9719375270034368,
+          "precision": 0.9760806935886481,
+          "recall": 0.9765291607396871,
+          "roc_auc": 0.9668529476221784
+        },
+        "training_time_seconds": 163.84039759635925
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9857752489331437,
+          "f1": 0.9843998064346879,
+          "precision": 0.9855971799690586,
+          "recall": 0.9857752489331437,
+          "roc_auc": 0.9845496383957922
+        },
+        "training_time_seconds": 164.01262283325195
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9857752489331437,
+          "f1": 0.9845801515609027,
+          "precision": 0.9853260462678745,
+          "recall": 0.9857752489331437,
+          "roc_auc": 0.9837689020381327
+        },
+        "training_time_seconds": 247.58605551719666
+      }
+    },
+    "tabicl_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9943100995732574,
+          "f1": 0.994090895739708,
+          "precision": 0.9943435695757676,
+          "recall": 0.9943100995732574,
+          "roc_auc": 0.9980550076703923
+        },
+        "training_time_seconds": 164.64078187942505
+      }
+    },
+    "catboost_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9800853485064012,
+          "f1": 0.977022979333634,
+          "precision": 0.9797872422003505,
+          "recall": 0.9800853485064012,
+          "roc_auc": 0.9704963839579224
+        },
+        "training_time_seconds": 0.608151912689209
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9822190611664295,
+          "f1": 0.9796226533206663,
+          "precision": 0.9825418814066905,
+          "recall": 0.9822190611664295,
+          "roc_auc": 0.9700580758273066
+        },
+        "training_time_seconds": 0.4821469783782959
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.984352773826458,
+          "f1": 0.9828397870781567,
+          "precision": 0.9838284308126798,
+          "recall": 0.984352773826458,
+          "roc_auc": 0.9795501862809555
+        },
+        "training_time_seconds": 0.5241208076477051
+      }
+    },
+    "catboost_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9829302987197724,
+          "f1": 0.9812797677216255,
+          "precision": 0.9820596816563011,
+          "recall": 0.9829302987197724,
+          "roc_auc": 0.9827279202279202
+        },
+        "training_time_seconds": 0.4780867099761963
+      }
+    }
+  },
+  {
+    "dataset": "slovak_manufacture_13",
+    "timestamp": "2026-04-13T19:09:46.058129",
+    "n_train": 3285,
+    "n_test": 822,
+    "n_features": 64,
+    "n_classes": 2,
+    "tabpfn_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9914841849148418,
+          "f1": 0.9900726950750389,
+          "precision": 0.9890733759346898,
+          "recall": 0.9914841849148418,
+          "roc_auc": 0.9950980392156863
+        },
+        "training_time_seconds": 448.2403848171234
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9914841849148418,
+          "f1": 0.9900726950750389,
+          "precision": 0.9890733759346898,
+          "recall": 0.9914841849148418,
+          "roc_auc": 0.9946895424836601
+        },
+        "training_time_seconds": 442.83016872406006
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9914841849148418,
+          "f1": 0.9900726950750389,
+          "precision": 0.9890733759346898,
+          "recall": 0.9914841849148418,
+          "roc_auc": 0.994281045751634
+        },
+        "training_time_seconds": 839.7197420597076
+      }
+    },
+    "tabicl_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9902676399026764,
+          "f1": 0.9893003600496744,
+          "precision": 0.988457694572841,
+          "recall": 0.9902676399026764,
+          "roc_auc": 0.9938725490196079
+        },
+        "training_time_seconds": 86.63944506645203
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9902676399026764,
+          "f1": 0.9902676399026764,
+          "precision": 0.9902676399026764,
+          "recall": 0.9902676399026764,
+          "roc_auc": 0.9953022875816994
+        },
+        "training_time_seconds": 86.35084104537964
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9890510948905109,
+          "f1": 0.9894688501248445,
+          "precision": 0.9899140848404203,
+          "recall": 0.9890510948905109,
+          "roc_auc": 0.9944852941176471
+        },
+        "training_time_seconds": 159.4294831752777
+      }
+    },
+    "tabicl_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9890510948905109,
+          "f1": 0.9872363222393357,
+          "precision": 0.9854281971070292,
+          "recall": 0.9890510948905109,
+          "roc_auc": 0.9944852941176471
+        },
+        "training_time_seconds": 86.03086185455322
+      }
+    },
+    "catboost_with_imputation": {
+      "median": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9902676399026764,
+          "f1": 0.9914722286985059,
+          "precision": 0.9931753622667289,
+          "recall": 0.9902676399026764,
+          "roc_auc": 0.9957107843137255
+        },
+        "training_time_seconds": 0.24254488945007324
+      },
+      "mice": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9927007299270073,
+          "f1": 0.9919752700372558,
+          "precision": 0.991496082665572,
+          "recall": 0.9927007299270073,
+          "roc_auc": 0.9967320261437909
+        },
+        "training_time_seconds": 0.438601016998291
+      },
+      "mice_indicator": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9927007299270073,
+          "f1": 0.9919752700372558,
+          "precision": 0.991496082665572,
+          "recall": 0.9927007299270073,
+          "roc_auc": 0.9967320261437909
+        },
+        "training_time_seconds": 0.4796140193939209
+      }
+    },
+    "catboost_without_imputation": {
+      "raw_nan": {
+        "available": true,
+        "error": null,
+        "metrics": {
+          "accuracy": 0.9951338199513382,
+          "f1": 0.9951338199513382,
+          "precision": 0.9951338199513382,
+          "recall": 0.9951338199513382,
+          "roc_auc": 0.9983660130718953
+        },
+        "training_time_seconds": 0.22853946685791016
+      }
+    }
+  }
+]

@@ -1,0 +1,719 @@
+2026-04-11 11:23:21,789 - phase4_3_gradient_boosting - INFO - ================================================================================
+2026-04-11 11:23:21,789 - phase4_3_gradient_boosting - INFO - PHASE 4.3: Gradient Boosting Robustness (Student 2)
+2026-04-11 11:23:21,789 - phase4_3_gradient_boosting - INFO - ================================================================================
+2026-04-11 11:23:21,790 - phase4_3_gradient_boosting - WARNING - ✗ XGBoost not available, using fallback models (SVM/MLP)
+2026-04-11 11:23:21,790 - phase4_3_gradient_boosting - INFO - Starting Phase 4.3 experiment on taiwan_bankruptcy
+2026-04-11 11:23:21,790 - phase4_3_gradient_boosting - INFO - Using models: ['svm', 'mlp']
+2026-04-11 11:23:21,891 - phase4_3_gradient_boosting - INFO - Loaded 6819 samples with 95 features
+2026-04-11 11:23:21,986 - phase4_3_gradient_boosting - INFO - Using precomputed split from data/splits
+2026-04-11 11:23:21,986 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_5pct ===
+2026-04-11 11:23:22,251 - phase4_3_gradient_boosting - INFO - Injected MCAR at 5.0%
+2026-04-11 11:23:22,251 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:23:22,251 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:23:23,735 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:23:23,735 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:23:24,348 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9670, F1: 0.9599
+2026-04-11 11:23:24,349 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:23:24,349 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:24:07,809 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:24:07,809 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:24:45,823 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:24:45,823 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_10pct ===
+2026-04-11 11:24:46,357 - phase4_3_gradient_boosting - INFO - Injected MCAR at 10.0%
+2026-04-11 11:24:46,357 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:24:46,357 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:24:47,825 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:24:47,825 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:24:48,249 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9655, F1: 0.9564
+2026-04-11 11:24:48,249 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:24:48,249 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:25:24,928 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:25:24,928 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:26:01,406 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9578
+2026-04-11 11:26:01,407 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_15pct ===
+2026-04-11 11:26:02,200 - phase4_3_gradient_boosting - INFO - Injected MCAR at 15.0%
+2026-04-11 11:26:02,200 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:26:02,201 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:26:03,699 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:26:03,699 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:26:04,133 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9594
+2026-04-11 11:26:04,133 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:26:04,133 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:26:39,568 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:26:39,568 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:27:14,576 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9559
+2026-04-11 11:27:14,577 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_20pct ===
+2026-04-11 11:27:15,602 - phase4_3_gradient_boosting - INFO - Injected MCAR at 20.0%
+2026-04-11 11:27:15,602 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:27:15,602 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:27:17,129 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:27:17,129 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:27:17,645 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9670, F1: 0.9620
+2026-04-11 11:27:17,646 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:27:17,646 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:27:52,885 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:27:52,886 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:28:29,003 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9548
+2026-04-11 11:28:29,003 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_30pct ===
+2026-04-11 11:28:30,542 - phase4_3_gradient_boosting - INFO - Injected MCAR at 30.0%
+2026-04-11 11:28:30,542 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:28:30,542 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:28:32,080 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:28:32,081 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:28:32,651 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9575, F1: 0.9584
+2026-04-11 11:28:32,651 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:28:32,651 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:29:06,116 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:29:06,116 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:29:40,278 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9548
+2026-04-11 11:29:40,279 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_40pct ===
+2026-04-11 11:29:42,266 - phase4_3_gradient_boosting - INFO - Injected MCAR at 40.0%
+2026-04-11 11:29:42,266 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:29:42,266 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:29:43,879 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:29:43,879 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:29:44,346 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9567, F1: 0.9587
+2026-04-11 11:29:44,346 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:29:44,346 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:30:16,761 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:30:16,761 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:30:48,129 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9548
+2026-04-11 11:30:48,130 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_5pct ===
+2026-04-11 11:30:48,703 - phase4_3_gradient_boosting - INFO - Injected MAR at 5.0%
+2026-04-11 11:30:48,703 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:30:48,703 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:30:50,126 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:30:50,126 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:30:50,449 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:30:50,449 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:30:50,449 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:31:10,082 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:31:10,082 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:31:28,489 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:31:28,489 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_10pct ===
+2026-04-11 11:31:29,334 - phase4_3_gradient_boosting - INFO - Injected MAR at 10.0%
+2026-04-11 11:31:29,335 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:31:29,335 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:31:30,768 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:31:30,768 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:31:31,104 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:31:31,105 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:31:31,105 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:32:07,306 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:32:07,307 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:32:42,718 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9655, F1: 0.9554
+2026-04-11 11:32:42,718 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_15pct ===
+2026-04-11 11:32:43,868 - phase4_3_gradient_boosting - INFO - Injected MAR at 15.0%
+2026-04-11 11:32:43,868 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:32:43,868 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:32:45,326 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:32:45,326 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:32:45,660 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:32:45,660 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:32:45,660 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:33:22,866 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:33:22,867 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:33:59,494 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9655, F1: 0.9544
+2026-04-11 11:33:59,494 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_20pct ===
+2026-04-11 11:34:00,889 - phase4_3_gradient_boosting - INFO - Injected MAR at 20.0%
+2026-04-11 11:34:00,889 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:34:00,889 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:34:02,346 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:34:02,346 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:34:02,670 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:34:02,670 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:34:02,670 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:34:37,586 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:34:37,586 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:35:11,959 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:35:11,959 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_30pct ===
+2026-04-11 11:35:13,914 - phase4_3_gradient_boosting - INFO - Injected MAR at 30.0%
+2026-04-11 11:35:13,914 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:35:13,914 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:35:15,428 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:35:15,428 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:35:15,780 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:35:15,780 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:35:15,780 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:35:49,029 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:35:49,029 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:36:21,474 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9670, F1: 0.9553
+2026-04-11 11:36:21,474 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_40pct ===
+2026-04-11 11:36:23,994 - phase4_3_gradient_boosting - INFO - Injected MAR at 40.0%
+2026-04-11 11:36:23,994 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:36:23,994 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:36:25,587 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:36:25,587 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:36:26,223 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9582, F1: 0.9575
+2026-04-11 11:36:26,223 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:36:26,223 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:36:58,391 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:36:58,392 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:37:29,606 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9670, F1: 0.9553
+2026-04-11 11:37:29,606 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_5pct ===
+2026-04-11 11:37:30,164 - phase4_3_gradient_boosting - INFO - Injected MNAR at 5.0%
+2026-04-11 11:37:30,164 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:37:30,164 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:37:31,613 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:37:31,613 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:37:31,931 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:37:31,931 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:37:31,932 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:37:51,346 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:37:51,346 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:38:09,717 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9537
+2026-04-11 11:38:09,718 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_10pct ===
+2026-04-11 11:38:10,605 - phase4_3_gradient_boosting - INFO - Injected MNAR at 10.0%
+2026-04-11 11:38:10,605 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:38:10,605 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:38:12,069 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:38:12,070 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:38:12,432 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9537
+2026-04-11 11:38:12,432 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:38:12,432 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:38:31,244 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:38:31,244 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:38:48,875 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9663, F1: 0.9537
+2026-04-11 11:38:48,875 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_15pct ===
+2026-04-11 11:38:50,016 - phase4_3_gradient_boosting - INFO - Injected MNAR at 15.0%
+2026-04-11 11:38:50,016 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:38:50,017 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:38:51,511 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:38:51,511 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:38:51,860 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9655, F1: 0.9533
+2026-04-11 11:38:51,860 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:38:51,860 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:39:13,999 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:39:13,999 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:39:35,377 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:39:35,377 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_20pct ===
+2026-04-11 11:39:36,786 - phase4_3_gradient_boosting - INFO - Injected MNAR at 20.0%
+2026-04-11 11:39:36,786 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:39:36,786 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:39:38,271 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:39:38,271 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:39:38,600 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9655, F1: 0.9533
+2026-04-11 11:39:38,600 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:39:38,600 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:40:03,368 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9685, F1: 0.9537
+2026-04-11 11:40:03,368 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:40:27,090 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:40:27,091 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_30pct ===
+2026-04-11 11:40:29,095 - phase4_3_gradient_boosting - INFO - Injected MNAR at 30.0%
+2026-04-11 11:40:29,095 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:40:29,095 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:40:30,655 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:40:30,655 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:40:31,002 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:40:31,002 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:40:31,002 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:41:04,884 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:41:04,885 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:41:37,613 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:41:37,613 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_40pct ===
+2026-04-11 11:41:40,133 - phase4_3_gradient_boosting - INFO - Injected MNAR at 40.0%
+2026-04-11 11:41:40,133 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:41:40,133 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:41:41,768 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:41:41,769 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:41:42,089 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:41:42,089 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:41:42,089 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:42:14,593 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:42:14,593 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:42:47,156 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9677, F1: 0.9519
+2026-04-11 11:42:47,167 - phase4_3_gradient_boosting - INFO - Starting Phase 4.3 experiment on polish_1year
+2026-04-11 11:42:47,167 - phase4_3_gradient_boosting - INFO - Using models: ['svm', 'mlp']
+2026-04-11 11:42:47,205 - phase4_3_gradient_boosting - INFO - Loaded 7027 samples with 64 features
+2026-04-11 11:42:47,251 - phase4_3_gradient_boosting - INFO - Using precomputed split from data/splits
+2026-04-11 11:42:47,252 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_5pct ===
+2026-04-11 11:42:47,415 - phase4_3_gradient_boosting - INFO - Injected MCAR at 5.0%
+2026-04-11 11:42:47,415 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:42:47,415 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:42:48,887 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:42:48,887 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:42:49,188 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:42:49,188 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:42:49,188 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:43:04,297 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:04,297 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:43:18,299 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:18,299 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_10pct ===
+2026-04-11 11:43:18,626 - phase4_3_gradient_boosting - INFO - Injected MCAR at 10.0%
+2026-04-11 11:43:18,626 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:43:18,626 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:43:20,188 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:20,188 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:43:20,470 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:20,470 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:43:20,470 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:43:35,344 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:35,344 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:43:49,139 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:49,139 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_15pct ===
+2026-04-11 11:43:49,650 - phase4_3_gradient_boosting - INFO - Injected MCAR at 15.0%
+2026-04-11 11:43:49,650 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:43:49,650 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:43:51,225 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:51,225 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:43:51,509 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:43:51,510 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:43:51,510 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:03,414 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:03,414 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:14,202 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:14,202 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_20pct ===
+2026-04-11 11:44:14,860 - phase4_3_gradient_boosting - INFO - Injected MCAR at 20.0%
+2026-04-11 11:44:14,860 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:44:14,860 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:16,450 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:16,450 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:16,738 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:16,738 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:44:16,738 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:24,610 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:24,611 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:31,297 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:31,297 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_30pct ===
+2026-04-11 11:44:32,300 - phase4_3_gradient_boosting - INFO - Injected MCAR at 30.0%
+2026-04-11 11:44:32,300 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:44:32,300 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:33,950 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:33,950 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:34,229 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:34,229 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:44:34,229 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:40,517 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:40,517 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:45,788 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:45,788 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_40pct ===
+2026-04-11 11:44:47,134 - phase4_3_gradient_boosting - INFO - Injected MCAR at 40.0%
+2026-04-11 11:44:47,134 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:44:47,134 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:44:48,769 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:48,770 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:44:49,084 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:44:49,084 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:44:49,084 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:45:02,291 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:02,291 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:45:14,357 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:14,357 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_5pct ===
+2026-04-11 11:45:14,727 - phase4_3_gradient_boosting - INFO - Injected MAR at 5.0%
+2026-04-11 11:45:14,728 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:45:14,728 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:45:16,211 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:16,212 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:45:16,518 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:16,518 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:45:16,518 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:45:28,775 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:28,775 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:45:40,072 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:40,072 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_10pct ===
+2026-04-11 11:45:40,608 - phase4_3_gradient_boosting - INFO - Injected MAR at 10.0%
+2026-04-11 11:45:40,608 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:45:40,608 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:45:42,110 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:42,110 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:45:42,384 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:42,384 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:45:42,384 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:45:57,365 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:45:57,365 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:11,193 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:11,193 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_15pct ===
+2026-04-11 11:46:11,925 - phase4_3_gradient_boosting - INFO - Injected MAR at 15.0%
+2026-04-11 11:46:11,925 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:46:11,925 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:13,414 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:13,414 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:13,698 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:13,698 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:46:13,698 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:20,384 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:20,384 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:25,920 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:25,920 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_20pct ===
+2026-04-11 11:46:26,869 - phase4_3_gradient_boosting - INFO - Injected MAR at 20.0%
+2026-04-11 11:46:26,869 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:46:26,869 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:28,386 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:28,386 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:28,669 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:28,669 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:46:28,670 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:34,009 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:34,009 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:38,169 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:38,169 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_30pct ===
+2026-04-11 11:46:39,465 - phase4_3_gradient_boosting - INFO - Injected MAR at 30.0%
+2026-04-11 11:46:39,465 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:46:39,465 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:41,014 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:41,014 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:41,304 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:41,304 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:46:41,304 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:47,726 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:47,726 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:53,016 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:53,016 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_40pct ===
+2026-04-11 11:46:54,695 - phase4_3_gradient_boosting - INFO - Injected MAR at 40.0%
+2026-04-11 11:46:54,695 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:46:54,695 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:46:56,292 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:56,292 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:46:56,591 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:46:56,592 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:46:56,592 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:01,556 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:01,556 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:05,400 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:05,400 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_5pct ===
+2026-04-11 11:47:05,762 - phase4_3_gradient_boosting - INFO - Injected MNAR at 5.0%
+2026-04-11 11:47:05,762 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:47:05,762 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:07,245 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:07,246 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:07,532 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:07,532 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:47:07,532 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:22,703 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:22,703 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:36,717 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:36,717 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_10pct ===
+2026-04-11 11:47:37,286 - phase4_3_gradient_boosting - INFO - Injected MNAR at 10.0%
+2026-04-11 11:47:37,287 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:47:37,287 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:38,791 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:38,791 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:39,082 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:39,083 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:47:39,083 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:48,607 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:48,607 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:57,022 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:57,022 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_15pct ===
+2026-04-11 11:47:57,767 - phase4_3_gradient_boosting - INFO - Injected MNAR at 15.0%
+2026-04-11 11:47:57,767 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:47:57,767 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:47:59,320 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:59,320 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:47:59,613 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:47:59,614 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:47:59,614 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:48:06,347 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:06,348 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:48:12,006 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:12,007 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_20pct ===
+2026-04-11 11:48:12,977 - phase4_3_gradient_boosting - INFO - Injected MNAR at 20.0%
+2026-04-11 11:48:12,977 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:48:12,977 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:48:14,602 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:14,603 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:48:14,902 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:14,902 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:48:14,902 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:48:29,400 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:29,400 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:48:42,677 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:42,677 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_30pct ===
+2026-04-11 11:48:43,991 - phase4_3_gradient_boosting - INFO - Injected MNAR at 30.0%
+2026-04-11 11:48:43,991 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:48:43,991 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:48:45,546 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:45,546 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:48:45,855 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:45,855 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:48:45,855 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:48:57,023 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:48:57,023 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:07,155 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:49:07,155 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_40pct ===
+2026-04-11 11:49:08,838 - phase4_3_gradient_boosting - INFO - Injected MNAR at 40.0%
+2026-04-11 11:49:08,839 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:49:08,839 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:10,441 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:49:10,441 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:10,730 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:49:10,730 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:49:10,730 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:15,581 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:49:15,581 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:19,410 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9616, F1: 0.9428
+2026-04-11 11:49:19,422 - phase4_3_gradient_boosting - INFO - Starting Phase 4.3 experiment on slovak_manufacture_13
+2026-04-11 11:49:19,422 - phase4_3_gradient_boosting - INFO - Using models: ['svm', 'mlp']
+2026-04-11 11:49:19,475 - phase4_3_gradient_boosting - INFO - Loaded 4107 samples with 64 features
+2026-04-11 11:49:19,528 - phase4_3_gradient_boosting - INFO - Using precomputed split from data/splits
+2026-04-11 11:49:19,529 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_5pct ===
+2026-04-11 11:49:19,536 - phase4_3_gradient_boosting - INFO - Injected MCAR at 5.0%
+2026-04-11 11:49:19,536 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:49:19,536 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:19,910 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:19,911 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:20,262 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:20,262 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:49:20,262 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:27,718 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:27,719 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:35,310 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:35,310 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_10pct ===
+2026-04-11 11:49:35,321 - phase4_3_gradient_boosting - INFO - Injected MCAR at 10.0%
+2026-04-11 11:49:35,321 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:49:35,321 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:35,714 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:35,714 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:36,055 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:36,055 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:49:36,055 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:44,094 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:44,094 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:52,263 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:52,263 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_15pct ===
+2026-04-11 11:49:52,273 - phase4_3_gradient_boosting - INFO - Injected MCAR at 15.0%
+2026-04-11 11:49:52,274 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:49:52,274 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:49:52,679 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:52,679 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:49:53,026 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:49:53,026 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:49:53,026 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:01,078 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:01,078 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:09,045 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:09,045 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_20pct ===
+2026-04-11 11:50:09,057 - phase4_3_gradient_boosting - INFO - Injected MCAR at 20.0%
+2026-04-11 11:50:09,057 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:50:09,057 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:09,481 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:09,482 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:09,842 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:09,842 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:50:09,842 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:18,398 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:18,398 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:27,150 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:27,150 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_30pct ===
+2026-04-11 11:50:27,172 - phase4_3_gradient_boosting - INFO - Injected MCAR at 30.0%
+2026-04-11 11:50:27,172 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:50:27,172 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:27,606 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:27,607 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:27,943 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:27,943 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:50:27,943 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:35,987 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:35,987 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:43,962 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:43,962 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MCAR_40pct ===
+2026-04-11 11:50:43,987 - phase4_3_gradient_boosting - INFO - Injected MCAR at 40.0%
+2026-04-11 11:50:43,988 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:50:43,988 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:44,471 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:44,471 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:50:44,823 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:44,823 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:50:44,823 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:50:52,928 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:50:52,928 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:00,950 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:00,950 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_5pct ===
+2026-04-11 11:51:00,961 - phase4_3_gradient_boosting - INFO - Injected MAR at 5.0%
+2026-04-11 11:51:00,961 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:51:00,961 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:01,333 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:01,333 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:01,674 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:01,674 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:51:01,674 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:10,159 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:10,159 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:18,660 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:18,660 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_10pct ===
+2026-04-11 11:51:18,675 - phase4_3_gradient_boosting - INFO - Injected MAR at 10.0%
+2026-04-11 11:51:18,675 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:51:18,675 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:19,070 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:19,070 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:19,426 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:19,426 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:51:19,426 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:27,172 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:27,172 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:35,054 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:35,054 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_15pct ===
+2026-04-11 11:51:35,071 - phase4_3_gradient_boosting - INFO - Injected MAR at 15.0%
+2026-04-11 11:51:35,071 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:51:35,071 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:35,467 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:35,467 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:35,805 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:35,805 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:51:35,805 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:43,578 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:43,578 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:51,244 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:51,244 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_20pct ===
+2026-04-11 11:51:51,263 - phase4_3_gradient_boosting - INFO - Injected MAR at 20.0%
+2026-04-11 11:51:51,263 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:51:51,263 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:51:51,636 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:51,636 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:51:51,974 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:51:51,975 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:51:51,975 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:00,256 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:00,256 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:08,513 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:08,513 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_30pct ===
+2026-04-11 11:52:08,531 - phase4_3_gradient_boosting - INFO - Injected MAR at 30.0%
+2026-04-11 11:52:08,531 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:52:08,531 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:08,936 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:08,936 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:09,291 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:09,291 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:52:09,291 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:17,984 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:17,984 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:26,855 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:26,855 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MAR_40pct ===
+2026-04-11 11:52:26,880 - phase4_3_gradient_boosting - INFO - Injected MAR at 40.0%
+2026-04-11 11:52:26,880 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:52:26,880 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:27,289 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:27,289 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:27,650 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:27,650 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:52:27,650 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:35,599 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:35,599 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:43,467 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:43,467 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_5pct ===
+2026-04-11 11:52:43,479 - phase4_3_gradient_boosting - INFO - Injected MNAR at 5.0%
+2026-04-11 11:52:43,480 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:52:43,480 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:43,844 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:43,844 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:52:44,211 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:44,211 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:52:44,211 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:52:52,641 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:52:52,641 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:01,232 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:01,232 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_10pct ===
+2026-04-11 11:53:01,278 - phase4_3_gradient_boosting - INFO - Injected MNAR at 10.0%
+2026-04-11 11:53:01,278 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:53:01,278 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:01,679 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:01,679 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:02,033 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:02,033 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:53:02,033 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:09,877 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:09,877 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:17,804 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:17,804 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_15pct ===
+2026-04-11 11:53:17,817 - phase4_3_gradient_boosting - INFO - Injected MNAR at 15.0%
+2026-04-11 11:53:17,817 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:53:17,817 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:18,226 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:18,226 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:18,567 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:18,567 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:53:18,567 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:26,276 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:26,277 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:33,973 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:33,973 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_20pct ===
+2026-04-11 11:53:33,988 - phase4_3_gradient_boosting - INFO - Injected MNAR at 20.0%
+2026-04-11 11:53:33,988 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:53:33,988 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:34,387 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:34,388 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:34,738 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:34,738 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:53:34,738 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:42,975 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:42,975 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:51,409 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:51,409 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_30pct ===
+2026-04-11 11:53:51,428 - phase4_3_gradient_boosting - INFO - Injected MNAR at 30.0%
+2026-04-11 11:53:51,428 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:53:51,428 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:53:51,816 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:51,816 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:53:52,163 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:53:52,163 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:53:52,163 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:54:01,068 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:01,068 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:54:09,797 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:09,797 - phase4_3_gradient_boosting - INFO - 
+=== Scenario: MNAR_40pct ===
+2026-04-11 11:54:09,821 - phase4_3_gradient_boosting - INFO - Injected MNAR at 40.0%
+2026-04-11 11:54:09,821 - phase4_3_gradient_boosting - INFO -   Preprocessing: median
+2026-04-11 11:54:09,821 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:54:10,212 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:10,212 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:54:10,568 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:10,569 - phase4_3_gradient_boosting - INFO -   Preprocessing: mice
+2026-04-11 11:54:10,569 - phase4_3_gradient_boosting - INFO -     Model: svm
+2026-04-11 11:54:18,401 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:18,401 - phase4_3_gradient_boosting - INFO -     Model: mlp
+2026-04-11 11:54:26,260 - phase4_3_gradient_boosting - INFO -       Accuracy: 0.9927, F1: 0.9891
+2026-04-11 11:54:26,278 - phase4_3_gradient_boosting - INFO - Results saved to C:\Users\TaroM\Documents\унік коди\project\results\tables\phase4_3_gradient_boosting_results.json
