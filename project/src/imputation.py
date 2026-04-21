@@ -4,8 +4,7 @@ Supports every method the benchmark needs:
 
 - ``mean``    — column mean from train.
 - ``median``  — column median from train.
-- ``knn``     — ``sklearn.impute.KNNImputer`` (``n_neighbors=5``). Guarded by
-  ``KNN_MAX_TRAIN_CELLS`` to avoid pathological runtime.
+- ``knn``     — ``sklearn.impute.KNNImputer`` (``n_neighbors=5``).
 - ``mice``    — ``sklearn.impute.IterativeImputer`` (MICE).
 - ``mice_indicator`` — MICE plus binary missing-indicator features.
 - ``none``    — pass-through: NaN stays in, used for foundation models that
@@ -18,14 +17,13 @@ with identical columns (possibly extended by indicators).
 
 from __future__ import annotations
 
-import os
 from typing import Tuple
 
 import numpy as np
 import pandas as pd
 from sklearn.impute import KNNImputer
 
-from config import IMPUTATION_METHODS, KNN_MAX_TRAIN_CELLS, RANDOM_STATE
+from config import IMPUTATION_METHODS, RANDOM_STATE
 from data_utils import coerce_features
 
 
@@ -61,14 +59,6 @@ def _median_impute(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[pd.Data
 
 
 def _knn_impute(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    max_cells = int(os.getenv("BENCHMARK_KNN_MAX_CELLS", str(KNN_MAX_TRAIN_CELLS)))
-    train_cells = int(X_train.shape[0] * X_train.shape[1])
-    if train_cells > max_cells:
-        raise RuntimeError(
-            f"KNN imputation skipped: training matrix too large "
-            f"({train_cells} cells > {max_cells}). "
-            f"Use mean/median, reduce rows/features, or raise BENCHMARK_KNN_MAX_CELLS."
-        )
     imputer = KNNImputer(n_neighbors=5)
     X_tr = pd.DataFrame(
         imputer.fit_transform(X_train), columns=X_train.columns, index=X_train.index,

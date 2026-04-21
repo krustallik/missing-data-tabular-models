@@ -8,6 +8,7 @@ precomputed splits back on every run.
 from __future__ import annotations
 
 import logging
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional, Tuple
@@ -15,8 +16,10 @@ from typing import Dict, Optional, Tuple
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from pandas.api.types import is_numeric_dtype
 
 from config import (
+    DROP_UNNAMED_COLUMNS,
     LOGS_DIR,
     PROCESSED_DIR,
     RAW_DIR,
@@ -47,6 +50,13 @@ def setup_logging(step_name: str) -> logging.Logger:
     fh = logging.FileHandler(LOGS_DIR / f"{step_name}_{ts}.log", encoding="utf-8")
     fh.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
     logger.addHandler(fh)
+
+    # Console handler for real-time visibility during long runs (steps 2/3/4).
+    ch = logging.StreamHandler(sys.stdout)
+    ch.setLevel(logging.INFO)
+    ch.setFormatter(logging.Formatter("[%(levelname)s] %(message)s"))
+    logger.addHandler(ch)
+
     return logger
 
 
@@ -60,7 +70,9 @@ def load_dataset_from_csv(
         raise FileNotFoundError(f"Dataset file not found: {path}")
     df = pd.read_csv(path)
     validate_dataset(df, target_column=target_column)
-    return df.drop(columns=[target_column]), df[target_column]
+    X = df.drop(columns=[target_column])
+    X = sanitize_feature_columns(X)
+    return X, df[target_column]
 
 
 def validate_dataset(df: pd.DataFrame, target_column: str = TARGET_COLUMN) -> None:
@@ -104,11 +116,31 @@ def coerce_features(X: pd.DataFrame) -> pd.DataFrame:
     """
     out = X.copy()
     for col in out.columns:
-        if out[col].dtype == object:
+        # Handle both classic object dtype and pandas StringDtype columns where
+        # decimals may be stored with commas (e.g. "29,11").
+        if not is_numeric_dtype(out[col]):
             cleaned = out[col].astype(str).str.replace(",", ".", regex=False)
             out[col] = pd.to_numeric(cleaned, errors="coerce")
         else:
             out[col] = pd.to_numeric(out[col], errors="coerce")
+    return out
+
+
+def sanitize_feature_columns(
+    X: pd.DataFrame,
+    logger: Optional[logging.Logger] = None,
+    context: str = "",
+) -> pd.DataFrame:
+    """Drop technical index-artifact columns like ``Unnamed: 0`` when enabled."""
+    out = X.copy()
+    if not DROP_UNNAMED_COLUMNS:
+        return out
+    unnamed_cols = [c for c in out.columns if str(c).lower().startswith("unnamed:")]
+    if unnamed_cols:
+        out = out.drop(columns=unnamed_cols)
+        if logger is not None:
+            suffix = f" ({context})" if context else ""
+            logger.info(f"Dropped columns{suffix}: {unnamed_cols}")
     return out
 
 
@@ -152,9 +184,17 @@ def load_precomputed_split(dataset_name: str, logger: Optional[logging.Logger] =
         if logger is not None:
             logger.warning("Split CSVs missing target column")
         return None
-    X_train = coerce_features(train_df.drop(columns=[TARGET_COLUMN]))
+    X_train = sanitize_feature_columns(
+        coerce_features(train_df.drop(columns=[TARGET_COLUMN])),
+        logger=logger,
+        context=f"{dataset_name} train",
+    )
     y_train = train_df[TARGET_COLUMN]
-    X_test = coerce_features(test_df.drop(columns=[TARGET_COLUMN]))
+    X_test = sanitize_feature_columns(
+        coerce_features(test_df.drop(columns=[TARGET_COLUMN])),
+        logger=logger,
+        context=f"{dataset_name} test",
+    )
     y_test = test_df[TARGET_COLUMN]
     return X_train, X_test, y_train, y_test
 

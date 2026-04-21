@@ -1,4 +1,0 @@
-dataset,path,n_samples,n_features,n_classes,task_type,missing_cells,missing_fraction
-taiwan_bankruptcy,D:\INS\project\data\processed\taiwan_bankruptcy.csv,6819,95,2,binary,0,0.0
-polish_1year,D:\INS\project\data\processed\polish_1year.csv,7027,64,2,binary,5835,0.012774901205241322
-slovak_manufacture_13,D:\INS\project\data\processed\slovak_manufacture_13.csv,4107,64,2,binary,12928,0.04842763761682681

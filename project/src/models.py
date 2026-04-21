@@ -68,9 +68,25 @@ def model_type(model_key: str) -> str:
     return "Classical"
 
 
+def _is_gpu_runtime_error(exc: Exception) -> bool:
+    """Heuristic check whether an exception is GPU/CUDA related."""
+    msg = str(exc).lower()
+    hints = [
+        "cuda",
+        "cudnn",
+        "cublas",
+        "gpu",
+        "opencl",
+        "nvidia",
+        "device",
+        "driver",
+    ]
+    return any(h in msg for h in hints)
+
+
 # ── Classical model builders ─────────────────────────────────────────────────
 
-def _build_classical(model_key: str):
+def _build_classical(model_key: str, use_gpu: bool = False):
     if model_key == "logistic_regression":
         return LogisticRegression(max_iter=1000, random_state=RANDOM_STATE, solver="lbfgs")
     if model_key == "random_forest":
@@ -92,12 +108,15 @@ def _build_classical(model_key: str):
         return xgb.XGBClassifier(
             n_estimators=100, random_state=RANDOM_STATE,
             n_jobs=-1, eval_metric="logloss", verbosity=0,
+            tree_method="hist",
+            device="cuda" if use_gpu else "cpu",
         )
     if model_key == "lightgbm":
         import lightgbm as lgb
 
         return lgb.LGBMClassifier(
             n_estimators=100, random_state=RANDOM_STATE, n_jobs=-1, verbose=-1,
+            device_type="gpu" if use_gpu else "cpu",
         )
     raise ValueError(f"Unknown classical model: {model_key!r}")
 
@@ -116,30 +135,46 @@ def _train_classical(
     result: Dict[str, Any] = {
         "metrics": None, "training_time_seconds": None, "error": None,
     }
-    try:
-        needs_scaling = model_key in {"logistic_regression", "svm", "mlp"}
-        X_tr_raw = X_train.to_numpy(dtype=float) if not hasattr(X_train, "to_numpy") else X_train.to_numpy(dtype=float)
-        X_te_raw = X_test.to_numpy(dtype=float)
+    needs_scaling = model_key in {"logistic_regression", "svm", "mlp"}
+    X_tr_raw = X_train.to_numpy(dtype=float) if not hasattr(X_train, "to_numpy") else X_train.to_numpy(dtype=float)
+    X_te_raw = X_test.to_numpy(dtype=float)
 
+    if needs_scaling:
+        scaler = StandardScaler()
+        X_tr = scaler.fit_transform(X_tr_raw)
+        X_te = scaler.transform(X_te_raw)
+    else:
+        X_tr = X_tr_raw
+        X_te = X_te_raw
+
+    prefers_gpu = model_key in {"xgboost", "lightgbm"} and _detect_device(logger=None) == "cuda"
+
+    def _fit_once(use_gpu: bool) -> Dict[str, Any]:
         start = time.time()
-        if needs_scaling:
-            scaler = StandardScaler()
-            X_tr = scaler.fit_transform(X_tr_raw)
-            X_te = scaler.transform(X_te_raw)
-        else:
-            X_tr = X_tr_raw
-            X_te = X_te_raw
-
-        model = clone(_build_classical(model_key))
+        model = clone(_build_classical(model_key, use_gpu=use_gpu))
         model.fit(X_tr, y_train)
         y_pred = model.predict(X_te)
         y_proba = model.predict_proba(X_te) if hasattr(model, "predict_proba") else None
         elapsed = time.time() - start
-
         y_true = y_test.to_numpy() if hasattr(y_test, "to_numpy") else y_test
-        result["metrics"] = compute_metrics(y_true, y_pred, y_proba)
-        result["training_time_seconds"] = elapsed
+        return {
+            "metrics": compute_metrics(y_true, y_pred, y_proba),
+            "training_time_seconds": elapsed,
+            "error": None,
+        }
+
+    try:
+        out = _fit_once(use_gpu=prefers_gpu)
+        result.update(out)
     except Exception as exc:
+        if prefers_gpu and _is_gpu_runtime_error(exc):
+            try:
+                out = _fit_once(use_gpu=False)
+                result.update(out)
+                return result
+            except Exception as cpu_exc:
+                result["error"] = f"GPU failed ({exc}); CPU fallback failed ({cpu_exc})"
+                return result
         result["error"] = str(exc)
     return result
 
@@ -291,11 +326,19 @@ def _train_catboost(
     except ImportError as exc:
         result["error"] = f"CatBoost not installed: {exc}. Run: pip install catboost"
         return result
-    try:
+    prefers_gpu = _detect_device(logger=None) == "cuda"
+
+    def _fit_once(use_gpu: bool) -> Dict[str, Any]:
         start = time.time()
-        model = CatBoostClassifier(
-            iterations=200, random_seed=RANDOM_STATE, verbose=False, allow_writing_files=False,
-        )
+        kwargs = {
+            "iterations": 200,
+            "random_seed": RANDOM_STATE,
+            "verbose": False,
+            "allow_writing_files": False,
+        }
+        if use_gpu:
+            kwargs.update({"task_type": "GPU", "devices": "0"})
+        model = CatBoostClassifier(**kwargs)
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
         if hasattr(y_pred, "ravel"):
@@ -308,9 +351,24 @@ def _train_catboost(
                 y_proba = None
         elapsed = time.time() - start
         y_true = y_test.to_numpy() if hasattr(y_test, "to_numpy") else y_test
-        result["metrics"] = compute_metrics(y_true, y_pred, y_proba)
-        result["training_time_seconds"] = elapsed
+        return {
+            "metrics": compute_metrics(y_true, y_pred, y_proba),
+            "training_time_seconds": elapsed,
+            "error": None,
+        }
+
+    try:
+        out = _fit_once(use_gpu=prefers_gpu)
+        result.update(out)
     except Exception as exc:
+        if prefers_gpu and _is_gpu_runtime_error(exc):
+            try:
+                out = _fit_once(use_gpu=False)
+                result.update(out)
+                return result
+            except Exception as cpu_exc:
+                result["error"] = f"GPU failed ({exc}); CPU fallback failed ({cpu_exc})"
+                return result
         result["error"] = str(exc)
     return result
 

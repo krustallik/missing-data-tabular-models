@@ -67,6 +67,7 @@ VIZ_DIR = RESULTS_DIR / "visualizations"
 # ── Datasets ─────────────────────────────────────────────────────────────────
 
 TARGET_COLUMN = "target"
+DROP_UNNAMED_COLUMNS = True
 
 DATASETS = {
     "taiwan_bankruptcy": PROCESSED_DIR / "taiwan_bankruptcy.csv",
@@ -79,7 +80,8 @@ DATASETS = {
 
 MISSING_MECHANISMS = ["MCAR", "MAR", "MNAR"]
 MISSING_RATES = [0.05, 0.10, 0.15, 0.20, 0.30, 0.40]
-
+# MISSING_MECHANISMS = ["MCAR", "MNAR"]
+# MISSING_RATES = [0.05, 0.20]
 # Absolute tolerance when comparing realised vs. requested missing fraction.
 MISSINGNESS_TOLERANCE = 0.01
 
@@ -88,12 +90,7 @@ MISSINGNESS_TOLERANCE = 0.01
 
 # "none" means: feed raw NaN into the model (foundation models may handle it).
 IMPUTATION_METHODS = ["mean", "median", "knn", "mice", "mice_indicator", "none"]
-
-# Soft cap for kNN imputation to avoid pathological runtime on wide matrices.
-# Override with the ``BENCHMARK_KNN_MAX_CELLS`` env variable if needed.
-KNN_MAX_TRAIN_CELLS = 250_000
-
-
+# IMPUTATION_METHODS = [ "median", "knn",  "none"]
 # ── Models ───────────────────────────────────────────────────────────────────
 
 # Model names here are the *canonical* keys used everywhere (CSV, reports,

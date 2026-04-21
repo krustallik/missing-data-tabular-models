@@ -156,8 +156,7 @@ def _data_methods_report(df: Optional[pd.DataFrame]) -> str:
         "All methods fit on train only to avoid test leakage:",
         "",
         "- **mean / median** - per-column train statistic.\n"
-        "- **knn** - `KNNImputer(n_neighbors=5)`; guarded by "
-        "`BENCHMARK_KNN_MAX_CELLS` to avoid pathological runtime.\n"
+        "- **knn** - `KNNImputer(n_neighbors=5)`.\n"
         "- **mice** - `IterativeImputer` (MICE).\n"
         "- **mice_indicator** - MICE + binary missing-indicator features.\n"
         "- **none** - raw NaN passed to models that handle NaN natively "
