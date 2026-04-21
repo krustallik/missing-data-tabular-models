@@ -1,0 +1,25 @@
+2026-04-21 17:07:24,127 - pipeline - INFO - Pipeline steps to run: [1, 2, 3, 4, 5, 6]
+2026-04-21 17:07:24,128 - pipeline - INFO - >>> Step 1: prepare_splits
+2026-04-21 17:07:24,128 - pipeline - INFO - ================================================================================
+2026-04-21 17:07:24,128 - pipeline - INFO - STEP 1: PREPARE TRAIN/TEST SPLITS
+2026-04-21 17:07:24,128 - pipeline - INFO - ================================================================================
+2026-04-21 17:07:24,128 - pipeline - INFO - All splits already present; skipping split creation.
+2026-04-21 17:07:24,292 - pipeline - INFO - Saved dataset_overview.csv
+2026-04-21 17:07:24,293 - pipeline - INFO - Saved experiment_setup.csv
+2026-04-21 17:07:24,304 - pipeline - INFO - >>> Step 2: verify_missingness
+2026-04-21 17:07:24,304 - pipeline - INFO - ================================================================================
+2026-04-21 17:07:24,304 - pipeline - INFO - STEP 2: VERIFY MISSINGNESS INJECTION RATES
+2026-04-21 17:07:24,304 - pipeline - INFO - ================================================================================
+2026-04-21 17:07:24,400 - pipeline - INFO - Verifying taiwan_bankruptcy: X_train shape=(5455, 95)
+2026-04-21 17:07:24,582 - pipeline - INFO -   MCAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:07:24,932 - pipeline - INFO -   MCAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:07:25,466 - pipeline - INFO -   MCAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:07:26,168 - pipeline - INFO -   MCAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:07:27,279 - pipeline - INFO -   MCAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-21 17:07:28,524 - pipeline - INFO -   MCAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:07:28,903 - pipeline - INFO -   MAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:07:29,436 - pipeline - INFO -   MAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:07:30,163 - pipeline - INFO -   MAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:07:31,145 - pipeline - INFO -   MAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:07:32,427 - pipeline - INFO -   MAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-21 17:07:34,134 - pipeline - WARNING - Interrupted by user

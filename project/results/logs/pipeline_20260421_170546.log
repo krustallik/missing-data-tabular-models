@@ -1,0 +1,145 @@
+2026-04-21 17:05:46,658 - pipeline - INFO - Pipeline steps to run: [1, 2, 3]
+2026-04-21 17:05:46,658 - pipeline - INFO - >>> Step 1: prepare_splits
+2026-04-21 17:05:46,658 - pipeline - INFO - ================================================================================
+2026-04-21 17:05:46,658 - pipeline - INFO - STEP 1: PREPARE TRAIN/TEST SPLITS
+2026-04-21 17:05:46,658 - pipeline - INFO - ================================================================================
+2026-04-21 17:05:47,159 - pipeline - INFO - Saved taiwan_bankruptcy_train.csv and taiwan_bankruptcy_test.csv
+2026-04-21 17:05:47,397 - pipeline - INFO - Saved polish_1year_train.csv and polish_1year_test.csv
+2026-04-21 17:05:47,500 - pipeline - INFO - Saved slovak_manufacture_13_train.csv and slovak_manufacture_13_test.csv
+2026-04-21 17:05:47,642 - pipeline - INFO - Saved dataset_overview.csv
+2026-04-21 17:05:47,643 - pipeline - INFO - Saved experiment_setup.csv
+2026-04-21 17:05:47,650 - pipeline - INFO - >>> Step 2: verify_missingness
+2026-04-21 17:05:47,650 - pipeline - INFO - ================================================================================
+2026-04-21 17:05:47,650 - pipeline - INFO - STEP 2: VERIFY MISSINGNESS INJECTION RATES
+2026-04-21 17:05:47,650 - pipeline - INFO - ================================================================================
+2026-04-21 17:05:47,736 - pipeline - INFO - Verifying taiwan_bankruptcy: X_train shape=(5455, 95)
+2026-04-21 17:05:47,898 - pipeline - INFO -   MCAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:05:48,205 - pipeline - INFO -   MCAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:05:48,662 - pipeline - INFO -   MCAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:05:49,249 - pipeline - INFO -   MCAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:05:50,145 - pipeline - INFO -   MCAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-21 17:05:51,303 - pipeline - INFO -   MCAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:05:51,639 - pipeline - INFO -   MAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:05:52,151 - pipeline - INFO -   MAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:05:52,808 - pipeline - INFO -   MAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:05:53,622 - pipeline - INFO -   MAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:05:54,771 - pipeline - INFO -   MAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-21 17:05:56,243 - pipeline - INFO -   MAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:05:56,571 - pipeline - INFO -   MNAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:05:57,070 - pipeline - INFO -   MNAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:05:57,723 - pipeline - INFO -   MNAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:05:58,527 - pipeline - INFO -   MNAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:05:59,666 - pipeline - INFO -   MNAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-21 17:06:01,147 - pipeline - INFO -   MNAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:06:01,190 - pipeline - INFO - Verifying polish_1year: X_train shape=(5621, 64)
+2026-04-21 17:06:01,278 - pipeline - INFO -   MCAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:06:01,459 - pipeline - INFO -   MCAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:06:01,742 - pipeline - INFO -   MCAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:06:02,120 - pipeline - INFO -   MCAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:06:02,702 - pipeline - INFO -   MCAR @ 30%: realized=0.3000 delta=-0.0000 [ok]
+2026-04-21 17:06:03,473 - pipeline - INFO -   MCAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:06:03,719 - pipeline - INFO -   MAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:06:04,031 - pipeline - INFO -   MAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:06:04,457 - pipeline - INFO -   MAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:06:04,984 - pipeline - INFO -   MAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:06:05,757 - pipeline - INFO -   MAR @ 30%: realized=0.3000 delta=-0.0000 [ok]
+2026-04-21 17:06:06,742 - pipeline - INFO -   MAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:06:06,942 - pipeline - INFO -   MNAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-21 17:06:07,251 - pipeline - INFO -   MNAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-21 17:06:07,675 - pipeline - INFO -   MNAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-21 17:06:08,203 - pipeline - INFO -   MNAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-21 17:06:08,972 - pipeline - INFO -   MNAR @ 30%: realized=0.3000 delta=-0.0000 [ok]
+2026-04-21 17:06:09,954 - pipeline - INFO -   MNAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-21 17:06:10,095 - pipeline - INFO - Verifying slovak_manufacture_13: X_train shape=(3285, 64)
+2026-04-21 17:06:10,102 - pipeline - INFO -   MCAR @  5%: realized=0.9263 delta=+0.8763 [OUT-OF-TOL]
+2026-04-21 17:06:10,108 - pipeline - INFO -   MCAR @ 10%: realized=0.9263 delta=+0.8263 [OUT-OF-TOL]
+2026-04-21 17:06:10,115 - pipeline - INFO -   MCAR @ 15%: realized=0.9263 delta=+0.7763 [OUT-OF-TOL]
+2026-04-21 17:06:10,121 - pipeline - INFO -   MCAR @ 20%: realized=0.9263 delta=+0.7263 [OUT-OF-TOL]
+2026-04-21 17:06:10,128 - pipeline - INFO -   MCAR @ 30%: realized=0.9263 delta=+0.6263 [OUT-OF-TOL]
+2026-04-21 17:06:10,133 - pipeline - INFO -   MCAR @ 40%: realized=0.9263 delta=+0.5263 [OUT-OF-TOL]
+2026-04-21 17:06:10,140 - pipeline - INFO -   MAR @  5%: realized=0.9263 delta=+0.8763 [OUT-OF-TOL]
+2026-04-21 17:06:10,146 - pipeline - INFO -   MAR @ 10%: realized=0.9263 delta=+0.8263 [OUT-OF-TOL]
+2026-04-21 17:06:10,152 - pipeline - INFO -   MAR @ 15%: realized=0.9263 delta=+0.7763 [OUT-OF-TOL]
+2026-04-21 17:06:10,158 - pipeline - INFO -   MAR @ 20%: realized=0.9263 delta=+0.7263 [OUT-OF-TOL]
+2026-04-21 17:06:10,164 - pipeline - INFO -   MAR @ 30%: realized=0.9263 delta=+0.6263 [OUT-OF-TOL]
+2026-04-21 17:06:10,169 - pipeline - INFO -   MAR @ 40%: realized=0.9263 delta=+0.5263 [OUT-OF-TOL]
+2026-04-21 17:06:10,175 - pipeline - INFO -   MNAR @  5%: realized=0.9263 delta=+0.8763 [OUT-OF-TOL]
+2026-04-21 17:06:10,181 - pipeline - INFO -   MNAR @ 10%: realized=0.9263 delta=+0.8263 [OUT-OF-TOL]
+2026-04-21 17:06:10,188 - pipeline - INFO -   MNAR @ 15%: realized=0.9263 delta=+0.7763 [OUT-OF-TOL]
+2026-04-21 17:06:10,194 - pipeline - INFO -   MNAR @ 20%: realized=0.9263 delta=+0.7263 [OUT-OF-TOL]
+2026-04-21 17:06:10,200 - pipeline - INFO -   MNAR @ 30%: realized=0.9263 delta=+0.6263 [OUT-OF-TOL]
+2026-04-21 17:06:10,206 - pipeline - INFO -   MNAR @ 40%: realized=0.9263 delta=+0.5263 [OUT-OF-TOL]
+2026-04-21 17:06:10,207 - pipeline - INFO - Saved missingness_verification.csv: 54 rows
+2026-04-21 17:06:10,208 - pipeline - INFO - >>> Step 3: benchmark_imputations
+2026-04-21 17:06:10,208 - pipeline - INFO - ================================================================================
+2026-04-21 17:06:10,208 - pipeline - INFO - STEP 3: BENCHMARK IMPUTATION METHODS
+2026-04-21 17:06:10,208 - pipeline - INFO - ================================================================================
+2026-04-21 17:06:10,476 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mean            ok  t=0.0306s
+2026-04-21 17:06:10,509 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% median          ok  t=0.033s
+2026-04-21 17:06:10,525 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% knn             err t=0.0159s
+2026-04-21 17:06:36,062 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mice            ok  t=25.5364s
+2026-04-21 17:07:02,828 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mice_indicator  ok  t=26.7661s
+2026-04-21 17:07:02,843 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% none            ok  t=0.0154s
+2026-04-21 17:07:03,163 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mean            ok  t=0.0265s
+2026-04-21 17:07:03,195 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% median          ok  t=0.0313s
+2026-04-21 17:07:03,210 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% knn             err t=0.0154s
+2026-04-21 17:07:27,847 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mice            ok  t=24.6372s
+2026-04-21 17:07:52,026 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mice_indicator  ok  t=24.1786s
+2026-04-21 17:07:52,043 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% none            ok  t=0.0166s
+2026-04-21 17:07:52,504 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mean            ok  t=0.0267s
+2026-04-21 17:07:52,534 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% median          ok  t=0.0291s
+2026-04-21 17:07:52,550 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% knn             err t=0.0159s
+2026-04-21 17:08:15,234 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mice            ok  t=22.6845s
+2026-04-21 17:08:38,112 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mice_indicator  ok  t=22.8773s
+2026-04-21 17:08:38,130 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% none            ok  t=0.018s
+2026-04-21 17:08:38,883 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mean            ok  t=0.0442s
+2026-04-21 17:08:38,933 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% median          ok  t=0.049s
+2026-04-21 17:08:38,954 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% knn             err t=0.0211s
+2026-04-21 17:09:02,337 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mice            ok  t=23.383s
+2026-04-21 17:09:25,710 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mice_indicator  ok  t=23.3724s
+2026-04-21 17:09:25,724 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% none            ok  t=0.014s
+2026-04-21 17:09:26,598 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mean            ok  t=0.0274s
+2026-04-21 17:09:26,628 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% median          ok  t=0.03s
+2026-04-21 17:09:26,643 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% knn             err t=0.0149s
+2026-04-21 17:09:47,266 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mice            ok  t=20.6232s
+2026-04-21 17:10:08,631 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mice_indicator  ok  t=21.3643s
+2026-04-21 17:10:08,645 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% none            ok  t=0.0141s
+2026-04-21 17:10:09,797 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mean            ok  t=0.0263s
+2026-04-21 17:10:09,827 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% median          ok  t=0.0301s
+2026-04-21 17:10:09,841 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% knn             err t=0.0143s
+2026-04-21 17:10:29,612 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mice            ok  t=19.7708s
+2026-04-21 17:10:50,096 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mice_indicator  ok  t=20.4833s
+2026-04-21 17:10:50,112 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% none            ok  t=0.0158s
+2026-04-21 17:10:50,473 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mean            ok  t=0.0292s
+2026-04-21 17:10:50,504 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% median          ok  t=0.0306s
+2026-04-21 17:10:50,518 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% knn             err t=0.0143s
+2026-04-21 17:11:02,438 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mice            ok  t=11.9195s
+2026-04-21 17:11:15,675 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mice_indicator  ok  t=13.2367s
+2026-04-21 17:11:15,689 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% none            ok  t=0.0147s
+2026-04-21 17:11:16,214 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mean            ok  t=0.03s
+2026-04-21 17:11:16,251 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% median          ok  t=0.0363s
+2026-04-21 17:11:16,269 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% knn             err t=0.0182s
+2026-04-21 17:11:42,111 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mice            ok  t=25.8416s
+2026-04-21 17:12:07,772 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mice_indicator  ok  t=25.6613s
+2026-04-21 17:12:07,788 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% none            ok  t=0.0155s
+2026-04-21 17:12:08,492 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mean            ok  t=0.0322s
+2026-04-21 17:12:08,560 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% median          ok  t=0.0686s
+2026-04-21 17:12:08,578 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% knn             err t=0.017s
+2026-04-21 17:12:32,248 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mice            ok  t=23.6703s
+2026-04-21 17:12:55,988 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mice_indicator  ok  t=23.74s
+2026-04-21 17:12:56,003 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% none            ok  t=0.0147s
+2026-04-21 17:12:56,843 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mean            ok  t=0.0271s
+2026-04-21 17:12:56,872 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% median          ok  t=0.0297s
+2026-04-21 17:12:56,887 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% knn             err t=0.0146s
+2026-04-21 17:13:22,332 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mice            ok  t=25.4453s
+2026-04-21 17:13:45,214 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mice_indicator  ok  t=22.8811s
+2026-04-21 17:13:45,228 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% none            ok  t=0.0139s
+2026-04-21 17:13:46,379 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mean            ok  t=0.0265s
+2026-04-21 17:13:46,412 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% median          ok  t=0.0335s
+2026-04-21 17:13:46,428 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% knn             err t=0.0159s
+2026-04-21 17:14:07,201 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mice            ok  t=20.7731s
+2026-04-21 17:14:28,063 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mice_indicator  ok  t=20.8613s
+2026-04-21 17:14:28,077 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% none            ok  t=0.0141s
+2026-04-21 17:14:29,549 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% mean            ok  t=0.0277s
+2026-04-21 17:14:29,581 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% median          ok  t=0.0318s
+2026-04-21 17:14:29,595 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% knn             err t=0.0144s
