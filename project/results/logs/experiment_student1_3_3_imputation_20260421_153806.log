@@ -1,0 +1,79 @@
+2026-04-21 15:38:06,798 - student1_3_3_imputation - INFO - ================================================================================
+2026-04-21 15:38:06,798 - student1_3_3_imputation - INFO - STUDENT 1 - TASK 3.3: SIMPLE IMPUTATION METHODS
+2026-04-21 15:38:06,798 - student1_3_3_imputation - INFO - ================================================================================
+2026-04-21 15:38:06,799 - student1_3_3_imputation - INFO - Precomputed splits present; skipping Phase 3.1 setup.
+2026-04-21 15:38:06,799 - student1_3_3_imputation - INFO - 
+================================================================================
+Student 1 - Task 3.3: taiwan_bankruptcy
+================================================================================
+2026-04-21 15:38:06,959 - student1_3_3_imputation - INFO - Scenario native | preprocessing mean
+2026-04-21 15:38:06,979 - student1_3_3_imputation - INFO - Scenario native | preprocessing median
+2026-04-21 15:38:07,002 - student1_3_3_imputation - INFO - Scenario native | preprocessing knn
+2026-04-21 15:38:07,019 - student1_3_3_imputation - INFO - Scenario MCAR_5pct
+2026-04-21 15:38:10,672 - student1_3_3_imputation - INFO - Scenario MCAR_10pct
+2026-04-21 15:38:15,999 - student1_3_3_imputation - INFO - Scenario MCAR_15pct
+2026-04-21 15:38:23,140 - student1_3_3_imputation - INFO - Scenario MCAR_20pct
+2026-04-21 15:38:31,990 - student1_3_3_imputation - INFO - Scenario MCAR_30pct
+2026-04-21 15:38:44,897 - student1_3_3_imputation - INFO - Scenario MCAR_40pct
+2026-04-21 15:39:03,108 - student1_3_3_imputation - INFO - Scenario MAR_5pct
+2026-04-21 15:39:06,951 - student1_3_3_imputation - INFO - Scenario MAR_10pct
+2026-04-21 15:39:12,477 - student1_3_3_imputation - INFO - Scenario MAR_15pct
+2026-04-21 15:39:19,651 - student1_3_3_imputation - INFO - Scenario MAR_20pct
+2026-04-21 15:39:28,556 - student1_3_3_imputation - INFO - Scenario MAR_30pct
+2026-04-21 15:39:41,511 - student1_3_3_imputation - INFO - Scenario MAR_40pct
+2026-04-21 15:39:59,495 - student1_3_3_imputation - INFO - Scenario MNAR_5pct
+2026-04-21 15:40:03,256 - student1_3_3_imputation - INFO - Scenario MNAR_10pct
+2026-04-21 15:40:08,808 - student1_3_3_imputation - INFO - Scenario MNAR_15pct
+2026-04-21 15:40:16,022 - student1_3_3_imputation - INFO - Scenario MNAR_20pct
+2026-04-21 15:40:24,904 - student1_3_3_imputation - INFO - Scenario MNAR_30pct
+2026-04-21 15:40:38,480 - student1_3_3_imputation - INFO - Scenario MNAR_40pct
+2026-04-21 15:40:59,168 - student1_3_3_imputation - INFO - 
+================================================================================
+Student 1 - Task 3.3: polish_1year
+================================================================================
+2026-04-21 15:40:59,237 - student1_3_3_imputation - INFO - Scenario native | preprocessing mean
+2026-04-21 15:40:59,252 - student1_3_3_imputation - INFO - Scenario native | preprocessing median
+2026-04-21 15:40:59,271 - student1_3_3_imputation - INFO - Scenario native | preprocessing knn
+2026-04-21 15:41:00,407 - student1_3_3_imputation - INFO - Scenario MCAR_5pct
+2026-04-21 15:41:03,073 - student1_3_3_imputation - INFO - Scenario MCAR_10pct
+2026-04-21 15:41:07,049 - student1_3_3_imputation - INFO - Scenario MCAR_15pct
+2026-04-21 15:41:12,141 - student1_3_3_imputation - INFO - Scenario MCAR_20pct
+2026-04-21 15:41:18,334 - student1_3_3_imputation - INFO - Scenario MCAR_30pct
+2026-04-21 15:41:26,609 - student1_3_3_imputation - INFO - Scenario MCAR_40pct
+2026-04-21 15:41:36,448 - student1_3_3_imputation - INFO - Scenario MAR_5pct
+2026-04-21 15:41:40,187 - student1_3_3_imputation - INFO - Scenario MAR_10pct
+2026-04-21 15:41:45,290 - student1_3_3_imputation - INFO - Scenario MAR_15pct
+2026-04-21 15:41:50,853 - student1_3_3_imputation - INFO - Scenario MAR_20pct
+2026-04-21 15:41:57,518 - student1_3_3_imputation - INFO - Scenario MAR_30pct
+2026-04-21 15:42:06,410 - student1_3_3_imputation - INFO - Scenario MAR_40pct
+2026-04-21 15:42:16,527 - student1_3_3_imputation - INFO - Scenario MNAR_5pct
+2026-04-21 15:42:19,243 - student1_3_3_imputation - INFO - Scenario MNAR_10pct
+2026-04-21 15:42:23,349 - student1_3_3_imputation - INFO - Scenario MNAR_15pct
+2026-04-21 15:42:28,566 - student1_3_3_imputation - INFO - Scenario MNAR_20pct
+2026-04-21 15:42:34,918 - student1_3_3_imputation - INFO - Scenario MNAR_30pct
+2026-04-21 15:42:43,493 - student1_3_3_imputation - INFO - Scenario MNAR_40pct
+2026-04-21 15:42:53,654 - student1_3_3_imputation - INFO - 
+================================================================================
+Student 1 - Task 3.3: slovak_manufacture_13
+================================================================================
+2026-04-21 15:42:53,841 - student1_3_3_imputation - INFO - Scenario native | preprocessing mean
+2026-04-21 15:42:53,856 - student1_3_3_imputation - INFO - Scenario native | preprocessing median
+2026-04-21 15:42:53,872 - student1_3_3_imputation - INFO - Scenario native | preprocessing knn
+2026-04-21 15:42:55,890 - student1_3_3_imputation - INFO - Scenario MCAR_5pct
+2026-04-21 15:42:57,866 - student1_3_3_imputation - INFO - Scenario MCAR_10pct
+2026-04-21 15:42:59,871 - student1_3_3_imputation - INFO - Scenario MCAR_15pct
+2026-04-21 15:43:01,874 - student1_3_3_imputation - INFO - Scenario MCAR_20pct
+2026-04-21 15:43:03,884 - student1_3_3_imputation - INFO - Scenario MCAR_30pct
+2026-04-21 15:43:05,869 - student1_3_3_imputation - INFO - Scenario MCAR_40pct
+2026-04-21 15:43:07,879 - student1_3_3_imputation - INFO - Scenario MAR_5pct
+2026-04-21 15:43:09,868 - student1_3_3_imputation - INFO - Scenario MAR_10pct
+2026-04-21 15:43:11,880 - student1_3_3_imputation - INFO - Scenario MAR_15pct
+2026-04-21 15:43:13,875 - student1_3_3_imputation - INFO - Scenario MAR_20pct
+2026-04-21 15:43:15,901 - student1_3_3_imputation - INFO - Scenario MAR_30pct
+2026-04-21 15:43:17,915 - student1_3_3_imputation - INFO - Scenario MAR_40pct
+2026-04-21 15:43:19,925 - student1_3_3_imputation - INFO - Scenario MNAR_5pct
+2026-04-21 15:43:21,914 - student1_3_3_imputation - INFO - Scenario MNAR_10pct
+2026-04-21 15:43:23,908 - student1_3_3_imputation - INFO - Scenario MNAR_15pct
+2026-04-21 15:43:25,899 - student1_3_3_imputation - INFO - Scenario MNAR_20pct
+2026-04-21 15:43:27,881 - student1_3_3_imputation - INFO - Scenario MNAR_30pct
+2026-04-21 15:43:29,871 - student1_3_3_imputation - INFO - Scenario MNAR_40pct
