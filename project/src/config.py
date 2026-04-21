@@ -27,8 +27,18 @@ CV_FOLDS = 5
 
 # ── Metrics ──────────────────────────────────────────────────────────────────
 
-METRICS = ["accuracy", "f1", "precision", "recall", "roc_auc"]
-PRIMARY_METRICS = ["accuracy", "f1", "roc_auc"]
+METRICS = [
+    "accuracy",
+    "f1",
+    "precision",
+    "recall",
+    "roc_auc",
+    "balanced_accuracy",
+    "f1_macro",
+    "recall_class1",
+    "pr_auc",
+]
+PRIMARY_METRICS = ["accuracy", "balanced_accuracy", "f1_macro", "pr_auc"]
 
 # Column schema used by every results CSV in this project.
 RESULT_COLUMNS = [
@@ -43,6 +53,10 @@ RESULT_COLUMNS = [
     "precision",
     "recall",
     "roc_auc",
+    "balanced_accuracy",
+    "f1_macro",
+    "recall_class1",
+    "pr_auc",
     "training_time_seconds",
     "error",
 ]

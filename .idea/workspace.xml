@@ -4,28 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="refactoring and connecting 2 modules together">
-      <change afterPath="$PROJECT_DIR$/.idea/copilotDiffState.xml" afterDir="false" />
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="errors fixing">
+      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/processed/polish_1year.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/processed/slovak_manufacture_13.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/processed/taiwan_bankruptcy.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/polish_1year_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/polish_1year_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/slovak_manufacture_13_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/slovak_manufacture_13_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/taiwan_bankruptcy_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/data/splits/taiwan_bankruptcy_train.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/logs/pipeline_20260421_170546.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/logs/pipeline_20260421_170724.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/tables/dataset_overview.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/tables/experiment_setup.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results/tables/missingness_verification.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/data_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/imputation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/imputation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/reporting.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/reporting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/missingness.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/missingness.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +177,7 @@
       <workItem from="1775986559955" duration="2052000" />
       <workItem from="1776070345402" duration="13387000" />
       <workItem from="1776777771974" duration="2613000" />
-      <workItem from="1776780397267" duration="11023000" />
+      <workItem from="1776780397267" duration="12770000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -293,7 +275,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776784480580</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="errors fixing">
+      <option name="closed" value="true" />
+      <created>1776792168060</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1776792168060</updated>
+    </task>
+    <task id="LOCAL-00014" summary="errors fixing">
+      <option name="closed" value="true" />
+      <created>1776792191760</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1776792191760</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +308,8 @@
     <MESSAGE value="added second runner for student 1 tasks" />
     <MESSAGE value="3.3 - 3.6" />
     <MESSAGE value="refactoring and connecting 2 modules together" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring and connecting 2 modules together" />
+    <MESSAGE value="errors fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="errors fixing" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />

@@ -262,13 +262,17 @@ def summarize_missingness_change(
     """Return initial/final missing rates and how many new missing cells were added."""
     cols = _numeric_feature_columns(before_df, exclude_columns=exclude_columns)
 
-    before_missing = int(before_df[cols].isna().sum().sum())
-    after_missing = int(after_df[cols].isna().sum().sum())
+    before_missing_by_col = before_df[cols].isna().sum()
+    after_missing_by_col = after_df[cols].isna().sum()
+    before_missing = int(before_missing_by_col.sum())
+    after_missing = int(after_missing_by_col.sum())
     added = after_missing - before_missing
+    affected_columns = int((after_missing_by_col > before_missing_by_col).sum())
 
     return {
         "initial_missing_rate": calculate_missing_fraction(before_df, exclude_columns=exclude_columns),
         "final_missing_rate": calculate_missing_fraction(after_df, exclude_columns=exclude_columns),
         "added_missing_cells": int(max(0, added)),
+        "affected_columns": affected_columns,
     }
 
