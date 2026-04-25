@@ -57,6 +57,7 @@ RESULT_COLUMNS = [
     "f1_macro",
     "recall_class1",
     "pr_auc",
+    "threshold",
     "training_time_seconds",
     "error",
 ]
@@ -85,8 +86,8 @@ DROP_UNNAMED_COLUMNS = True
 
 DATASETS = {
     "taiwan_bankruptcy": PROCESSED_DIR / "taiwan_bankruptcy.csv",
-    "polish_1year": PROCESSED_DIR / "polish_1year.csv",
-    "slovak_manufacture_13": PROCESSED_DIR / "slovak_manufacture_13.csv",
+    # "polish_1year": PROCESSED_DIR / "polish_1year.csv",
+    # "slovak_manufacture_13": PROCESSED_DIR / "slovak_manufacture_13.csv",
 }
 
 
@@ -130,6 +131,34 @@ ALL_MODELS = CLASSICAL_MODELS + FOUNDATION_MODELS
 # Models that accept raw NaN via their own preprocessing and therefore may
 # pair with the ``none`` imputation method.
 MODELS_ACCEPTING_NAN = {"tabpfn", "tabicl", "catboost", "xgboost", "lightgbm"}
+
+
+# ── Class imbalance handling ─────────────────────────────────────────────────
+
+# When True, every classical model that supports it gets class_weight='balanced'
+# (or equivalent scale_pos_weight for XGBoost / auto_class_weights for CatBoost).
+# Foundation models (TabPFN, TabICL) are unaffected — they are frozen and have
+# no class-weight knob.
+USE_CLASS_WEIGHT = True
+
+# When True, after fitting a binary classifier, search for the decision
+# threshold on a stratified holdout of the training set that maximises
+# THRESHOLD_METRIC, and use that threshold on the test set instead of the
+# default 0.5. This is the only way to rebalance TabPFN / TabICL, which do
+# not support class weighting.
+TUNE_THRESHOLD = True
+THRESHOLD_METRIC = "balanced_accuracy" # "balanced_accuracy" or "f1_macro".
+                                       # balanced_accuracy aggressively
+                                       # prioritises minority recall and is
+                                       # the right default for very imbalanced
+                                       # datasets (bankruptcy ≈ 1 % positives).
+                                       # Switch to f1_macro if you want a more
+                                       # conservative precision/recall trade-off.
+THRESHOLD_VAL_FRACTION = 0.2           # stratified holdout size inside train
+THRESHOLD_MIN_MINORITY = 3             # skip tuning if val fold has < this many
+                                       # minority samples (fall back to 0.5).
+                                       # Kept low because bankruptcy datasets
+                                       # commonly have 20–40 positives total.
 
 
 # ── Output file names (no phase / student prefixes) ──────────────────────────

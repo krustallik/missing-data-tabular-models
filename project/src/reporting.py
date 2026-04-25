@@ -127,8 +127,12 @@ def _data_methods_report(df: Optional[pd.DataFrame]) -> str:
         "- **Split**: stratified 80/20 train/test split, `random_state = 42`. "
         "Splits are materialised once in `data/splits/*.csv` and re-used by "
         "every step of the benchmark.",
-        f"- **Metrics**: {', '.join(PRIMARY_METRICS)} (with precision/recall "
-        "also stored).",
+        f"- **Primary metrics** (ranking): {', '.join(PRIMARY_METRICS)}. "
+        "On highly imbalanced binary targets `accuracy` is misleading — "
+        "`balanced_accuracy`, `f1_macro` and `pr_auc` are the ones to trust. "
+        "Additional metrics stored per run: `f1` (weighted), `precision`, "
+        "`recall`, `recall_class1`, `roc_auc`, plus the decision `threshold` "
+        "actually used after tuning.",
         f"- **Missingness grid**: mechanisms {MISSING_MECHANISMS}, rates "
         f"{[f'{int(r*100)}%' for r in MISSING_RATES]}. Injection is applied "
         "to the **training split only**; the test split is kept complete so "
@@ -215,6 +219,13 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
     ]
     succeeded = df.dropna(subset=["accuracy"])
     failed = df[df["accuracy"].isna()]
+
+    has_bacc = "balanced_accuracy" in succeeded.columns
+    has_f1m = "f1_macro" in succeeded.columns
+    has_prauc = "pr_auc" in succeeded.columns
+    has_rc1 = "recall_class1" in succeeded.columns
+    ranking_metric = "balanced_accuracy" if has_bacc else "accuracy"
+
     lines.append(
         f"- Total runs recorded: **{len(df)}**\n"
         f"- Successful runs:      **{len(succeeded)}**\n"
@@ -223,28 +234,58 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
     if not succeeded.empty:
         lines.append(f"- Unique models: **{succeeded['model'].nunique()}**\n")
         lines.append(
-            f"- Mean accuracy across all successful runs: "
-            f"**{succeeded['accuracy'].mean():.4f}**\n"
+            f"- Mean **accuracy** across successful runs: "
+            f"**{succeeded['accuracy'].mean():.4f}**  "
+            f"_(misleading on imbalanced data — see balanced_accuracy below)_\n"
         )
+        if has_bacc:
+            lines.append(
+                f"- Mean **balanced_accuracy**: "
+                f"**{succeeded['balanced_accuracy'].mean():.4f}**  "
+                f"_(honest summary — 0.5 = random on binary tasks)_\n"
+            )
+        if has_prauc:
+            lines.append(
+                f"- Mean **pr_auc** (binary tasks): "
+                f"**{succeeded['pr_auc'].mean(skipna=True):.4f}**  "
+                f"_(how well the positive class is ranked above negatives)_\n"
+            )
+        if has_rc1:
+            lines.append(
+                f"- Mean **recall_class1**: "
+                f"**{succeeded['recall_class1'].mean(skipna=True):.4f}**  "
+                f"_(fraction of true positives actually caught)_\n"
+            )
 
     lines += [
         "",
         "## 2. Best configuration per model",
         "",
-        "Best mean accuracy per model (averaged over datasets and scenarios "
-        "where the model ran successfully):",
+        f"Mean metrics per model (averaged over datasets and scenarios), "
+        f"ranked by **{ranking_metric}** — the honest summary on imbalanced data. "
+        f"`accuracy` is kept for comparison but is not the primary ranking.",
         "",
     ]
     if not succeeded.empty:
+        agg_spec = {
+            "accuracy": ("accuracy", "mean"),
+            "f1_weighted": ("f1", "mean"),
+            "runs": ("accuracy", "size"),
+        }
+        if has_bacc:
+            agg_spec["balanced_accuracy"] = ("balanced_accuracy", "mean")
+        if has_f1m:
+            agg_spec["f1_macro"] = ("f1_macro", "mean")
+        if has_prauc:
+            agg_spec["pr_auc"] = ("pr_auc", "mean")
+        if has_rc1:
+            agg_spec["recall_class1"] = ("recall_class1", "mean")
+
         best = (
             succeeded.groupby("model")
-            .agg(
-                accuracy=("accuracy", "mean"),
-                f1=("f1", "mean"),
-                runs=("accuracy", "size"),
-            )
+            .agg(**agg_spec)
             .round(4)
-            .sort_values("accuracy", ascending=False)
+            .sort_values(ranking_metric, ascending=False)
             .reset_index()
         )
         best["performance"] = best["accuracy"].map(_classify_performance)
@@ -255,14 +296,23 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
     ]
     if not succeeded.empty and "model_type" in succeeded.columns:
+        agg_cmp = {
+            "accuracy_mean": ("accuracy", "mean"),
+            "accuracy_std": ("accuracy", "std"),
+            "f1_weighted_mean": ("f1", "mean"),
+            "n": ("accuracy", "size"),
+        }
+        if has_bacc:
+            agg_cmp["balanced_accuracy_mean"] = ("balanced_accuracy", "mean")
+            agg_cmp["balanced_accuracy_std"] = ("balanced_accuracy", "std")
+        if has_f1m:
+            agg_cmp["f1_macro_mean"] = ("f1_macro", "mean")
+        if has_prauc:
+            agg_cmp["pr_auc_mean"] = ("pr_auc", "mean")
+
         cmp = (
             succeeded.groupby("model_type")
-            .agg(
-                accuracy_mean=("accuracy", "mean"),
-                accuracy_std=("accuracy", "std"),
-                f1_mean=("f1", "mean"),
-                n=("accuracy", "size"),
-            )
+            .agg(**agg_cmp)
             .round(4)
             .reset_index()
         )
@@ -272,13 +322,14 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
         "## 4. Robustness across missingness mechanisms",
         "",
-        "Mean accuracy per (model, mechanism) across all rates and imputations:",
+        f"Mean **{ranking_metric}** per (model, mechanism) across all rates "
+        f"and imputations:",
         "",
     ]
     rob = succeeded.dropna(subset=["missing_mechanism"])
     if not rob.empty:
         grp = (
-            rob.groupby(["model", "missing_mechanism"])["accuracy"]
+            rob.groupby(["model", "missing_mechanism"])[ranking_metric]
             .mean()
             .unstack(fill_value=float("nan"))
             .round(4)
@@ -288,16 +339,16 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
 
     lines += [
         "",
-        "## 5. Accuracy vs missing rate",
+        f"## 5. {ranking_metric.replace('_', ' ').title()} vs missing rate",
         "",
-        "Mean accuracy per (model, missing_rate) averaged over mechanisms, "
-        "imputations, and datasets:",
+        f"Mean **{ranking_metric}** per (model, missing_rate) averaged over "
+        f"mechanisms, imputations, and datasets:",
         "",
     ]
     if not succeeded.empty and "missing_rate" in succeeded.columns:
         rate_pivot = (
             succeeded.dropna(subset=["missing_rate"])
-            .groupby(["model", "missing_rate"])["accuracy"]
+            .groupby(["model", "missing_rate"])[ranking_metric]
             .mean()
             .unstack(fill_value=float("nan"))
             .round(4)
@@ -309,11 +360,12 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
         "## 6. Imputation method ranking",
         "",
-        "Mean accuracy averaged across models / datasets / mechanisms / rates:",
+        f"Mean **{ranking_metric}** averaged across models / datasets / "
+        f"mechanisms / rates:",
         "",
     ]
     imp = (
-        succeeded.groupby("imputation")["accuracy"]
+        succeeded.groupby("imputation")[ranking_metric]
         .agg(["mean", "std", "count"])
         .round(4)
         .sort_values("mean", ascending=False)
@@ -438,8 +490,13 @@ def _deployment_complexity() -> pd.DataFrame:
 
 
 def _suitability_matrix(df: pd.DataFrame) -> pd.DataFrame:
-    """Score each model on (low/med/high) missingness scenarios."""
-    sub = df.dropna(subset=["accuracy", "missing_rate"])
+    """Score each model on (low/med/high) missingness scenarios.
+
+    Uses ``balanced_accuracy`` when available (honest on imbalanced datasets);
+    falls back to ``accuracy`` for old CSVs without that column.
+    """
+    metric = "balanced_accuracy" if "balanced_accuracy" in df.columns else "accuracy"
+    sub = df.dropna(subset=[metric, "missing_rate"])
     if sub.empty:
         return pd.DataFrame()
     buckets = pd.cut(
@@ -449,12 +506,13 @@ def _suitability_matrix(df: pd.DataFrame) -> pd.DataFrame:
     )
     sub = sub.assign(bucket=buckets)
     out = (
-        sub.groupby(["model", "bucket"], observed=False)["accuracy"]
+        sub.groupby(["model", "bucket"], observed=False)[metric]
         .mean()
         .unstack()
         .round(4)
         .reset_index()
     )
+    out.attrs["metric"] = metric
     return out
 
 
@@ -472,10 +530,15 @@ def _practical_usability_report(df: pd.DataFrame) -> str:
         "",
         "## 1. Suitability matrix",
         "",
-        "Mean accuracy by missingness bucket (all mechanisms, all imputations):",
-        "",
     ]
     matrix = _suitability_matrix(df)
+    metric_used = matrix.attrs.get("metric", "accuracy") if not matrix.empty else "accuracy"
+    lines += [
+        f"Mean **{metric_used}** by missingness bucket (all mechanisms, "
+        f"all imputations). `balanced_accuracy` is used by default as it is "
+        f"honest on imbalanced datasets (0.5 ≈ random guessing).",
+        "",
+    ]
     lines.append(_df_to_markdown(matrix))
     lines += [
         "",
@@ -559,10 +622,14 @@ def _interpretation_guide(df: Optional[pd.DataFrame]) -> str:
         "## Files in `results/visualizations/`",
         "",
         "- `missing_rate_MCAR.png` / `missing_rate_MAR.png` / `missing_rate_MNAR.png` - "
-        "accuracy / F1 / ROC-AUC as functions of missing rate for each mechanism.",
-        "- `classical_vs_foundation.png` - distribution boxplot.",
-        "- `stability_heatmap.png` - accuracy heatmap across missing rates.",
-        "- `per_dataset_ranking.png` - bar chart ranking on the native scenario.",
+        "primary metrics (accuracy, balanced_accuracy, f1_macro, pr_auc) as "
+        "functions of missing rate for each mechanism.",
+        "- `classical_vs_foundation.png` - distribution boxplot across the "
+        "primary metrics.",
+        "- `stability_heatmap.png` - balanced_accuracy heatmap across missing "
+        "rates (the metric that actually reflects minority-class detection).",
+        "- `per_dataset_ranking.png` - bar chart ranking on the native scenario "
+        "by balanced_accuracy.",
         "",
         "## Files in `results/reports/`",
         "",

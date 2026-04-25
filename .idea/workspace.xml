@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="errors fixing">
-      <change beforePath="$PROJECT_DIR$/.idea/copilotDiffState.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/missingness.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/missingness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/consolidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/consolidation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/experiment_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/experiment_runner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/reporting.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/reporting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +29,7 @@
     </selectedModels>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="201" />
+    <option name="cachedIndexableFilesCount" value="87" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -70,37 +73,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.FSDFSD.executor": "Run",
-    "Python.prepare_raw_datasets.executor": "Run",
-    "Python.run_dataset_setup.executor": "Run",
-    "Python.run_experiments.executor": "Run",
-    "Python.run_phase4_2_experiments.executor": "Run",
-    "Python.run_phase4_3_experiments.executor": "Run",
-    "Python.run_phase4_4_experiments.executor": "Run",
-    "Python.run_phase4_4_tabpfn.executor": "Run",
-    "Python.run_phase4_5_experiments.executor": "Run",
-    "Python.run_phase4_6_experiments.executor": "Run",
-    "Python.run_phase4_7_experiments.executor": "Run",
-    "Python.run_phase4_pipeline.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.FSDFSD.executor&quot;: &quot;Run&quot;,
+    &quot;Python._class_balance.executor&quot;: &quot;Run&quot;,
+    &quot;Python.prepare_raw_datasets.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_dataset_setup.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_2_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_3_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_4_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_4_tabpfn.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_5_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_6_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_7_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\INS\project\data\raw\polish" />
@@ -177,7 +181,9 @@
       <workItem from="1775986559955" duration="2052000" />
       <workItem from="1776070345402" duration="13387000" />
       <workItem from="1776777771974" duration="2613000" />
-      <workItem from="1776780397267" duration="12770000" />
+      <workItem from="1776780397267" duration="22840000" />
+      <workItem from="1777060369581" duration="2134000" />
+      <workItem from="1777112884910" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -291,7 +297,31 @@
       <option name="project" value="LOCAL" />
       <updated>1776792191760</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="errors fixing">
+      <option name="closed" value="true" />
+      <created>1776794005125</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1776794005125</updated>
+    </task>
+    <task id="LOCAL-00016" summary="errors fixing">
+      <option name="closed" value="true" />
+      <created>1776794019416</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1776794019416</updated>
+    </task>
+    <task id="LOCAL-00017" summary="errors fixing">
+      <option name="closed" value="true" />
+      <created>1776794035319</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1776794035319</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +351,7 @@
     <SUITE FILE_PATH="coverage/_$run_phase4_5_experiments.coverage" NAME="run_phase4_5_experiments Coverage Results" MODIFIED="1776092560689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/_$run_phase4_4_experiments.coverage" NAME="run_phase4_4_experiments Coverage Results" MODIFIED="1776093009349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project" />
     <SUITE FILE_PATH="coverage/INS$run_dataset_setup.coverage" NAME="run_dataset_setup Coverage Results" MODIFIED="1775221461224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/INS$_class_balance.coverage" NAME="_class_balance Coverage Results" MODIFIED="1776797283973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/_$run_phase4_pipeline.coverage" NAME="run_phase4_pipeline Coverage Results" MODIFIED="1775840482327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/_$run_phase4_3_experiments.coverage" NAME="run_phase4_3_experiments Coverage Results" MODIFIED="1776071001140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/INS$FSDFSD.coverage" NAME="FSDFSD Coverage Results" MODIFIED="1775218951565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

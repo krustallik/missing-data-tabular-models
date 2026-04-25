@@ -89,6 +89,7 @@ def _record(
         "f1_macro": metrics.get("f1_macro") if metrics else None,
         "recall_class1": metrics.get("recall_class1") if metrics else None,
         "pr_auc": metrics.get("pr_auc") if metrics else None,
+        "threshold": metrics.get("threshold") if metrics else None,
         "training_time_seconds": outcome.get("training_time_seconds") if outcome else None,
         "error": skipped_reason or (outcome.get("error") if outcome else None),
     }
@@ -221,11 +222,12 @@ def run_experiments(
                         bacc = mt.get("balanced_accuracy", float("nan"))
                         f1m = mt.get("f1_macro", float("nan"))
                         prauc = mt.get("pr_auc", float("nan"))
+                        thr = mt.get("threshold", 0.5)
                         t = outcome.get("training_time_seconds") or 0.0
                         logger.info(
                             f"    {m:20s} [{imp:15s}] "
                             f"acc={acc:.4f} bacc={bacc:.4f} f1m={f1m:.4f} prauc={prauc:.4f} "
-                            f"t={t:.1f}s"
+                            f"thr={thr:.2f} t={t:.1f}s"
                         )
 
         # Persist partial table after each dataset.
