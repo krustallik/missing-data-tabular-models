@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="errors fixing">
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="weights">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/consolidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/consolidation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/experiment_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/experiment_runner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/imputation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/imputation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/src/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/reporting.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/reporting.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +181,7 @@
       <workItem from="1776777771974" duration="2613000" />
       <workItem from="1776780397267" duration="22840000" />
       <workItem from="1777060369581" duration="2134000" />
-      <workItem from="1777112884910" duration="300000" />
+      <workItem from="1777112884910" duration="9819000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -321,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776794035319</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="weights">
+      <option name="closed" value="true" />
+      <created>1777113219896</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1777113219896</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +345,8 @@
     <MESSAGE value="3.3 - 3.6" />
     <MESSAGE value="refactoring and connecting 2 modules together" />
     <MESSAGE value="errors fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="errors fixing" />
+    <MESSAGE value="weights" />
+    <option name="LAST_COMMIT_MESSAGE" value="weights" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />

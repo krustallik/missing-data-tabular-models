@@ -290,16 +290,16 @@ def _train_classical(
         "metrics": None, "training_time_seconds": None, "error": None,
     }
     needs_scaling = model_key in {"logistic_regression", "svm", "mlp"}
-    X_tr_raw = X_train.to_numpy(dtype=float)
-    X_te_raw = X_test.to_numpy(dtype=float)
 
     if needs_scaling:
+        X_tr_raw = X_train.to_numpy(dtype=float)
+        X_te_raw = X_test.to_numpy(dtype=float)
         scaler = StandardScaler()
         X_tr = scaler.fit_transform(X_tr_raw)
         X_te = scaler.transform(X_te_raw)
     else:
-        X_tr = X_tr_raw
-        X_te = X_te_raw
+        X_tr = X_train
+        X_te = X_test
 
     prefers_gpu = model_key in {"xgboost", "lightgbm"} and _detect_device(logger=None) == "cuda"
 

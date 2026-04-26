@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 from sklearn.impute import KNNImputer
 
-from config import IMPUTATION_METHODS, RANDOM_STATE
+from config import IMPUTATION_METHODS, MICE_MAX_ITER, RANDOM_STATE
 from data_utils import coerce_features
 
 
@@ -76,7 +76,7 @@ def _mice_impute(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[pd.DataFr
     from sklearn.impute import IterativeImputer
 
     imputer = IterativeImputer(
-        random_state=RANDOM_STATE, max_iter=10, sample_posterior=False,
+        random_state=RANDOM_STATE, max_iter=MICE_MAX_ITER, sample_posterior=False,
     )
     X_tr = pd.DataFrame(
         imputer.fit_transform(X_train), columns=X_train.columns, index=X_train.index,

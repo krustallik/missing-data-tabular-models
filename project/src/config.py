@@ -106,6 +106,8 @@ MISSINGNESS_TOLERANCE = 0.01
 # "none" means: feed raw NaN into the model (foundation models may handle it).
 IMPUTATION_METHODS = ["mean", "median", "knn", "mice", "mice_indicator", "none"]
 # IMPUTATION_METHODS = [ "median", "knn",  "none"]
+MICE_MAX_ITER = 30
+
 # ── Models ───────────────────────────────────────────────────────────────────
 
 # Model names here are the *canonical* keys used everywhere (CSV, reports,
