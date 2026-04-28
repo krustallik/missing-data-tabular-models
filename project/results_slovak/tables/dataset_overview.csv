@@ -1,0 +1,2 @@
+dataset,path,n_samples,n_features,n_classes,task_type,missing_cells,missing_fraction
+slovak_manufacture_13,C:\Users\TaroM\Documents\missing-data-tabular-models\project\data\processed\slovak_manufacture_13.csv,4107,64,2,binary,12928,0.04842763761682681

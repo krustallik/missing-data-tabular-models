@@ -1,0 +1,1367 @@
+2026-04-25 22:05:11,155 - pipeline - INFO - Pipeline steps to run: [1, 2, 3, 4, 5, 6]
+2026-04-25 22:05:11,155 - pipeline - INFO - >>> Step 1: prepare_splits
+2026-04-25 22:05:11,155 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:11,155 - pipeline - INFO - STEP 1: PREPARE TRAIN/TEST SPLITS
+2026-04-25 22:05:11,155 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:11,155 - pipeline - INFO - All splits already present; skipping split creation.
+2026-04-25 22:05:11,240 - pipeline - INFO - Saved dataset_overview.csv
+2026-04-25 22:05:11,241 - pipeline - INFO - Saved experiment_setup.csv
+2026-04-25 22:05:11,241 - pipeline - INFO - >>> Step 2: verify_missingness
+2026-04-25 22:05:11,242 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:11,242 - pipeline - INFO - STEP 2: VERIFY MISSINGNESS INJECTION RATES
+2026-04-25 22:05:11,242 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:11,331 - pipeline - INFO - Verifying taiwan_bankruptcy: X_train shape=(5455, 95)
+2026-04-25 22:05:11,497 - pipeline - INFO -   MCAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-25 22:05:11,819 - pipeline - INFO -   MCAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-25 22:05:12,276 - pipeline - INFO -   MCAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-25 22:05:12,876 - pipeline - INFO -   MCAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-25 22:05:13,774 - pipeline - INFO -   MCAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-25 22:05:14,949 - pipeline - INFO -   MCAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-25 22:05:15,285 - pipeline - INFO -   MAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-25 22:05:15,774 - pipeline - INFO -   MAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-25 22:05:16,426 - pipeline - INFO -   MAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-25 22:05:17,254 - pipeline - INFO -   MAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-25 22:05:18,412 - pipeline - INFO -   MAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-25 22:05:20,287 - pipeline - INFO -   MAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-25 22:05:20,699 - pipeline - INFO -   MNAR @  5%: realized=0.0500 delta=-0.0000 [ok]
+2026-04-25 22:05:21,293 - pipeline - INFO -   MNAR @ 10%: realized=0.1000 delta=-0.0000 [ok]
+2026-04-25 22:05:21,964 - pipeline - INFO -   MNAR @ 15%: realized=0.1500 delta=+0.0000 [ok]
+2026-04-25 22:05:22,812 - pipeline - INFO -   MNAR @ 20%: realized=0.2000 delta=+0.0000 [ok]
+2026-04-25 22:05:23,996 - pipeline - INFO -   MNAR @ 30%: realized=0.3000 delta=+0.0000 [ok]
+2026-04-25 22:05:25,618 - pipeline - INFO -   MNAR @ 40%: realized=0.4000 delta=+0.0000 [ok]
+2026-04-25 22:05:25,619 - pipeline - INFO - Saved missingness_verification.csv: 18 rows
+2026-04-25 22:05:25,620 - pipeline - INFO - >>> Step 3: benchmark_imputations
+2026-04-25 22:05:25,620 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:25,620 - pipeline - INFO - STEP 3: BENCHMARK IMPUTATION METHODS
+2026-04-25 22:05:25,620 - pipeline - INFO - ================================================================================
+2026-04-25 22:05:25,912 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mean            ok  t=0.0272s
+2026-04-25 22:05:25,947 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% median          ok  t=0.0351s
+2026-04-25 22:05:28,525 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% knn             ok  t=2.5779s
+2026-04-25 22:06:48,236 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mice            ok  t=79.7102s
+2026-04-25 22:08:04,635 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% mice_indicator  ok  t=76.3988s
+2026-04-25 22:08:04,652 - pipeline - INFO -   taiwan_bankruptcy        MCAR @  5% none            ok  t=0.0169s
+2026-04-25 22:08:04,995 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mean            ok  t=0.0278s
+2026-04-25 22:08:05,027 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% median          ok  t=0.0321s
+2026-04-25 22:08:08,784 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% knn             ok  t=3.7574s
+2026-04-25 22:09:29,168 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mice            ok  t=80.3838s
+2026-04-25 22:10:53,138 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% mice_indicator  ok  t=83.9693s
+2026-04-25 22:10:53,154 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 10% none            ok  t=0.0158s
+2026-04-25 22:10:53,646 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mean            ok  t=0.0267s
+2026-04-25 22:10:53,682 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% median          ok  t=0.0364s
+2026-04-25 22:10:58,517 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% knn             ok  t=4.8348s
+2026-04-25 22:12:18,868 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mice            ok  t=80.3507s
+2026-04-25 22:13:38,999 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% mice_indicator  ok  t=80.1305s
+2026-04-25 22:13:39,013 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 15% none            ok  t=0.0144s
+2026-04-25 22:13:39,650 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mean            ok  t=0.027s
+2026-04-25 22:13:39,682 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% median          ok  t=0.0317s
+2026-04-25 22:13:45,323 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% knn             ok  t=5.6403s
+2026-04-25 22:15:04,598 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mice            ok  t=79.2748s
+2026-04-25 22:16:24,634 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% mice_indicator  ok  t=80.0359s
+2026-04-25 22:16:24,648 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 20% none            ok  t=0.0142s
+2026-04-25 22:16:25,588 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mean            ok  t=0.0281s
+2026-04-25 22:16:25,620 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% median          ok  t=0.0323s
+2026-04-25 22:16:33,542 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% knn             ok  t=7.9214s
+2026-04-25 22:17:49,380 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mice            ok  t=75.8383s
+2026-04-25 22:19:04,893 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% mice_indicator  ok  t=75.5121s
+2026-04-25 22:19:04,907 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 30% none            ok  t=0.0143s
+2026-04-25 22:19:06,157 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mean            ok  t=0.0275s
+2026-04-25 22:19:06,191 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% median          ok  t=0.0331s
+2026-04-25 22:19:16,348 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% knn             ok  t=10.1573s
+2026-04-25 22:20:28,564 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mice            ok  t=72.2157s
+2026-04-25 22:21:40,939 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% mice_indicator  ok  t=72.3743s
+2026-04-25 22:21:40,953 - pipeline - INFO -   taiwan_bankruptcy        MCAR @ 40% none            ok  t=0.0145s
+2026-04-25 22:21:41,375 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mean            ok  t=0.0282s
+2026-04-25 22:21:41,408 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% median          ok  t=0.0329s
+2026-04-25 22:21:43,986 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% knn             ok  t=2.5774s
+2026-04-25 22:21:58,780 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mice            ok  t=14.7943s
+2026-04-25 22:22:13,541 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% mice_indicator  ok  t=14.7604s
+2026-04-25 22:22:13,557 - pipeline - INFO -   taiwan_bankruptcy        MAR @  5% none            ok  t=0.0157s
+2026-04-25 22:22:14,092 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mean            ok  t=0.0272s
+2026-04-25 22:22:14,124 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% median          ok  t=0.0326s
+2026-04-25 22:22:17,744 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% knn             ok  t=3.6192s
+2026-04-25 22:23:42,697 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mice            ok  t=84.9531s
+2026-04-25 22:25:07,475 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% mice_indicator  ok  t=84.7781s
+2026-04-25 22:25:07,491 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 10% none            ok  t=0.0151s
+2026-04-25 22:25:08,210 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mean            ok  t=0.0271s
+2026-04-25 22:25:08,246 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% median          ok  t=0.0359s
+2026-04-25 22:25:12,876 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% knn             ok  t=4.6302s
+2026-04-25 22:26:34,261 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mice            ok  t=81.3846s
+2026-04-25 22:27:55,567 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% mice_indicator  ok  t=81.3056s
+2026-04-25 22:27:55,582 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 15% none            ok  t=0.0157s
+2026-04-25 22:27:56,453 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mean            ok  t=0.0259s
+2026-04-25 22:27:56,484 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% median          ok  t=0.0309s
+2026-04-25 22:28:02,141 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% knn             ok  t=5.6565s
+2026-04-25 22:29:21,749 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mice            ok  t=79.6083s
+2026-04-25 22:30:41,460 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% mice_indicator  ok  t=79.7103s
+2026-04-25 22:30:41,475 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 20% none            ok  t=0.0157s
+2026-04-25 22:30:42,694 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mean            ok  t=0.0292s
+2026-04-25 22:30:42,726 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% median          ok  t=0.0313s
+2026-04-25 22:30:50,542 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% knn             ok  t=7.816s
+2026-04-25 22:32:06,699 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mice            ok  t=76.1569s
+2026-04-25 22:33:13,982 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% mice_indicator  ok  t=67.2822s
+2026-04-25 22:33:13,999 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 30% none            ok  t=0.0169s
+2026-04-25 22:33:15,563 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% mean            ok  t=0.0268s
+2026-04-25 22:33:15,631 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% median          ok  t=0.0682s
+2026-04-25 22:33:25,572 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% knn             ok  t=9.9407s
+2026-04-25 22:34:30,951 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% mice            ok  t=65.3791s
+2026-04-25 22:35:40,252 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% mice_indicator  ok  t=69.3005s
+2026-04-25 22:35:40,268 - pipeline - INFO -   taiwan_bankruptcy        MAR @ 40% none            ok  t=0.0155s
+2026-04-25 22:35:40,618 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% mean            ok  t=0.0255s
+2026-04-25 22:35:40,647 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% median          ok  t=0.0287s
+2026-04-25 22:35:43,191 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% knn             ok  t=2.5436s
+2026-04-25 22:35:57,371 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% mice            ok  t=14.1801s
+2026-04-25 22:36:11,600 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% mice_indicator  ok  t=14.229s
+2026-04-25 22:36:11,614 - pipeline - INFO -   taiwan_bankruptcy        MNAR @  5% none            ok  t=0.0139s
+2026-04-25 22:36:12,144 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% mean            ok  t=0.0256s
+2026-04-25 22:36:12,173 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% median          ok  t=0.029s
+2026-04-25 22:36:15,970 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% knn             ok  t=3.7969s
+2026-04-25 22:36:29,523 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% mice            ok  t=13.5524s
+2026-04-25 22:36:43,069 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% mice_indicator  ok  t=13.546s
+2026-04-25 22:36:43,083 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 10% none            ok  t=0.0141s
+2026-04-25 22:36:43,791 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% mean            ok  t=0.0248s
+2026-04-25 22:36:43,822 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% median          ok  t=0.0308s
+2026-04-25 22:36:48,413 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% knn             ok  t=4.5907s
+2026-04-25 22:37:04,088 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% mice            ok  t=15.675s
+2026-04-25 22:37:19,844 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% mice_indicator  ok  t=15.7558s
+2026-04-25 22:37:19,860 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 15% none            ok  t=0.0156s
+2026-04-25 22:37:20,717 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% mean            ok  t=0.0255s
+2026-04-25 22:37:20,746 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% median          ok  t=0.0292s
+2026-04-25 22:37:26,252 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% knn             ok  t=5.5058s
+2026-04-25 22:37:44,182 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% mice            ok  t=17.9298s
+2026-04-25 22:38:02,096 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% mice_indicator  ok  t=17.9134s
+2026-04-25 22:38:02,110 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 20% none            ok  t=0.0142s
+2026-04-25 22:38:03,328 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% mean            ok  t=0.0292s
+2026-04-25 22:38:03,358 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% median          ok  t=0.0294s
+2026-04-25 22:38:11,293 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% knn             ok  t=7.9354s
+2026-04-25 22:38:45,532 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% mice            ok  t=34.238s
+2026-04-25 22:39:19,662 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% mice_indicator  ok  t=34.1303s
+2026-04-25 22:39:19,678 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 30% none            ok  t=0.0161s
+2026-04-25 22:39:21,234 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% mean            ok  t=0.0254s
+2026-04-25 22:39:21,267 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% median          ok  t=0.0325s
+2026-04-25 22:39:31,626 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% knn             ok  t=10.3587s
+2026-04-25 22:40:41,327 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% mice            ok  t=69.7011s
+2026-04-25 22:41:50,871 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% mice_indicator  ok  t=69.5437s
+2026-04-25 22:41:50,888 - pipeline - INFO -   taiwan_bankruptcy        MNAR @ 40% none            ok  t=0.0172s
+2026-04-25 22:41:50,890 - pipeline - INFO - Saved imputation_benchmark.csv: 108 rows
+2026-04-25 22:41:50,891 - pipeline - INFO - >>> Step 4: run_experiments
+2026-04-25 22:41:50,891 - pipeline - INFO - ================================================================================
+2026-04-25 22:41:50,891 - pipeline - INFO - STEP 4: RUN FULL EXPERIMENT MATRIX
+2026-04-25 22:41:50,892 - pipeline - INFO - ================================================================================
+2026-04-25 22:41:50,892 - pipeline - INFO - ================================================================================
+2026-04-25 22:41:50,892 - pipeline - INFO - Datasets     : ['taiwan_bankruptcy']
+2026-04-25 22:41:50,892 - pipeline - INFO - Mechanisms   : ['MCAR', 'MAR', 'MNAR'] (native=yes)
+2026-04-25 22:41:50,892 - pipeline - INFO - Rates        : [0.05, 0.1, 0.15, 0.2, 0.3, 0.4]
+2026-04-25 22:41:50,892 - pipeline - INFO - Imputations  : ['mean', 'median', 'knn', 'mice', 'mice_indicator', 'none']
+2026-04-25 22:41:50,892 - pipeline - INFO - Models       : ['logistic_regression', 'random_forest', 'gradient_boosting', 'xgboost', 'lightgbm', 'svm', 'mlp', 'tabpfn', 'tabicl', 'catboost']
+2026-04-25 22:41:50,892 - pipeline - INFO - ================================================================================
+2026-04-25 22:41:50,980 - pipeline - INFO - 
+[taiwan_bankruptcy] train=(5455, 95) test=(1364, 95)
+2026-04-25 22:41:50,980 - pipeline - INFO - [1/19] taiwan_bankruptcy scenario=native
+2026-04-25 22:41:51,577 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7375 bacc=0.8314 f1m=0.5149 prauc=0.3190 thr=0.19 t=0.6s
+2026-04-25 22:41:52,047 - pipeline - INFO -     random_forest        [mean           ] acc=0.8394 bacc=0.8511 f1m=0.5838 prauc=0.4844 thr=0.03 t=0.5s
+2026-04-25 22:42:08,405 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8196 bacc=0.8848 f1m=0.5760 prauc=0.4619 thr=0.10 t=16.4s
+2026-04-25 22:42:10,609 - pipeline - INFO -     xgboost              [mean           ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.1s
+2026-04-25 22:42:12,661 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5280 thr=0.00 t=2.0s
+2026-04-25 22:42:16,415 - pipeline - INFO -     svm                  [mean           ] acc=0.7815 bacc=0.8761 f1m=0.5484 prauc=0.3436 thr=0.02 t=3.7s
+2026-04-25 22:42:17,428 - pipeline - INFO -     mlp                  [mean           ] acc=0.9443 bacc=0.7405 f1m=0.6739 prauc=0.2827 thr=0.17 t=1.0s
+2026-04-25 22:42:18,472 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 22:46:32,058 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=253.6s
+2026-04-25 22:46:32,182 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 22:46:43,345 - pipeline - INFO -     tabicl               [mean           ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=11.2s
+2026-04-25 22:46:46,211 - pipeline - INFO -     catboost             [mean           ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.8s
+2026-04-25 22:46:46,896 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7375 bacc=0.8314 f1m=0.5149 prauc=0.3190 thr=0.19 t=0.6s
+2026-04-25 22:46:47,391 - pipeline - INFO -     random_forest        [median         ] acc=0.8394 bacc=0.8511 f1m=0.5838 prauc=0.4844 thr=0.03 t=0.5s
+2026-04-25 22:47:03,815 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8196 bacc=0.8848 f1m=0.5760 prauc=0.4619 thr=0.10 t=16.4s
+2026-04-25 22:47:04,967 - pipeline - INFO -     xgboost              [median         ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.1s
+2026-04-25 22:47:06,832 - pipeline - INFO -     lightgbm             [median         ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5267 thr=0.00 t=1.9s
+2026-04-25 22:47:10,714 - pipeline - INFO -     svm                  [median         ] acc=0.7815 bacc=0.8761 f1m=0.5484 prauc=0.3436 thr=0.02 t=3.9s
+2026-04-25 22:47:11,739 - pipeline - INFO -     mlp                  [median         ] acc=0.9443 bacc=0.7405 f1m=0.6739 prauc=0.2827 thr=0.17 t=1.0s
+2026-04-25 22:52:11,385 - pipeline - INFO -     tabpfn               [median         ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=299.6s
+2026-04-25 22:52:11,385 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 22:52:22,152 - pipeline - INFO -     tabicl               [median         ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=10.8s
+2026-04-25 22:52:24,904 - pipeline - INFO -     catboost             [median         ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.7s
+2026-04-25 22:52:25,619 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7375 bacc=0.8314 f1m=0.5149 prauc=0.3190 thr=0.19 t=0.7s
+2026-04-25 22:52:26,076 - pipeline - INFO -     random_forest        [knn            ] acc=0.8394 bacc=0.8511 f1m=0.5838 prauc=0.4844 thr=0.03 t=0.5s
+2026-04-25 22:52:42,525 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8196 bacc=0.8848 f1m=0.5760 prauc=0.4619 thr=0.10 t=16.4s
+2026-04-25 22:52:43,661 - pipeline - INFO -     xgboost              [knn            ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.1s
+2026-04-25 22:52:45,523 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5259 thr=0.00 t=1.9s
+2026-04-25 22:52:49,312 - pipeline - INFO -     svm                  [knn            ] acc=0.7815 bacc=0.8761 f1m=0.5484 prauc=0.3436 thr=0.02 t=3.8s
+2026-04-25 22:52:50,341 - pipeline - INFO -     mlp                  [knn            ] acc=0.9443 bacc=0.7405 f1m=0.6739 prauc=0.2827 thr=0.17 t=1.0s
+2026-04-25 22:57:00,764 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=250.4s
+2026-04-25 22:57:00,764 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 22:57:11,558 - pipeline - INFO -     tabicl               [knn            ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=10.8s
+2026-04-25 22:57:14,289 - pipeline - INFO -     catboost             [knn            ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.7s
+2026-04-25 22:57:17,795 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7375 bacc=0.8314 f1m=0.5149 prauc=0.3190 thr=0.19 t=0.6s
+2026-04-25 22:57:18,243 - pipeline - INFO -     random_forest        [mice           ] acc=0.8394 bacc=0.8511 f1m=0.5838 prauc=0.4844 thr=0.03 t=0.4s
+2026-04-25 22:57:34,679 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8196 bacc=0.8848 f1m=0.5760 prauc=0.4619 thr=0.10 t=16.4s
+2026-04-25 22:57:35,910 - pipeline - INFO -     xgboost              [mice           ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.2s
+2026-04-25 22:57:37,752 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5267 thr=0.00 t=1.8s
+2026-04-25 22:57:41,595 - pipeline - INFO -     svm                  [mice           ] acc=0.7815 bacc=0.8761 f1m=0.5484 prauc=0.3436 thr=0.02 t=3.8s
+2026-04-25 22:57:42,639 - pipeline - INFO -     mlp                  [mice           ] acc=0.9443 bacc=0.7405 f1m=0.6739 prauc=0.2827 thr=0.17 t=1.0s
+2026-04-25 23:01:52,720 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=250.1s
+2026-04-25 23:01:52,720 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:02:03,668 - pipeline - INFO -     tabicl               [mice           ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=10.9s
+2026-04-25 23:02:06,396 - pipeline - INFO -     catboost             [mice           ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.7s
+2026-04-25 23:02:10,078 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.7375 bacc=0.8314 f1m=0.5149 prauc=0.3190 thr=0.19 t=0.7s
+2026-04-25 23:02:10,528 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8306 bacc=0.8686 f1m=0.5808 prauc=0.4889 thr=0.03 t=0.4s
+2026-04-25 23:02:27,129 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8204 bacc=0.8852 f1m=0.5766 prauc=0.4691 thr=0.10 t=16.6s
+2026-04-25 23:02:28,352 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.2s
+2026-04-25 23:02:30,204 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5266 thr=0.00 t=1.8s
+2026-04-25 23:02:34,847 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.7815 bacc=0.8761 f1m=0.5484 prauc=0.3436 thr=0.02 t=4.6s
+2026-04-25 23:02:36,327 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8431 bacc=0.8201 f1m=0.5795 prauc=0.3264 thr=0.03 t=1.5s
+2026-04-25 23:03:15,381 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=39.0s
+2026-04-25 23:03:15,381 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:03:25,514 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=10.1s
+2026-04-25 23:03:28,271 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.7s
+2026-04-25 23:03:29,348 - pipeline - INFO -     xgboost              [none           ] acc=0.8123 bacc=0.8481 f1m=0.5633 prauc=0.5494 thr=0.00 t=1.1s
+2026-04-25 23:03:31,220 - pipeline - INFO -     lightgbm             [none           ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5261 thr=0.00 t=1.9s
+2026-04-25 23:08:53,527 - pipeline - INFO -     tabpfn               [none           ] acc=0.8512 bacc=0.9121 f1m=0.6072 prauc=0.6105 thr=0.02 t=322.3s
+2026-04-25 23:08:53,528 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:09:04,587 - pipeline - INFO -     tabicl               [none           ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5699 thr=0.02 t=11.1s
+2026-04-25 23:09:07,361 - pipeline - INFO -     catboost             [none           ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4484 thr=0.01 t=2.8s
+2026-04-25 23:09:07,361 - pipeline - INFO - [2/19] taiwan_bankruptcy scenario=MCAR_5pct
+2026-04-25 23:09:08,259 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7485 bacc=0.8261 f1m=0.5202 prauc=0.2854 thr=0.20 t=0.7s
+2026-04-25 23:09:08,718 - pipeline - INFO -     random_forest        [mean           ] acc=0.9076 bacc=0.8644 f1m=0.6569 prauc=0.4620 thr=0.07 t=0.5s
+2026-04-25 23:09:24,708 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8189 bacc=0.8625 f1m=0.5709 prauc=0.4262 thr=0.11 t=16.0s
+2026-04-25 23:09:25,926 - pipeline - INFO -     xgboost              [mean           ] acc=0.8372 bacc=0.8939 f1m=0.5914 prauc=0.5329 thr=0.00 t=1.2s
+2026-04-25 23:09:27,794 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8402 bacc=0.8735 f1m=0.5894 prauc=0.5229 thr=0.00 t=1.9s
+2026-04-25 23:09:31,644 - pipeline - INFO -     svm                  [mean           ] acc=0.7881 bacc=0.8795 f1m=0.5533 prauc=0.3204 thr=0.03 t=3.8s
+2026-04-25 23:09:32,618 - pipeline - INFO -     mlp                  [mean           ] acc=0.9348 bacc=0.7576 f1m=0.6627 prauc=0.2881 thr=0.17 t=1.0s
+2026-04-25 23:14:31,778 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8842 bacc=0.8852 f1m=0.6336 prauc=0.6069 thr=0.03 t=299.2s
+2026-04-25 23:14:31,778 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:14:42,960 - pipeline - INFO -     tabicl               [mean           ] acc=0.8966 bacc=0.8697 f1m=0.6440 prauc=0.5615 thr=0.03 t=11.2s
+2026-04-25 23:14:45,700 - pipeline - INFO -     catboost             [mean           ] acc=0.7859 bacc=0.8455 f1m=0.5456 prauc=0.5282 thr=0.00 t=2.7s
+2026-04-25 23:14:46,367 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7874 bacc=0.8352 f1m=0.5445 prauc=0.2844 thr=0.26 t=0.6s
+2026-04-25 23:14:46,845 - pipeline - INFO -     random_forest        [median         ] acc=0.8504 bacc=0.8348 f1m=0.5888 prauc=0.4633 thr=0.04 t=0.5s
+2026-04-25 23:15:02,797 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7749 bacc=0.8617 f1m=0.5417 prauc=0.4662 thr=0.07 t=15.9s
+2026-04-25 23:15:04,014 - pipeline - INFO -     xgboost              [median         ] acc=0.8504 bacc=0.8898 f1m=0.6016 prauc=0.5474 thr=0.00 t=1.2s
+2026-04-25 23:15:05,857 - pipeline - INFO -     lightgbm             [median         ] acc=0.7493 bacc=0.8595 f1m=0.5261 prauc=0.5032 thr=0.00 t=1.8s
+2026-04-25 23:15:09,661 - pipeline - INFO -     svm                  [median         ] acc=0.7918 bacc=0.8814 f1m=0.5560 prauc=0.3083 thr=0.03 t=3.8s
+2026-04-25 23:15:10,641 - pipeline - INFO -     mlp                  [median         ] acc=0.9326 bacc=0.7674 f1m=0.6628 prauc=0.2870 thr=0.17 t=1.0s
+2026-04-25 23:19:23,249 - pipeline - INFO -     tabpfn               [median         ] acc=0.8937 bacc=0.8792 f1m=0.6430 prauc=0.6020 thr=0.04 t=252.6s
+2026-04-25 23:19:23,249 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:19:34,371 - pipeline - INFO -     tabicl               [median         ] acc=0.9010 bacc=0.8720 f1m=0.6502 prauc=0.5585 thr=0.04 t=11.1s
+2026-04-25 23:19:37,159 - pipeline - INFO -     catboost             [median         ] acc=0.8057 bacc=0.8777 f1m=0.5646 prauc=0.4876 thr=0.00 t=2.8s
+2026-04-25 23:19:40,443 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7720 bacc=0.8163 f1m=0.5318 prauc=0.2598 thr=0.23 t=0.6s
+2026-04-25 23:19:40,934 - pipeline - INFO -     random_forest        [knn            ] acc=0.8570 bacc=0.8712 f1m=0.6031 prauc=0.5015 thr=0.04 t=0.5s
+2026-04-25 23:19:57,523 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8446 bacc=0.8428 f1m=0.5860 prauc=0.4334 thr=0.16 t=16.6s
+2026-04-25 23:19:58,727 - pipeline - INFO -     xgboost              [knn            ] acc=0.9040 bacc=0.8735 f1m=0.6545 prauc=0.5560 thr=0.00 t=1.2s
+2026-04-25 23:20:00,563 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8394 bacc=0.9061 f1m=0.5958 prauc=0.5595 thr=0.00 t=1.8s
+2026-04-25 23:20:04,517 - pipeline - INFO -     svm                  [knn            ] acc=0.7786 bacc=0.8746 f1m=0.5463 prauc=0.3550 thr=0.03 t=3.9s
+2026-04-25 23:20:05,488 - pipeline - INFO -     mlp                  [knn            ] acc=0.9582 bacc=0.6818 f1m=0.6760 prauc=0.2715 thr=0.25 t=1.0s
+2026-04-25 23:24:18,089 - pipeline - INFO -     tabpfn               [knn            ] acc=0.9120 bacc=0.8557 f1m=0.6606 prauc=0.6187 thr=0.05 t=252.6s
+2026-04-25 23:24:18,090 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:24:29,566 - pipeline - INFO -     tabicl               [knn            ] acc=0.9091 bacc=0.8652 f1m=0.6592 prauc=0.5814 thr=0.04 t=11.5s
+2026-04-25 23:24:32,345 - pipeline - INFO -     catboost             [knn            ] acc=0.7595 bacc=0.8538 f1m=0.5311 prauc=0.5088 thr=0.00 t=2.8s
+2026-04-25 23:25:59,367 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7493 bacc=0.8375 f1m=0.5225 prauc=0.3641 thr=0.20 t=0.6s
+2026-04-25 23:25:59,846 - pipeline - INFO -     random_forest        [mice           ] acc=0.9003 bacc=0.8496 f1m=0.6429 prauc=0.3951 thr=0.06 t=0.5s
+2026-04-25 23:26:16,340 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8746 bacc=0.8693 f1m=0.6194 prauc=0.4256 thr=0.22 t=16.5s
+2026-04-25 23:26:17,573 - pipeline - INFO -     xgboost              [mice           ] acc=0.8974 bacc=0.8811 f1m=0.6481 prauc=0.4973 thr=0.00 t=1.2s
+2026-04-25 23:26:19,414 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8109 bacc=0.8803 f1m=0.5687 prauc=0.5519 thr=0.00 t=1.8s
+2026-04-25 23:26:23,215 - pipeline - INFO -     svm                  [mice           ] acc=0.7962 bacc=0.8837 f1m=0.5593 prauc=0.3509 thr=0.02 t=3.8s
+2026-04-25 23:26:24,218 - pipeline - INFO -     mlp                  [mice           ] acc=0.6070 bacc=0.7091 f1m=0.4328 prauc=0.3375 thr=0.01 t=1.0s
+2026-04-25 23:30:42,272 - pipeline - INFO -     tabpfn               [mice           ] acc=0.9128 bacc=0.8561 f1m=0.6618 prauc=0.5914 thr=0.05 t=258.0s
+2026-04-25 23:30:42,272 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:30:53,413 - pipeline - INFO -     tabicl               [mice           ] acc=0.8468 bacc=0.8769 f1m=0.5956 prauc=0.5449 thr=0.02 t=11.1s
+2026-04-25 23:30:56,162 - pipeline - INFO -     catboost             [mice           ] acc=0.8548 bacc=0.8920 f1m=0.6060 prauc=0.5366 thr=0.01 t=2.7s
+2026-04-25 23:32:23,404 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.8482 bacc=0.8447 f1m=0.5894 prauc=0.3084 thr=0.20 t=0.6s
+2026-04-25 23:32:23,859 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8856 bacc=0.8640 f1m=0.6296 prauc=0.4643 thr=0.06 t=0.4s
+2026-04-25 23:32:41,080 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7889 bacc=0.8580 f1m=0.5497 prauc=0.4578 thr=0.07 t=17.2s
+2026-04-25 23:32:42,379 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8629 bacc=0.8852 f1m=0.6118 prauc=0.5337 thr=0.00 t=1.3s
+2026-04-25 23:32:44,331 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7295 bacc=0.8492 f1m=0.5133 prauc=0.5064 thr=0.00 t=1.9s
+2026-04-25 23:32:48,194 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8849 bacc=0.7867 f1m=0.6070 prauc=0.3243 thr=0.05 t=3.8s
+2026-04-25 23:32:49,591 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8270 bacc=0.8117 f1m=0.5657 prauc=0.3426 thr=0.03 t=1.4s
+2026-04-25 23:34:06,471 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.9032 bacc=0.8621 f1m=0.6503 prauc=0.5894 thr=0.04 t=76.9s
+2026-04-25 23:34:06,471 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:34:18,452 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8688 bacc=0.8773 f1m=0.6155 prauc=0.5335 thr=0.02 t=12.0s
+2026-04-25 23:34:21,232 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8262 bacc=0.8773 f1m=0.5793 prauc=0.4752 thr=0.01 t=2.8s
+2026-04-25 23:34:22,337 - pipeline - INFO -     xgboost              [none           ] acc=0.8438 bacc=0.8644 f1m=0.5903 prauc=0.5182 thr=0.00 t=1.1s
+2026-04-25 23:34:24,342 - pipeline - INFO -     lightgbm             [none           ] acc=0.7603 bacc=0.8652 f1m=0.5335 prauc=0.5592 thr=0.00 t=2.0s
+2026-04-25 23:39:04,546 - pipeline - INFO -     tabpfn               [none           ] acc=0.8798 bacc=0.9049 f1m=0.6336 prauc=0.5890 thr=0.03 t=280.2s
+2026-04-25 23:39:04,546 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:39:15,515 - pipeline - INFO -     tabicl               [none           ] acc=0.8996 bacc=0.8712 f1m=0.6481 prauc=0.5615 thr=0.03 t=11.0s
+2026-04-25 23:39:18,342 - pipeline - INFO -     catboost             [none           ] acc=0.8284 bacc=0.8784 f1m=0.5812 prauc=0.4274 thr=0.00 t=2.8s
+2026-04-25 23:39:18,342 - pipeline - INFO - [3/19] taiwan_bankruptcy scenario=MCAR_10pct
+2026-04-25 23:39:19,352 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7493 bacc=0.8375 f1m=0.5225 prauc=0.3292 thr=0.20 t=0.6s
+2026-04-25 23:39:19,819 - pipeline - INFO -     random_forest        [mean           ] acc=0.8732 bacc=0.8686 f1m=0.6177 prauc=0.4475 thr=0.05 t=0.5s
+2026-04-25 23:39:35,138 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8534 bacc=0.8583 f1m=0.5969 prauc=0.3976 thr=0.13 t=15.3s
+2026-04-25 23:39:36,337 - pipeline - INFO -     xgboost              [mean           ] acc=0.8966 bacc=0.8807 f1m=0.6470 prauc=0.5127 thr=0.00 t=1.2s
+2026-04-25 23:39:38,200 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8306 bacc=0.8686 f1m=0.5808 prauc=0.5529 thr=0.00 t=1.9s
+2026-04-25 23:39:42,022 - pipeline - INFO -     svm                  [mean           ] acc=0.7757 bacc=0.8731 f1m=0.5442 prauc=0.2975 thr=0.03 t=3.8s
+2026-04-25 23:39:43,059 - pipeline - INFO -     mlp                  [mean           ] acc=0.0557 bacc=0.4902 f1m=0.0557 prauc=0.2795 thr=0.00 t=1.0s
+2026-04-25 23:43:55,890 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8820 bacc=0.8951 f1m=0.6336 prauc=0.5963 thr=0.03 t=252.8s
+2026-04-25 23:43:55,891 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:44:06,840 - pipeline - INFO -     tabicl               [mean           ] acc=0.8790 bacc=0.8496 f1m=0.6188 prauc=0.5490 thr=0.03 t=10.9s
+2026-04-25 23:44:09,571 - pipeline - INFO -     catboost             [mean           ] acc=0.8497 bacc=0.8784 f1m=0.5984 prauc=0.5461 thr=0.01 t=2.7s
+2026-04-25 23:44:10,259 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7757 bacc=0.8402 f1m=0.5383 prauc=0.3110 thr=0.23 t=0.6s
+2026-04-25 23:44:10,742 - pipeline - INFO -     random_forest        [median         ] acc=0.8490 bacc=0.8670 f1m=0.5952 prauc=0.4522 thr=0.04 t=0.5s
+2026-04-25 23:44:26,083 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7947 bacc=0.8720 f1m=0.5562 prauc=0.4060 thr=0.08 t=15.3s
+2026-04-25 23:44:27,276 - pipeline - INFO -     xgboost              [median         ] acc=0.8189 bacc=0.8735 f1m=0.5731 prauc=0.5328 thr=0.00 t=1.2s
+2026-04-25 23:44:29,128 - pipeline - INFO -     lightgbm             [median         ] acc=0.8717 bacc=0.8678 f1m=0.6161 prauc=0.4979 thr=0.00 t=1.8s
+2026-04-25 23:44:33,286 - pipeline - INFO -     svm                  [median         ] acc=0.7779 bacc=0.8742 f1m=0.5458 prauc=0.3009 thr=0.03 t=4.1s
+2026-04-25 23:44:34,323 - pipeline - INFO -     mlp                  [median         ] acc=0.8746 bacc=0.8034 f1m=0.6019 prauc=0.2692 thr=0.05 t=1.0s
+2026-04-25 23:49:14,732 - pipeline - INFO -     tabpfn               [median         ] acc=0.8871 bacc=0.8977 f1m=0.6401 prauc=0.5979 thr=0.04 t=280.4s
+2026-04-25 23:49:14,732 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:49:25,842 - pipeline - INFO -     tabicl               [median         ] acc=0.8761 bacc=0.8701 f1m=0.6211 prauc=0.5416 thr=0.03 t=11.1s
+2026-04-25 23:49:28,606 - pipeline - INFO -     catboost             [median         ] acc=0.8174 bacc=0.8837 f1m=0.5741 prauc=0.5585 thr=0.01 t=2.8s
+2026-04-25 23:49:33,014 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7346 bacc=0.8189 f1m=0.5113 prauc=0.3096 thr=0.20 t=0.6s
+2026-04-25 23:49:33,506 - pipeline - INFO -     random_forest        [knn            ] acc=0.8416 bacc=0.8523 f1m=0.5858 prauc=0.4110 thr=0.04 t=0.5s
+2026-04-25 23:49:50,160 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8409 bacc=0.8739 f1m=0.5900 prauc=0.4461 thr=0.17 t=16.6s
+2026-04-25 23:49:51,356 - pipeline - INFO -     xgboost              [knn            ] acc=0.8424 bacc=0.8856 f1m=0.5938 prauc=0.5390 thr=0.00 t=1.2s
+2026-04-25 23:49:53,225 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7427 bacc=0.8561 f1m=0.5218 prauc=0.5200 thr=0.00 t=1.9s
+2026-04-25 23:49:57,022 - pipeline - INFO -     svm                  [knn            ] acc=0.7713 bacc=0.8708 f1m=0.5411 prauc=0.3230 thr=0.03 t=3.8s
+2026-04-25 23:49:58,006 - pipeline - INFO -     mlp                  [knn            ] acc=0.9326 bacc=0.7674 f1m=0.6628 prauc=0.2808 thr=0.16 t=1.0s
+2026-04-25 23:54:08,938 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8834 bacc=0.8848 f1m=0.6326 prauc=0.6011 thr=0.04 t=250.9s
+2026-04-25 23:54:08,938 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-25 23:54:20,039 - pipeline - INFO -     tabicl               [knn            ] acc=0.9282 bacc=0.8640 f1m=0.6892 prauc=0.5679 thr=0.07 t=11.1s
+2026-04-25 23:54:22,802 - pipeline - INFO -     catboost             [knn            ] acc=0.8820 bacc=0.8731 f1m=0.6280 prauc=0.5971 thr=0.02 t=2.8s
+2026-04-25 23:55:47,628 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7727 bacc=0.8277 f1m=0.5343 prauc=0.3686 thr=0.23 t=0.6s
+2026-04-25 23:55:48,230 - pipeline - INFO -     random_forest        [mice           ] acc=0.7867 bacc=0.8458 f1m=0.5461 prauc=0.4527 thr=0.02 t=0.6s
+2026-04-25 23:56:05,344 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8094 bacc=0.8576 f1m=0.5632 prauc=0.3996 thr=0.08 t=17.1s
+2026-04-25 23:56:06,471 - pipeline - INFO -     xgboost              [mice           ] acc=0.8915 bacc=0.8780 f1m=0.6401 prauc=0.5317 thr=0.00 t=1.1s
+2026-04-25 23:56:08,307 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8035 bacc=0.8545 f1m=0.5586 prauc=0.5785 thr=0.00 t=1.8s
+2026-04-25 23:56:12,076 - pipeline - INFO -     svm                  [mice           ] acc=0.7947 bacc=0.8170 f1m=0.5455 prauc=0.3361 thr=0.02 t=3.8s
+2026-04-25 23:56:13,093 - pipeline - INFO -     mlp                  [mice           ] acc=0.6188 bacc=0.7152 f1m=0.4391 prauc=0.3259 thr=0.01 t=1.0s
+2026-04-26 00:00:36,064 - pipeline - INFO -     tabpfn               [mice           ] acc=0.9091 bacc=0.8652 f1m=0.6592 prauc=0.5838 thr=0.04 t=263.0s
+2026-04-26 00:00:36,064 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:00:47,127 - pipeline - INFO -     tabicl               [mice           ] acc=0.9091 bacc=0.8652 f1m=0.6592 prauc=0.5383 thr=0.05 t=11.1s
+2026-04-26 00:00:49,851 - pipeline - INFO -     catboost             [mice           ] acc=0.7669 bacc=0.8576 f1m=0.5361 prauc=0.5411 thr=0.00 t=2.7s
+2026-04-26 00:02:14,791 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.6789 bacc=0.8121 f1m=0.4812 prauc=0.3696 thr=0.03 t=0.6s
+2026-04-26 00:02:15,244 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8812 bacc=0.8617 f1m=0.6243 prauc=0.4132 thr=0.06 t=0.4s
+2026-04-26 00:02:32,742 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8138 bacc=0.8708 f1m=0.5689 prauc=0.4042 thr=0.08 t=17.5s
+2026-04-26 00:02:34,021 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8512 bacc=0.8792 f1m=0.5998 prauc=0.5896 thr=0.00 t=1.3s
+2026-04-26 00:02:35,936 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8431 bacc=0.8640 f1m=0.5896 prauc=0.5629 thr=0.00 t=1.9s
+2026-04-26 00:02:39,703 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8372 bacc=0.8720 f1m=0.5867 prauc=0.3340 thr=0.04 t=3.7s
+2026-04-26 00:02:40,927 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.4883 bacc=0.6807 f1m=0.3715 prauc=0.3289 thr=0.03 t=1.2s
+2026-04-26 00:03:57,983 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8996 bacc=0.8712 f1m=0.6481 prauc=0.5826 thr=0.04 t=77.0s
+2026-04-26 00:03:57,983 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:04:10,167 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8123 bacc=0.8701 f1m=0.5677 prauc=0.5350 thr=0.01 t=12.2s
+2026-04-26 00:04:12,946 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7933 bacc=0.8602 f1m=0.5530 prauc=0.4655 thr=0.01 t=2.8s
+2026-04-26 00:04:14,035 - pipeline - INFO -     xgboost              [none           ] acc=0.8908 bacc=0.8777 f1m=0.6391 prauc=0.5855 thr=0.00 t=1.1s
+2026-04-26 00:04:15,961 - pipeline - INFO -     lightgbm             [none           ] acc=0.8145 bacc=0.8712 f1m=0.5695 prauc=0.5800 thr=0.00 t=1.9s
+2026-04-26 00:08:27,465 - pipeline - INFO -     tabpfn               [none           ] acc=0.8930 bacc=0.8788 f1m=0.6420 prauc=0.5824 thr=0.04 t=251.5s
+2026-04-26 00:08:27,465 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:08:38,286 - pipeline - INFO -     tabicl               [none           ] acc=0.8790 bacc=0.8496 f1m=0.6188 prauc=0.5490 thr=0.03 t=10.8s
+2026-04-26 00:08:41,139 - pipeline - INFO -     catboost             [none           ] acc=0.7603 bacc=0.8432 f1m=0.5297 prauc=0.5059 thr=0.00 t=2.8s
+2026-04-26 00:08:41,139 - pipeline - INFO - [4/19] taiwan_bankruptcy scenario=MCAR_15pct
+2026-04-26 00:08:42,374 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7229 bacc=0.8348 f1m=0.5075 prauc=0.3417 thr=0.18 t=0.6s
+2026-04-26 00:08:42,828 - pipeline - INFO -     random_forest        [mean           ] acc=0.8534 bacc=0.8583 f1m=0.5969 prauc=0.4233 thr=0.04 t=0.4s
+2026-04-26 00:08:57,605 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8416 bacc=0.8633 f1m=0.5883 prauc=0.4294 thr=0.11 t=14.8s
+2026-04-26 00:08:58,870 - pipeline - INFO -     xgboost              [mean           ] acc=0.7911 bacc=0.8591 f1m=0.5514 prauc=0.6024 thr=0.00 t=1.3s
+2026-04-26 00:09:00,701 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7859 bacc=0.8455 f1m=0.5456 prauc=0.5746 thr=0.00 t=1.8s
+2026-04-26 00:09:04,576 - pipeline - INFO -     svm                  [mean           ] acc=0.7881 bacc=0.8136 f1m=0.5408 prauc=0.3086 thr=0.03 t=3.9s
+2026-04-26 00:09:05,636 - pipeline - INFO -     mlp                  [mean           ] acc=0.9333 bacc=0.7898 f1m=0.6728 prauc=0.3119 thr=0.11 t=1.0s
+2026-04-26 00:13:16,638 - pipeline - INFO -     tabpfn               [mean           ] acc=0.9091 bacc=0.8542 f1m=0.6559 prauc=0.5692 thr=0.05 t=251.0s
+2026-04-26 00:13:16,638 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:13:27,841 - pipeline - INFO -     tabicl               [mean           ] acc=0.8644 bacc=0.8750 f1m=0.6108 prauc=0.5757 thr=0.02 t=11.2s
+2026-04-26 00:13:30,640 - pipeline - INFO -     catboost             [mean           ] acc=0.7925 bacc=0.8379 f1m=0.5483 prauc=0.5087 thr=0.00 t=2.8s
+2026-04-26 00:13:31,348 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7515 bacc=0.8277 f1m=0.5221 prauc=0.3148 thr=0.19 t=0.7s
+2026-04-26 00:13:31,841 - pipeline - INFO -     random_forest        [median         ] acc=0.8607 bacc=0.8621 f1m=0.6043 prauc=0.4420 thr=0.05 t=0.5s
+2026-04-26 00:13:46,642 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8314 bacc=0.8689 f1m=0.5815 prauc=0.4956 thr=0.16 t=14.8s
+2026-04-26 00:13:47,884 - pipeline - INFO -     xgboost              [median         ] acc=0.8922 bacc=0.8894 f1m=0.6440 prauc=0.4862 thr=0.00 t=1.2s
+2026-04-26 00:13:49,727 - pipeline - INFO -     lightgbm             [median         ] acc=0.8204 bacc=0.8962 f1m=0.5788 prauc=0.5537 thr=0.00 t=1.8s
+2026-04-26 00:13:53,597 - pipeline - INFO -     svm                  [median         ] acc=0.8035 bacc=0.8216 f1m=0.5520 prauc=0.3042 thr=0.03 t=3.9s
+2026-04-26 00:13:54,652 - pipeline - INFO -     mlp                  [median         ] acc=0.9260 bacc=0.7860 f1m=0.6587 prauc=0.3121 thr=0.12 t=1.0s
+2026-04-26 00:18:06,683 - pipeline - INFO -     tabpfn               [median         ] acc=0.8915 bacc=0.9000 f1m=0.6458 prauc=0.5812 thr=0.04 t=252.0s
+2026-04-26 00:18:06,683 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:18:18,078 - pipeline - INFO -     tabicl               [median         ] acc=0.8673 bacc=0.8765 f1m=0.6139 prauc=0.5647 thr=0.03 t=11.4s
+2026-04-26 00:18:20,816 - pipeline - INFO -     catboost             [median         ] acc=0.7544 bacc=0.8511 f1m=0.5277 prauc=0.4819 thr=0.00 t=2.7s
+2026-04-26 00:18:26,272 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7691 bacc=0.8148 f1m=0.5298 prauc=0.3215 thr=0.32 t=0.6s
+2026-04-26 00:18:26,754 - pipeline - INFO -     random_forest        [knn            ] acc=0.8886 bacc=0.8655 f1m=0.6333 prauc=0.4541 thr=0.08 t=0.5s
+2026-04-26 00:18:43,469 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7214 bacc=0.8561 f1m=0.5099 prauc=0.4286 thr=0.05 t=16.7s
+2026-04-26 00:18:44,627 - pipeline - INFO -     xgboost              [knn            ] acc=0.8812 bacc=0.8617 f1m=0.6243 prauc=0.5091 thr=0.00 t=1.2s
+2026-04-26 00:18:46,457 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8079 bacc=0.8788 f1m=0.5664 prauc=0.5528 thr=0.00 t=1.8s
+2026-04-26 00:18:50,312 - pipeline - INFO -     svm                  [knn            ] acc=0.7691 bacc=0.8038 f1m=0.5278 prauc=0.2958 thr=0.03 t=3.8s
+2026-04-26 00:18:51,311 - pipeline - INFO -     mlp                  [knn            ] acc=0.9084 bacc=0.7879 f1m=0.6339 prauc=0.2635 thr=0.12 t=1.0s
+2026-04-26 00:23:03,887 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8761 bacc=0.8701 f1m=0.6211 prauc=0.5806 thr=0.04 t=252.6s
+2026-04-26 00:23:03,887 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:23:15,181 - pipeline - INFO -     tabicl               [knn            ] acc=0.8922 bacc=0.8674 f1m=0.6381 prauc=0.5601 thr=0.04 t=11.3s
+2026-04-26 00:23:17,914 - pipeline - INFO -     catboost             [knn            ] acc=0.8057 bacc=0.8447 f1m=0.5581 prauc=0.5208 thr=0.00 t=2.7s
+2026-04-26 00:24:38,102 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7852 bacc=0.8231 f1m=0.5409 prauc=0.3303 thr=0.27 t=0.6s
+2026-04-26 00:24:38,572 - pipeline - INFO -     random_forest        [mice           ] acc=0.8365 bacc=0.8496 f1m=0.5812 prauc=0.4124 thr=0.03 t=0.5s
+2026-04-26 00:24:55,253 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8446 bacc=0.8867 f1m=0.5959 prauc=0.4737 thr=0.10 t=16.7s
+2026-04-26 00:24:56,465 - pipeline - INFO -     xgboost              [mice           ] acc=0.9098 bacc=0.8765 f1m=0.6635 prauc=0.5639 thr=0.00 t=1.2s
+2026-04-26 00:24:58,280 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8072 bacc=0.8784 f1m=0.5658 prauc=0.5380 thr=0.00 t=1.8s
+2026-04-26 00:25:02,121 - pipeline - INFO -     svm                  [mice           ] acc=0.7566 bacc=0.8633 f1m=0.5310 prauc=0.2912 thr=0.02 t=3.8s
+2026-04-26 00:25:03,314 - pipeline - INFO -     mlp                  [mice           ] acc=0.9516 bacc=0.7004 f1m=0.6701 prauc=0.2870 thr=0.17 t=1.2s
+2026-04-26 00:29:28,559 - pipeline - INFO -     tabpfn               [mice           ] acc=0.9142 bacc=0.8568 f1m=0.6641 prauc=0.5591 thr=0.05 t=265.2s
+2026-04-26 00:29:28,559 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:29:39,565 - pipeline - INFO -     tabicl               [mice           ] acc=0.8519 bacc=0.8576 f1m=0.5955 prauc=0.5145 thr=0.02 t=11.0s
+2026-04-26 00:29:42,298 - pipeline - INFO -     catboost             [mice           ] acc=0.8424 bacc=0.8746 f1m=0.5914 prauc=0.5005 thr=0.01 t=2.7s
+2026-04-26 00:31:02,469 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.8592 bacc=0.8284 f1m=0.5947 prauc=0.3051 thr=0.12 t=0.7s
+2026-04-26 00:31:02,918 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8974 bacc=0.8591 f1m=0.6420 prauc=0.4440 thr=0.07 t=0.4s
+2026-04-26 00:31:20,739 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7639 bacc=0.8561 f1m=0.5341 prauc=0.4424 thr=0.04 t=17.8s
+2026-04-26 00:31:22,047 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8548 bacc=0.8701 f1m=0.6009 prauc=0.5610 thr=0.00 t=1.3s
+2026-04-26 00:31:23,973 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8094 bacc=0.8686 f1m=0.5654 prauc=0.5377 thr=0.00 t=1.9s
+2026-04-26 00:31:27,654 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8915 bacc=0.8670 f1m=0.6371 prauc=0.3413 thr=0.04 t=3.7s
+2026-04-26 00:31:28,987 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8688 bacc=0.8223 f1m=0.6016 prauc=0.3341 thr=0.04 t=1.3s
+2026-04-26 00:32:46,057 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.9010 bacc=0.8500 f1m=0.6440 prauc=0.5493 thr=0.04 t=77.1s
+2026-04-26 00:32:46,057 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:32:58,417 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8526 bacc=0.8689 f1m=0.5987 prauc=0.5190 thr=0.02 t=12.4s
+2026-04-26 00:33:01,193 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7977 bacc=0.8625 f1m=0.5563 prauc=0.4884 thr=0.00 t=2.8s
+2026-04-26 00:33:02,286 - pipeline - INFO -     xgboost              [none           ] acc=0.8336 bacc=0.8920 f1m=0.5881 prauc=0.5387 thr=0.00 t=1.1s
+2026-04-26 00:33:04,250 - pipeline - INFO -     lightgbm             [none           ] acc=0.8350 bacc=0.8928 f1m=0.5894 prauc=0.5876 thr=0.00 t=2.0s
+2026-04-26 00:37:15,301 - pipeline - INFO -     tabpfn               [none           ] acc=0.9274 bacc=0.8527 f1m=0.6843 prauc=0.5840 thr=0.07 t=251.0s
+2026-04-26 00:37:15,301 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:37:26,482 - pipeline - INFO -     tabicl               [none           ] acc=0.8878 bacc=0.8652 f1m=0.6324 prauc=0.5757 thr=0.03 t=11.2s
+2026-04-26 00:37:29,350 - pipeline - INFO -     catboost             [none           ] acc=0.8460 bacc=0.8545 f1m=0.5899 prauc=0.4598 thr=0.00 t=2.9s
+2026-04-26 00:37:29,350 - pipeline - INFO - [5/19] taiwan_bankruptcy scenario=MCAR_20pct
+2026-04-26 00:37:30,710 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7111 bacc=0.8178 f1m=0.4987 prauc=0.2933 thr=0.23 t=0.6s
+2026-04-26 00:37:31,182 - pipeline - INFO -     random_forest        [mean           ] acc=0.8248 bacc=0.8655 f1m=0.5758 prauc=0.4081 thr=0.03 t=0.5s
+2026-04-26 00:37:45,224 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8321 bacc=0.8803 f1m=0.5845 prauc=0.4527 thr=0.11 t=14.0s
+2026-04-26 00:37:46,433 - pipeline - INFO -     xgboost              [mean           ] acc=0.8710 bacc=0.8564 f1m=0.6125 prauc=0.5124 thr=0.00 t=1.2s
+2026-04-26 00:37:48,312 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8409 bacc=0.9068 f1m=0.5972 prauc=0.6138 thr=0.00 t=1.9s
+2026-04-26 00:37:52,211 - pipeline - INFO -     svm                  [mean           ] acc=0.7478 bacc=0.8587 f1m=0.5252 prauc=0.3031 thr=0.02 t=3.9s
+2026-04-26 00:37:53,230 - pipeline - INFO -     mlp                  [mean           ] acc=0.9348 bacc=0.7576 f1m=0.6627 prauc=0.2852 thr=0.12 t=1.0s
+2026-04-26 00:42:04,243 - pipeline - INFO -     tabpfn               [mean           ] acc=0.9054 bacc=0.8523 f1m=0.6504 prauc=0.5534 thr=0.05 t=251.0s
+2026-04-26 00:42:04,243 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:42:15,416 - pipeline - INFO -     tabicl               [mean           ] acc=0.8724 bacc=0.8682 f1m=0.6169 prauc=0.5545 thr=0.03 t=11.2s
+2026-04-26 00:42:18,158 - pipeline - INFO -     catboost             [mean           ] acc=0.7331 bacc=0.8511 f1m=0.5157 prauc=0.5186 thr=0.00 t=2.7s
+2026-04-26 00:42:18,847 - pipeline - INFO -     logistic_regression  [median         ] acc=0.8109 bacc=0.8254 f1m=0.5576 prauc=0.2470 thr=0.37 t=0.6s
+2026-04-26 00:42:19,321 - pipeline - INFO -     random_forest        [median         ] acc=0.8680 bacc=0.8549 f1m=0.6093 prauc=0.4497 thr=0.05 t=0.5s
+2026-04-26 00:42:33,416 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7984 bacc=0.8958 f1m=0.5631 prauc=0.4809 thr=0.10 t=14.1s
+2026-04-26 00:42:34,580 - pipeline - INFO -     xgboost              [median         ] acc=0.8402 bacc=0.8955 f1m=0.5941 prauc=0.5896 thr=0.00 t=1.2s
+2026-04-26 00:42:36,439 - pipeline - INFO -     lightgbm             [median         ] acc=0.7434 bacc=0.8674 f1m=0.5240 prauc=0.6228 thr=0.00 t=1.9s
+2026-04-26 00:42:40,404 - pipeline - INFO -     svm                  [median         ] acc=0.7969 bacc=0.7962 f1m=0.5427 prauc=0.2882 thr=0.03 t=4.0s
+2026-04-26 00:42:41,571 - pipeline - INFO -     mlp                  [median         ] acc=0.9318 bacc=0.7561 f1m=0.6568 prauc=0.3047 thr=0.13 t=1.2s
+2026-04-26 00:46:53,801 - pipeline - INFO -     tabpfn               [median         ] acc=0.8790 bacc=0.8936 f1m=0.6300 prauc=0.5664 thr=0.04 t=252.2s
+2026-04-26 00:46:53,801 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:47:05,122 - pipeline - INFO -     tabicl               [median         ] acc=0.8834 bacc=0.8519 f1m=0.6240 prauc=0.5310 thr=0.04 t=11.3s
+2026-04-26 00:47:07,881 - pipeline - INFO -     catboost             [median         ] acc=0.7815 bacc=0.8542 f1m=0.5444 prauc=0.4398 thr=0.00 t=2.8s
+2026-04-26 00:47:14,210 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.6481 bacc=0.7962 f1m=0.4636 prauc=0.2535 thr=0.16 t=0.6s
+2026-04-26 00:47:14,697 - pipeline - INFO -     random_forest        [knn            ] acc=0.8321 bacc=0.8364 f1m=0.5749 prauc=0.4262 thr=0.05 t=0.5s
+2026-04-26 00:47:31,523 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7111 bacc=0.8398 f1m=0.5019 prauc=0.4177 thr=0.05 t=16.8s
+2026-04-26 00:47:32,709 - pipeline - INFO -     xgboost              [knn            ] acc=0.8306 bacc=0.9015 f1m=0.5877 prauc=0.5319 thr=0.00 t=1.2s
+2026-04-26 00:47:34,539 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7537 bacc=0.8617 f1m=0.5290 prauc=0.5536 thr=0.00 t=1.8s
+2026-04-26 00:47:38,331 - pipeline - INFO -     svm                  [knn            ] acc=0.7691 bacc=0.7928 f1m=0.5257 prauc=0.2947 thr=0.03 t=3.8s
+2026-04-26 00:47:39,309 - pipeline - INFO -     mlp                  [knn            ] acc=0.8644 bacc=0.7102 f1m=0.5659 prauc=0.1855 thr=0.11 t=1.0s
+2026-04-26 00:51:50,739 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8343 bacc=0.8814 f1m=0.5864 prauc=0.5849 thr=0.02 t=251.4s
+2026-04-26 00:51:50,739 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 00:52:01,981 - pipeline - INFO -     tabicl               [knn            ] acc=0.8607 bacc=0.8731 f1m=0.6069 prauc=0.5558 thr=0.02 t=11.2s
+2026-04-26 00:52:04,740 - pipeline - INFO -     catboost             [knn            ] acc=0.7265 bacc=0.8477 f1m=0.5115 prauc=0.4702 thr=0.00 t=2.8s
+2026-04-26 00:53:23,396 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7375 bacc=0.8095 f1m=0.5114 prauc=0.3259 thr=0.21 t=0.6s
+2026-04-26 00:53:23,857 - pipeline - INFO -     random_forest        [mice           ] acc=0.8842 bacc=0.8633 f1m=0.6278 prauc=0.4782 thr=0.05 t=0.5s
+2026-04-26 00:53:40,792 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.7669 bacc=0.8686 f1m=0.5380 prauc=0.4130 thr=0.04 t=16.9s
+2026-04-26 00:53:41,982 - pipeline - INFO -     xgboost              [mice           ] acc=0.9025 bacc=0.8837 f1m=0.6554 prauc=0.4975 thr=0.00 t=1.2s
+2026-04-26 00:53:43,856 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8578 bacc=0.8606 f1m=0.6013 prauc=0.5266 thr=0.00 t=1.9s
+2026-04-26 00:53:47,834 - pipeline - INFO -     svm                  [mice           ] acc=0.7837 bacc=0.8114 f1m=0.5377 prauc=0.3409 thr=0.02 t=4.0s
+2026-04-26 00:53:48,822 - pipeline - INFO -     mlp                  [mice           ] acc=0.9208 bacc=0.7833 f1m=0.6497 prauc=0.2790 thr=0.11 t=1.0s
+2026-04-26 01:00:35,478 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8798 bacc=0.8830 f1m=0.6282 prauc=0.5873 thr=0.03 t=406.6s
+2026-04-26 01:00:35,478 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:00:46,511 - pipeline - INFO -     tabicl               [mice           ] acc=0.8314 bacc=0.8689 f1m=0.5815 prauc=0.5236 thr=0.01 t=11.0s
+2026-04-26 01:00:49,205 - pipeline - INFO -     catboost             [mice           ] acc=0.8424 bacc=0.8746 f1m=0.5914 prauc=0.5251 thr=0.01 t=2.7s
+2026-04-26 01:02:08,159 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.6987 bacc=0.8114 f1m=0.4912 prauc=0.3601 thr=0.03 t=0.6s
+2026-04-26 01:02:08,617 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8526 bacc=0.8580 f1m=0.5962 prauc=0.4573 thr=0.04 t=0.4s
+2026-04-26 01:02:26,610 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7720 bacc=0.8602 f1m=0.5397 prauc=0.4520 thr=0.05 t=18.0s
+2026-04-26 01:02:27,907 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8438 bacc=0.8754 f1m=0.5928 prauc=0.5229 thr=0.00 t=1.3s
+2026-04-26 01:02:29,852 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.6957 bacc=0.8318 f1m=0.4927 prauc=0.5222 thr=0.00 t=1.9s
+2026-04-26 01:02:33,613 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8922 bacc=0.8674 f1m=0.6381 prauc=0.3407 thr=0.04 t=3.7s
+2026-04-26 01:02:34,940 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.6158 bacc=0.7356 f1m=0.4402 prauc=0.3314 thr=0.02 t=1.3s
+2026-04-26 01:03:52,187 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8842 bacc=0.8742 f1m=0.6307 prauc=0.5553 thr=0.03 t=77.2s
+2026-04-26 01:03:52,187 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:04:04,606 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8343 bacc=0.8814 f1m=0.5864 prauc=0.5169 thr=0.02 t=12.4s
+2026-04-26 01:04:07,386 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.6994 bacc=0.8337 f1m=0.4948 prauc=0.5394 thr=0.00 t=2.8s
+2026-04-26 01:04:08,519 - pipeline - INFO -     xgboost              [none           ] acc=0.9010 bacc=0.8830 f1m=0.6533 prauc=0.5099 thr=0.00 t=1.1s
+2026-04-26 01:04:10,502 - pipeline - INFO -     lightgbm             [none           ] acc=0.8299 bacc=0.9011 f1m=0.5871 prauc=0.5745 thr=0.00 t=2.0s
+2026-04-26 01:08:53,094 - pipeline - INFO -     tabpfn               [none           ] acc=0.8966 bacc=0.8587 f1m=0.6410 prauc=0.5646 thr=0.04 t=282.6s
+2026-04-26 01:08:53,094 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:09:04,382 - pipeline - INFO -     tabicl               [none           ] acc=0.8798 bacc=0.8720 f1m=0.6254 prauc=0.5545 thr=0.03 t=11.3s
+2026-04-26 01:09:07,272 - pipeline - INFO -     catboost             [none           ] acc=0.8827 bacc=0.8405 f1m=0.6201 prauc=0.5179 thr=0.01 t=2.9s
+2026-04-26 01:09:07,273 - pipeline - INFO - [6/19] taiwan_bankruptcy scenario=MCAR_30pct
+2026-04-26 01:09:09,001 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7881 bacc=0.8356 f1m=0.5451 prauc=0.3758 thr=0.47 t=0.6s
+2026-04-26 01:09:09,453 - pipeline - INFO -     random_forest        [mean           ] acc=0.8820 bacc=0.8511 f1m=0.6222 prauc=0.4210 thr=0.05 t=0.4s
+2026-04-26 01:09:22,151 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.7947 bacc=0.8830 f1m=0.5582 prauc=0.4437 thr=0.07 t=12.7s
+2026-04-26 01:09:23,273 - pipeline - INFO -     xgboost              [mean           ] acc=0.7837 bacc=0.8663 f1m=0.5480 prauc=0.5217 thr=0.00 t=1.1s
+2026-04-26 01:09:25,120 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8057 bacc=0.8557 f1m=0.5603 prauc=0.4881 thr=0.00 t=1.8s
+2026-04-26 01:09:29,102 - pipeline - INFO -     svm                  [mean           ] acc=0.7837 bacc=0.8114 f1m=0.5377 prauc=0.3206 thr=0.03 t=4.0s
+2026-04-26 01:09:30,269 - pipeline - INFO -     mlp                  [mean           ] acc=0.9391 bacc=0.7049 f1m=0.6467 prauc=0.3234 thr=0.19 t=1.2s
+2026-04-26 01:14:10,982 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8996 bacc=0.8492 f1m=0.6419 prauc=0.5282 thr=0.06 t=280.7s
+2026-04-26 01:14:10,982 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:14:22,152 - pipeline - INFO -     tabicl               [mean           ] acc=0.9260 bacc=0.8629 f1m=0.6849 prauc=0.5700 thr=0.09 t=11.2s
+2026-04-26 01:14:24,929 - pipeline - INFO -     catboost             [mean           ] acc=0.8783 bacc=0.8712 f1m=0.6236 prauc=0.3868 thr=0.01 t=2.8s
+2026-04-26 01:14:25,620 - pipeline - INFO -     logistic_regression  [median         ] acc=0.8519 bacc=0.8466 f1m=0.5929 prauc=0.3199 thr=0.55 t=0.6s
+2026-04-26 01:14:26,104 - pipeline - INFO -     random_forest        [median         ] acc=0.8988 bacc=0.8708 f1m=0.6471 prauc=0.4218 thr=0.06 t=0.5s
+2026-04-26 01:14:38,831 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8094 bacc=0.9015 f1m=0.5718 prauc=0.4500 thr=0.12 t=12.7s
+2026-04-26 01:14:39,966 - pipeline - INFO -     xgboost              [median         ] acc=0.8680 bacc=0.8989 f1m=0.6200 prauc=0.4637 thr=0.00 t=1.1s
+2026-04-26 01:14:41,811 - pipeline - INFO -     lightgbm             [median         ] acc=0.8358 bacc=0.8492 f1m=0.5805 prauc=0.5308 thr=0.00 t=1.8s
+2026-04-26 01:14:45,835 - pipeline - INFO -     svm                  [median         ] acc=0.7368 bacc=0.8420 f1m=0.5163 prauc=0.3199 thr=0.03 t=4.0s
+2026-04-26 01:14:47,051 - pipeline - INFO -     mlp                  [median         ] acc=0.9164 bacc=0.7591 f1m=0.6344 prauc=0.3149 thr=0.18 t=1.2s
+2026-04-26 01:19:27,390 - pipeline - INFO -     tabpfn               [median         ] acc=0.7639 bacc=0.8780 f1m=0.5379 prauc=0.5376 thr=0.01 t=280.3s
+2026-04-26 01:19:27,390 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:19:38,767 - pipeline - INFO -     tabicl               [median         ] acc=0.8262 bacc=0.8663 f1m=0.5770 prauc=0.5186 thr=0.02 t=11.4s
+2026-04-26 01:19:41,569 - pipeline - INFO -     catboost             [median         ] acc=0.8277 bacc=0.8670 f1m=0.5783 prauc=0.4408 thr=0.01 t=2.8s
+2026-04-26 01:19:50,101 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7317 bacc=0.8064 f1m=0.5077 prauc=0.3002 thr=0.34 t=0.6s
+2026-04-26 01:19:50,612 - pipeline - INFO -     random_forest        [knn            ] acc=0.8651 bacc=0.8644 f1m=0.6089 prauc=0.3624 thr=0.07 t=0.5s
+2026-04-26 01:20:07,587 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.6613 bacc=0.8250 f1m=0.4739 prauc=0.3886 thr=0.05 t=17.0s
+2026-04-26 01:20:08,827 - pipeline - INFO -     xgboost              [knn            ] acc=0.7581 bacc=0.8530 f1m=0.5301 prauc=0.4310 thr=0.00 t=1.2s
+2026-04-26 01:20:10,672 - pipeline - INFO -     lightgbm             [knn            ] acc=0.6848 bacc=0.8261 f1m=0.4861 prauc=0.5161 thr=0.00 t=1.8s
+2026-04-26 01:20:14,488 - pipeline - INFO -     svm                  [knn            ] acc=0.7720 bacc=0.8053 f1m=0.5297 prauc=0.3098 thr=0.04 t=3.8s
+2026-04-26 01:20:15,581 - pipeline - INFO -     mlp                  [knn            ] acc=0.9084 bacc=0.7879 f1m=0.6339 prauc=0.3258 thr=0.11 t=1.1s
+2026-04-26 01:24:56,408 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8658 bacc=0.8758 f1m=0.6123 prauc=0.5107 thr=0.03 t=280.8s
+2026-04-26 01:24:56,408 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:25:07,672 - pipeline - INFO -     tabicl               [knn            ] acc=0.8299 bacc=0.8682 f1m=0.5802 prauc=0.5488 thr=0.02 t=11.3s
+2026-04-26 01:25:10,428 - pipeline - INFO -     catboost             [knn            ] acc=0.5960 bacc=0.7913 f1m=0.4370 prauc=0.3929 thr=0.00 t=2.7s
+2026-04-26 01:26:25,495 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7089 bacc=0.7837 f1m=0.4923 prauc=0.2645 thr=0.16 t=0.6s
+2026-04-26 01:26:25,966 - pipeline - INFO -     random_forest        [mice           ] acc=0.8695 bacc=0.8447 f1m=0.6081 prauc=0.3949 thr=0.05 t=0.5s
+2026-04-26 01:26:42,915 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8255 bacc=0.8659 f1m=0.5764 prauc=0.4284 thr=0.09 t=16.9s
+2026-04-26 01:26:44,127 - pipeline - INFO -     xgboost              [mice           ] acc=0.9164 bacc=0.8580 f1m=0.6678 prauc=0.4937 thr=0.00 t=1.2s
+2026-04-26 01:26:45,963 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8321 bacc=0.8473 f1m=0.5773 prauc=0.4903 thr=0.00 t=1.8s
+2026-04-26 01:26:49,959 - pipeline - INFO -     svm                  [mice           ] acc=0.7471 bacc=0.8473 f1m=0.5229 prauc=0.3252 thr=0.02 t=4.0s
+2026-04-26 01:26:50,944 - pipeline - INFO -     mlp                  [mice           ] acc=0.9399 bacc=0.6943 f1m=0.6426 prauc=0.2786 thr=0.16 t=1.0s
+2026-04-26 01:33:54,003 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8776 bacc=0.8708 f1m=0.6228 prauc=0.5310 thr=0.03 t=423.1s
+2026-04-26 01:33:54,003 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:34:05,124 - pipeline - INFO -     tabicl               [mice           ] acc=0.8966 bacc=0.8587 f1m=0.6410 prauc=0.5072 thr=0.03 t=11.1s
+2026-04-26 01:34:07,862 - pipeline - INFO -     catboost             [mice           ] acc=0.7603 bacc=0.8652 f1m=0.5335 prauc=0.5246 thr=0.00 t=2.7s
+2026-04-26 01:35:22,571 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.5572 bacc=0.7383 f1m=0.4119 prauc=0.2582 thr=0.01 t=0.6s
+2026-04-26 01:35:23,038 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8644 bacc=0.8530 f1m=0.6054 prauc=0.4499 thr=0.06 t=0.5s
+2026-04-26 01:35:41,522 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8226 bacc=0.8534 f1m=0.5716 prauc=0.4250 thr=0.09 t=18.5s
+2026-04-26 01:35:42,832 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8856 bacc=0.8640 f1m=0.6296 prauc=0.5116 thr=0.00 t=1.3s
+2026-04-26 01:35:44,789 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7823 bacc=0.8436 f1m=0.5429 prauc=0.5109 thr=0.00 t=1.9s
+2026-04-26 01:35:48,477 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8534 bacc=0.8693 f1m=0.5995 prauc=0.3199 thr=0.05 t=3.7s
+2026-04-26 01:35:50,151 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.3915 bacc=0.6527 f1m=0.3164 prauc=0.3295 thr=0.00 t=1.7s
+2026-04-26 01:37:07,646 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8578 bacc=0.8936 f1m=0.6090 prauc=0.5391 thr=0.02 t=77.5s
+2026-04-26 01:37:07,646 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:37:19,939 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8710 bacc=0.8564 f1m=0.6125 prauc=0.4976 thr=0.02 t=12.3s
+2026-04-26 01:37:22,745 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8145 bacc=0.8602 f1m=0.5673 prauc=0.4385 thr=0.00 t=2.8s
+2026-04-26 01:37:23,826 - pipeline - INFO -     xgboost              [none           ] acc=0.8600 bacc=0.8727 f1m=0.6061 prauc=0.4854 thr=0.00 t=1.1s
+2026-04-26 01:37:25,818 - pipeline - INFO -     lightgbm             [none           ] acc=0.8526 bacc=0.8799 f1m=0.6013 prauc=0.5040 thr=0.00 t=2.0s
+2026-04-26 01:42:29,061 - pipeline - INFO -     tabpfn               [none           ] acc=0.8996 bacc=0.8712 f1m=0.6481 prauc=0.5398 thr=0.04 t=303.2s
+2026-04-26 01:42:29,062 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:42:40,277 - pipeline - INFO -     tabicl               [none           ] acc=0.9216 bacc=0.8606 f1m=0.6768 prauc=0.5700 thr=0.08 t=11.2s
+2026-04-26 01:42:43,078 - pipeline - INFO -     catboost             [none           ] acc=0.8218 bacc=0.8311 f1m=0.5663 prauc=0.4865 thr=0.00 t=2.8s
+2026-04-26 01:42:43,078 - pipeline - INFO - [7/19] taiwan_bankruptcy scenario=MCAR_40pct
+2026-04-26 01:42:45,094 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7749 bacc=0.8288 f1m=0.5358 prauc=0.3411 thr=0.51 t=0.6s
+2026-04-26 01:42:45,538 - pipeline - INFO -     random_forest        [mean           ] acc=0.8805 bacc=0.8723 f1m=0.6263 prauc=0.4013 thr=0.05 t=0.4s
+2026-04-26 01:42:56,591 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.7669 bacc=0.8576 f1m=0.5361 prauc=0.4283 thr=0.07 t=11.0s
+2026-04-26 01:42:57,792 - pipeline - INFO -     xgboost              [mean           ] acc=0.8116 bacc=0.8477 f1m=0.5627 prauc=0.4999 thr=0.00 t=1.2s
+2026-04-26 01:42:59,674 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8130 bacc=0.8595 f1m=0.5661 prauc=0.4985 thr=0.00 t=1.9s
+2026-04-26 01:43:03,799 - pipeline - INFO -     svm                  [mean           ] acc=0.7346 bacc=0.8299 f1m=0.5131 prauc=0.2731 thr=0.03 t=4.1s
+2026-04-26 01:43:04,878 - pipeline - INFO -     mlp                  [mean           ] acc=0.9413 bacc=0.7390 f1m=0.6672 prauc=0.3077 thr=0.18 t=1.1s
+2026-04-26 01:47:17,623 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8761 bacc=0.8481 f1m=0.6154 prauc=0.5283 thr=0.04 t=252.7s
+2026-04-26 01:47:17,623 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:47:28,764 - pipeline - INFO -     tabicl               [mean           ] acc=0.8233 bacc=0.8648 f1m=0.5745 prauc=0.4996 thr=0.02 t=11.1s
+2026-04-26 01:47:31,558 - pipeline - INFO -     catboost             [mean           ] acc=0.8358 bacc=0.8383 f1m=0.5781 prauc=0.2920 thr=0.00 t=2.8s
+2026-04-26 01:47:32,253 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7177 bacc=0.8102 f1m=0.5010 prauc=0.3229 thr=0.24 t=0.6s
+2026-04-26 01:47:32,727 - pipeline - INFO -     random_forest        [median         ] acc=0.8358 bacc=0.8712 f1m=0.5854 prauc=0.3763 thr=0.04 t=0.5s
+2026-04-26 01:47:43,773 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7397 bacc=0.8545 f1m=0.5199 prauc=0.3695 thr=0.07 t=11.0s
+2026-04-26 01:47:44,933 - pipeline - INFO -     xgboost              [median         ] acc=0.7581 bacc=0.8530 f1m=0.5301 prauc=0.4593 thr=0.00 t=1.2s
+2026-04-26 01:47:46,792 - pipeline - INFO -     lightgbm             [median         ] acc=0.7632 bacc=0.8447 f1m=0.5317 prauc=0.5313 thr=0.00 t=1.9s
+2026-04-26 01:47:51,013 - pipeline - INFO -     svm                  [median         ] acc=0.7903 bacc=0.8038 f1m=0.5402 prauc=0.2507 thr=0.03 t=4.2s
+2026-04-26 01:47:52,104 - pipeline - INFO -     mlp                  [median         ] acc=0.9164 bacc=0.7811 f1m=0.6424 prauc=0.3186 thr=0.17 t=1.1s
+2026-04-26 01:52:04,197 - pipeline - INFO -     tabpfn               [median         ] acc=0.8673 bacc=0.8655 f1m=0.6112 prauc=0.5164 thr=0.04 t=252.1s
+2026-04-26 01:52:04,197 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:52:15,377 - pipeline - INFO -     tabicl               [median         ] acc=0.7529 bacc=0.8504 f1m=0.5267 prauc=0.4950 thr=0.01 t=11.2s
+2026-04-26 01:52:18,104 - pipeline - INFO -     catboost             [median         ] acc=0.7918 bacc=0.8485 f1m=0.5498 prauc=0.3357 thr=0.01 t=2.7s
+2026-04-26 01:52:28,858 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.6965 bacc=0.8102 f1m=0.4899 prauc=0.3805 thr=0.30 t=0.5s
+2026-04-26 01:52:29,377 - pipeline - INFO -     random_forest        [knn            ] acc=0.8270 bacc=0.8557 f1m=0.5753 prauc=0.3443 thr=0.06 t=0.5s
+2026-04-26 01:52:46,490 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7317 bacc=0.8614 f1m=0.5164 prauc=0.3861 thr=0.10 t=17.1s
+2026-04-26 01:52:47,658 - pipeline - INFO -     xgboost              [knn            ] acc=0.7977 bacc=0.8625 f1m=0.5563 prauc=0.4998 thr=0.00 t=1.2s
+2026-04-26 01:52:49,509 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7654 bacc=0.8788 f1m=0.5389 prauc=0.5132 thr=0.00 t=1.8s
+2026-04-26 01:52:53,383 - pipeline - INFO -     svm                  [knn            ] acc=0.6393 bacc=0.8027 f1m=0.4600 prauc=0.3135 thr=0.02 t=3.9s
+2026-04-26 01:52:54,407 - pipeline - INFO -     mlp                  [knn            ] acc=0.9076 bacc=0.7545 f1m=0.6214 prauc=0.2512 thr=0.14 t=1.0s
+2026-04-26 01:57:06,291 - pipeline - INFO -     tabpfn               [knn            ] acc=0.7273 bacc=0.8481 f1m=0.5119 prauc=0.5213 thr=0.01 t=251.9s
+2026-04-26 01:57:06,291 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 01:57:17,430 - pipeline - INFO -     tabicl               [knn            ] acc=0.7793 bacc=0.8530 f1m=0.5429 prauc=0.5342 thr=0.02 t=11.1s
+2026-04-26 01:57:20,175 - pipeline - INFO -     catboost             [knn            ] acc=0.7434 bacc=0.8455 f1m=0.5205 prauc=0.5042 thr=0.00 t=2.7s
+2026-04-26 01:58:31,600 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7295 bacc=0.7833 f1m=0.5028 prauc=0.2426 thr=0.24 t=0.6s
+2026-04-26 01:58:32,068 - pipeline - INFO -     random_forest        [mice           ] acc=0.8438 bacc=0.8534 f1m=0.5878 prauc=0.4275 thr=0.04 t=0.5s
+2026-04-26 01:58:49,220 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8204 bacc=0.8523 f1m=0.5698 prauc=0.4129 thr=0.07 t=17.1s
+2026-04-26 01:58:50,358 - pipeline - INFO -     xgboost              [mice           ] acc=0.9304 bacc=0.8542 f1m=0.6901 prauc=0.4979 thr=0.01 t=1.1s
+2026-04-26 01:58:52,231 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8878 bacc=0.8761 f1m=0.6353 prauc=0.5194 thr=0.00 t=1.9s
+2026-04-26 01:58:56,541 - pipeline - INFO -     svm                  [mice           ] acc=0.7229 bacc=0.8129 f1m=0.5041 prauc=0.2285 thr=0.02 t=4.3s
+2026-04-26 01:58:57,585 - pipeline - INFO -     mlp                  [mice           ] acc=0.9538 bacc=0.6905 f1m=0.6698 prauc=0.2929 thr=0.17 t=1.0s
+2026-04-26 02:03:51,465 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8783 bacc=0.8492 f1m=0.6179 prauc=0.5162 thr=0.03 t=293.9s
+2026-04-26 02:03:51,465 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:04:02,624 - pipeline - INFO -     tabicl               [mice           ] acc=0.8314 bacc=0.8689 f1m=0.5815 prauc=0.4856 thr=0.02 t=11.2s
+2026-04-26 02:04:05,351 - pipeline - INFO -     catboost             [mice           ] acc=0.7735 bacc=0.8390 f1m=0.5368 prauc=0.4371 thr=0.00 t=2.7s
+2026-04-26 02:05:16,686 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.7610 bacc=0.7996 f1m=0.5225 prauc=0.2693 thr=0.05 t=0.6s
+2026-04-26 02:05:17,143 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8343 bacc=0.8485 f1m=0.5792 prauc=0.4523 thr=0.04 t=0.5s
+2026-04-26 02:05:36,102 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7911 bacc=0.8701 f1m=0.5534 prauc=0.4192 thr=0.05 t=19.0s
+2026-04-26 02:05:37,306 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.9194 bacc=0.8375 f1m=0.6659 prauc=0.4766 thr=0.00 t=1.2s
+2026-04-26 02:05:39,275 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7603 bacc=0.8542 f1m=0.5316 prauc=0.5133 thr=0.00 t=2.0s
+2026-04-26 02:05:43,116 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8416 bacc=0.8523 f1m=0.5858 prauc=0.2753 thr=0.04 t=3.8s
+2026-04-26 02:05:44,402 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.7368 bacc=0.7652 f1m=0.5035 prauc=0.3111 thr=0.03 t=1.3s
+2026-04-26 02:07:01,822 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8886 bacc=0.8545 f1m=0.6304 prauc=0.5060 thr=0.04 t=77.4s
+2026-04-26 02:07:01,822 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:07:14,182 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8673 bacc=0.8655 f1m=0.6112 prauc=0.4882 thr=0.03 t=12.4s
+2026-04-26 02:07:16,962 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7933 bacc=0.8383 f1m=0.5488 prauc=0.4778 thr=0.00 t=2.8s
+2026-04-26 02:07:18,043 - pipeline - INFO -     xgboost              [none           ] acc=0.8218 bacc=0.8640 f1m=0.5733 prauc=0.4756 thr=0.00 t=1.1s
+2026-04-26 02:07:20,019 - pipeline - INFO -     lightgbm             [none           ] acc=0.8952 bacc=0.8470 f1m=0.6359 prauc=0.4903 thr=0.00 t=2.0s
+2026-04-26 02:11:34,528 - pipeline - INFO -     tabpfn               [none           ] acc=0.8871 bacc=0.8538 f1m=0.6285 prauc=0.5471 thr=0.04 t=254.5s
+2026-04-26 02:11:34,529 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:11:45,768 - pipeline - INFO -     tabicl               [none           ] acc=0.8233 bacc=0.8648 f1m=0.5745 prauc=0.4996 thr=0.02 t=11.2s
+2026-04-26 02:11:48,594 - pipeline - INFO -     catboost             [none           ] acc=0.8761 bacc=0.8371 f1m=0.6125 prauc=0.4052 thr=0.00 t=2.8s
+2026-04-26 02:11:48,595 - pipeline - INFO - [8/19] taiwan_bankruptcy scenario=MAR_5pct
+2026-04-26 02:11:49,707 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7507 bacc=0.8273 f1m=0.5216 prauc=0.3173 thr=0.20 t=0.7s
+2026-04-26 02:11:50,173 - pipeline - INFO -     random_forest        [mean           ] acc=0.8218 bacc=0.8311 f1m=0.5663 prauc=0.4283 thr=0.03 t=0.5s
+2026-04-26 02:12:06,221 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8336 bacc=0.8811 f1m=0.5858 prauc=0.4323 thr=0.11 t=16.0s
+2026-04-26 02:12:07,466 - pipeline - INFO -     xgboost              [mean           ] acc=0.8842 bacc=0.8742 f1m=0.6307 prauc=0.4974 thr=0.00 t=1.2s
+2026-04-26 02:12:09,325 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8519 bacc=0.8686 f1m=0.5980 prauc=0.5249 thr=0.00 t=1.9s
+2026-04-26 02:12:13,187 - pipeline - INFO -     svm                  [mean           ] acc=0.7793 bacc=0.8750 f1m=0.5468 prauc=0.3220 thr=0.02 t=3.8s
+2026-04-26 02:12:14,163 - pipeline - INFO -     mlp                  [mean           ] acc=0.9274 bacc=0.5341 f1m=0.5270 prauc=0.0575 thr=0.17 t=1.0s
+2026-04-26 02:16:26,224 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8680 bacc=0.8879 f1m=0.6174 prauc=0.5948 thr=0.02 t=252.1s
+2026-04-26 02:16:26,224 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:16:37,706 - pipeline - INFO -     tabicl               [mean           ] acc=0.8541 bacc=0.8807 f1m=0.6027 prauc=0.5815 thr=0.02 t=11.5s
+2026-04-26 02:16:40,510 - pipeline - INFO -     catboost             [mean           ] acc=0.7390 bacc=0.8432 f1m=0.5177 prauc=0.5562 thr=0.00 t=2.8s
+2026-04-26 02:16:41,259 - pipeline - INFO -     logistic_regression  [median         ] acc=0.6906 bacc=0.7962 f1m=0.4849 prauc=0.3173 thr=0.12 t=0.7s
+2026-04-26 02:16:41,742 - pipeline - INFO -     random_forest        [median         ] acc=0.8328 bacc=0.8697 f1m=0.5828 prauc=0.4401 thr=0.03 t=0.5s
+2026-04-26 02:16:57,830 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8116 bacc=0.8697 f1m=0.5672 prauc=0.4492 thr=0.09 t=16.1s
+2026-04-26 02:16:59,027 - pipeline - INFO -     xgboost              [median         ] acc=0.7815 bacc=0.8432 f1m=0.5424 prauc=0.4841 thr=0.00 t=1.2s
+2026-04-26 02:17:00,895 - pipeline - INFO -     lightgbm             [median         ] acc=0.8226 bacc=0.8534 f1m=0.5716 prauc=0.5392 thr=0.00 t=1.9s
+2026-04-26 02:17:04,753 - pipeline - INFO -     svm                  [median         ] acc=0.7771 bacc=0.8739 f1m=0.5452 prauc=0.3258 thr=0.02 t=3.8s
+2026-04-26 02:17:05,725 - pipeline - INFO -     mlp                  [median         ] acc=0.9670 bacc=0.4996 f1m=0.4916 prauc=0.0571 thr=0.25 t=1.0s
+2026-04-26 02:21:18,313 - pipeline - INFO -     tabpfn               [median         ] acc=0.8702 bacc=0.8890 f1m=0.6198 prauc=0.5976 thr=0.03 t=252.6s
+2026-04-26 02:21:18,313 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:21:29,443 - pipeline - INFO -     tabicl               [median         ] acc=0.8937 bacc=0.8572 f1m=0.6370 prauc=0.5744 thr=0.04 t=11.1s
+2026-04-26 02:21:32,171 - pipeline - INFO -     catboost             [median         ] acc=0.7779 bacc=0.8413 f1m=0.5398 prauc=0.4788 thr=0.00 t=2.7s
+2026-04-26 02:21:35,489 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7258 bacc=0.8144 f1m=0.5059 prauc=0.3142 thr=0.17 t=0.6s
+2026-04-26 02:21:35,982 - pipeline - INFO -     random_forest        [knn            ] acc=0.8365 bacc=0.8826 f1m=0.5884 prauc=0.4433 thr=0.03 t=0.5s
+2026-04-26 02:21:52,725 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8028 bacc=0.8652 f1m=0.5602 prauc=0.4098 thr=0.10 t=16.7s
+2026-04-26 02:21:53,916 - pipeline - INFO -     xgboost              [knn            ] acc=0.9157 bacc=0.8795 f1m=0.6731 prauc=0.5104 thr=0.01 t=1.2s
+2026-04-26 02:21:55,769 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7185 bacc=0.8545 f1m=0.5081 prauc=0.5177 thr=0.00 t=1.8s
+2026-04-26 02:21:59,681 - pipeline - INFO -     svm                  [knn            ] acc=0.7859 bacc=0.8784 f1m=0.5516 prauc=0.3292 thr=0.03 t=3.9s
+2026-04-26 02:22:00,706 - pipeline - INFO -     mlp                  [knn            ] acc=0.9355 bacc=0.7470 f1m=0.6595 prauc=0.2886 thr=0.19 t=1.0s
+2026-04-26 02:26:12,752 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8783 bacc=0.8932 f1m=0.6292 prauc=0.6149 thr=0.03 t=252.0s
+2026-04-26 02:26:12,753 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:26:24,118 - pipeline - INFO -     tabicl               [knn            ] acc=0.8578 bacc=0.8716 f1m=0.6039 prauc=0.5985 thr=0.02 t=11.4s
+2026-04-26 02:26:26,893 - pipeline - INFO -     catboost             [knn            ] acc=0.8270 bacc=0.8557 f1m=0.5753 prauc=0.5168 thr=0.01 t=2.8s
+2026-04-26 02:26:42,049 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7603 bacc=0.8322 f1m=0.5278 prauc=0.3323 thr=0.22 t=0.6s
+2026-04-26 02:26:42,520 - pipeline - INFO -     random_forest        [mice           ] acc=0.8622 bacc=0.8519 f1m=0.6031 prauc=0.4782 thr=0.04 t=0.5s
+2026-04-26 02:26:59,206 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8211 bacc=0.8636 f1m=0.5727 prauc=0.4728 thr=0.10 t=16.7s
+2026-04-26 02:27:00,420 - pipeline - INFO -     xgboost              [mice           ] acc=0.8512 bacc=0.8682 f1m=0.5973 prauc=0.4980 thr=0.00 t=1.2s
+2026-04-26 02:27:02,277 - pipeline - INFO -     lightgbm             [mice           ] acc=0.6833 bacc=0.8144 f1m=0.4837 prauc=0.5084 thr=0.00 t=1.8s
+2026-04-26 02:27:06,109 - pipeline - INFO -     svm                  [mice           ] acc=0.7764 bacc=0.8735 f1m=0.5447 prauc=0.3279 thr=0.02 t=3.8s
+2026-04-26 02:27:07,065 - pipeline - INFO -     mlp                  [mice           ] acc=0.9208 bacc=0.5197 f1m=0.5138 prauc=0.0559 thr=0.17 t=0.9s
+2026-04-26 02:31:19,023 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8622 bacc=0.8629 f1m=0.6058 prauc=0.5969 thr=0.02 t=252.0s
+2026-04-26 02:31:19,023 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:31:30,055 - pipeline - INFO -     tabicl               [mice           ] acc=0.8578 bacc=0.8826 f1m=0.6065 prauc=0.5583 thr=0.02 t=11.0s
+2026-04-26 02:31:32,803 - pipeline - INFO -     catboost             [mice           ] acc=0.8702 bacc=0.8670 f1m=0.6144 prauc=0.4844 thr=0.01 t=2.7s
+2026-04-26 02:31:48,022 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.6151 bacc=0.7902 f1m=0.4464 prauc=0.3040 thr=0.03 t=0.6s
+2026-04-26 02:31:48,479 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.9113 bacc=0.8553 f1m=0.6594 prauc=0.4927 thr=0.08 t=0.5s
+2026-04-26 02:32:05,807 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8343 bacc=0.8595 f1m=0.5817 prauc=0.4165 thr=0.12 t=17.3s
+2026-04-26 02:32:07,016 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8776 bacc=0.8818 f1m=0.6256 prauc=0.5112 thr=0.00 t=1.2s
+2026-04-26 02:32:08,916 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7764 bacc=0.8735 f1m=0.5447 prauc=0.5352 thr=0.00 t=1.9s
+2026-04-26 02:32:12,709 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.7742 bacc=0.8504 f1m=0.5393 prauc=0.3480 thr=0.03 t=3.8s
+2026-04-26 02:32:14,069 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8981 bacc=0.8155 f1m=0.6301 prauc=0.3055 thr=0.08 t=1.3s
+2026-04-26 02:33:31,196 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8526 bacc=0.8909 f1m=0.6038 prauc=0.6169 thr=0.02 t=77.1s
+2026-04-26 02:33:31,196 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:33:43,421 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8409 bacc=0.8848 f1m=0.5925 prauc=0.5519 thr=0.02 t=12.2s
+2026-04-26 02:33:46,214 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8182 bacc=0.8731 f1m=0.5725 prauc=0.5438 thr=0.01 t=2.8s
+2026-04-26 02:33:47,319 - pipeline - INFO -     xgboost              [none           ] acc=0.8805 bacc=0.8504 f1m=0.6205 prauc=0.4929 thr=0.00 t=1.1s
+2026-04-26 02:33:49,292 - pipeline - INFO -     lightgbm             [none           ] acc=0.8805 bacc=0.8614 f1m=0.6234 prauc=0.5057 thr=0.00 t=2.0s
+2026-04-26 02:38:01,677 - pipeline - INFO -     tabpfn               [none           ] acc=0.8717 bacc=0.9008 f1m=0.6241 prauc=0.5979 thr=0.02 t=252.4s
+2026-04-26 02:38:01,678 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:38:12,909 - pipeline - INFO -     tabicl               [none           ] acc=0.8563 bacc=0.8818 f1m=0.6050 prauc=0.5815 thr=0.02 t=11.2s
+2026-04-26 02:38:15,770 - pipeline - INFO -     catboost             [none           ] acc=0.7969 bacc=0.8511 f1m=0.5536 prauc=0.4646 thr=0.00 t=2.9s
+2026-04-26 02:38:15,770 - pipeline - INFO - [9/19] taiwan_bankruptcy scenario=MAR_10pct
+2026-04-26 02:38:17,064 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7089 bacc=0.8386 f1m=0.5006 prauc=0.3448 thr=0.15 t=0.6s
+2026-04-26 02:38:17,544 - pipeline - INFO -     random_forest        [mean           ] acc=0.7683 bacc=0.8364 f1m=0.5333 prauc=0.4337 thr=0.02 t=0.5s
+2026-04-26 02:38:33,075 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8021 bacc=0.8648 f1m=0.5597 prauc=0.4241 thr=0.11 t=15.5s
+2026-04-26 02:38:34,375 - pipeline - INFO -     xgboost              [mean           ] acc=0.8534 bacc=0.8693 f1m=0.5995 prauc=0.4984 thr=0.00 t=1.3s
+2026-04-26 02:38:36,274 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7163 bacc=0.8424 f1m=0.5051 prauc=0.5195 thr=0.00 t=1.9s
+2026-04-26 02:38:40,125 - pipeline - INFO -     svm                  [mean           ] acc=0.7845 bacc=0.8777 f1m=0.5506 prauc=0.3332 thr=0.03 t=3.8s
+2026-04-26 02:38:41,112 - pipeline - INFO -     mlp                  [mean           ] acc=0.2727 bacc=0.5364 f1m=0.2358 prauc=0.0531 thr=0.02 t=1.0s
+2026-04-26 02:42:53,073 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8688 bacc=0.8773 f1m=0.6155 prauc=0.5836 thr=0.02 t=252.0s
+2026-04-26 02:42:53,073 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:43:04,415 - pipeline - INFO -     tabicl               [mean           ] acc=0.9018 bacc=0.8504 f1m=0.6450 prauc=0.5615 thr=0.04 t=11.3s
+2026-04-26 02:43:07,194 - pipeline - INFO -     catboost             [mean           ] acc=0.8182 bacc=0.8621 f1m=0.5703 prauc=0.4568 thr=0.00 t=2.8s
+2026-04-26 02:43:07,910 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7309 bacc=0.8170 f1m=0.5090 prauc=0.3093 thr=0.17 t=0.7s
+2026-04-26 02:43:08,388 - pipeline - INFO -     random_forest        [median         ] acc=0.7463 bacc=0.8470 f1m=0.5224 prauc=0.4753 thr=0.02 t=0.5s
+2026-04-26 02:43:23,779 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8226 bacc=0.8754 f1m=0.5762 prauc=0.4111 thr=0.12 t=15.4s
+2026-04-26 02:43:24,935 - pipeline - INFO -     xgboost              [median         ] acc=0.8930 bacc=0.8898 f1m=0.6450 prauc=0.4757 thr=0.00 t=1.1s
+2026-04-26 02:43:26,796 - pipeline - INFO -     lightgbm             [median         ] acc=0.7669 bacc=0.8686 f1m=0.5380 prauc=0.5573 thr=0.00 t=1.9s
+2026-04-26 02:43:30,630 - pipeline - INFO -     svm                  [median         ] acc=0.7786 bacc=0.8746 f1m=0.5463 prauc=0.3315 thr=0.03 t=3.8s
+2026-04-26 02:43:31,598 - pipeline - INFO -     mlp                  [median         ] acc=0.2705 bacc=0.5352 f1m=0.2342 prauc=0.0533 thr=0.02 t=1.0s
+2026-04-26 02:47:44,530 - pipeline - INFO -     tabpfn               [median         ] acc=0.8350 bacc=0.8818 f1m=0.5871 prauc=0.5886 thr=0.02 t=252.9s
+2026-04-26 02:47:44,530 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:47:55,886 - pipeline - INFO -     tabicl               [median         ] acc=0.8996 bacc=0.8492 f1m=0.6419 prauc=0.5474 thr=0.04 t=11.4s
+2026-04-26 02:47:58,646 - pipeline - INFO -     catboost             [median         ] acc=0.8079 bacc=0.8458 f1m=0.5598 prauc=0.4384 thr=0.00 t=2.8s
+2026-04-26 02:48:02,995 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7119 bacc=0.8072 f1m=0.4974 prauc=0.3227 thr=0.18 t=0.6s
+2026-04-26 02:48:03,478 - pipeline - INFO -     random_forest        [knn            ] acc=0.8746 bacc=0.8583 f1m=0.6166 prauc=0.4604 thr=0.05 t=0.5s
+2026-04-26 02:48:20,160 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7911 bacc=0.8701 f1m=0.5534 prauc=0.3365 thr=0.10 t=16.7s
+2026-04-26 02:48:21,401 - pipeline - INFO -     xgboost              [knn            ] acc=0.8886 bacc=0.8765 f1m=0.6363 prauc=0.4920 thr=0.00 t=1.2s
+2026-04-26 02:48:23,267 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8328 bacc=0.8807 f1m=0.5851 prauc=0.4721 thr=0.00 t=1.9s
+2026-04-26 02:48:27,103 - pipeline - INFO -     svm                  [knn            ] acc=0.7735 bacc=0.8720 f1m=0.5426 prauc=0.3221 thr=0.03 t=3.8s
+2026-04-26 02:48:28,155 - pipeline - INFO -     mlp                  [knn            ] acc=0.7229 bacc=0.7580 f1m=0.4952 prauc=0.2790 thr=0.02 t=1.0s
+2026-04-26 02:52:40,127 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8534 bacc=0.8693 f1m=0.5995 prauc=0.5936 thr=0.02 t=252.0s
+2026-04-26 02:52:40,127 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:52:51,452 - pipeline - INFO -     tabicl               [knn            ] acc=0.8908 bacc=0.8557 f1m=0.6332 prauc=0.5685 thr=0.04 t=11.3s
+2026-04-26 02:52:54,195 - pipeline - INFO -     catboost             [knn            ] acc=0.7485 bacc=0.8261 f1m=0.5202 prauc=0.4883 thr=0.00 t=2.7s
+2026-04-26 02:54:18,979 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7456 bacc=0.8027 f1m=0.5146 prauc=0.3295 thr=0.20 t=0.6s
+2026-04-26 02:54:19,453 - pipeline - INFO -     random_forest        [mice           ] acc=0.8365 bacc=0.8716 f1m=0.5860 prauc=0.4945 thr=0.03 t=0.5s
+2026-04-26 02:54:36,096 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8065 bacc=0.8561 f1m=0.5609 prauc=0.4201 thr=0.09 t=16.6s
+2026-04-26 02:54:37,309 - pipeline - INFO -     xgboost              [mice           ] acc=0.8600 bacc=0.8727 f1m=0.6061 prauc=0.5104 thr=0.00 t=1.2s
+2026-04-26 02:54:39,209 - pipeline - INFO -     lightgbm             [mice           ] acc=0.7837 bacc=0.8663 f1m=0.5480 prauc=0.5058 thr=0.00 t=1.9s
+2026-04-26 02:54:43,054 - pipeline - INFO -     svm                  [mice           ] acc=0.7735 bacc=0.8720 f1m=0.5426 prauc=0.3272 thr=0.02 t=3.8s
+2026-04-26 02:54:44,085 - pipeline - INFO -     mlp                  [mice           ] acc=0.5674 bacc=0.6996 f1m=0.4128 prauc=0.2852 thr=0.01 t=1.0s
+2026-04-26 02:59:09,531 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8988 bacc=0.8489 f1m=0.6409 prauc=0.5520 thr=0.04 t=265.4s
+2026-04-26 02:59:09,531 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 02:59:20,346 - pipeline - INFO -     tabicl               [mice           ] acc=0.8541 bacc=0.8697 f1m=0.6002 prauc=0.5661 thr=0.02 t=10.8s
+2026-04-26 02:59:23,043 - pipeline - INFO -     catboost             [mice           ] acc=0.7757 bacc=0.8402 f1m=0.5383 prauc=0.5159 thr=0.00 t=2.7s
+2026-04-26 03:00:47,839 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.5411 bacc=0.7519 f1m=0.4051 prauc=0.3523 thr=0.01 t=0.6s
+2026-04-26 03:00:48,282 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.7845 bacc=0.8667 f1m=0.5486 prauc=0.4783 thr=0.02 t=0.4s
+2026-04-26 03:01:05,835 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7163 bacc=0.8534 f1m=0.5067 prauc=0.3666 thr=0.04 t=17.5s
+2026-04-26 03:01:07,075 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.9047 bacc=0.8739 f1m=0.6556 prauc=0.4841 thr=0.00 t=1.2s
+2026-04-26 03:01:09,001 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7683 bacc=0.8583 f1m=0.5371 prauc=0.5023 thr=0.00 t=1.9s
+2026-04-26 03:01:12,875 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8035 bacc=0.8545 f1m=0.5586 prauc=0.3592 thr=0.03 t=3.9s
+2026-04-26 03:01:14,459 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8072 bacc=0.7905 f1m=0.5479 prauc=0.3030 thr=0.02 t=1.6s
+2026-04-26 03:02:31,820 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.9069 bacc=0.8420 f1m=0.6493 prauc=0.5485 thr=0.05 t=77.4s
+2026-04-26 03:02:31,820 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:02:43,866 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8431 bacc=0.8750 f1m=0.5921 prauc=0.5567 thr=0.02 t=12.0s
+2026-04-26 03:02:46,669 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7419 bacc=0.8447 f1m=0.5195 prauc=0.4836 thr=0.00 t=2.8s
+2026-04-26 03:02:47,743 - pipeline - INFO -     xgboost              [none           ] acc=0.8768 bacc=0.8924 f1m=0.6274 prauc=0.4956 thr=0.00 t=1.0s
+2026-04-26 03:02:49,721 - pipeline - INFO -     lightgbm             [none           ] acc=0.9157 bacc=0.8686 f1m=0.6699 prauc=0.5458 thr=0.00 t=2.0s
+2026-04-26 03:07:02,008 - pipeline - INFO -     tabpfn               [none           ] acc=0.8600 bacc=0.9057 f1m=0.6138 prauc=0.5902 thr=0.02 t=252.3s
+2026-04-26 03:07:02,008 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:07:12,727 - pipeline - INFO -     tabicl               [none           ] acc=0.8746 bacc=0.8473 f1m=0.6137 prauc=0.5615 thr=0.03 t=10.7s
+2026-04-26 03:07:15,632 - pipeline - INFO -     catboost             [none           ] acc=0.8548 bacc=0.8591 f1m=0.5983 prauc=0.4692 thr=0.01 t=2.9s
+2026-04-26 03:07:15,632 - pipeline - INFO - [10/19] taiwan_bankruptcy scenario=MAR_15pct
+2026-04-26 03:07:17,099 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7273 bacc=0.8152 f1m=0.5068 prauc=0.3230 thr=0.17 t=0.6s
+2026-04-26 03:07:17,566 - pipeline - INFO -     random_forest        [mean           ] acc=0.9076 bacc=0.8644 f1m=0.6569 prauc=0.4652 thr=0.07 t=0.5s
+2026-04-26 03:07:32,356 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8358 bacc=0.8712 f1m=0.5854 prauc=0.4303 thr=0.13 t=14.8s
+2026-04-26 03:07:33,472 - pipeline - INFO -     xgboost              [mean           ] acc=0.9384 bacc=0.8473 f1m=0.7037 prauc=0.5192 thr=0.02 t=1.1s
+2026-04-26 03:07:35,343 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7053 bacc=0.8367 f1m=0.4984 prauc=0.5669 thr=0.00 t=1.9s
+2026-04-26 03:07:39,277 - pipeline - INFO -     svm                  [mean           ] acc=0.7859 bacc=0.8784 f1m=0.5516 prauc=0.2809 thr=0.03 t=3.9s
+2026-04-26 03:07:40,250 - pipeline - INFO -     mlp                  [mean           ] acc=0.9641 bacc=0.5201 f1m=0.5286 prauc=0.0565 thr=0.21 t=1.0s
+2026-04-26 03:11:51,899 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8666 bacc=0.8542 f1m=0.6077 prauc=0.5752 thr=0.02 t=251.6s
+2026-04-26 03:11:51,899 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:12:02,842 - pipeline - INFO -     tabicl               [mean           ] acc=0.8629 bacc=0.8523 f1m=0.6039 prauc=0.5213 thr=0.02 t=10.9s
+2026-04-26 03:12:05,630 - pipeline - INFO -     catboost             [mean           ] acc=0.8622 bacc=0.8519 f1m=0.6031 prauc=0.5296 thr=0.01 t=2.8s
+2026-04-26 03:12:06,336 - pipeline - INFO -     logistic_regression  [median         ] acc=0.8065 bacc=0.8341 f1m=0.5565 prauc=0.3111 thr=0.29 t=0.7s
+2026-04-26 03:12:06,819 - pipeline - INFO -     random_forest        [median         ] acc=0.8534 bacc=0.8583 f1m=0.5969 prauc=0.4784 thr=0.04 t=0.5s
+2026-04-26 03:12:21,556 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7845 bacc=0.8557 f1m=0.5465 prauc=0.3817 thr=0.08 t=14.7s
+2026-04-26 03:12:22,757 - pipeline - INFO -     xgboost              [median         ] acc=0.8592 bacc=0.8723 f1m=0.6054 prauc=0.5418 thr=0.00 t=1.2s
+2026-04-26 03:12:24,616 - pipeline - INFO -     lightgbm             [median         ] acc=0.7544 bacc=0.8731 f1m=0.5314 prauc=0.5443 thr=0.00 t=1.9s
+2026-04-26 03:12:28,524 - pipeline - INFO -     svm                  [median         ] acc=0.7947 bacc=0.8830 f1m=0.5582 prauc=0.2850 thr=0.03 t=3.9s
+2026-04-26 03:12:29,493 - pipeline - INFO -     mlp                  [median         ] acc=0.0440 bacc=0.4621 f1m=0.0438 prauc=0.0530 thr=0.00 t=1.0s
+2026-04-26 03:16:44,906 - pipeline - INFO -     tabpfn               [median         ] acc=0.8548 bacc=0.8811 f1m=0.6035 prauc=0.5724 thr=0.03 t=255.4s
+2026-04-26 03:16:44,906 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:16:56,027 - pipeline - INFO -     tabicl               [median         ] acc=0.9032 bacc=0.8511 f1m=0.6471 prauc=0.5119 thr=0.05 t=11.1s
+2026-04-26 03:16:58,783 - pipeline - INFO -     catboost             [median         ] acc=0.7280 bacc=0.8265 f1m=0.5090 prauc=0.4882 thr=0.00 t=2.8s
+2026-04-26 03:17:04,088 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7808 bacc=0.8318 f1m=0.5399 prauc=0.3195 thr=0.33 t=0.6s
+2026-04-26 03:17:04,560 - pipeline - INFO -     random_forest        [knn            ] acc=0.8732 bacc=0.8795 f1m=0.6205 prauc=0.4453 thr=0.06 t=0.5s
+2026-04-26 03:17:21,319 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7170 bacc=0.8208 f1m=0.5022 prauc=0.4067 thr=0.06 t=16.8s
+2026-04-26 03:17:22,485 - pipeline - INFO -     xgboost              [knn            ] acc=0.8336 bacc=0.8920 f1m=0.5881 prauc=0.5294 thr=0.00 t=1.2s
+2026-04-26 03:17:24,325 - pipeline - INFO -     lightgbm             [knn            ] acc=0.6891 bacc=0.8174 f1m=0.4872 prauc=0.5267 thr=0.00 t=1.8s
+2026-04-26 03:17:28,249 - pipeline - INFO -     svm                  [knn            ] acc=0.7617 bacc=0.8549 f1m=0.5326 prauc=0.2592 thr=0.03 t=3.9s
+2026-04-26 03:17:29,217 - pipeline - INFO -     mlp                  [knn            ] acc=0.8592 bacc=0.5428 f1m=0.5047 prauc=0.0544 thr=0.13 t=1.0s
+2026-04-26 03:21:41,969 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8607 bacc=0.8731 f1m=0.6069 prauc=0.5595 thr=0.03 t=252.7s
+2026-04-26 03:21:41,969 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:21:53,011 - pipeline - INFO -     tabicl               [knn            ] acc=0.8512 bacc=0.8572 f1m=0.5948 prauc=0.5358 thr=0.02 t=11.0s
+2026-04-26 03:21:55,760 - pipeline - INFO -     catboost             [knn            ] acc=0.6342 bacc=0.8110 f1m=0.4584 prauc=0.5063 thr=0.00 t=2.7s
+2026-04-26 03:23:16,798 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7573 bacc=0.8307 f1m=0.5259 prauc=0.3339 thr=0.22 t=0.6s
+2026-04-26 03:23:17,271 - pipeline - INFO -     random_forest        [mice           ] acc=0.8358 bacc=0.8602 f1m=0.5830 prauc=0.4958 thr=0.03 t=0.5s
+2026-04-26 03:23:34,010 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8416 bacc=0.8742 f1m=0.5907 prauc=0.3849 thr=0.13 t=16.7s
+2026-04-26 03:23:35,179 - pipeline - INFO -     xgboost              [mice           ] acc=0.8644 bacc=0.8640 f1m=0.6081 prauc=0.4109 thr=0.00 t=1.2s
+2026-04-26 03:23:37,045 - pipeline - INFO -     lightgbm             [mice           ] acc=0.7383 bacc=0.8428 f1m=0.5172 prauc=0.4694 thr=0.00 t=1.9s
+2026-04-26 03:23:41,029 - pipeline - INFO -     svm                  [mice           ] acc=0.7566 bacc=0.8523 f1m=0.5292 prauc=0.3003 thr=0.02 t=4.0s
+2026-04-26 03:23:42,044 - pipeline - INFO -     mlp                  [mice           ] acc=0.9120 bacc=0.7788 f1m=0.6356 prauc=0.2711 thr=0.11 t=1.0s
+2026-04-26 03:27:59,999 - pipeline - INFO -     tabpfn               [mice           ] acc=0.9010 bacc=0.8610 f1m=0.6471 prauc=0.5592 thr=0.03 t=257.9s
+2026-04-26 03:27:59,999 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:28:11,021 - pipeline - INFO -     tabicl               [mice           ] acc=0.8908 bacc=0.8557 f1m=0.6332 prauc=0.5354 thr=0.03 t=11.0s
+2026-04-26 03:28:13,717 - pipeline - INFO -     catboost             [mice           ] acc=0.7324 bacc=0.8398 f1m=0.5135 prauc=0.5073 thr=0.00 t=2.7s
+2026-04-26 03:29:34,728 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.6364 bacc=0.7792 f1m=0.4556 prauc=0.3136 thr=0.03 t=0.6s
+2026-04-26 03:29:35,169 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8387 bacc=0.8508 f1m=0.5831 prauc=0.4557 thr=0.04 t=0.4s
+2026-04-26 03:29:52,904 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8028 bacc=0.8652 f1m=0.5602 prauc=0.4097 thr=0.08 t=17.7s
+2026-04-26 03:29:54,131 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8600 bacc=0.8398 f1m=0.5981 prauc=0.4583 thr=0.00 t=1.2s
+2026-04-26 03:29:56,063 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8886 bacc=0.8655 f1m=0.6333 prauc=0.4749 thr=0.00 t=1.9s
+2026-04-26 03:29:59,841 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.7991 bacc=0.8523 f1m=0.5553 prauc=0.3410 thr=0.02 t=3.8s
+2026-04-26 03:30:01,703 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8710 bacc=0.7795 f1m=0.5918 prauc=0.3235 thr=0.01 t=1.8s
+2026-04-26 03:31:18,852 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8805 bacc=0.8504 f1m=0.6205 prauc=0.5554 thr=0.03 t=77.1s
+2026-04-26 03:31:18,852 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:31:31,129 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8944 bacc=0.8576 f1m=0.6380 prauc=0.5124 thr=0.04 t=12.3s
+2026-04-26 03:31:33,901 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8541 bacc=0.8587 f1m=0.5976 prauc=0.4213 thr=0.01 t=2.8s
+2026-04-26 03:31:34,963 - pipeline - INFO -     xgboost              [none           ] acc=0.8226 bacc=0.8754 f1m=0.5762 prauc=0.5056 thr=0.00 t=1.0s
+2026-04-26 03:31:36,998 - pipeline - INFO -     lightgbm             [none           ] acc=0.8299 bacc=0.8902 f1m=0.5848 prauc=0.5271 thr=0.00 t=2.0s
+2026-04-26 03:35:47,854 - pipeline - INFO -     tabpfn               [none           ] acc=0.8680 bacc=0.8769 f1m=0.6147 prauc=0.5839 thr=0.03 t=250.8s
+2026-04-26 03:35:47,854 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:35:58,758 - pipeline - INFO -     tabicl               [none           ] acc=0.8636 bacc=0.8527 f1m=0.6046 prauc=0.5213 thr=0.02 t=10.9s
+2026-04-26 03:36:01,634 - pipeline - INFO -     catboost             [none           ] acc=0.7478 bacc=0.8258 f1m=0.5197 prauc=0.5145 thr=0.00 t=2.9s
+2026-04-26 03:36:01,634 - pipeline - INFO - [11/19] taiwan_bankruptcy scenario=MAR_20pct
+2026-04-26 03:36:03,330 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7603 bacc=0.8542 f1m=0.5316 prauc=0.3767 thr=0.22 t=0.6s
+2026-04-26 03:36:03,803 - pipeline - INFO -     random_forest        [mean           ] acc=0.8534 bacc=0.8693 f1m=0.5995 prauc=0.4642 thr=0.04 t=0.5s
+2026-04-26 03:36:17,899 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8365 bacc=0.8716 f1m=0.5860 prauc=0.4352 thr=0.13 t=14.1s
+2026-04-26 03:36:19,104 - pipeline - INFO -     xgboost              [mean           ] acc=0.9370 bacc=0.8686 f1m=0.7076 prauc=0.5489 thr=0.02 t=1.2s
+2026-04-26 03:36:20,974 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7661 bacc=0.8572 f1m=0.5356 prauc=0.5311 thr=0.00 t=1.9s
+2026-04-26 03:36:24,821 - pipeline - INFO -     svm                  [mean           ] acc=0.8109 bacc=0.7814 f1m=0.5482 prauc=0.3117 thr=0.03 t=3.8s
+2026-04-26 03:36:25,799 - pipeline - INFO -     mlp                  [mean           ] acc=0.9655 bacc=0.4989 f1m=0.4912 prauc=0.0553 thr=0.23 t=1.0s
+2026-04-26 03:40:30,671 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8783 bacc=0.8712 f1m=0.6236 prauc=0.5781 thr=0.03 t=244.9s
+2026-04-26 03:40:30,671 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:40:41,872 - pipeline - INFO -     tabicl               [mean           ] acc=0.8834 bacc=0.8519 f1m=0.6240 prauc=0.5153 thr=0.03 t=11.2s
+2026-04-26 03:40:44,680 - pipeline - INFO -     catboost             [mean           ] acc=0.8174 bacc=0.8617 f1m=0.5697 prauc=0.5553 thr=0.00 t=2.8s
+2026-04-26 03:40:45,362 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7691 bacc=0.8367 f1m=0.5338 prauc=0.3261 thr=0.19 t=0.6s
+2026-04-26 03:40:45,830 - pipeline - INFO -     random_forest        [median         ] acc=0.8702 bacc=0.8890 f1m=0.6198 prauc=0.4999 thr=0.05 t=0.5s
+2026-04-26 03:41:00,112 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8057 bacc=0.8557 f1m=0.5603 prauc=0.3980 thr=0.13 t=14.3s
+2026-04-26 03:41:01,239 - pipeline - INFO -     xgboost              [median         ] acc=0.9128 bacc=0.8670 f1m=0.6650 prauc=0.5265 thr=0.01 t=1.1s
+2026-04-26 03:41:03,096 - pipeline - INFO -     lightgbm             [median         ] acc=0.8394 bacc=0.8841 f1m=0.5911 prauc=0.4530 thr=0.00 t=1.8s
+2026-04-26 03:41:07,057 - pipeline - INFO -     svm                  [median         ] acc=0.7852 bacc=0.8670 f1m=0.5491 prauc=0.3124 thr=0.02 t=3.9s
+2026-04-26 03:41:08,059 - pipeline - INFO -     mlp                  [median         ] acc=0.9619 bacc=0.5080 f1m=0.5088 prauc=0.0524 thr=0.21 t=1.0s
+2026-04-26 03:45:19,434 - pipeline - INFO -     tabpfn               [median         ] acc=0.8468 bacc=0.8769 f1m=0.5956 prauc=0.5874 thr=0.03 t=251.4s
+2026-04-26 03:45:19,434 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:45:30,602 - pipeline - INFO -     tabicl               [median         ] acc=0.8776 bacc=0.8489 f1m=0.6171 prauc=0.5058 thr=0.04 t=11.2s
+2026-04-26 03:45:33,396 - pipeline - INFO -     catboost             [median         ] acc=0.7309 bacc=0.8280 f1m=0.5108 prauc=0.4518 thr=0.00 t=2.8s
+2026-04-26 03:45:39,754 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7881 bacc=0.8466 f1m=0.5471 prauc=0.3085 thr=0.35 t=0.6s
+2026-04-26 03:45:40,236 - pipeline - INFO -     random_forest        [knn            ] acc=0.7339 bacc=0.8295 f1m=0.5126 prauc=0.4237 thr=0.02 t=0.5s
+2026-04-26 03:45:57,069 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7676 bacc=0.8470 f1m=0.5347 prauc=0.4008 thr=0.10 t=16.8s
+2026-04-26 03:45:58,292 - pipeline - INFO -     xgboost              [knn            ] acc=0.8277 bacc=0.8670 f1m=0.5783 prauc=0.5087 thr=0.00 t=1.2s
+2026-04-26 03:46:00,127 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7823 bacc=0.8655 f1m=0.5470 prauc=0.5698 thr=0.00 t=1.8s
+2026-04-26 03:46:03,914 - pipeline - INFO -     svm                  [knn            ] acc=0.7793 bacc=0.8530 f1m=0.5429 prauc=0.3140 thr=0.03 t=3.8s
+2026-04-26 03:46:05,022 - pipeline - INFO -     mlp                  [knn            ] acc=0.9472 bacc=0.7201 f1m=0.6704 prauc=0.3371 thr=0.22 t=1.1s
+2026-04-26 03:50:16,470 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8680 bacc=0.8769 f1m=0.6147 prauc=0.5815 thr=0.03 t=251.4s
+2026-04-26 03:50:16,471 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:50:27,836 - pipeline - INFO -     tabicl               [knn            ] acc=0.8578 bacc=0.8606 f1m=0.6013 prauc=0.5217 thr=0.02 t=11.4s
+2026-04-26 03:50:30,608 - pipeline - INFO -     catboost             [knn            ] acc=0.7654 bacc=0.8568 f1m=0.5351 prauc=0.5043 thr=0.00 t=2.8s
+2026-04-26 03:51:50,102 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7845 bacc=0.8337 f1m=0.5424 prauc=0.3560 thr=0.26 t=0.6s
+2026-04-26 03:51:50,561 - pipeline - INFO -     random_forest        [mice           ] acc=0.8350 bacc=0.8489 f1m=0.5799 prauc=0.4811 thr=0.03 t=0.5s
+2026-04-26 03:52:07,422 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8534 bacc=0.8803 f1m=0.6020 prauc=0.4166 thr=0.13 t=16.9s
+2026-04-26 03:52:08,624 - pipeline - INFO -     xgboost              [mice           ] acc=0.8614 bacc=0.8845 f1m=0.6103 prauc=0.5055 thr=0.00 t=1.2s
+2026-04-26 03:52:10,486 - pipeline - INFO -     lightgbm             [mice           ] acc=0.7874 bacc=0.8462 f1m=0.5466 prauc=0.5557 thr=0.00 t=1.9s
+2026-04-26 03:52:14,413 - pipeline - INFO -     svm                  [mice           ] acc=0.7419 bacc=0.8557 f1m=0.5213 prauc=0.2991 thr=0.02 t=3.9s
+2026-04-26 03:52:15,368 - pipeline - INFO -     mlp                  [mice           ] acc=0.0389 bacc=0.4595 f1m=0.0385 prauc=0.0508 thr=0.00 t=0.9s
+2026-04-26 03:59:07,455 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8981 bacc=0.8595 f1m=0.6430 prauc=0.5772 thr=0.03 t=412.1s
+2026-04-26 03:59:07,455 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 03:59:18,655 - pipeline - INFO -     tabicl               [mice           ] acc=0.8563 bacc=0.8598 f1m=0.5998 prauc=0.5679 thr=0.02 t=11.2s
+2026-04-26 03:59:21,422 - pipeline - INFO -     catboost             [mice           ] acc=0.7940 bacc=0.8386 f1m=0.5493 prauc=0.5435 thr=0.00 t=2.8s
+2026-04-26 04:00:40,204 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.7896 bacc=0.8364 f1m=0.5461 prauc=0.3132 thr=0.08 t=0.6s
+2026-04-26 04:00:40,648 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8490 bacc=0.8341 f1m=0.5875 prauc=0.4864 thr=0.04 t=0.4s
+2026-04-26 04:00:58,614 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8050 bacc=0.8663 f1m=0.5619 prauc=0.4130 thr=0.06 t=18.0s
+2026-04-26 04:00:59,923 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8849 bacc=0.8636 f1m=0.6287 prauc=0.4945 thr=0.00 t=1.3s
+2026-04-26 04:01:01,940 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8460 bacc=0.8545 f1m=0.5899 prauc=0.5945 thr=0.00 t=2.0s
+2026-04-26 04:01:05,690 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.7940 bacc=0.8496 f1m=0.5514 prauc=0.3376 thr=0.02 t=3.7s
+2026-04-26 04:01:07,160 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.9296 bacc=0.7549 f1m=0.6526 prauc=0.3164 thr=0.05 t=1.5s
+2026-04-26 04:02:24,434 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8834 bacc=0.8629 f1m=0.6269 prauc=0.5885 thr=0.03 t=77.3s
+2026-04-26 04:02:24,434 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:02:37,097 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8878 bacc=0.8542 f1m=0.6294 prauc=0.5436 thr=0.03 t=12.7s
+2026-04-26 04:02:39,878 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7713 bacc=0.8269 f1m=0.5333 prauc=0.4589 thr=0.00 t=2.8s
+2026-04-26 04:02:40,949 - pipeline - INFO -     xgboost              [none           ] acc=0.9025 bacc=0.8947 f1m=0.6584 prauc=0.5916 thr=0.00 t=1.0s
+2026-04-26 04:02:42,927 - pipeline - INFO -     lightgbm             [none           ] acc=0.7925 bacc=0.8708 f1m=0.5545 prauc=0.5446 thr=0.00 t=2.0s
+2026-04-26 04:07:28,027 - pipeline - INFO -     tabpfn               [none           ] acc=0.9186 bacc=0.8591 f1m=0.6716 prauc=0.6039 thr=0.05 t=285.1s
+2026-04-26 04:07:28,028 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:07:39,482 - pipeline - INFO -     tabicl               [none           ] acc=0.8827 bacc=0.8515 f1m=0.6231 prauc=0.5153 thr=0.03 t=11.4s
+2026-04-26 04:07:42,388 - pipeline - INFO -     catboost             [none           ] acc=0.8013 bacc=0.8644 f1m=0.5591 prauc=0.5134 thr=0.00 t=2.9s
+2026-04-26 04:07:42,388 - pipeline - INFO - [12/19] taiwan_bankruptcy scenario=MAR_30pct
+2026-04-26 04:07:44,399 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7199 bacc=0.8223 f1m=0.5040 prauc=0.4177 thr=0.18 t=0.6s
+2026-04-26 04:07:44,855 - pipeline - INFO -     random_forest        [mean           ] acc=0.8578 bacc=0.8606 f1m=0.6013 prauc=0.4263 thr=0.04 t=0.4s
+2026-04-26 04:07:57,497 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8776 bacc=0.8489 f1m=0.6171 prauc=0.3918 thr=0.13 t=12.6s
+2026-04-26 04:07:58,688 - pipeline - INFO -     xgboost              [mean           ] acc=0.9003 bacc=0.8606 f1m=0.6461 prauc=0.5583 thr=0.00 t=1.2s
+2026-04-26 04:08:00,540 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8849 bacc=0.8636 f1m=0.6287 prauc=0.5289 thr=0.00 t=1.8s
+2026-04-26 04:08:04,509 - pipeline - INFO -     svm                  [mean           ] acc=0.8028 bacc=0.8432 f1m=0.5559 prauc=0.3024 thr=0.03 t=4.0s
+2026-04-26 04:08:05,505 - pipeline - INFO -     mlp                  [mean           ] acc=0.9619 bacc=0.5080 f1m=0.5088 prauc=0.0595 thr=0.19 t=1.0s
+2026-04-26 04:12:47,645 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8856 bacc=0.8640 f1m=0.6296 prauc=0.5574 thr=0.03 t=282.1s
+2026-04-26 04:12:47,645 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:12:58,903 - pipeline - INFO -     tabicl               [mean           ] acc=0.9245 bacc=0.8511 f1m=0.6787 prauc=0.4911 thr=0.07 t=11.3s
+2026-04-26 04:13:01,674 - pipeline - INFO -     catboost             [mean           ] acc=0.8959 bacc=0.8693 f1m=0.6430 prauc=0.5047 thr=0.01 t=2.8s
+2026-04-26 04:13:02,358 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7749 bacc=0.8288 f1m=0.5358 prauc=0.4239 thr=0.23 t=0.6s
+2026-04-26 04:13:02,839 - pipeline - INFO -     random_forest        [median         ] acc=0.8123 bacc=0.8811 f1m=0.5699 prauc=0.4343 thr=0.03 t=0.5s
+2026-04-26 04:13:15,487 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8196 bacc=0.8739 f1m=0.5737 prauc=0.4206 thr=0.13 t=12.6s
+2026-04-26 04:13:16,623 - pipeline - INFO -     xgboost              [median         ] acc=0.8798 bacc=0.9049 f1m=0.6336 prauc=0.5324 thr=0.00 t=1.1s
+2026-04-26 04:13:18,485 - pipeline - INFO -     lightgbm             [median         ] acc=0.8556 bacc=0.8705 f1m=0.6017 prauc=0.5561 thr=0.00 t=1.9s
+2026-04-26 04:13:22,399 - pipeline - INFO -     svm                  [median         ] acc=0.8028 bacc=0.8432 f1m=0.5559 prauc=0.3116 thr=0.03 t=3.9s
+2026-04-26 04:13:23,367 - pipeline - INFO -     mlp                  [median         ] acc=0.9670 bacc=0.4996 f1m=0.4916 prauc=0.0546 thr=0.27 t=1.0s
+2026-04-26 04:18:04,982 - pipeline - INFO -     tabpfn               [median         ] acc=0.8732 bacc=0.8905 f1m=0.6232 prauc=0.5578 thr=0.04 t=281.6s
+2026-04-26 04:18:04,983 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:18:16,284 - pipeline - INFO -     tabicl               [median         ] acc=0.9040 bacc=0.8625 f1m=0.6514 prauc=0.4857 thr=0.04 t=11.3s
+2026-04-26 04:18:19,051 - pipeline - INFO -     catboost             [median         ] acc=0.8072 bacc=0.8674 f1m=0.5637 prauc=0.4770 thr=0.00 t=2.8s
+2026-04-26 04:18:27,561 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7023 bacc=0.8133 f1m=0.4934 prauc=0.3326 thr=0.23 t=0.6s
+2026-04-26 04:18:28,061 - pipeline - INFO -     random_forest        [knn            ] acc=0.7661 bacc=0.8572 f1m=0.5356 prauc=0.3815 thr=0.03 t=0.5s
+2026-04-26 04:18:45,011 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7566 bacc=0.8523 f1m=0.5292 prauc=0.4246 thr=0.10 t=16.9s
+2026-04-26 04:18:46,122 - pipeline - INFO -     xgboost              [knn            ] acc=0.8600 bacc=0.8727 f1m=0.6061 prauc=0.4952 thr=0.00 t=1.1s
+2026-04-26 04:18:47,994 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7845 bacc=0.8777 f1m=0.5506 prauc=0.5100 thr=0.00 t=1.9s
+2026-04-26 04:18:51,810 - pipeline - INFO -     svm                  [knn            ] acc=0.7500 bacc=0.8379 f1m=0.5230 prauc=0.3431 thr=0.03 t=3.8s
+2026-04-26 04:18:52,772 - pipeline - INFO -     mlp                  [knn            ] acc=0.9304 bacc=0.5246 f1m=0.5207 prauc=0.0509 thr=0.16 t=1.0s
+2026-04-26 04:23:34,319 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8468 bacc=0.8659 f1m=0.5931 prauc=0.5380 thr=0.03 t=281.5s
+2026-04-26 04:23:34,319 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:23:45,611 - pipeline - INFO -     tabicl               [knn            ] acc=0.8072 bacc=0.8784 f1m=0.5658 prauc=0.4833 thr=0.02 t=11.3s
+2026-04-26 04:23:48,389 - pipeline - INFO -     catboost             [knn            ] acc=0.8328 bacc=0.8697 f1m=0.5828 prauc=0.4672 thr=0.01 t=2.8s
+2026-04-26 04:25:03,929 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7918 bacc=0.8375 f1m=0.5477 prauc=0.3209 thr=0.29 t=0.6s
+2026-04-26 04:25:04,412 - pipeline - INFO -     random_forest        [mice           ] acc=0.8820 bacc=0.8621 f1m=0.6252 prauc=0.4564 thr=0.05 t=0.5s
+2026-04-26 04:25:21,470 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8233 bacc=0.8538 f1m=0.5722 prauc=0.3975 thr=0.08 t=17.1s
+2026-04-26 04:25:22,610 - pipeline - INFO -     xgboost              [mice           ] acc=0.8908 bacc=0.8557 f1m=0.6332 prauc=0.4839 thr=0.00 t=1.1s
+2026-04-26 04:25:24,493 - pipeline - INFO -     lightgbm             [mice           ] acc=0.7522 bacc=0.8280 f1m=0.5225 prauc=0.4635 thr=0.00 t=1.9s
+2026-04-26 04:25:28,527 - pipeline - INFO -     svm                  [mice           ] acc=0.7243 bacc=0.8466 f1m=0.5101 prauc=0.2893 thr=0.02 t=4.0s
+2026-04-26 04:25:29,599 - pipeline - INFO -     mlp                  [mice           ] acc=0.8878 bacc=0.7992 f1m=0.6137 prauc=0.2475 thr=0.08 t=1.1s
+2026-04-26 04:32:26,187 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8710 bacc=0.8674 f1m=0.6153 prauc=0.5664 thr=0.02 t=416.6s
+2026-04-26 04:32:26,187 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:32:37,361 - pipeline - INFO -     tabicl               [mice           ] acc=0.8109 bacc=0.8693 f1m=0.5666 prauc=0.5215 thr=0.01 t=11.2s
+2026-04-26 04:32:40,083 - pipeline - INFO -     catboost             [mice           ] acc=0.7867 bacc=0.8678 f1m=0.5502 prauc=0.4432 thr=0.00 t=2.7s
+2026-04-26 04:33:55,351 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.9457 bacc=0.7742 f1m=0.6921 prauc=0.2985 thr=0.46 t=0.6s
+2026-04-26 04:33:55,807 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8812 bacc=0.8508 f1m=0.6214 prauc=0.4402 thr=0.06 t=0.4s
+2026-04-26 04:34:14,356 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8255 bacc=0.8659 f1m=0.5764 prauc=0.3834 thr=0.08 t=18.5s
+2026-04-26 04:34:15,696 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8636 bacc=0.8746 f1m=0.6100 prauc=0.4991 thr=0.00 t=1.3s
+2026-04-26 04:34:17,617 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7346 bacc=0.8519 f1m=0.5166 prauc=0.4689 thr=0.00 t=1.9s
+2026-04-26 04:34:21,376 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.9179 bacc=0.8367 f1m=0.6634 prauc=0.3178 thr=0.04 t=3.7s
+2026-04-26 04:34:22,803 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.9538 bacc=0.6905 f1m=0.6698 prauc=0.3264 thr=0.06 t=1.4s
+2026-04-26 04:35:40,035 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8798 bacc=0.8610 f1m=0.6225 prauc=0.5256 thr=0.03 t=77.2s
+2026-04-26 04:35:40,035 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:35:52,584 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8622 bacc=0.8519 f1m=0.6031 prauc=0.5058 thr=0.02 t=12.5s
+2026-04-26 04:35:55,380 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7485 bacc=0.8371 f1m=0.5220 prauc=0.4675 thr=0.00 t=2.8s
+2026-04-26 04:35:56,512 - pipeline - INFO -     xgboost              [none           ] acc=0.9413 bacc=0.8598 f1m=0.7142 prauc=0.5640 thr=0.00 t=1.1s
+2026-04-26 04:35:58,503 - pipeline - INFO -     lightgbm             [none           ] acc=0.9150 bacc=0.8682 f1m=0.6687 prauc=0.5755 thr=0.00 t=2.0s
+2026-04-26 04:40:43,632 - pipeline - INFO -     tabpfn               [none           ] acc=0.9179 bacc=0.8587 f1m=0.6703 prauc=0.5606 thr=0.05 t=285.1s
+2026-04-26 04:40:43,632 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:40:55,083 - pipeline - INFO -     tabicl               [none           ] acc=0.8761 bacc=0.8481 f1m=0.6154 prauc=0.4911 thr=0.03 t=11.4s
+2026-04-26 04:40:57,949 - pipeline - INFO -     catboost             [none           ] acc=0.9172 bacc=0.8693 f1m=0.6724 prauc=0.4843 thr=0.01 t=2.9s
+2026-04-26 04:40:57,949 - pipeline - INFO - [13/19] taiwan_bankruptcy scenario=MAR_40pct
+2026-04-26 04:41:00,323 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.6811 bacc=0.7803 f1m=0.4778 prauc=0.3014 thr=0.15 t=0.6s
+2026-04-26 04:41:00,757 - pipeline - INFO -     random_forest        [mean           ] acc=0.8636 bacc=0.8636 f1m=0.6073 prauc=0.4155 thr=0.04 t=0.4s
+2026-04-26 04:41:11,800 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8856 bacc=0.8530 f1m=0.6267 prauc=0.4400 thr=0.13 t=11.0s
+2026-04-26 04:41:13,181 - pipeline - INFO -     xgboost              [mean           ] acc=0.8812 bacc=0.8508 f1m=0.6214 prauc=0.4912 thr=0.00 t=1.4s
+2026-04-26 04:41:15,073 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7933 bacc=0.8492 f1m=0.5509 prauc=0.4699 thr=0.00 t=1.9s
+2026-04-26 04:41:19,038 - pipeline - INFO -     svm                  [mean           ] acc=0.7214 bacc=0.8121 f1m=0.5032 prauc=0.2896 thr=0.02 t=4.0s
+2026-04-26 04:41:20,240 - pipeline - INFO -     mlp                  [mean           ] acc=0.9421 bacc=0.6735 f1m=0.6353 prauc=0.2730 thr=0.14 t=1.2s
+2026-04-26 04:46:21,247 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8834 bacc=0.8519 f1m=0.6240 prauc=0.5245 thr=0.03 t=301.0s
+2026-04-26 04:46:21,248 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:46:32,530 - pipeline - INFO -     tabicl               [mean           ] acc=0.8438 bacc=0.8644 f1m=0.5903 prauc=0.4769 thr=0.02 t=11.3s
+2026-04-26 04:46:35,345 - pipeline - INFO -     catboost             [mean           ] acc=0.8915 bacc=0.8341 f1m=0.6279 prauc=0.4351 thr=0.01 t=2.8s
+2026-04-26 04:46:36,025 - pipeline - INFO -     logistic_regression  [median         ] acc=0.6921 bacc=0.7750 f1m=0.4825 prauc=0.2910 thr=0.10 t=0.6s
+2026-04-26 04:46:36,487 - pipeline - INFO -     random_forest        [median         ] acc=0.6789 bacc=0.8231 f1m=0.4827 prauc=0.4484 thr=0.02 t=0.5s
+2026-04-26 04:46:47,497 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8174 bacc=0.8508 f1m=0.5674 prauc=0.3920 thr=0.13 t=11.0s
+2026-04-26 04:46:48,913 - pipeline - INFO -     xgboost              [median         ] acc=0.7441 bacc=0.8458 f1m=0.5210 prauc=0.4964 thr=0.00 t=1.4s
+2026-04-26 04:46:50,780 - pipeline - INFO -     lightgbm             [median         ] acc=0.6891 bacc=0.8284 f1m=0.4887 prauc=0.5140 thr=0.00 t=1.9s
+2026-04-26 04:46:54,762 - pipeline - INFO -     svm                  [median         ] acc=0.7236 bacc=0.8242 f1m=0.5062 prauc=0.2786 thr=0.02 t=4.0s
+2026-04-26 04:46:56,083 - pipeline - INFO -     mlp                  [median         ] acc=0.9304 bacc=0.7553 f1m=0.6540 prauc=0.2497 thr=0.12 t=1.3s
+2026-04-26 04:51:57,789 - pipeline - INFO -     tabpfn               [median         ] acc=0.8336 bacc=0.8591 f1m=0.5810 prauc=0.5547 thr=0.03 t=301.7s
+2026-04-26 04:51:57,790 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:52:09,200 - pipeline - INFO -     tabicl               [median         ] acc=0.8658 bacc=0.8538 f1m=0.6069 prauc=0.4716 thr=0.03 t=11.4s
+2026-04-26 04:52:11,991 - pipeline - INFO -     catboost             [median         ] acc=0.8204 bacc=0.8413 f1m=0.5675 prauc=0.3836 thr=0.00 t=2.8s
+2026-04-26 04:52:22,620 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.6921 bacc=0.7970 f1m=0.4857 prauc=0.3532 thr=0.21 t=0.5s
+2026-04-26 04:52:23,134 - pipeline - INFO -     random_forest        [knn            ] acc=0.7544 bacc=0.8402 f1m=0.5258 prauc=0.3705 thr=0.03 t=0.5s
+2026-04-26 04:52:40,294 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7251 bacc=0.8360 f1m=0.5089 prauc=0.4403 thr=0.07 t=17.2s
+2026-04-26 04:52:41,479 - pipeline - INFO -     xgboost              [knn            ] acc=0.7852 bacc=0.8780 f1m=0.5511 prauc=0.4733 thr=0.00 t=1.2s
+2026-04-26 04:52:43,322 - pipeline - INFO -     lightgbm             [knn            ] acc=0.6562 bacc=0.8223 f1m=0.4710 prauc=0.5308 thr=0.00 t=1.8s
+2026-04-26 04:52:47,121 - pipeline - INFO -     svm                  [knn            ] acc=0.6532 bacc=0.8098 f1m=0.4679 prauc=0.2862 thr=0.02 t=3.8s
+2026-04-26 04:52:48,098 - pipeline - INFO -     mlp                  [knn            ] acc=0.8871 bacc=0.5352 f1m=0.5116 prauc=0.0534 thr=0.12 t=1.0s
+2026-04-26 04:57:49,642 - pipeline - INFO -     tabpfn               [knn            ] acc=0.7361 bacc=0.8417 f1m=0.5158 prauc=0.5240 thr=0.01 t=301.5s
+2026-04-26 04:57:49,643 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 04:58:00,941 - pipeline - INFO -     tabicl               [knn            ] acc=0.8145 bacc=0.8492 f1m=0.5651 prauc=0.4895 thr=0.02 t=11.3s
+2026-04-26 04:58:03,729 - pipeline - INFO -     catboost             [knn            ] acc=0.7918 bacc=0.8595 f1m=0.5519 prauc=0.4592 thr=0.00 t=2.8s
+2026-04-26 04:59:15,555 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7155 bacc=0.8311 f1m=0.5030 prauc=0.2993 thr=0.19 t=0.6s
+2026-04-26 04:59:16,025 - pipeline - INFO -     random_forest        [mice           ] acc=0.8776 bacc=0.8598 f1m=0.6200 prauc=0.4170 thr=0.05 t=0.5s
+2026-04-26 04:59:33,261 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8453 bacc=0.8761 f1m=0.5942 prauc=0.4429 thr=0.10 t=17.2s
+2026-04-26 04:59:34,378 - pipeline - INFO -     xgboost              [mice           ] acc=0.8710 bacc=0.8564 f1m=0.6125 prauc=0.4938 thr=0.00 t=1.1s
+2026-04-26 04:59:36,236 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8006 bacc=0.8530 f1m=0.5564 prauc=0.5136 thr=0.00 t=1.8s
+2026-04-26 04:59:40,355 - pipeline - INFO -     svm                  [mice           ] acc=0.7610 bacc=0.7667 f1m=0.5165 prauc=0.3055 thr=0.02 t=4.1s
+2026-04-26 04:59:41,492 - pipeline - INFO -     mlp                  [mice           ] acc=0.0587 bacc=0.4807 f1m=0.0586 prauc=0.2627 thr=0.00 t=1.1s
+2026-04-26 05:05:06,757 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8614 bacc=0.8625 f1m=0.6050 prauc=0.5556 thr=0.02 t=325.3s
+2026-04-26 05:05:06,757 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:05:18,023 - pipeline - INFO -     tabicl               [mice           ] acc=0.8196 bacc=0.8739 f1m=0.5737 prauc=0.5183 thr=0.01 t=11.3s
+2026-04-26 05:05:20,699 - pipeline - INFO -     catboost             [mice           ] acc=0.7529 bacc=0.8394 f1m=0.5249 prauc=0.4646 thr=0.00 t=2.7s
+2026-04-26 05:06:32,377 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.8996 bacc=0.8163 f1m=0.6321 prauc=0.3080 thr=0.11 t=0.6s
+2026-04-26 05:06:32,837 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8196 bacc=0.8519 f1m=0.5692 prauc=0.4221 thr=0.03 t=0.5s
+2026-04-26 05:06:51,748 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8438 bacc=0.8644 f1m=0.5903 prauc=0.4797 thr=0.11 t=18.9s
+2026-04-26 05:06:53,075 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8644 bacc=0.8640 f1m=0.6081 prauc=0.4997 thr=0.00 t=1.3s
+2026-04-26 05:06:55,079 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7031 bacc=0.8246 f1m=0.4954 prauc=0.5043 thr=0.00 t=2.0s
+2026-04-26 05:06:58,904 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.9274 bacc=0.7977 f1m=0.6655 prauc=0.2925 thr=0.04 t=3.8s
+2026-04-26 05:07:00,104 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.3035 bacc=0.4973 f1m=0.2538 prauc=0.0900 thr=0.05 t=1.2s
+2026-04-26 05:08:17,483 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.7639 bacc=0.8561 f1m=0.5341 prauc=0.5536 thr=0.01 t=77.4s
+2026-04-26 05:08:17,483 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:08:30,212 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8864 bacc=0.8424 f1m=0.6246 prauc=0.5022 thr=0.03 t=12.7s
+2026-04-26 05:08:33,024 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8658 bacc=0.8538 f1m=0.6069 prauc=0.4658 thr=0.01 t=2.8s
+2026-04-26 05:08:34,114 - pipeline - INFO -     xgboost              [none           ] acc=0.9135 bacc=0.8674 f1m=0.6662 prauc=0.5032 thr=0.00 t=1.1s
+2026-04-26 05:08:36,097 - pipeline - INFO -     lightgbm             [none           ] acc=0.8350 bacc=0.8818 f1m=0.5871 prauc=0.5393 thr=0.00 t=2.0s
+2026-04-26 05:12:51,869 - pipeline - INFO -     tabpfn               [none           ] acc=0.8798 bacc=0.8720 f1m=0.6254 prauc=0.5746 thr=0.04 t=255.8s
+2026-04-26 05:12:51,869 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:13:03,164 - pipeline - INFO -     tabicl               [none           ] acc=0.8438 bacc=0.8644 f1m=0.5903 prauc=0.4769 thr=0.02 t=11.3s
+2026-04-26 05:13:05,985 - pipeline - INFO -     catboost             [none           ] acc=0.8622 bacc=0.8739 f1m=0.6084 prauc=0.4034 thr=0.00 t=2.8s
+2026-04-26 05:13:05,985 - pipeline - INFO - [14/19] taiwan_bankruptcy scenario=MNAR_5pct
+2026-04-26 05:13:07,076 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7331 bacc=0.8072 f1m=0.5086 prauc=0.2804 thr=0.19 t=0.6s
+2026-04-26 05:13:07,545 - pipeline - INFO -     random_forest        [mean           ] acc=0.8908 bacc=0.8777 f1m=0.6391 prauc=0.4577 thr=0.05 t=0.5s
+2026-04-26 05:13:23,526 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8035 bacc=0.8545 f1m=0.5586 prauc=0.4560 thr=0.07 t=16.0s
+2026-04-26 05:13:24,713 - pipeline - INFO -     xgboost              [mean           ] acc=0.8878 bacc=0.8542 f1m=0.6294 prauc=0.5379 thr=0.00 t=1.2s
+2026-04-26 05:13:26,559 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8336 bacc=0.8811 f1m=0.5858 prauc=0.6095 thr=0.00 t=1.8s
+2026-04-26 05:13:30,468 - pipeline - INFO -     svm                  [mean           ] acc=0.7757 bacc=0.8731 f1m=0.5442 prauc=0.3243 thr=0.02 t=3.9s
+2026-04-26 05:13:31,449 - pipeline - INFO -     mlp                  [mean           ] acc=0.7727 bacc=0.5640 f1m=0.4792 prauc=0.0505 thr=0.11 t=1.0s
+2026-04-26 05:17:44,530 - pipeline - INFO -     tabpfn               [mean           ] acc=0.9018 bacc=0.8723 f1m=0.6513 prauc=0.5705 thr=0.04 t=253.1s
+2026-04-26 05:17:44,530 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:17:55,974 - pipeline - INFO -     tabicl               [mean           ] acc=0.9025 bacc=0.8617 f1m=0.6493 prauc=0.5671 thr=0.04 t=11.4s
+2026-04-26 05:17:58,760 - pipeline - INFO -     catboost             [mean           ] acc=0.7925 bacc=0.8379 f1m=0.5483 prauc=0.5107 thr=0.00 t=2.8s
+2026-04-26 05:17:59,468 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7346 bacc=0.7970 f1m=0.5077 prauc=0.2875 thr=0.19 t=0.7s
+2026-04-26 05:17:59,963 - pipeline - INFO -     random_forest        [median         ] acc=0.8849 bacc=0.8746 f1m=0.6316 prauc=0.4727 thr=0.05 t=0.5s
+2026-04-26 05:18:15,920 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8387 bacc=0.8727 f1m=0.5880 prauc=0.4024 thr=0.14 t=16.0s
+2026-04-26 05:18:17,180 - pipeline - INFO -     xgboost              [median         ] acc=0.8314 bacc=0.8799 f1m=0.5838 prauc=0.5282 thr=0.00 t=1.3s
+2026-04-26 05:18:19,045 - pipeline - INFO -     lightgbm             [median         ] acc=0.7969 bacc=0.8621 f1m=0.5557 prauc=0.5592 thr=0.00 t=1.9s
+2026-04-26 05:18:22,966 - pipeline - INFO -     svm                  [median         ] acc=0.7779 bacc=0.8633 f1m=0.5438 prauc=0.3267 thr=0.02 t=3.9s
+2026-04-26 05:18:23,977 - pipeline - INFO -     mlp                  [median         ] acc=0.7361 bacc=0.5670 f1m=0.4660 prauc=0.0511 thr=0.10 t=1.0s
+2026-04-26 05:22:35,302 - pipeline - INFO -     tabpfn               [median         ] acc=0.8724 bacc=0.9011 f1m=0.6250 prauc=0.5808 thr=0.03 t=251.3s
+2026-04-26 05:22:35,302 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:22:46,704 - pipeline - INFO -     tabicl               [median         ] acc=0.8812 bacc=0.8617 f1m=0.6243 prauc=0.5590 thr=0.03 t=11.4s
+2026-04-26 05:22:49,504 - pipeline - INFO -     catboost             [median         ] acc=0.8204 bacc=0.8742 f1m=0.5744 prauc=0.5931 thr=0.01 t=2.8s
+2026-04-26 05:22:52,818 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.6921 bacc=0.7860 f1m=0.4841 prauc=0.2677 thr=0.13 t=0.6s
+2026-04-26 05:22:53,267 - pipeline - INFO -     random_forest        [knn            ] acc=0.8966 bacc=0.8587 f1m=0.6410 prauc=0.4717 thr=0.06 t=0.4s
+2026-04-26 05:23:09,925 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8138 bacc=0.8818 f1m=0.5711 prauc=0.4452 thr=0.09 t=16.7s
+2026-04-26 05:23:11,162 - pipeline - INFO -     xgboost              [knn            ] acc=0.8783 bacc=0.8932 f1m=0.6292 prauc=0.5014 thr=0.00 t=1.2s
+2026-04-26 05:23:13,022 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8240 bacc=0.8871 f1m=0.5797 prauc=0.5984 thr=0.00 t=1.9s
+2026-04-26 05:23:16,885 - pipeline - INFO -     svm                  [knn            ] acc=0.7779 bacc=0.8742 f1m=0.5458 prauc=0.3316 thr=0.02 t=3.9s
+2026-04-26 05:23:17,857 - pipeline - INFO -     mlp                  [knn            ] acc=0.7060 bacc=0.5735 f1m=0.4557 prauc=0.0507 thr=0.10 t=1.0s
+2026-04-26 05:27:29,275 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8607 bacc=0.9061 f1m=0.6146 prauc=0.5924 thr=0.02 t=251.4s
+2026-04-26 05:27:29,275 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:27:40,578 - pipeline - INFO -     tabicl               [knn            ] acc=0.7749 bacc=0.8617 f1m=0.5417 prauc=0.5745 thr=0.01 t=11.3s
+2026-04-26 05:27:43,401 - pipeline - INFO -     catboost             [knn            ] acc=0.6796 bacc=0.8345 f1m=0.4846 prauc=0.5004 thr=0.00 t=2.8s
+2026-04-26 05:27:58,689 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.8196 bacc=0.8299 f1m=0.5645 prauc=0.2580 thr=0.35 t=0.6s
+2026-04-26 05:27:59,176 - pipeline - INFO -     random_forest        [mice           ] acc=0.8702 bacc=0.8561 f1m=0.6117 prauc=0.5146 thr=0.04 t=0.5s
+2026-04-26 05:28:15,806 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8189 bacc=0.8735 f1m=0.5731 prauc=0.4851 thr=0.09 t=16.6s
+2026-04-26 05:28:17,012 - pipeline - INFO -     xgboost              [mice           ] acc=0.8358 bacc=0.8712 f1m=0.5854 prauc=0.5365 thr=0.00 t=1.2s
+2026-04-26 05:28:18,858 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8248 bacc=0.8655 f1m=0.5758 prauc=0.5723 thr=0.00 t=1.8s
+2026-04-26 05:28:22,769 - pipeline - INFO -     svm                  [mice           ] acc=0.7801 bacc=0.8754 f1m=0.5474 prauc=0.3279 thr=0.02 t=3.9s
+2026-04-26 05:28:23,760 - pipeline - INFO -     mlp                  [mice           ] acc=0.8622 bacc=0.7420 f1m=0.5738 prauc=0.2084 thr=0.10 t=1.0s
+2026-04-26 05:32:37,434 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8761 bacc=0.8701 f1m=0.6211 prauc=0.6040 thr=0.03 t=253.7s
+2026-04-26 05:32:37,434 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:32:48,650 - pipeline - INFO -     tabicl               [mice           ] acc=0.8556 bacc=0.8814 f1m=0.6042 prauc=0.5490 thr=0.02 t=11.2s
+2026-04-26 05:32:51,355 - pipeline - INFO -     catboost             [mice           ] acc=0.8277 bacc=0.8670 f1m=0.5783 prauc=0.4784 thr=0.01 t=2.7s
+2026-04-26 05:33:06,695 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.9172 bacc=0.8144 f1m=0.6550 prauc=0.2770 thr=0.44 t=0.6s
+2026-04-26 05:33:07,149 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8343 bacc=0.8595 f1m=0.5817 prauc=0.5290 thr=0.03 t=0.4s
+2026-04-26 05:33:24,399 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8123 bacc=0.8701 f1m=0.5677 prauc=0.4963 thr=0.09 t=17.2s
+2026-04-26 05:33:25,607 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8864 bacc=0.8754 f1m=0.6335 prauc=0.5208 thr=0.00 t=1.2s
+2026-04-26 05:33:27,512 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.7221 bacc=0.8345 f1m=0.5070 prauc=0.5360 thr=0.00 t=1.9s
+2026-04-26 05:33:31,310 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8065 bacc=0.8561 f1m=0.5609 prauc=0.3186 thr=0.04 t=3.8s
+2026-04-26 05:33:32,931 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8284 bacc=0.8125 f1m=0.5669 prauc=0.3048 thr=0.02 t=1.6s
+2026-04-26 05:34:49,997 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8343 bacc=0.9144 f1m=0.5933 prauc=0.6001 thr=0.01 t=77.1s
+2026-04-26 05:34:49,997 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:35:02,415 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8541 bacc=0.8807 f1m=0.6027 prauc=0.5343 thr=0.02 t=12.4s
+2026-04-26 05:35:05,214 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.6650 bacc=0.8049 f1m=0.4732 prauc=0.4840 thr=0.00 t=2.8s
+2026-04-26 05:35:06,320 - pipeline - INFO -     xgboost              [none           ] acc=0.9084 bacc=0.8758 f1m=0.6612 prauc=0.5152 thr=0.00 t=1.1s
+2026-04-26 05:35:08,268 - pipeline - INFO -     lightgbm             [none           ] acc=0.8350 bacc=0.8928 f1m=0.5894 prauc=0.5597 thr=0.00 t=1.9s
+2026-04-26 05:39:21,793 - pipeline - INFO -     tabpfn               [none           ] acc=0.7801 bacc=0.8864 f1m=0.5493 prauc=0.5812 thr=0.01 t=253.5s
+2026-04-26 05:39:21,793 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:39:33,192 - pipeline - INFO -     tabicl               [none           ] acc=0.9025 bacc=0.8617 f1m=0.6493 prauc=0.5671 thr=0.04 t=11.4s
+2026-04-26 05:39:36,094 - pipeline - INFO -     catboost             [none           ] acc=0.8776 bacc=0.8708 f1m=0.6228 prauc=0.5674 thr=0.01 t=2.9s
+2026-04-26 05:39:36,094 - pipeline - INFO - [15/19] taiwan_bankruptcy scenario=MNAR_10pct
+2026-04-26 05:39:37,393 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7126 bacc=0.8076 f1m=0.4979 prauc=0.3414 thr=0.17 t=0.6s
+2026-04-26 05:39:37,882 - pipeline - INFO -     random_forest        [mean           ] acc=0.9018 bacc=0.8723 f1m=0.6513 prauc=0.4559 thr=0.06 t=0.5s
+2026-04-26 05:39:53,310 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.7808 bacc=0.8758 f1m=0.5479 prauc=0.3939 thr=0.06 t=15.4s
+2026-04-26 05:39:54,553 - pipeline - INFO -     xgboost              [mean           ] acc=0.8534 bacc=0.8803 f1m=0.6020 prauc=0.5410 thr=0.00 t=1.2s
+2026-04-26 05:39:56,407 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7801 bacc=0.8644 f1m=0.5454 prauc=0.5421 thr=0.00 t=1.8s
+2026-04-26 05:40:00,287 - pipeline - INFO -     svm                  [mean           ] acc=0.7786 bacc=0.8746 f1m=0.5463 prauc=0.3458 thr=0.02 t=3.9s
+2026-04-26 05:40:01,289 - pipeline - INFO -     mlp                  [mean           ] acc=0.8688 bacc=0.7455 f1m=0.5800 prauc=0.2164 thr=0.10 t=1.0s
+2026-04-26 05:44:12,651 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8908 bacc=0.8557 f1m=0.6332 prauc=0.5571 thr=0.03 t=251.4s
+2026-04-26 05:44:12,651 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:44:23,993 - pipeline - INFO -     tabicl               [mean           ] acc=0.9025 bacc=0.8508 f1m=0.6461 prauc=0.5517 thr=0.04 t=11.3s
+2026-04-26 05:44:26,757 - pipeline - INFO -     catboost             [mean           ] acc=0.8952 bacc=0.8909 f1m=0.6480 prauc=0.5073 thr=0.01 t=2.8s
+2026-04-26 05:44:27,467 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7691 bacc=0.8148 f1m=0.5298 prauc=0.2997 thr=0.23 t=0.7s
+2026-04-26 05:44:27,955 - pipeline - INFO -     random_forest        [median         ] acc=0.8827 bacc=0.8735 f1m=0.6289 prauc=0.4545 thr=0.05 t=0.5s
+2026-04-26 05:44:43,327 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7075 bacc=0.8489 f1m=0.5013 prauc=0.4466 thr=0.04 t=15.4s
+2026-04-26 05:44:44,551 - pipeline - INFO -     xgboost              [median         ] acc=0.8710 bacc=0.8894 f1m=0.6207 prauc=0.5291 thr=0.00 t=1.2s
+2026-04-26 05:44:46,408 - pipeline - INFO -     lightgbm             [median         ] acc=0.6496 bacc=0.8189 f1m=0.4672 prauc=0.5369 thr=0.00 t=1.9s
+2026-04-26 05:44:50,464 - pipeline - INFO -     svm                  [median         ] acc=0.7273 bacc=0.8481 f1m=0.5119 prauc=0.3394 thr=0.02 t=4.0s
+2026-04-26 05:44:51,474 - pipeline - INFO -     mlp                  [median         ] acc=0.8930 bacc=0.7470 f1m=0.6025 prauc=0.2121 thr=0.12 t=1.0s
+2026-04-26 05:49:04,409 - pipeline - INFO -     tabpfn               [median         ] acc=0.8908 bacc=0.8667 f1m=0.6362 prauc=0.5569 thr=0.04 t=252.9s
+2026-04-26 05:49:04,409 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:49:15,741 - pipeline - INFO -     tabicl               [median         ] acc=0.9135 bacc=0.8564 f1m=0.6629 prauc=0.5632 thr=0.06 t=11.3s
+2026-04-26 05:49:18,520 - pipeline - INFO -     catboost             [median         ] acc=0.7581 bacc=0.8640 f1m=0.5320 prauc=0.4696 thr=0.00 t=2.8s
+2026-04-26 05:49:23,006 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7346 bacc=0.8189 f1m=0.5113 prauc=0.2949 thr=0.20 t=0.6s
+2026-04-26 05:49:23,495 - pipeline - INFO -     random_forest        [knn            ] acc=0.8556 bacc=0.8705 f1m=0.6017 prauc=0.4551 thr=0.04 t=0.5s
+2026-04-26 05:49:40,133 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7830 bacc=0.8769 f1m=0.5495 prauc=0.4391 thr=0.07 t=16.6s
+2026-04-26 05:49:41,376 - pipeline - INFO -     xgboost              [knn            ] acc=0.8570 bacc=0.8932 f1m=0.6082 prauc=0.5313 thr=0.00 t=1.2s
+2026-04-26 05:49:43,284 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8065 bacc=0.8670 f1m=0.5631 prauc=0.5224 thr=0.00 t=1.9s
+2026-04-26 05:49:47,214 - pipeline - INFO -     svm                  [knn            ] acc=0.7793 bacc=0.8750 f1m=0.5468 prauc=0.3359 thr=0.03 t=3.9s
+2026-04-26 05:49:48,205 - pipeline - INFO -     mlp                  [knn            ] acc=0.8856 bacc=0.7432 f1m=0.5940 prauc=0.2153 thr=0.12 t=1.0s
+2026-04-26 05:53:59,664 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8849 bacc=0.8636 f1m=0.6287 prauc=0.5637 thr=0.04 t=251.5s
+2026-04-26 05:53:59,664 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:54:11,009 - pipeline - INFO -     tabicl               [knn            ] acc=0.8336 bacc=0.8811 f1m=0.5858 prauc=0.5508 thr=0.01 t=11.3s
+2026-04-26 05:54:13,737 - pipeline - INFO -     catboost             [knn            ] acc=0.8006 bacc=0.8640 f1m=0.5585 prauc=0.4511 thr=0.00 t=2.7s
+2026-04-26 05:54:28,367 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7896 bacc=0.8473 f1m=0.5482 prauc=0.3109 thr=0.28 t=0.6s
+2026-04-26 05:54:28,844 - pipeline - INFO -     random_forest        [mice           ] acc=0.8006 bacc=0.8640 f1m=0.5585 prauc=0.5022 thr=0.02 t=0.5s
+2026-04-26 05:54:45,580 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8424 bacc=0.8746 f1m=0.5914 prauc=0.5134 thr=0.11 t=16.7s
+2026-04-26 05:54:46,740 - pipeline - INFO -     xgboost              [mice           ] acc=0.7713 bacc=0.8598 f1m=0.5392 prauc=0.5307 thr=0.00 t=1.2s
+2026-04-26 05:54:48,629 - pipeline - INFO -     lightgbm             [mice           ] acc=0.7801 bacc=0.8864 f1m=0.5493 prauc=0.5216 thr=0.00 t=1.9s
+2026-04-26 05:54:52,526 - pipeline - INFO -     svm                  [mice           ] acc=0.7764 bacc=0.8735 f1m=0.5447 prauc=0.3596 thr=0.02 t=3.9s
+2026-04-26 05:54:53,519 - pipeline - INFO -     mlp                  [mice           ] acc=0.8688 bacc=0.7345 f1m=0.5767 prauc=0.2178 thr=0.10 t=1.0s
+2026-04-26 05:59:06,532 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8944 bacc=0.8686 f1m=0.6410 prauc=0.5876 thr=0.03 t=253.0s
+2026-04-26 05:59:06,532 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 05:59:17,608 - pipeline - INFO -     tabicl               [mice           ] acc=0.8658 bacc=0.8648 f1m=0.6097 prauc=0.5538 thr=0.02 t=11.1s
+2026-04-26 05:59:20,335 - pipeline - INFO -     catboost             [mice           ] acc=0.8490 bacc=0.8670 f1m=0.5952 prauc=0.5571 thr=0.01 t=2.7s
+2026-04-26 05:59:35,061 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.6921 bacc=0.8080 f1m=0.4873 prauc=0.3402 thr=0.01 t=0.6s
+2026-04-26 05:59:35,513 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8350 bacc=0.8598 f1m=0.5823 prauc=0.4727 thr=0.03 t=0.4s
+2026-04-26 05:59:53,126 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7933 bacc=0.8602 f1m=0.5530 prauc=0.4811 thr=0.06 t=17.6s
+2026-04-26 05:59:54,499 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8636 bacc=0.8966 f1m=0.6152 prauc=0.4974 thr=0.00 t=1.4s
+2026-04-26 05:59:56,440 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8226 bacc=0.8754 f1m=0.5762 prauc=0.5037 thr=0.00 t=1.9s
+2026-04-26 06:00:00,104 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.7984 bacc=0.8629 f1m=0.5569 prauc=0.3216 thr=0.02 t=3.6s
+2026-04-26 06:00:01,531 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.2207 bacc=0.5534 f1m=0.1997 prauc=0.3241 thr=0.00 t=1.4s
+2026-04-26 06:01:18,905 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8900 bacc=0.8443 f1m=0.6292 prauc=0.5785 thr=0.03 t=77.4s
+2026-04-26 06:01:18,905 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:01:31,472 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8416 bacc=0.8852 f1m=0.5931 prauc=0.5499 thr=0.02 t=12.6s
+2026-04-26 06:01:34,262 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7500 bacc=0.8489 f1m=0.5248 prauc=0.4933 thr=0.00 t=2.8s
+2026-04-26 06:01:35,319 - pipeline - INFO -     xgboost              [none           ] acc=0.8695 bacc=0.8886 f1m=0.6190 prauc=0.5976 thr=0.00 t=1.0s
+2026-04-26 06:01:37,264 - pipeline - INFO -     lightgbm             [none           ] acc=0.8790 bacc=0.8716 f1m=0.6245 prauc=0.5614 thr=0.00 t=1.9s
+2026-04-26 06:05:50,815 - pipeline - INFO -     tabpfn               [none           ] acc=0.8087 bacc=0.9011 f1m=0.5712 prauc=0.5741 thr=0.01 t=253.5s
+2026-04-26 06:05:50,815 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:06:02,165 - pipeline - INFO -     tabicl               [none           ] acc=0.9025 bacc=0.8508 f1m=0.6461 prauc=0.5517 thr=0.05 t=11.3s
+2026-04-26 06:06:05,010 - pipeline - INFO -     catboost             [none           ] acc=0.8402 bacc=0.8845 f1m=0.5918 prauc=0.5000 thr=0.00 t=2.8s
+2026-04-26 06:06:05,011 - pipeline - INFO - [16/19] taiwan_bankruptcy scenario=MNAR_15pct
+2026-04-26 06:06:06,480 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7427 bacc=0.8121 f1m=0.5146 prauc=0.3412 thr=0.19 t=0.6s
+2026-04-26 06:06:06,947 - pipeline - INFO -     random_forest        [mean           ] acc=0.8871 bacc=0.8538 f1m=0.6285 prauc=0.4522 thr=0.05 t=0.5s
+2026-04-26 06:06:21,667 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.7830 bacc=0.8549 f1m=0.5455 prauc=0.4127 thr=0.05 t=14.7s
+2026-04-26 06:06:22,891 - pipeline - INFO -     xgboost              [mean           ] acc=0.8878 bacc=0.8542 f1m=0.6294 prauc=0.4992 thr=0.00 t=1.2s
+2026-04-26 06:06:24,758 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8688 bacc=0.8883 f1m=0.6182 prauc=0.4951 thr=0.00 t=1.9s
+2026-04-26 06:06:28,553 - pipeline - INFO -     svm                  [mean           ] acc=0.7016 bacc=0.8348 f1m=0.4962 prauc=0.3372 thr=0.02 t=3.8s
+2026-04-26 06:06:29,666 - pipeline - INFO -     mlp                  [mean           ] acc=0.6422 bacc=0.6943 f1m=0.4473 prauc=0.2095 thr=0.03 t=1.1s
+2026-04-26 06:10:42,523 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8922 bacc=0.8784 f1m=0.6411 prauc=0.5596 thr=0.03 t=252.8s
+2026-04-26 06:10:42,523 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:10:53,859 - pipeline - INFO -     tabicl               [mean           ] acc=0.8160 bacc=0.8720 f1m=0.5707 prauc=0.5516 thr=0.01 t=11.3s
+2026-04-26 06:10:56,634 - pipeline - INFO -     catboost             [mean           ] acc=0.8336 bacc=0.8591 f1m=0.5810 prauc=0.3889 thr=0.00 t=2.8s
+2026-04-26 06:10:57,371 - pipeline - INFO -     logistic_regression  [median         ] acc=0.6987 bacc=0.7894 f1m=0.4880 prauc=0.3224 thr=0.11 t=0.7s
+2026-04-26 06:10:57,861 - pipeline - INFO -     random_forest        [median         ] acc=0.7654 bacc=0.8678 f1m=0.5370 prauc=0.4750 thr=0.02 t=0.5s
+2026-04-26 06:11:12,497 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7793 bacc=0.8750 f1m=0.5468 prauc=0.4260 thr=0.07 t=14.6s
+2026-04-26 06:11:13,625 - pipeline - INFO -     xgboost              [median         ] acc=0.8050 bacc=0.8883 f1m=0.5662 prauc=0.5230 thr=0.00 t=1.1s
+2026-04-26 06:11:15,486 - pipeline - INFO -     lightgbm             [median         ] acc=0.7485 bacc=0.8481 f1m=0.5238 prauc=0.4928 thr=0.00 t=1.9s
+2026-04-26 06:11:19,346 - pipeline - INFO -     svm                  [median         ] acc=0.7155 bacc=0.8420 f1m=0.5046 prauc=0.3652 thr=0.02 t=3.8s
+2026-04-26 06:11:20,476 - pipeline - INFO -     mlp                  [median         ] acc=0.6136 bacc=0.6905 f1m=0.4336 prauc=0.2027 thr=0.03 t=1.1s
+2026-04-26 06:15:31,728 - pipeline - INFO -     tabpfn               [median         ] acc=0.8556 bacc=0.8924 f1m=0.6067 prauc=0.5598 thr=0.03 t=251.2s
+2026-04-26 06:15:31,728 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:15:42,928 - pipeline - INFO -     tabicl               [median         ] acc=0.8255 bacc=0.8769 f1m=0.5787 prauc=0.5487 thr=0.01 t=11.2s
+2026-04-26 06:15:45,738 - pipeline - INFO -     catboost             [median         ] acc=0.7163 bacc=0.8314 f1m=0.5034 prauc=0.4745 thr=0.00 t=2.8s
+2026-04-26 06:15:51,196 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.6767 bacc=0.8110 f1m=0.4799 prauc=0.3100 thr=0.13 t=0.6s
+2026-04-26 06:15:51,676 - pipeline - INFO -     random_forest        [knn            ] acc=0.8673 bacc=0.8545 f1m=0.6085 prauc=0.4180 thr=0.05 t=0.5s
+2026-04-26 06:16:08,394 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7192 bacc=0.8330 f1m=0.5052 prauc=0.4059 thr=0.05 t=16.7s
+2026-04-26 06:16:09,532 - pipeline - INFO -     xgboost              [knn            ] acc=0.8226 bacc=0.8864 f1m=0.5785 prauc=0.5031 thr=0.00 t=1.1s
+2026-04-26 06:16:11,343 - pipeline - INFO -     lightgbm             [knn            ] acc=0.7595 bacc=0.8538 f1m=0.5311 prauc=0.5787 thr=0.00 t=1.8s
+2026-04-26 06:16:15,166 - pipeline - INFO -     svm                  [knn            ] acc=0.7001 bacc=0.8341 f1m=0.4953 prauc=0.3393 thr=0.02 t=3.8s
+2026-04-26 06:16:16,186 - pipeline - INFO -     mlp                  [knn            ] acc=0.9076 bacc=0.7216 f1m=0.6091 prauc=0.2062 thr=0.13 t=1.0s
+2026-04-26 06:20:28,798 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8754 bacc=0.8697 f1m=0.6202 prauc=0.5663 thr=0.03 t=252.6s
+2026-04-26 06:20:28,798 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:20:40,072 - pipeline - INFO -     tabicl               [knn            ] acc=0.8908 bacc=0.8667 f1m=0.6362 prauc=0.5626 thr=0.03 t=11.3s
+2026-04-26 06:20:42,829 - pipeline - INFO -     catboost             [knn            ] acc=0.6496 bacc=0.8189 f1m=0.4672 prauc=0.4214 thr=0.00 t=2.8s
+2026-04-26 06:20:59,709 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7808 bacc=0.8098 f1m=0.5357 prauc=0.2849 thr=0.23 t=0.6s
+2026-04-26 06:21:00,192 - pipeline - INFO -     random_forest        [mice           ] acc=0.8966 bacc=0.8697 f1m=0.6440 prauc=0.4326 thr=0.06 t=0.5s
+2026-04-26 06:21:17,043 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.7889 bacc=0.8909 f1m=0.5558 prauc=0.4988 thr=0.07 t=16.8s
+2026-04-26 06:21:18,229 - pipeline - INFO -     xgboost              [mice           ] acc=0.8805 bacc=0.8614 f1m=0.6234 prauc=0.5361 thr=0.00 t=1.2s
+2026-04-26 06:21:20,090 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8211 bacc=0.8636 f1m=0.5727 prauc=0.5361 thr=0.00 t=1.9s
+2026-04-26 06:21:23,953 - pipeline - INFO -     svm                  [mice           ] acc=0.7837 bacc=0.8553 f1m=0.5460 prauc=0.3430 thr=0.02 t=3.9s
+2026-04-26 06:21:24,951 - pipeline - INFO -     mlp                  [mice           ] acc=0.8688 bacc=0.7345 f1m=0.5767 prauc=0.2131 thr=0.10 t=1.0s
+2026-04-26 06:25:38,773 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8856 bacc=0.8750 f1m=0.6325 prauc=0.5557 thr=0.03 t=253.8s
+2026-04-26 06:25:38,773 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:25:49,898 - pipeline - INFO -     tabicl               [mice           ] acc=0.8658 bacc=0.8538 f1m=0.6069 prauc=0.5494 thr=0.02 t=11.1s
+2026-04-26 06:25:52,607 - pipeline - INFO -     catboost             [mice           ] acc=0.8358 bacc=0.8273 f1m=0.5756 prauc=0.4761 thr=0.01 t=2.7s
+2026-04-26 06:26:09,484 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.9194 bacc=0.7826 f1m=0.6472 prauc=0.2860 thr=0.28 t=0.6s
+2026-04-26 06:26:09,933 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8578 bacc=0.8606 f1m=0.6013 prauc=0.4424 thr=0.04 t=0.4s
+2026-04-26 06:26:27,780 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.7537 bacc=0.8727 f1m=0.5309 prauc=0.4408 thr=0.04 t=17.8s
+2026-04-26 06:26:29,021 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8922 bacc=0.8784 f1m=0.6411 prauc=0.5362 thr=0.00 t=1.2s
+2026-04-26 06:26:30,916 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8431 bacc=0.8750 f1m=0.5921 prauc=0.5048 thr=0.00 t=1.9s
+2026-04-26 06:26:34,583 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8944 bacc=0.8576 f1m=0.6380 prauc=0.3193 thr=0.04 t=3.6s
+2026-04-26 06:26:36,253 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.5609 bacc=0.7072 f1m=0.4104 prauc=0.3116 thr=0.00 t=1.7s
+2026-04-26 06:27:53,481 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8306 bacc=0.8905 f1m=0.5855 prauc=0.5571 thr=0.01 t=77.2s
+2026-04-26 06:27:53,481 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:28:06,128 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8702 bacc=0.8561 f1m=0.6117 prauc=0.5231 thr=0.02 t=12.6s
+2026-04-26 06:28:08,941 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8028 bacc=0.8542 f1m=0.5581 prauc=0.4424 thr=0.00 t=2.8s
+2026-04-26 06:28:10,053 - pipeline - INFO -     xgboost              [none           ] acc=0.8585 bacc=0.8720 f1m=0.6046 prauc=0.5081 thr=0.00 t=1.1s
+2026-04-26 06:28:12,068 - pipeline - INFO -     lightgbm             [none           ] acc=0.8541 bacc=0.9027 f1m=0.6077 prauc=0.5207 thr=0.00 t=2.0s
+2026-04-26 06:32:25,375 - pipeline - INFO -     tabpfn               [none           ] acc=0.7896 bacc=0.8913 f1m=0.5563 prauc=0.5781 thr=0.01 t=253.3s
+2026-04-26 06:32:25,375 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:32:37,060 - pipeline - INFO -     tabicl               [none           ] acc=0.8856 bacc=0.8640 f1m=0.6296 prauc=0.5516 thr=0.04 t=11.7s
+2026-04-26 06:32:39,916 - pipeline - INFO -     catboost             [none           ] acc=0.7603 bacc=0.8432 f1m=0.5297 prauc=0.3917 thr=0.00 t=2.9s
+2026-04-26 06:32:39,917 - pipeline - INFO - [17/19] taiwan_bankruptcy scenario=MNAR_20pct
+2026-04-26 06:32:41,603 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.8013 bacc=0.8314 f1m=0.5526 prauc=0.3008 thr=0.31 t=0.6s
+2026-04-26 06:32:42,057 - pipeline - INFO -     random_forest        [mean           ] acc=0.8592 bacc=0.8723 f1m=0.6054 prauc=0.4208 thr=0.04 t=0.4s
+2026-04-26 06:32:56,067 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8644 bacc=0.8860 f1m=0.6134 prauc=0.4384 thr=0.14 t=14.0s
+2026-04-26 06:32:57,202 - pipeline - INFO -     xgboost              [mean           ] acc=0.9157 bacc=0.8686 f1m=0.6699 prauc=0.5245 thr=0.00 t=1.1s
+2026-04-26 06:32:59,028 - pipeline - INFO -     lightgbm             [mean           ] acc=0.7676 bacc=0.8580 f1m=0.5366 prauc=0.5614 thr=0.00 t=1.8s
+2026-04-26 06:33:02,785 - pipeline - INFO -     svm                  [mean           ] acc=0.8057 bacc=0.8117 f1m=0.5514 prauc=0.3334 thr=0.03 t=3.7s
+2026-04-26 06:33:03,801 - pipeline - INFO -     mlp                  [mean           ] acc=0.9582 bacc=0.6269 f1m=0.6374 prauc=0.2093 thr=0.28 t=1.0s
+2026-04-26 06:37:15,124 - pipeline - INFO -     tabpfn               [mean           ] acc=0.9032 bacc=0.8511 f1m=0.6471 prauc=0.5387 thr=0.04 t=251.3s
+2026-04-26 06:37:15,125 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:37:26,520 - pipeline - INFO -     tabicl               [mean           ] acc=0.8871 bacc=0.8538 f1m=0.6285 prauc=0.5342 thr=0.04 t=11.4s
+2026-04-26 06:37:29,322 - pipeline - INFO -     catboost             [mean           ] acc=0.8842 bacc=0.8633 f1m=0.6278 prauc=0.5060 thr=0.01 t=2.8s
+2026-04-26 06:37:30,062 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7881 bacc=0.8356 f1m=0.5451 prauc=0.2881 thr=0.21 t=0.7s
+2026-04-26 06:37:30,545 - pipeline - INFO -     random_forest        [median         ] acc=0.8754 bacc=0.8807 f1m=0.6230 prauc=0.4560 thr=0.05 t=0.5s
+2026-04-26 06:37:44,510 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.7449 bacc=0.8572 f1m=0.5232 prauc=0.4612 thr=0.05 t=14.0s
+2026-04-26 06:37:45,724 - pipeline - INFO -     xgboost              [median         ] acc=0.8922 bacc=0.9114 f1m=0.6496 prauc=0.5320 thr=0.00 t=1.2s
+2026-04-26 06:37:47,586 - pipeline - INFO -     lightgbm             [median         ] acc=0.7456 bacc=0.8576 f1m=0.5237 prauc=0.5649 thr=0.00 t=1.9s
+2026-04-26 06:37:51,439 - pipeline - INFO -     svm                  [median         ] acc=0.7933 bacc=0.8712 f1m=0.5551 prauc=0.3311 thr=0.02 t=3.8s
+2026-04-26 06:37:52,454 - pipeline - INFO -     mlp                  [median         ] acc=0.9560 bacc=0.6697 f1m=0.6625 prauc=0.2070 thr=0.26 t=1.0s
+2026-04-26 06:42:06,353 - pipeline - INFO -     tabpfn               [median         ] acc=0.8534 bacc=0.8913 f1m=0.6045 prauc=0.5229 thr=0.03 t=253.9s
+2026-04-26 06:42:06,353 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:42:17,674 - pipeline - INFO -     tabicl               [median         ] acc=0.8380 bacc=0.8614 f1m=0.5849 prauc=0.5263 thr=0.02 t=11.3s
+2026-04-26 06:42:20,430 - pipeline - INFO -     catboost             [median         ] acc=0.8299 bacc=0.8462 f1m=0.5754 prauc=0.5107 thr=0.00 t=2.7s
+2026-04-26 06:42:26,755 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7881 bacc=0.8246 f1m=0.5430 prauc=0.2596 thr=0.28 t=0.6s
+2026-04-26 06:42:27,236 - pipeline - INFO -     random_forest        [knn            ] acc=0.8739 bacc=0.8580 f1m=0.6158 prauc=0.4264 thr=0.06 t=0.5s
+2026-04-26 06:42:43,990 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7016 bacc=0.8458 f1m=0.4978 prauc=0.4322 thr=0.04 t=16.7s
+2026-04-26 06:42:45,216 - pipeline - INFO -     xgboost              [knn            ] acc=0.8365 bacc=0.8716 f1m=0.5860 prauc=0.5345 thr=0.00 t=1.2s
+2026-04-26 06:42:47,071 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8248 bacc=0.8765 f1m=0.5781 prauc=0.5687 thr=0.00 t=1.8s
+2026-04-26 06:42:50,801 - pipeline - INFO -     svm                  [knn            ] acc=0.7419 bacc=0.8447 f1m=0.5195 prauc=0.2946 thr=0.02 t=3.7s
+2026-04-26 06:42:51,793 - pipeline - INFO -     mlp                  [knn            ] acc=0.9399 bacc=0.6943 f1m=0.6426 prauc=0.2028 thr=0.20 t=1.0s
+2026-04-26 06:47:03,191 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8820 bacc=0.8621 f1m=0.6252 prauc=0.5290 thr=0.03 t=251.4s
+2026-04-26 06:47:03,191 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:47:14,488 - pipeline - INFO -     tabicl               [knn            ] acc=0.8651 bacc=0.8644 f1m=0.6089 prauc=0.5655 thr=0.03 t=11.3s
+2026-04-26 06:47:17,249 - pipeline - INFO -     catboost             [knn            ] acc=0.7603 bacc=0.8432 f1m=0.5297 prauc=0.5457 thr=0.00 t=2.8s
+2026-04-26 06:47:36,745 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7867 bacc=0.8239 f1m=0.5419 prauc=0.3213 thr=0.25 t=0.6s
+2026-04-26 06:47:37,232 - pipeline - INFO -     random_forest        [mice           ] acc=0.8871 bacc=0.8538 f1m=0.6285 prauc=0.4504 thr=0.05 t=0.5s
+2026-04-26 06:47:54,118 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8512 bacc=0.8792 f1m=0.5998 prauc=0.4874 thr=0.11 t=16.9s
+2026-04-26 06:47:55,331 - pipeline - INFO -     xgboost              [mice           ] acc=0.8372 bacc=0.8610 f1m=0.5843 prauc=0.5201 thr=0.00 t=1.2s
+2026-04-26 06:47:57,211 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8453 bacc=0.8871 f1m=0.5966 prauc=0.5043 thr=0.00 t=1.9s
+2026-04-26 06:48:01,086 - pipeline - INFO -     svm                  [mice           ] acc=0.7962 bacc=0.7958 f1m=0.5422 prauc=0.3326 thr=0.02 t=3.9s
+2026-04-26 06:48:02,168 - pipeline - INFO -     mlp                  [mice           ] acc=0.0587 bacc=0.4807 f1m=0.0586 prauc=0.2984 thr=0.00 t=1.1s
+2026-04-26 06:52:13,845 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8321 bacc=0.8913 f1m=0.5868 prauc=0.5582 thr=0.01 t=251.7s
+2026-04-26 06:52:13,845 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:52:25,187 - pipeline - INFO -     tabicl               [mice           ] acc=0.8526 bacc=0.8689 f1m=0.5987 prauc=0.5420 thr=0.02 t=11.3s
+2026-04-26 06:52:27,910 - pipeline - INFO -     catboost             [mice           ] acc=0.8409 bacc=0.8629 f1m=0.5876 prauc=0.5491 thr=0.01 t=2.7s
+2026-04-26 06:52:47,073 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.7207 bacc=0.7898 f1m=0.4993 prauc=0.3211 thr=0.01 t=0.6s
+2026-04-26 06:52:47,526 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8754 bacc=0.8477 f1m=0.6146 prauc=0.4247 thr=0.05 t=0.4s
+2026-04-26 06:53:05,583 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8585 bacc=0.8720 f1m=0.6046 prauc=0.4677 thr=0.12 t=18.1s
+2026-04-26 06:53:06,905 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8607 bacc=0.8731 f1m=0.6069 prauc=0.4850 thr=0.00 t=1.3s
+2026-04-26 06:53:08,831 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8702 bacc=0.8670 f1m=0.6144 prauc=0.5244 thr=0.00 t=1.9s
+2026-04-26 06:53:12,571 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8248 bacc=0.8655 f1m=0.5758 prauc=0.3296 thr=0.02 t=3.7s
+2026-04-26 06:53:14,051 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.9289 bacc=0.7765 f1m=0.6600 prauc=0.3255 thr=0.03 t=1.5s
+2026-04-26 06:54:31,749 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8189 bacc=0.8625 f1m=0.5709 prauc=0.5275 thr=0.01 t=77.7s
+2026-04-26 06:54:31,750 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:54:44,501 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8658 bacc=0.8538 f1m=0.6069 prauc=0.5146 thr=0.02 t=12.7s
+2026-04-26 06:54:47,303 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.6877 bacc=0.8277 f1m=0.4879 prauc=0.5440 thr=0.00 t=2.8s
+2026-04-26 06:54:48,362 - pipeline - INFO -     xgboost              [none           ] acc=0.9157 bacc=0.8686 f1m=0.6699 prauc=0.5303 thr=0.00 t=1.0s
+2026-04-26 06:54:50,320 - pipeline - INFO -     lightgbm             [none           ] acc=0.8864 bacc=0.8754 f1m=0.6335 prauc=0.5047 thr=0.00 t=2.0s
+2026-04-26 06:59:06,680 - pipeline - INFO -     tabpfn               [none           ] acc=0.7889 bacc=0.8909 f1m=0.5558 prauc=0.5399 thr=0.01 t=256.4s
+2026-04-26 06:59:06,680 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 06:59:17,961 - pipeline - INFO -     tabicl               [none           ] acc=0.7874 bacc=0.8682 f1m=0.5507 prauc=0.5342 thr=0.01 t=11.3s
+2026-04-26 06:59:20,805 - pipeline - INFO -     catboost             [none           ] acc=0.8695 bacc=0.8557 f1m=0.6109 prauc=0.4404 thr=0.00 t=2.8s
+2026-04-26 06:59:20,805 - pipeline - INFO - [18/19] taiwan_bankruptcy scenario=MNAR_30pct
+2026-04-26 06:59:22,788 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7639 bacc=0.8451 f1m=0.5322 prauc=0.3399 thr=0.25 t=0.6s
+2026-04-26 06:59:23,238 - pipeline - INFO -     random_forest        [mean           ] acc=0.8915 bacc=0.8561 f1m=0.6341 prauc=0.4867 thr=0.05 t=0.4s
+2026-04-26 06:59:35,789 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8893 bacc=0.8549 f1m=0.6313 prauc=0.4625 thr=0.18 t=12.5s
+2026-04-26 06:59:36,944 - pipeline - INFO -     xgboost              [mean           ] acc=0.8673 bacc=0.8985 f1m=0.6192 prauc=0.5068 thr=0.00 t=1.1s
+2026-04-26 06:59:38,809 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8050 bacc=0.8553 f1m=0.5598 prauc=0.5789 thr=0.00 t=1.9s
+2026-04-26 06:59:42,769 - pipeline - INFO -     svm                  [mean           ] acc=0.7500 bacc=0.8379 f1m=0.5230 prauc=0.3043 thr=0.02 t=3.9s
+2026-04-26 06:59:43,760 - pipeline - INFO -     mlp                  [mean           ] acc=0.9582 bacc=0.5170 f1m=0.5221 prauc=0.0625 thr=0.19 t=1.0s
+2026-04-26 07:03:56,442 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8658 bacc=0.8867 f1m=0.6150 prauc=0.5334 thr=0.02 t=252.7s
+2026-04-26 07:03:56,442 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:04:07,794 - pipeline - INFO -     tabicl               [mean           ] acc=0.8878 bacc=0.8542 f1m=0.6294 prauc=0.5303 thr=0.04 t=11.3s
+2026-04-26 07:04:10,556 - pipeline - INFO -     catboost             [mean           ] acc=0.8864 bacc=0.8754 f1m=0.6335 prauc=0.4348 thr=0.01 t=2.8s
+2026-04-26 07:04:11,227 - pipeline - INFO -     logistic_regression  [median         ] acc=0.7639 bacc=0.8341 f1m=0.5303 prauc=0.3718 thr=0.15 t=0.6s
+2026-04-26 07:04:11,710 - pipeline - INFO -     random_forest        [median         ] acc=0.8424 bacc=0.8527 f1m=0.5865 prauc=0.4708 thr=0.04 t=0.5s
+2026-04-26 07:04:24,277 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8446 bacc=0.8867 f1m=0.5959 prauc=0.4640 thr=0.17 t=12.6s
+2026-04-26 07:04:25,414 - pipeline - INFO -     xgboost              [median         ] acc=0.8908 bacc=0.8447 f1m=0.6301 prauc=0.5685 thr=0.01 t=1.1s
+2026-04-26 07:04:27,260 - pipeline - INFO -     lightgbm             [median         ] acc=0.7537 bacc=0.8617 f1m=0.5290 prauc=0.5988 thr=0.00 t=1.8s
+2026-04-26 07:04:31,240 - pipeline - INFO -     svm                  [median         ] acc=0.7896 bacc=0.8364 f1m=0.5461 prauc=0.2843 thr=0.03 t=4.0s
+2026-04-26 07:04:32,238 - pipeline - INFO -     mlp                  [median         ] acc=0.7170 bacc=0.5792 f1m=0.4610 prauc=0.0559 thr=0.08 t=1.0s
+2026-04-26 07:08:44,702 - pipeline - INFO -     tabpfn               [median         ] acc=0.8460 bacc=0.8875 f1m=0.5973 prauc=0.5656 thr=0.03 t=252.5s
+2026-04-26 07:08:44,703 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:08:56,004 - pipeline - INFO -     tabicl               [median         ] acc=0.8783 bacc=0.8602 f1m=0.6208 prauc=0.5308 thr=0.03 t=11.3s
+2026-04-26 07:08:58,755 - pipeline - INFO -     catboost             [median         ] acc=0.8497 bacc=0.8455 f1m=0.5908 prauc=0.4909 thr=0.01 t=2.7s
+2026-04-26 07:09:07,446 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7771 bacc=0.8299 f1m=0.5373 prauc=0.3782 thr=0.30 t=0.5s
+2026-04-26 07:09:07,937 - pipeline - INFO -     random_forest        [knn            ] acc=0.8556 bacc=0.8814 f1m=0.6042 prauc=0.4101 thr=0.05 t=0.5s
+2026-04-26 07:09:25,021 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.7493 bacc=0.8485 f1m=0.5243 prauc=0.4266 thr=0.06 t=17.1s
+2026-04-26 07:09:26,146 - pipeline - INFO -     xgboost              [knn            ] acc=0.8658 bacc=0.8867 f1m=0.6150 prauc=0.4908 thr=0.00 t=1.1s
+2026-04-26 07:09:28,006 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8065 bacc=0.8670 f1m=0.5631 prauc=0.5619 thr=0.00 t=1.9s
+2026-04-26 07:09:31,970 - pipeline - INFO -     svm                  [knn            ] acc=0.8028 bacc=0.7773 f1m=0.5423 prauc=0.2519 thr=0.03 t=4.0s
+2026-04-26 07:09:32,945 - pipeline - INFO -     mlp                  [knn            ] acc=0.8079 bacc=0.5712 f1m=0.4945 prauc=0.0578 thr=0.10 t=1.0s
+2026-04-26 07:13:45,550 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8585 bacc=0.8610 f1m=0.6020 prauc=0.5065 thr=0.03 t=252.6s
+2026-04-26 07:13:45,550 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:13:56,795 - pipeline - INFO -     tabicl               [knn            ] acc=0.8871 bacc=0.8648 f1m=0.6315 prauc=0.5242 thr=0.05 t=11.2s
+2026-04-26 07:13:59,586 - pipeline - INFO -     catboost             [knn            ] acc=0.8409 bacc=0.8629 f1m=0.5876 prauc=0.4998 thr=0.01 t=2.8s
+2026-04-26 07:14:35,360 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7463 bacc=0.8030 f1m=0.5150 prauc=0.2822 thr=0.19 t=0.6s
+2026-04-26 07:14:35,833 - pipeline - INFO -     random_forest        [mice           ] acc=0.8658 bacc=0.8538 f1m=0.6069 prauc=0.3959 thr=0.04 t=0.5s
+2026-04-26 07:14:52,796 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.8189 bacc=0.8735 f1m=0.5731 prauc=0.3798 thr=0.08 t=17.0s
+2026-04-26 07:14:54,097 - pipeline - INFO -     xgboost              [mice           ] acc=0.8754 bacc=0.8697 f1m=0.6202 prauc=0.5104 thr=0.00 t=1.3s
+2026-04-26 07:14:55,977 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8094 bacc=0.8576 f1m=0.5632 prauc=0.4876 thr=0.00 t=1.9s
+2026-04-26 07:14:59,957 - pipeline - INFO -     svm                  [mice           ] acc=0.7889 bacc=0.7701 f1m=0.5326 prauc=0.2847 thr=0.02 t=4.0s
+2026-04-26 07:15:00,939 - pipeline - INFO -     mlp                  [mice           ] acc=0.6943 bacc=0.5784 f1m=0.4520 prauc=0.0418 thr=0.09 t=1.0s
+2026-04-26 07:19:13,480 - pipeline - INFO -     tabpfn               [mice           ] acc=0.8886 bacc=0.8655 f1m=0.6333 prauc=0.5100 thr=0.03 t=252.5s
+2026-04-26 07:19:13,480 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:19:24,748 - pipeline - INFO -     tabicl               [mice           ] acc=0.8270 bacc=0.8557 f1m=0.5753 prauc=0.5163 thr=0.01 t=11.3s
+2026-04-26 07:19:27,502 - pipeline - INFO -     catboost             [mice           ] acc=0.7808 bacc=0.8428 f1m=0.5419 prauc=0.4251 thr=0.00 t=2.7s
+2026-04-26 07:20:03,555 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.8607 bacc=0.8292 f1m=0.5961 prauc=0.2942 thr=0.05 t=0.6s
+2026-04-26 07:20:04,022 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8974 bacc=0.8701 f1m=0.6451 prauc=0.4261 thr=0.07 t=0.5s
+2026-04-26 07:20:22,395 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8431 bacc=0.8640 f1m=0.5896 prauc=0.3819 thr=0.10 t=18.4s
+2026-04-26 07:20:23,598 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8981 bacc=0.8705 f1m=0.6461 prauc=0.4400 thr=0.00 t=1.2s
+2026-04-26 07:20:25,511 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8666 bacc=0.8542 f1m=0.6077 prauc=0.4966 thr=0.00 t=1.9s
+2026-04-26 07:20:29,215 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.8900 bacc=0.8553 f1m=0.6322 prauc=0.3118 thr=0.04 t=3.7s
+2026-04-26 07:20:30,707 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8446 bacc=0.7879 f1m=0.5727 prauc=0.3174 thr=0.03 t=1.5s
+2026-04-26 07:21:48,200 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.9179 bacc=0.8587 f1m=0.6703 prauc=0.5150 thr=0.05 t=77.5s
+2026-04-26 07:21:48,200 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:22:00,958 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8255 bacc=0.8439 f1m=0.5717 prauc=0.5053 thr=0.01 t=12.8s
+2026-04-26 07:22:03,777 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.7962 bacc=0.8508 f1m=0.5531 prauc=0.4675 thr=0.00 t=2.8s
+2026-04-26 07:22:04,874 - pipeline - INFO -     xgboost              [none           ] acc=0.9142 bacc=0.8788 f1m=0.6707 prauc=0.5256 thr=0.00 t=1.1s
+2026-04-26 07:22:06,858 - pipeline - INFO -     lightgbm             [none           ] acc=0.8563 bacc=0.8598 f1m=0.5998 prauc=0.5301 thr=0.00 t=2.0s
+2026-04-26 07:26:21,679 - pipeline - INFO -     tabpfn               [none           ] acc=0.8644 bacc=0.8860 f1m=0.6134 prauc=0.5695 thr=0.03 t=254.8s
+2026-04-26 07:26:21,679 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:26:33,003 - pipeline - INFO -     tabicl               [none           ] acc=0.8856 bacc=0.8640 f1m=0.6296 prauc=0.5303 thr=0.03 t=11.3s
+2026-04-26 07:26:35,866 - pipeline - INFO -     catboost             [none           ] acc=0.8600 bacc=0.8617 f1m=0.6035 prauc=0.4378 thr=0.00 t=2.9s
+2026-04-26 07:26:35,866 - pipeline - INFO - [19/19] taiwan_bankruptcy scenario=MNAR_40pct
+2026-04-26 07:26:38,222 - pipeline - INFO -     logistic_regression  [mean           ] acc=0.7346 bacc=0.8080 f1m=0.5095 prauc=0.3437 thr=0.16 t=0.6s
+2026-04-26 07:26:38,671 - pipeline - INFO -     random_forest        [mean           ] acc=0.9282 bacc=0.8201 f1m=0.6747 prauc=0.4466 thr=0.06 t=0.4s
+2026-04-26 07:26:49,602 - pipeline - INFO -     gradient_boosting    [mean           ] acc=0.8900 bacc=0.8443 f1m=0.6292 prauc=0.4430 thr=0.12 t=10.9s
+2026-04-26 07:26:50,778 - pipeline - INFO -     xgboost              [mean           ] acc=0.8827 bacc=0.8625 f1m=0.6260 prauc=0.5321 thr=0.00 t=1.2s
+2026-04-26 07:26:52,635 - pipeline - INFO -     lightgbm             [mean           ] acc=0.8644 bacc=0.8640 f1m=0.6081 prauc=0.5280 thr=0.00 t=1.8s
+2026-04-26 07:26:56,871 - pipeline - INFO -     svm                  [mean           ] acc=0.7537 bacc=0.8288 f1m=0.5235 prauc=0.3273 thr=0.02 t=4.2s
+2026-04-26 07:26:57,868 - pipeline - INFO -     mlp                  [mean           ] acc=0.9655 bacc=0.4989 f1m=0.4912 prauc=0.0769 thr=0.24 t=1.0s
+2026-04-26 07:31:09,775 - pipeline - INFO -     tabpfn               [mean           ] acc=0.8724 bacc=0.8682 f1m=0.6169 prauc=0.4986 thr=0.02 t=251.9s
+2026-04-26 07:31:09,775 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:31:20,431 - pipeline - INFO -     tabicl               [mean           ] acc=0.8834 bacc=0.8739 f1m=0.6298 prauc=0.4944 thr=0.03 t=10.6s
+2026-04-26 07:31:23,157 - pipeline - INFO -     catboost             [mean           ] acc=0.8915 bacc=0.8670 f1m=0.6371 prauc=0.4372 thr=0.00 t=2.7s
+2026-04-26 07:31:23,855 - pipeline - INFO -     logistic_regression  [median         ] acc=0.9135 bacc=0.8125 f1m=0.6491 prauc=0.3555 thr=0.71 t=0.6s
+2026-04-26 07:31:24,307 - pipeline - INFO -     random_forest        [median         ] acc=0.9084 bacc=0.8867 f1m=0.6643 prauc=0.4726 thr=0.06 t=0.4s
+2026-04-26 07:31:35,213 - pipeline - INFO -     gradient_boosting    [median         ] acc=0.8526 bacc=0.8909 f1m=0.6038 prauc=0.4799 thr=0.15 t=10.9s
+2026-04-26 07:31:36,655 - pipeline - INFO -     xgboost              [median         ] acc=0.8299 bacc=0.8792 f1m=0.5825 prauc=0.4632 thr=0.00 t=1.4s
+2026-04-26 07:31:38,533 - pipeline - INFO -     lightgbm             [median         ] acc=0.7999 bacc=0.8636 f1m=0.5580 prauc=0.5714 thr=0.00 t=1.9s
+2026-04-26 07:31:42,665 - pipeline - INFO -     svm                  [median         ] acc=0.8211 bacc=0.8527 f1m=0.5704 prauc=0.3456 thr=0.03 t=4.1s
+2026-04-26 07:31:43,652 - pipeline - INFO -     mlp                  [median         ] acc=0.9655 bacc=0.4989 f1m=0.4912 prauc=0.0717 thr=0.25 t=1.0s
+2026-04-26 07:35:55,100 - pipeline - INFO -     tabpfn               [median         ] acc=0.8930 bacc=0.8568 f1m=0.6361 prauc=0.4849 thr=0.04 t=251.4s
+2026-04-26 07:35:55,100 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:36:05,941 - pipeline - INFO -     tabicl               [median         ] acc=0.8343 bacc=0.8595 f1m=0.5817 prauc=0.4884 thr=0.02 t=10.8s
+2026-04-26 07:36:08,690 - pipeline - INFO -     catboost             [median         ] acc=0.9326 bacc=0.8114 f1m=0.6795 prauc=0.4755 thr=0.03 t=2.7s
+2026-04-26 07:36:19,875 - pipeline - INFO -     logistic_regression  [knn            ] acc=0.7229 bacc=0.8019 f1m=0.5023 prauc=0.3222 thr=0.16 t=0.6s
+2026-04-26 07:36:20,397 - pipeline - INFO -     random_forest        [knn            ] acc=0.8768 bacc=0.8705 f1m=0.6219 prauc=0.3870 thr=0.06 t=0.5s
+2026-04-26 07:36:37,328 - pipeline - INFO -     gradient_boosting    [knn            ] acc=0.8438 bacc=0.8644 f1m=0.5903 prauc=0.3779 thr=0.18 t=16.9s
+2026-04-26 07:36:38,568 - pipeline - INFO -     xgboost              [knn            ] acc=0.8438 bacc=0.8424 f1m=0.5853 prauc=0.4804 thr=0.00 t=1.2s
+2026-04-26 07:36:40,451 - pipeline - INFO -     lightgbm             [knn            ] acc=0.8526 bacc=0.8689 f1m=0.5987 prauc=0.5510 thr=0.00 t=1.9s
+2026-04-26 07:36:44,453 - pipeline - INFO -     svm                  [knn            ] acc=0.6921 bacc=0.7970 f1m=0.4857 prauc=0.3250 thr=0.02 t=4.0s
+2026-04-26 07:36:45,427 - pipeline - INFO -     mlp                  [knn            ] acc=0.9531 bacc=0.5364 f1m=0.5435 prauc=0.0693 thr=0.18 t=1.0s
+2026-04-26 07:40:56,789 - pipeline - INFO -     tabpfn               [knn            ] acc=0.8658 bacc=0.8758 f1m=0.6123 prauc=0.5084 thr=0.04 t=251.4s
+2026-04-26 07:40:56,789 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:41:07,551 - pipeline - INFO -     tabicl               [knn            ] acc=0.8453 bacc=0.8761 f1m=0.5942 prauc=0.5051 thr=0.03 t=10.8s
+2026-04-26 07:41:10,262 - pipeline - INFO -     catboost             [knn            ] acc=0.8130 bacc=0.8595 f1m=0.5661 prauc=0.4527 thr=0.01 t=2.7s
+2026-04-26 07:42:22,192 - pipeline - INFO -     logistic_regression  [mice           ] acc=0.7361 bacc=0.8087 f1m=0.5104 prauc=0.3117 thr=0.17 t=0.6s
+2026-04-26 07:42:22,675 - pipeline - INFO -     random_forest        [mice           ] acc=0.8592 bacc=0.8504 f1m=0.6001 prauc=0.4049 thr=0.04 t=0.5s
+2026-04-26 07:42:39,718 - pipeline - INFO -     gradient_boosting    [mice           ] acc=0.7676 bacc=0.8470 f1m=0.5347 prauc=0.4775 thr=0.05 t=17.0s
+2026-04-26 07:42:40,897 - pipeline - INFO -     xgboost              [mice           ] acc=0.9208 bacc=0.8602 f1m=0.6755 prauc=0.4133 thr=0.00 t=1.2s
+2026-04-26 07:42:42,752 - pipeline - INFO -     lightgbm             [mice           ] acc=0.8233 bacc=0.8758 f1m=0.5768 prauc=0.4691 thr=0.00 t=1.8s
+2026-04-26 07:42:46,896 - pipeline - INFO -     svm                  [mice           ] acc=0.7625 bacc=0.8333 f1m=0.5293 prauc=0.2934 thr=0.02 t=4.1s
+2026-04-26 07:42:47,883 - pipeline - INFO -     mlp                  [mice           ] acc=0.9076 bacc=0.5129 f1m=0.5056 prauc=0.0438 thr=0.16 t=1.0s
+2026-04-26 07:47:38,199 - pipeline - INFO -     tabpfn               [mice           ] acc=0.9003 bacc=0.8716 f1m=0.6492 prauc=0.4994 thr=0.03 t=290.3s
+2026-04-26 07:47:38,200 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:47:49,041 - pipeline - INFO -     tabicl               [mice           ] acc=0.8306 bacc=0.8686 f1m=0.5808 prauc=0.5221 thr=0.01 t=10.8s
+2026-04-26 07:47:51,770 - pipeline - INFO -     catboost             [mice           ] acc=0.8842 bacc=0.8413 f1m=0.6219 prauc=0.4920 thr=0.01 t=2.7s
+2026-04-26 07:49:03,603 - pipeline - INFO -     logistic_regression  [mice_indicator ] acc=0.9318 bacc=0.7451 f1m=0.6522 prauc=0.2847 thr=0.03 t=0.6s
+2026-04-26 07:49:04,082 - pipeline - INFO -     random_forest        [mice_indicator ] acc=0.8746 bacc=0.8583 f1m=0.6166 prauc=0.4019 thr=0.05 t=0.5s
+2026-04-26 07:49:22,932 - pipeline - INFO -     gradient_boosting    [mice_indicator ] acc=0.8211 bacc=0.8636 f1m=0.5727 prauc=0.4550 thr=0.07 t=18.8s
+2026-04-26 07:49:24,251 - pipeline - INFO -     xgboost              [mice_indicator ] acc=0.8790 bacc=0.8606 f1m=0.6217 prauc=0.4976 thr=0.00 t=1.3s
+2026-04-26 07:49:26,223 - pipeline - INFO -     lightgbm             [mice_indicator ] acc=0.8409 bacc=0.8848 f1m=0.5925 prauc=0.4893 thr=0.00 t=2.0s
+2026-04-26 07:49:30,053 - pipeline - INFO -     svm                  [mice_indicator ] acc=0.9289 bacc=0.7545 f1m=0.6513 prauc=0.3080 thr=0.03 t=3.8s
+2026-04-26 07:49:31,485 - pipeline - INFO -     mlp                  [mice_indicator ] acc=0.8233 bacc=0.7769 f1m=0.5552 prauc=0.3194 thr=0.01 t=1.4s
+2026-04-26 07:50:48,264 - pipeline - INFO -     tabpfn               [mice_indicator ] acc=0.8922 bacc=0.8674 f1m=0.6381 prauc=0.5098 thr=0.03 t=76.8s
+2026-04-26 07:50:48,264 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:51:00,872 - pipeline - INFO -     tabicl               [mice_indicator ] acc=0.8021 bacc=0.8538 f1m=0.5575 prauc=0.5067 thr=0.01 t=12.6s
+2026-04-26 07:51:03,664 - pipeline - INFO -     catboost             [mice_indicator ] acc=0.8438 bacc=0.8534 f1m=0.5878 prauc=0.4547 thr=0.00 t=2.8s
+2026-04-26 07:51:04,766 - pipeline - INFO -     xgboost              [none           ] acc=0.9135 bacc=0.8784 f1m=0.6694 prauc=0.4834 thr=0.00 t=1.1s
+2026-04-26 07:51:06,727 - pipeline - INFO -     lightgbm             [none           ] acc=0.9084 bacc=0.8318 f1m=0.6481 prauc=0.4960 thr=0.00 t=2.0s
+2026-04-26 07:55:21,796 - pipeline - INFO -     tabpfn               [none           ] acc=0.8842 bacc=0.8633 f1m=0.6278 prauc=0.5138 thr=0.03 t=255.1s
+2026-04-26 07:55:21,796 - pipeline - INFO - GPU detected: NVIDIA GeForce RTX 4070 SUPER
+2026-04-26 07:55:32,604 - pipeline - INFO -     tabicl               [none           ] acc=0.8666 bacc=0.8652 f1m=0.6104 prauc=0.4944 thr=0.02 t=10.8s
+2026-04-26 07:55:35,392 - pipeline - INFO -     catboost             [none           ] acc=0.9318 bacc=0.8439 f1m=0.6894 prauc=0.4572 thr=0.00 t=2.8s
+2026-04-26 07:55:35,419 - pipeline - INFO - Saved partial results: experiment_results.csv (1140 rows)
+2026-04-26 07:55:35,458 - pipeline - INFO - Done. Total rows: 1140
+2026-04-26 07:55:35,461 - pipeline - INFO - >>> Step 5: consolidate
+2026-04-26 07:55:35,461 - pipeline - INFO - ================================================================================
+2026-04-26 07:55:35,461 - pipeline - INFO - STEP 5: CONSOLIDATE + VISUALIZE
+2026-04-26 07:55:35,461 - pipeline - INFO - ================================================================================
+2026-04-26 07:55:35,468 - pipeline - INFO - Loaded experiment_results.csv: 1140 rows
+2026-04-26 07:55:35,481 - pipeline - INFO - Saved consolidated_results.csv: 1140 rows
+2026-04-26 07:55:35,497 - pipeline - INFO - Saved classical_models.csv (798 rows) and foundation_models.csv (342 rows)
+2026-04-26 07:55:35,510 - pipeline - INFO - Saved robustness_analysis.csv: 30 rows (metrics: ['accuracy_mean', 'accuracy_std', 'accuracy_min', 'accuracy_max', 'f1_mean', 'f1_std', 'n', 'balanced_accuracy_mean', 'balanced_accuracy_std', 'f1_macro_mean', 'f1_macro_std', 'pr_auc_mean', 'pr_auc_std', 'recall_class1_mean', 'recall_class1_std'])
+2026-04-26 07:55:36,630 - pipeline - INFO - Saved missing_rate_MAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-26 07:55:37,087 - pipeline - INFO - Saved missing_rate_MCAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-26 07:55:37,572 - pipeline - INFO - Saved missing_rate_MNAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-26 07:55:37,882 - pipeline - INFO - Saved classical_vs_foundation.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-26 07:55:38,107 - pipeline - INFO - Saved stability_heatmap.png (metric=balanced_accuracy)
+2026-04-26 07:55:38,237 - pipeline - INFO - Saved per_dataset_ranking.png (metric=balanced_accuracy)
+2026-04-26 07:55:38,237 - pipeline - INFO - >>> Step 6: generate_reports
+2026-04-26 07:55:38,237 - pipeline - INFO - ================================================================================
+2026-04-26 07:55:38,237 - pipeline - INFO - STEP 6: GENERATE REPORTS
+2026-04-26 07:55:38,237 - pipeline - INFO - ================================================================================
+2026-04-26 07:55:38,242 - pipeline - INFO - Loaded consolidated_results.csv: 1140 rows
+2026-04-26 07:55:38,246 - pipeline - INFO - Saved data_methods_report.md
+2026-04-26 07:55:38,260 - pipeline - INFO - Saved results_discussion_report.md
+2026-04-26 07:55:38,266 - pipeline - INFO - Saved practical_usability_report.md
+2026-04-26 07:55:38,267 - pipeline - INFO - Saved deployment_guide.md
+2026-04-26 07:55:38,268 - pipeline - INFO - Saved deployment_complexity.csv
+2026-04-26 07:55:38,271 - pipeline - INFO - Saved suitability_matrix.csv
+2026-04-26 07:55:38,272 - pipeline - INFO - Saved interpretation_guide.md
+2026-04-26 07:55:38,273 - pipeline - INFO - Saved presentation_points.txt
+2026-04-26 07:55:38,273 - pipeline - INFO - Pipeline finished in 35427.1s

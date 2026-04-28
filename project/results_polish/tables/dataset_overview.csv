@@ -1,0 +1,2 @@
+dataset,path,n_samples,n_features,n_classes,task_type,missing_cells,missing_fraction
+polish_1year,D:\INS\project\data\processed\polish_1year.csv,7027,64,2,binary,5835,0.012774901205241322

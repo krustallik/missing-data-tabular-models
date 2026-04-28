@@ -1,0 +1,29 @@
+2026-04-27 20:52:59,526 - pipeline - INFO - Pipeline steps to run: [5, 6]
+2026-04-27 20:52:59,526 - pipeline - INFO - >>> Step 5: consolidate
+2026-04-27 20:52:59,526 - pipeline - INFO - ================================================================================
+2026-04-27 20:52:59,526 - pipeline - INFO - STEP 5: CONSOLIDATE + VISUALIZE
+2026-04-27 20:52:59,526 - pipeline - INFO - ================================================================================
+2026-04-27 20:52:59,532 - pipeline - INFO - Loaded experiment_results.csv: 1140 rows
+2026-04-27 20:52:59,541 - pipeline - INFO - Saved consolidated_results.csv: 1140 rows
+2026-04-27 20:52:59,551 - pipeline - INFO - Saved classical_models.csv (912 rows) and foundation_models.csv (228 rows)
+2026-04-27 20:52:59,558 - pipeline - INFO - Saved robustness_analysis.csv: 30 rows (metrics: ['accuracy_mean', 'accuracy_std', 'accuracy_min', 'accuracy_max', 'f1_mean', 'f1_std', 'n', 'balanced_accuracy_mean', 'balanced_accuracy_std', 'f1_macro_mean', 'f1_macro_std', 'pr_auc_mean', 'pr_auc_std', 'recall_class1_mean', 'recall_class1_std'])
+2026-04-27 20:53:00,056 - pipeline - INFO - Saved missing_rate_MAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-27 20:53:00,516 - pipeline - INFO - Saved missing_rate_MCAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-27 20:53:00,991 - pipeline - INFO - Saved missing_rate_MNAR.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-27 20:53:01,318 - pipeline - INFO - Saved classical_vs_foundation.png (metrics=['accuracy', 'balanced_accuracy', 'f1_macro', 'pr_auc'])
+2026-04-27 20:53:01,613 - pipeline - INFO - Saved stability_heatmap.png (metric=balanced_accuracy)
+2026-04-27 20:53:01,782 - pipeline - INFO - Saved per_dataset_ranking.png (metric=balanced_accuracy)
+2026-04-27 20:53:01,782 - pipeline - INFO - >>> Step 6: generate_reports
+2026-04-27 20:53:01,782 - pipeline - INFO - ================================================================================
+2026-04-27 20:53:01,782 - pipeline - INFO - STEP 6: GENERATE REPORTS
+2026-04-27 20:53:01,782 - pipeline - INFO - ================================================================================
+2026-04-27 20:53:01,787 - pipeline - INFO - Loaded consolidated_results.csv: 1140 rows
+2026-04-27 20:53:01,792 - pipeline - INFO - Saved data_methods_report.md
+2026-04-27 20:53:01,808 - pipeline - INFO - Saved results_discussion_report.md
+2026-04-27 20:53:01,812 - pipeline - INFO - Saved practical_usability_report.md
+2026-04-27 20:53:01,813 - pipeline - INFO - Saved deployment_guide.md
+2026-04-27 20:53:01,814 - pipeline - INFO - Saved deployment_complexity.csv
+2026-04-27 20:53:01,818 - pipeline - INFO - Saved suitability_matrix.csv
+2026-04-27 20:53:01,819 - pipeline - INFO - Saved interpretation_guide.md
+2026-04-27 20:53:01,819 - pipeline - INFO - Saved presentation_points.txt
+2026-04-27 20:53:01,819 - pipeline - INFO - Pipeline finished in 2.3s

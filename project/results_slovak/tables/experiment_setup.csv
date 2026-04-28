@@ -1,0 +1,2 @@
+random_state,test_size,mechanisms,rates,imputations,models
+42,0.2,"MCAR,MAR,MNAR","0.05,0.1,0.15,0.2,0.3,0.4","mean,median,knn,mice,mice_indicator,none","logistic_regression,random_forest,gradient_boosting,xgboost,lightgbm,svm,mlp,tabpfn,tabicl,catboost"
