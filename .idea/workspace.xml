@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="results push">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/data_methods_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/deployment_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/interpretation_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/practical_usability_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/presentation_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/data_methods_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/deployment_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/interpretation_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/practical_usability_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/presentation_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/data_methods_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/deployment_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/interpretation_guide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/practical_usability_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/presentation_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/src/reporting.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/reporting.py" afterDir="false" />
-    </list>
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="reports fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -236,7 +217,7 @@
       <workItem from="1777060369581" duration="2134000" />
       <workItem from="1777112884910" duration="12665000" />
       <workItem from="1777312051397" duration="7101000" />
-      <workItem from="1777364885935" duration="2712000" />
+      <workItem from="1777364885935" duration="3021000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -414,7 +395,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777367166947</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="reports fix">
+      <option name="closed" value="true" />
+      <created>1777367912923</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1777367912923</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +425,8 @@
     <MESSAGE value="changing max iter for mice and remove warning" />
     <MESSAGE value="catboost -&gt; classical" />
     <MESSAGE value="results push" />
-    <option name="LAST_COMMIT_MESSAGE" value="results push" />
+    <MESSAGE value="reports fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="reports fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
