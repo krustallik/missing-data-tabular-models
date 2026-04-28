@@ -1,52 +1,35 @@
-# Tabular Missing-Data Benchmark (Phase 4.1)
+# Semestrálny projekt: Hodnotenie TabPFN a TabICL pri chýbajúcich dátach
 
-This project provides a complete reproducible pipeline for bankruptcy prediction experiments on tabular data, from dataset preparation to model training and evaluation.
+Tento repozitár obsahuje semestrálny projekt zameraný na porovnanie pretrained tabular foundation modelov **TabPFN** a **TabICL** s klasickými modelmi pri práci s neúplnými dátami v klasifikačných úlohách.
 
-## Phases
+## Čo bolo cieľom
 
-**Phase 3.1: Dataset Preparation** — Standardizes and splits 3 classification datasets
+- vyhodnotiť správanie modelov pri mechanizmoch chýbania **MCAR, MAR, MNAR**,
+- porovnať viacero prístupov k chýbajúcim hodnotám (mean/median, kNN, MICE, indikátory chýbania, implicitné spracovanie),
+- posúdiť robustnosť modelov pri rastúcej miere chýbajúcich hodnôt,
+- formulovať praktické odporúčania pre použitie v reálnych úlohách.
 
-**Phase 4.1: Model Training & Evaluation** — Trains models with hyperparameter tuning and comprehensive metrics
+## Použité datasety
 
-## Datasets
+- Polish Companies (1-year),
+- Slovak Manufacture 13,
+- Taiwan Bankruptcy.
 
-- Taiwanese Bankruptcy Prediction (UCI id=572)
-- Polish Companies Bankruptcy (UCI id=365) 
-- Slovak financial ratios dataset
+## Hlavný výstup pre hodnotenie
 
-## Quick Start
+Finálna technická správa je v koreňovom adresári projektu:
 
-```bash
-pip install -r requirements.txt
-python src/run_phase4_pipeline.py
-```
+- `../Hodnotenie_TabFM_pri_chybajucich_datach.docx`
+- (alternatívne novšia verzia pri otvorenom súbore) `../Hodnotenie_TabFM_pri_chybajucich_datach_v2.docx`
 
-This runs the complete Phase 4.1 pipeline (Phase 3.1 + Phase 4.1).
+## Kde sú podporné výsledky
 
-### Individual Phases
+- `results_*/tables/` - agregované tabuľky výsledkov,
+- `results_*/visualizations/` - grafy použité v správe,
+- `results_*/reports/` - automaticky generované textové reporty.
 
-```bash
-# Phase 3.1 only: dataset preparation
-python src/run_dataset_setup.py
+## Reprodukovateľnosť (stručne)
 
-# Phase 4.1 only: model training  
-python src/phase4_experiment_runner.py
-```
-
-## Results
-
-Results are saved to:
-- `results/tables/` - dataset overviews and experiment setup
-- `results/tables/phase4_experiment_results.json` - model evaluation results
-- `results/logs/` - detailed experiment logs
-
-## Features (Phase 4.1)
-
-✓ Multiple classification models (Logistic Regression, Random Forest)
-✓ K-fold cross-validation with grid search
-✓ Comprehensive metrics (Accuracy, F1, Precision, Recall, ROC-AUC)
-✓ Experiment logging and tracking
-✓ Reproducible results (random_state=42)
-
-For detailed documentation, see [README_PHASE4.md](README_PHASE4.md).
+Po inštalácii závislostí je možné experimenty spustiť cez skripty v `src/`.
+Projekt je pripravený tak, aby boli výsledky reprodukovateľné (fixný `random_state` a jednotný experimentálny protokol).
 
