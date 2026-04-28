@@ -37,6 +37,7 @@ from config import (
     ensure_output_dirs,
 )
 from data_utils import setup_logging
+from models import model_type as _resolve_model_type
 
 
 # ── Markdown helpers ─────────────────────────────────────────────────────────
@@ -70,6 +71,8 @@ def _load(logger: logging.Logger) -> Optional[pd.DataFrame]:
         logger.error("Neither consolidated_results.csv nor experiment_results.csv present.")
         return None
     df = pd.read_csv(path)
+    if "model" in df.columns:
+        df["model_type"] = df["model"].map(_resolve_model_type)
     logger.info(f"Loaded {path.name}: {len(df)} rows")
     return df
 
@@ -170,10 +173,10 @@ def _data_methods_report(df: Optional[pd.DataFrame]) -> str:
         "### 3.3 Models",
         "",
         "Classical: Logistic Regression, Random Forest, Gradient Boosting, "
-        "XGBoost, LightGBM, SVM, MLP (default hyperparameters; scaling applied "
-        "to LR / SVM / MLP).",
+        "XGBoost, LightGBM, SVM, MLP, CatBoost (default hyperparameters; "
+        "scaling applied to LR / SVM / MLP).",
         "",
-        "Foundation: TabPFN, TabICL, CatBoost. TabPFN requires `TABPFN_TOKEN` "
+        "Foundation: TabPFN, TabICL. TabPFN requires `TABPFN_TOKEN` "
         "and skips gracefully when it is absent. GPU is used when available.",
         "",
         "Implementation: `src/models.py`.",
@@ -555,9 +558,7 @@ def _practical_usability_report(df: pd.DataFrame) -> str:
         "accuracy at low-to-medium missingness rates. License token required.\n"
         "- **TabICL** competes with TabPFN on small/medium tabular tasks with "
         "the advantage of NaN handling; runtime and size limits depend on the "
-        "particular implementation version.\n"
-        "- **CatBoost** is the most robust NaN-aware classical tree ensemble "
-        "and a good baseline when TabPFN/TabICL are not an option.\n",
+        "particular implementation version.\n",
         "",
         "## 4. Foundation models - when NOT to use",
         "",
@@ -565,7 +566,9 @@ def _practical_usability_report(df: pd.DataFrame) -> str:
         "- High feature counts above TabPFN's pretraining limit -> classical "
         "boosting is safer.\n"
         "- Environments without GPU / without license access -> CatBoost or "
-        "XGBoost with MICE + indicator.\n",
+        "XGBoost with MICE + indicator (CatBoost is the most robust NaN-aware "
+        "classical tree ensemble and a good baseline when TabPFN / TabICL are "
+        "not an option).\n",
         "",
         "## 5. Deployment complexity",
         "",
@@ -661,8 +664,8 @@ def _presentation_points(df: Optional[pd.DataFrame]) -> str:
         "2. Controlled missingness: MCAR / MAR / MNAR at 5-40%.",
         "3. Imputations evaluated: mean, median, kNN, MICE, MICE+indicator, none.",
         "4. Classical models: Logistic Regression, Random Forest, Gradient Boosting, "
-        "XGBoost, LightGBM, SVM, MLP.",
-        "5. Foundation models: TabPFN, TabICL, CatBoost.",
+        "XGBoost, LightGBM, SVM, MLP, CatBoost.",
+        "5. Foundation models: TabPFN, TabICL.",
         "6. Single consolidated CSV (`consolidated_results.csv`) with unified model names.",
         "",
         "Key questions answered by the tables:",

@@ -20,6 +20,7 @@ import pandas as pd
 
 from config import OUTPUT_FILES, PRIMARY_METRICS, VIZ_DIR, ensure_output_dirs
 from data_utils import setup_logging
+from models import model_type as _resolve_model_type
 
 
 # Metric shown on heatmaps / per-dataset ranking / suitability buckets.
@@ -53,6 +54,8 @@ def _load_experiment_results(logger: logging.Logger) -> Optional[pd.DataFrame]:
         logger.error(f"Experiment results not found: {path}")
         return None
     df = pd.read_csv(path)
+    if "model" in df.columns:
+        df["model_type"] = df["model"].map(_resolve_model_type)
     logger.info(f"Loaded {path.name}: {len(df)} rows")
     return df
 

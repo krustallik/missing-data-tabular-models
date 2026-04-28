@@ -9,8 +9,9 @@ Every model is addressed by its canonical snake_case key (see
   plots (e.g. ``"Logistic-Regression"``, ``"TabPFN"``).
 
 Classical models go through ``StandardScaler`` when needed; foundation models
-(TabPFN / TabICL / CatBoost) are called with raw numpy arrays since they
-bring their own preprocessing (and often their own NaN handling).
+(TabPFN / TabICL) and the NaN-aware classical CatBoost are called with raw
+numpy arrays since they bring their own preprocessing (and often their own
+NaN handling).
 
 Imbalance handling
 ~~~~~~~~~~~~~~~~~~
@@ -603,14 +604,14 @@ def train_and_evaluate(
     threshold actually used (0.5 if no tuning occurred).
     """
     key = str(model_key).lower()
-    if key in CLASSICAL_MODELS:
-        return _train_classical(key, X_train, X_test, y_train, y_test)
     if key == "tabpfn":
         return _train_tabpfn(X_train, X_test, y_train, y_test, logger=logger)
     if key == "tabicl":
         return _train_tabicl(X_train, X_test, y_train, y_test, logger=logger)
     if key == "catboost":
         return _train_catboost(X_train, X_test, y_train, y_test, logger=logger)
+    if key in CLASSICAL_MODELS:
+        return _train_classical(key, X_train, X_test, y_train, y_test)
     return {
         "metrics": None,
         "training_time_seconds": None,

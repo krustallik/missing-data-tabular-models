@@ -120,12 +120,12 @@ CLASSICAL_MODELS = [
     "lightgbm",
     "svm",
     "mlp",
+    "catboost",
 ]
 
 FOUNDATION_MODELS = [
     "tabpfn",
     "tabicl",
-    "catboost",
 ]
 
 ALL_MODELS = CLASSICAL_MODELS + FOUNDATION_MODELS
