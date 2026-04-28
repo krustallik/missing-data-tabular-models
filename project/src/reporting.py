@@ -1,29 +1,21 @@
-"""Generate the three markdown reports from consolidated results.
+"""Generate the markdown reports from consolidated results.
 
 Outputs:
 - ``data_methods_report.md`` — datasets, split, metrics, missingness logic,
   imputation methods, model roster.
 - ``results_discussion_report.md`` — tables + discussion of what works under
   which (mechanism, rate, imputation) combinations.
-- ``practical_usability_report.md`` + ``deployment_guide.md`` +
-  ``deployment_complexity.csv`` + ``suitability_matrix.csv`` —
-  practical recommendations for real-world usage.
-- ``interpretation_guide.md`` / ``presentation_points.txt`` — summaries
-  suitable for presentations / talking points.
 """
 
 from __future__ import annotations
 
 import logging
 from datetime import datetime
-from pathlib import Path
 from typing import List, Optional
 
 import pandas as pd
 
 from config import (
-    DATASETS,
-    IMPUTATION_METHODS,
     MISSING_MECHANISMS,
     MISSING_RATES,
     OUTPUT_FILES,
@@ -88,8 +80,7 @@ def _data_methods_report(df: Optional[pd.DataFrame]) -> str:
         f"**Date**: {datetime.now().strftime('%B %d, %Y')}",
         "",
         "This document covers the Data, Experimental setup and Methods "
-        "chapters. Results and Discussion live in `results_discussion_report.md` "
-        "and practical recommendations in `practical_usability_report.md`.",
+        "chapters. Results and Discussion live in `results_discussion_report.md`.",
         "",
         "---",
         "",
@@ -395,291 +386,9 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "The consolidated table produced by `experiment_runner.py` gives a "
         "single source of truth for answering the project's question - which "
         "combination of (imputation, model) is most robust across the "
-        "MCAR/MAR/MNAR grid. Practical recommendations follow in "
-        "`practical_usability_report.md`.",
+        "MCAR/MAR/MNAR grid.",
         "",
     ]
-    return "\n".join(lines) + "\n"
-
-
-# ── Practical usability ──────────────────────────────────────────────────────
-
-_DEPLOYMENT_ROWS = [
-    {
-        "model": "Logistic-Regression",
-        "install": "sklearn only",
-        "gpu_required": "no",
-        "typical_training_seconds": "<1",
-        "size_limits": "scales linearly; no practical cap",
-        "notes": "Needs imputation and scaling; weakest classical baseline on nonlinear data.",
-    },
-    {
-        "model": "Random-Forest",
-        "install": "sklearn only",
-        "gpu_required": "no",
-        "typical_training_seconds": "1-30",
-        "size_limits": "millions of rows ok with n_jobs=-1",
-        "notes": "Robust default; does not need scaling; needs imputation.",
-    },
-    {
-        "model": "Gradient-Boosting",
-        "install": "sklearn only",
-        "gpu_required": "no",
-        "typical_training_seconds": "5-60",
-        "size_limits": "up to ~100k rows comfortably",
-        "notes": "Sensitive to hyperparameters; needs imputation.",
-    },
-    {
-        "model": "XGBoost",
-        "install": "pip install xgboost",
-        "gpu_required": "optional",
-        "typical_training_seconds": "1-30",
-        "size_limits": "very large (millions of rows)",
-        "notes": "Handles NaN natively; strong default for tabular tasks.",
-    },
-    {
-        "model": "LightGBM",
-        "install": "pip install lightgbm",
-        "gpu_required": "optional",
-        "typical_training_seconds": "1-20",
-        "size_limits": "very large (millions of rows)",
-        "notes": "Handles NaN natively; fastest among boosted trees here.",
-    },
-    {
-        "model": "SVM",
-        "install": "sklearn only",
-        "gpu_required": "no",
-        "typical_training_seconds": "10-300",
-        "size_limits": "tens of thousands (O(n^2) kernel)",
-        "notes": "Requires scaling and imputation; slow on large datasets.",
-    },
-    {
-        "model": "MLP",
-        "install": "sklearn only",
-        "gpu_required": "no (torch-backed MLPs do)",
-        "typical_training_seconds": "10-180",
-        "size_limits": "hundreds of thousands",
-        "notes": "Requires scaling and imputation; sensitive to architecture.",
-    },
-    {
-        "model": "TabPFN",
-        "install": "pip install tabpfn + TABPFN_TOKEN",
-        "gpu_required": "recommended (CUDA)",
-        "typical_training_seconds": "1-60 per call (pretrained, no training)",
-        "size_limits": "up to ~10k rows, ~500 features per call",
-        "notes": "Consumes raw NaN; requires license token; best for small-to-medium tabular.",
-    },
-    {
-        "model": "TabICL",
-        "install": "pip install tabicl",
-        "gpu_required": "recommended (CUDA)",
-        "typical_training_seconds": "5-120 per call",
-        "size_limits": "similar to TabPFN; in-context learning",
-        "notes": "Pretrained, handles NaN; verify availability in the target environment.",
-    },
-    {
-        "model": "CatBoost",
-        "install": "pip install catboost",
-        "gpu_required": "optional",
-        "typical_training_seconds": "10-120",
-        "size_limits": "very large",
-        "notes": "Handles NaN and categorical features natively; robust default.",
-    },
-]
-
-
-def _deployment_complexity() -> pd.DataFrame:
-    return pd.DataFrame(_DEPLOYMENT_ROWS)
-
-
-def _suitability_matrix(df: pd.DataFrame) -> pd.DataFrame:
-    """Score each model on (low/med/high) missingness scenarios.
-
-    Uses ``balanced_accuracy`` when available (honest on imbalanced datasets);
-    falls back to ``accuracy`` for old CSVs without that column.
-    """
-    metric = "balanced_accuracy" if "balanced_accuracy" in df.columns else "accuracy"
-    sub = df.dropna(subset=[metric, "missing_rate"])
-    if sub.empty:
-        return pd.DataFrame()
-    buckets = pd.cut(
-        sub["missing_rate"],
-        bins=[-1, 10, 20, 100],
-        labels=["low (<=10%)", "medium (<=20%)", "high (>20%)"],
-    )
-    sub = sub.assign(bucket=buckets)
-    out = (
-        sub.groupby(["model", "bucket"], observed=False)[metric]
-        .mean()
-        .unstack()
-        .round(4)
-        .reset_index()
-    )
-    out.attrs["metric"] = metric
-    return out
-
-
-def _practical_usability_report(df: pd.DataFrame) -> str:
-    lines = [
-        f"# {REPORT_TITLE} - Practical Usability",
-        "",
-        f"_Generated on {datetime.now().strftime('%Y-%m-%d %H:%M')}_",
-        "",
-        "This document translates the benchmark into practical guidance for "
-        "real-world use: at what missingness level is each model usable, and "
-        "what does it take to deploy it.",
-        "",
-        "---",
-        "",
-        "## 1. Suitability matrix",
-        "",
-    ]
-    matrix = _suitability_matrix(df)
-    metric_used = matrix.attrs.get("metric", "accuracy") if not matrix.empty else "accuracy"
-    lines += [
-        f"Mean **{metric_used}** by missingness bucket (all mechanisms, "
-        f"all imputations). `balanced_accuracy` is used by default as it is "
-        f"honest on imbalanced datasets (0.5 ≈ random guessing).",
-        "",
-    ]
-    lines.append(_df_to_markdown(matrix))
-    lines += [
-        "",
-        "## 2. Performance bands",
-        "",
-        f"- Excellent: accuracy >= {PERFORMANCE_EXCELLENT:.2f}\n"
-        f"- Good:      accuracy >= {PERFORMANCE_GOOD:.2f}\n"
-        f"- Acceptable: accuracy >= {PERFORMANCE_ACCEPTABLE:.2f}\n",
-        "",
-        "## 3. Foundation models - when to use",
-        "",
-        "- **TabPFN** is strongest for small-to-medium datasets where labeled "
-        "data is scarce. It does not need imputation and gives competitive "
-        "accuracy at low-to-medium missingness rates. License token required.\n"
-        "- **TabICL** competes with TabPFN on small/medium tabular tasks with "
-        "the advantage of NaN handling; runtime and size limits depend on the "
-        "particular implementation version.\n",
-        "",
-        "## 4. Foundation models - when NOT to use",
-        "",
-        "- Very large datasets (millions of rows) -> use XGBoost/LightGBM.\n"
-        "- High feature counts above TabPFN's pretraining limit -> classical "
-        "boosting is safer.\n"
-        "- Environments without GPU / without license access -> CatBoost or "
-        "XGBoost with MICE + indicator (CatBoost is the most robust NaN-aware "
-        "classical tree ensemble and a good baseline when TabPFN / TabICL are "
-        "not an option).\n",
-        "",
-        "## 5. Deployment complexity",
-        "",
-        "See also `deployment_complexity.csv` and `deployment_guide.md`.",
-        "",
-    ]
-    lines.append(_df_to_markdown(_deployment_complexity()))
-    return "\n".join(lines) + "\n"
-
-
-def _deployment_guide() -> str:
-    rows = _deployment_complexity()
-    lines = [
-        f"# Deployment Guide",
-        "",
-        "Quick-reference installation and operational notes for every model "
-        "in the benchmark.",
-        "",
-    ]
-    for _, r in rows.iterrows():
-        lines += [
-            f"## {r['model']}",
-            "",
-            f"- **Install**: `{r['install']}`",
-            f"- **GPU required**: {r['gpu_required']}",
-            f"- **Typical training time**: {r['typical_training_seconds']}",
-            f"- **Size limits**: {r['size_limits']}",
-            f"- **Notes**: {r['notes']}",
-            "",
-        ]
-    return "\n".join(lines)
-
-
-# ── Interpretation guide + presentation points ──────────────────────────────
-
-def _interpretation_guide(df: Optional[pd.DataFrame]) -> str:
-    lines = [
-        "# Interpretation guide",
-        "",
-        "How to read the tables and plots produced by this pipeline.",
-        "",
-        "## Files in `results/tables/`",
-        "",
-        "- `dataset_overview.csv` - per-dataset size and class balance.",
-        "- `experiment_setup.csv` - random seed, test fraction, metrics used.",
-        "- `missingness_verification.csv` - realised vs target missing rates.",
-        "- `imputation_benchmark.csv` - imputation time and errors per scenario.",
-        "- `experiment_results.csv` - full benchmark table (one row per run).",
-        "- `consolidated_results.csv` - same rows with the canonical column "
-        "schema used by Results / Discussion.",
-        "- `classical_models.csv` / `foundation_models.csv` - convenience splits.",
-        "- `robustness_analysis.csv` - per-(model, mechanism) aggregates.",
-        "",
-        "## Files in `results/visualizations/`",
-        "",
-        "- `missing_rate_MCAR.png` / `missing_rate_MAR.png` / `missing_rate_MNAR.png` - "
-        "primary metrics (accuracy, balanced_accuracy, f1_macro, pr_auc) as "
-        "functions of missing rate for each mechanism.",
-        "- `classical_vs_foundation.png` - distribution boxplot across the "
-        "primary metrics.",
-        "- `stability_heatmap.png` - balanced_accuracy heatmap across missing "
-        "rates (the metric that actually reflects minority-class detection).",
-        "- `per_dataset_ranking.png` - bar chart ranking on the native scenario "
-        "by balanced_accuracy.",
-        "",
-        "## Files in `results/reports/`",
-        "",
-        "- `data_methods_report.md` - Data / Setup / Methods.",
-        "- `results_discussion_report.md` - quantitative results + discussion.",
-        "- `practical_usability_report.md` - practical recommendations.",
-        "- `deployment_guide.md` - per-model install / GPU / size notes.",
-        "- `deployment_complexity.csv` / `suitability_matrix.csv` - tables "
-        "behind the practical report.",
-        "",
-    ]
-    if df is not None and not df.empty:
-        lines += [
-            "## Quick numbers at hand",
-            "",
-            f"- Consolidated rows: {len(df)}",
-            f"- Datasets: {', '.join(sorted(df['dataset'].dropna().unique()))}",
-            f"- Models: {', '.join(sorted(df['model'].dropna().unique()))}",
-        ]
-    return "\n".join(lines) + "\n"
-
-
-def _presentation_points(df: Optional[pd.DataFrame]) -> str:
-    lines = [
-        "Presentation points",
-        "===================",
-        "",
-        "1. Shared experimental backbone: 3 datasets, stratified 80/20, seed 42.",
-        "2. Controlled missingness: MCAR / MAR / MNAR at 5-40%.",
-        "3. Imputations evaluated: mean, median, kNN, MICE, MICE+indicator, none.",
-        "4. Classical models: Logistic Regression, Random Forest, Gradient Boosting, "
-        "XGBoost, LightGBM, SVM, MLP, CatBoost.",
-        "5. Foundation models: TabPFN, TabICL.",
-        "6. Single consolidated CSV (`consolidated_results.csv`) with unified model names.",
-        "",
-        "Key questions answered by the tables:",
-        "- Which models degrade fastest as missing rate grows?",
-        "- Does MICE + indicator beat simple imputations at higher rates?",
-        "- Do foundation models justify their deployment cost?",
-        "",
-    ]
-    if df is not None and not df.empty:
-        n = df["accuracy"].notna().sum()
-        lines.append(
-            f"Consolidated table: {len(df)} rows, {n} successful runs, "
-            f"{df['model'].nunique()} unique models."
-        )
     return "\n".join(lines) + "\n"
 
 
@@ -701,32 +410,6 @@ def generate_reports(logger: Optional[logging.Logger] = None) -> bool:
         _results_discussion_report(df), encoding="utf-8",
     )
     logger.info(f"Saved {OUTPUT_FILES['results_discussion_report'].name}")
-
-    OUTPUT_FILES["practical_usability_report"].write_text(
-        _practical_usability_report(df), encoding="utf-8",
-    )
-    logger.info(f"Saved {OUTPUT_FILES['practical_usability_report'].name}")
-
-    OUTPUT_FILES["deployment_guide"].write_text(_deployment_guide(), encoding="utf-8")
-    logger.info(f"Saved {OUTPUT_FILES['deployment_guide'].name}")
-
-    _deployment_complexity().to_csv(OUTPUT_FILES["deployment_complexity"], index=False)
-    logger.info(f"Saved {OUTPUT_FILES['deployment_complexity'].name}")
-
-    sm = _suitability_matrix(df)
-    if not sm.empty:
-        sm.to_csv(OUTPUT_FILES["suitability_matrix"], index=False)
-        logger.info(f"Saved {OUTPUT_FILES['suitability_matrix'].name}")
-
-    OUTPUT_FILES["interpretation_guide"].write_text(
-        _interpretation_guide(df), encoding="utf-8",
-    )
-    logger.info(f"Saved {OUTPUT_FILES['interpretation_guide'].name}")
-
-    OUTPUT_FILES["presentation_points"].write_text(
-        _presentation_points(df), encoding="utf-8",
-    )
-    logger.info(f"Saved {OUTPUT_FILES['presentation_points'].name}")
 
     return True
 

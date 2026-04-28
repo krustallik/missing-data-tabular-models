@@ -180,12 +180,6 @@ OUTPUT_FILES = {
     # reports
     "data_methods_report": REPORTS_DIR / "data_methods_report.md",
     "results_discussion_report": REPORTS_DIR / "results_discussion_report.md",
-    "practical_usability_report": REPORTS_DIR / "practical_usability_report.md",
-    "deployment_guide": REPORTS_DIR / "deployment_guide.md",
-    "deployment_complexity": REPORTS_DIR / "deployment_complexity.csv",
-    "suitability_matrix": REPORTS_DIR / "suitability_matrix.csv",
-    "interpretation_guide": REPORTS_DIR / "interpretation_guide.md",
-    "presentation_points": REPORTS_DIR / "presentation_points.txt",
     # visualizations
     "viz_missing_rate_MCAR": VIZ_DIR / "missing_rate_MCAR.png",
     "viz_missing_rate_MAR": VIZ_DIR / "missing_rate_MAR.png",

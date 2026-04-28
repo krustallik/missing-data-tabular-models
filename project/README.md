@@ -26,7 +26,7 @@ Finálna technická správa je v koreňovom adresári projektu:
 
 - `results_*/tables/` - agregované tabuľky výsledkov,
 - `results_*/visualizations/` - grafy použité v správe,
-- `results_*/reports/` - automaticky generované textové reporty.
+- `results_*/logs/` - logy z behov experimentov.
 
 ## Reprodukovateľnosť (stručne)
 
