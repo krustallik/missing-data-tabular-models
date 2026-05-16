@@ -1,6 +1,9 @@
 # Experiment outputs (CSVs, plots, logs)
 project/results/
 project/results_*/
+project/results_polish/
+project/results_slovak/
+project/results_taiwan/
 
 # CatBoost training artifacts
 project/catboost_info/
