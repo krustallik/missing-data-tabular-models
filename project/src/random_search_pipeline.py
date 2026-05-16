@@ -89,7 +89,7 @@ from data_utils import (
 
 SEEDS: List[int] = [42, 123, 7]
 CV_FOLDS: int = 5
-DEFAULT_N_ITER: int = 120
+DEFAULT_N_ITER: int = 150
 
 # PR-AUC is threshold-independent and is the recommended ranking metric for
 # very imbalanced binary problems (1-4% positives in our datasets).
