@@ -1,0 +1,11 @@
+# Experiment outputs (CSVs, plots, logs)
+project/results/
+project/results_*/
+
+# CatBoost training artifacts
+project/catboost_info/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
