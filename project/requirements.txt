@@ -6,3 +6,7 @@ ucimlrepo>=0.0.7
 
 torch
 tabpfn
+tabicl
+xgboost
+lightgbm
+catboost
