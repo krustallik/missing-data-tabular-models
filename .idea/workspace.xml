@@ -4,11 +4,93 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="reports fix" />
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="random greed search">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/logs/pipeline_20260421_205014.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/logs/pipeline_20260427_205251.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/results_discussion_report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/suitability_matrix.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/classical_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/consolidated_results_polish.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/dataset_overview.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_results.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_results_polish.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_setup.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/foundation_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/imputation_benchmark.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/missingness_verification.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/robustness_analysis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/classical_vs_foundation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MCAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MNAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/per_dataset_ranking.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/stability_heatmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/logs/pipeline_20260425_123633.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/logs/pipeline_20260427_205255.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/results_discussion_report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/suitability_matrix.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/classical_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/consolidated_results_slovak.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/dataset_overview.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_results.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_results_slovak.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_setup.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/foundation_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/imputation_benchmark.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/missingness_verification.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/robustness_analysis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/classical_vs_foundation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MCAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MNAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/per_dataset_ranking.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/stability_heatmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/logs/pipeline_20260425_220511.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/logs/pipeline_20260427_205259.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/results_discussion_report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/suitability_matrix.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/classical_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/consolidated_results_taiwan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/dataset_overview.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_results.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_results_taiwan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_setup.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/foundation_models.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/imputation_benchmark.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/missingness_verification.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/robustness_analysis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/classical_vs_foundation.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MCAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MNAR.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/per_dataset_ranking.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/stability_heatmap.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotChats">
+    <option name="panelChat">
+      <chat>
+        <option name="activeSessionId" value="791238be-2ef2-46c6-9538-e1c6ec2b48e4" />
+        <option name="sessions">
+          <session>
+            <option name="chatType" value="PANEL" />
+            <option name="id" value="791238be-2ef2-46c6-9538-e1c6ec2b48e4" />
+            <option name="modeId" value="Ask" />
+            <option name="modelType" value="builtin_family" />
+            <option name="modelValue" value="auto" />
+            <option name="targetType" value="LOCAL" />
+          </session>
+        </option>
+        <option name="type" value="PANEL" />
+      </chat>
+    </option>
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
@@ -22,7 +104,7 @@
     </selectedModels>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="166" />
+    <option name="cachedIndexableFilesCount" value="87" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,40 +148,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.FSDFSD.executor": "Run",
-    "Python._class_balance.executor": "Run",
-    "Python.build_report.executor": "Run",
-    "Python.check_models.executor": "Run",
-    "Python.prepare_raw_datasets.executor": "Run",
-    "Python.run_dataset_setup.executor": "Run",
-    "Python.run_experiments.executor": "Run",
-    "Python.run_phase4_2_experiments.executor": "Run",
-    "Python.run_phase4_3_experiments.executor": "Run",
-    "Python.run_phase4_4_experiments.executor": "Run",
-    "Python.run_phase4_4_tabpfn.executor": "Run",
-    "Python.run_phase4_5_experiments.executor": "Run",
-    "Python.run_phase4_6_experiments.executor": "Run",
-    "Python.run_phase4_7_experiments.executor": "Run",
-    "Python.run_phase4_pipeline.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.FSDFSD.executor&quot;: &quot;Run&quot;,
+    &quot;Python._class_balance.executor&quot;: &quot;Run&quot;,
+    &quot;Python.build_report.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_models.executor&quot;: &quot;Run&quot;,
+    &quot;Python.prepare_raw_datasets.executor&quot;: &quot;Run&quot;,
+    &quot;Python.random_search_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_dataset_setup.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_2_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_3_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_4_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_4_tabpfn.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_5_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_6_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_7_experiments.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run_phase4_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\INS\project\data\raw\polish" />
@@ -217,7 +300,12 @@
       <workItem from="1777060369581" duration="2134000" />
       <workItem from="1777112884910" duration="12665000" />
       <workItem from="1777312051397" duration="7101000" />
-      <workItem from="1777364885935" duration="3021000" />
+      <workItem from="1777364885935" duration="3170000" />
+      <workItem from="1777386897969" duration="6948000" />
+      <workItem from="1777442763258" duration="2413000" />
+      <workItem from="1778611737485" duration="712000" />
+      <workItem from="1778923299959" duration="6478000" />
+      <workItem from="1778929909140" duration="660000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -403,7 +491,31 @@
       <option name="project" value="LOCAL" />
       <updated>1777367912923</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="reports fix">
+      <option name="closed" value="true" />
+      <created>1777367955042</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1777367955042</updated>
+    </task>
+    <task id="LOCAL-00025" summary="git ignore">
+      <option name="closed" value="true" />
+      <created>1778929921806</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1778929921806</updated>
+    </task>
+    <task id="LOCAL-00026" summary="random greed search">
+      <option name="closed" value="true" />
+      <created>1778929957929</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1778929957929</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,7 +538,9 @@
     <MESSAGE value="catboost -&gt; classical" />
     <MESSAGE value="results push" />
     <MESSAGE value="reports fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="reports fix" />
+    <MESSAGE value="git ignore" />
+    <MESSAGE value="random greed search" />
+    <option name="LAST_COMMIT_MESSAGE" value="random greed search" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
@@ -443,6 +557,7 @@
     <SUITE FILE_PATH="coverage/_$run_phase4_3_experiments.coverage" NAME="run_phase4_3_experiments Coverage Results" MODIFIED="1776071001140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/INS$build_report.coverage" NAME="build_report Coverage Results" MODIFIED="1777366434434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/INS$FSDFSD.coverage" NAME="FSDFSD Coverage Results" MODIFIED="1775218951565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/INS$random_search_pipeline.coverage" NAME="random_search_pipeline Coverage Results" MODIFIED="1778926264649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/INS$check_models.coverage" NAME="check_models Coverage Results" MODIFIED="1777312383870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project" />
   </component>
   <component name="github-copilot-workspace">
