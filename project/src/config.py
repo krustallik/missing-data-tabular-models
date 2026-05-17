@@ -26,7 +26,7 @@ TEST_SIZE = 0.2
 CV_FOLDS = 5
 
 # Experiment repeats.
-EXPERIMENT_SEEDS = [44, 111, 7]
+EXPERIMENT_SEEDS = [44, 111]
 
 
 # ── Metrics ──────────────────────────────────────────────────────────────────
