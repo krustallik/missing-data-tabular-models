@@ -48,12 +48,14 @@ import pandas as pd
 from config import (
     ALL_MODELS,
     DATASETS,
+    EXPERIMENT_SEEDS,
     IMPUTATION_METHODS,
     MISSING_MECHANISMS,
     MISSING_RATES,
     OUTPUT_FILES,
     PROCESSED_DIR,
     RANDOM_STATE,
+    RANDOM_STATES,
     SPLITS_DIR,
     TABLES_DIR,
     TARGET_COLUMN,
@@ -84,7 +86,7 @@ def step_prepare_splits(logger: logging.Logger) -> bool:
     logger.info("STEP 1: PREPARE TRAIN/TEST SPLITS")
     logger.info("=" * 80)
 
-    if splits_present(DATASETS.keys()):
+    if splits_present(DATASETS.keys(), random_states=RANDOM_STATES):
         logger.info("All splits already present; skipping split creation.")
     else:
         for dataset_name, path in DATASETS.items():
@@ -92,15 +94,16 @@ def step_prepare_splits(logger: logging.Logger) -> bool:
                 logger.error(f"Processed dataset missing: {path}")
                 continue
             X, y = load_dataset_from_csv(path, target_column=TARGET_COLUMN)
-            X_train, X_test, y_train, y_test = make_train_test_split(
-                X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=True,
-            )
-            train_df = pd.concat([X_train.reset_index(drop=True),
-                                  y_train.reset_index(drop=True)], axis=1)
-            test_df = pd.concat([X_test.reset_index(drop=True),
-                                 y_test.reset_index(drop=True)], axis=1)
-            tp, ep = save_split(train_df, test_df, dataset_name)
-            logger.info(f"Saved {tp.name} and {ep.name}")
+            for state in RANDOM_STATES:
+                X_train, X_test, y_train, y_test = make_train_test_split(
+                    X, y, test_size=TEST_SIZE, random_state=state, stratify=True,
+                )
+                train_df = pd.concat([X_train.reset_index(drop=True),
+                                      y_train.reset_index(drop=True)], axis=1)
+                test_df = pd.concat([X_test.reset_index(drop=True),
+                                     y_test.reset_index(drop=True)], axis=1)
+                tp, ep = save_split(train_df, test_df, dataset_name, random_state=state)
+                logger.info(f"Saved {tp.name} and {ep.name} (random_state={state})")
 
     # Always refresh the dataset overview so it reflects the current data.
     overview_rows = []
@@ -120,6 +123,8 @@ def step_prepare_splits(logger: logging.Logger) -> bool:
 
     setup_rows = [{
         "random_state": RANDOM_STATE,
+        "random_states": ",".join(str(s) for s in RANDOM_STATES),
+        "experiment_seeds": ",".join(str(s) for s in EXPERIMENT_SEEDS),
         "test_size": TEST_SIZE,
         "mechanisms": ",".join(MISSING_MECHANISMS),
         "rates": ",".join(str(r) for r in MISSING_RATES),
@@ -157,36 +162,41 @@ def step_benchmark_imputations(logger: logging.Logger) -> bool:
     rows = []
     injectors = {"MCAR": inject_mcar, "MAR": inject_mar, "MNAR": inject_mnar}
     for dataset_name in DATASETS:
-        loaded = load_precomputed_split(dataset_name, logger=logger)
-        if loaded is None:
-            continue
-        X_train, X_test, _, _ = loaded
-        for mech in MISSING_MECHANISMS:
-            for rate in MISSING_RATES:
-                X_train_missing = injectors[mech](X_train.copy(), rate, random_state=RANDOM_STATE)
-                for method in IMPUTATION_METHODS:
-                    row = {
-                        "dataset": dataset_name,
-                        "mechanism": mech,
-                        "missing_rate": round(rate * 100, 2),
-                        "imputation": method,
-                        "duration_seconds": None,
-                        "success": False,
-                        "error": None,
-                    }
-                    start = time.time()
-                    try:
-                        impute(X_train_missing, X_test, method)
-                        row["success"] = True
-                    except Exception as exc:
-                        row["error"] = str(exc)
-                    row["duration_seconds"] = round(time.time() - start, 4)
-                    rows.append(row)
-                    status = "ok " if row["success"] else "err"
-                    logger.info(
-                        f"  {dataset_name:24s} {mech} @ {int(rate*100):>2}% "
-                        f"{method:15s} {status} t={row['duration_seconds']}s"
-                    )
+        for split_state in RANDOM_STATES:
+            loaded = load_precomputed_split(dataset_name, random_state=split_state, logger=logger)
+            if loaded is None:
+                continue
+            X_train, X_test, _, _ = loaded
+            for seed in EXPERIMENT_SEEDS:
+                for mech in MISSING_MECHANISMS:
+                    for rate in MISSING_RATES:
+                        X_train_missing = injectors[mech](X_train.copy(), rate, random_state=seed)
+                        for method in IMPUTATION_METHODS:
+                            row = {
+                                "dataset": dataset_name,
+                                "split_seed": split_state,
+                                "seed": seed,
+                                "mechanism": mech,
+                                "missing_rate": round(rate * 100, 2),
+                                "imputation": method,
+                                "duration_seconds": None,
+                                "success": False,
+                                "error": None,
+                            }
+                            start = time.time()
+                            try:
+                                impute(X_train_missing, X_test, method, random_state=seed)
+                                row["success"] = True
+                            except Exception as exc:
+                                row["error"] = str(exc)
+                            row["duration_seconds"] = round(time.time() - start, 4)
+                            rows.append(row)
+                            status = "ok " if row["success"] else "err"
+                            logger.info(
+                                f"  {dataset_name:24s} split={split_state} seed={seed} "
+                                f"{mech} @ {int(rate*100):>2}% {method:15s} "
+                                f"{status} t={row['duration_seconds']}s"
+                            )
 
     df = pd.DataFrame(rows)
     out = OUTPUT_FILES["imputation_benchmark"]
@@ -205,6 +215,8 @@ def step_run_experiments(
     rates: Optional[List[float]] = None,
     imputations: Optional[List[str]] = None,
     models: Optional[List[str]] = None,
+    seeds: Optional[List[int]] = None,
+    random_states: Optional[List[int]] = None,
     include_native: bool = True,
 ) -> bool:
     logger.info("=" * 80)
@@ -212,7 +224,8 @@ def step_run_experiments(
     logger.info("=" * 80)
     _run_experiments(
         datasets=datasets, mechanisms=mechanisms, rates=rates,
-        imputations=imputations, models=models,
+        imputations=imputations, models=models, seeds=seeds,
+        random_states=random_states,
         include_native=include_native, logger=logger,
     )
     return True
@@ -268,6 +281,10 @@ def _parse_args() -> argparse.Namespace:
                    help="Subset of imputation methods for step 4.")
     p.add_argument("--models", nargs="+", default=None,
                    help="Subset of models for step 4.")
+    p.add_argument("--seeds", nargs="+", type=int, default=None,
+                   help=f"Random seeds for step 4 (default: {EXPERIMENT_SEEDS}).")
+    p.add_argument("--random-states", nargs="+", type=int, default=None,
+                   help=f"Split random states for step 4 (default: {RANDOM_STATES}).")
     p.add_argument("--no-native", action="store_true",
                    help="Skip the 'native' (no-injection) scenario in step 4.")
     return p.parse_args()
@@ -302,6 +319,8 @@ def main() -> int:
                     rates=args.rates,
                     imputations=args.imputations,
                     models=args.models,
+                    seeds=args.seeds,
+                    random_states=args.random_states,
                     include_native=not args.no_native,
                 )
             else:

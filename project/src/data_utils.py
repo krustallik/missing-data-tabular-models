@@ -22,6 +22,7 @@ from config import (
     DROP_UNNAMED_COLUMNS,
     LOGS_DIR,
     PROCESSED_DIR,
+    RANDOM_STATE,
     RAW_DIR,
     RESULTS_DIR,
     SPLITS_DIR,
@@ -29,6 +30,15 @@ from config import (
     TARGET_COLUMN,
     ensure_output_dirs,
 )
+
+
+def split_paths(dataset_name: str, random_state: int = RANDOM_STATE) -> Tuple[Path, Path]:
+    """Return train/test split paths for a given split random state."""
+    suffix = f"_seed{random_state}"
+    return (
+        SPLITS_DIR / f"{dataset_name}_train{suffix}.csv",
+        SPLITS_DIR / f"{dataset_name}_test{suffix}.csv",
+    )
 
 
 # ── Directory + logging helpers ──────────────────────────────────────────────
@@ -161,22 +171,29 @@ def make_train_test_split(
     )
 
 
-def save_split(train_df: pd.DataFrame, test_df: pd.DataFrame, dataset_name: str) -> Tuple[Path, Path]:
+def save_split(
+    train_df: pd.DataFrame,
+    test_df: pd.DataFrame,
+    dataset_name: str,
+    random_state: int = RANDOM_STATE,
+) -> Tuple[Path, Path]:
     SPLITS_DIR.mkdir(parents=True, exist_ok=True)
-    train_path = SPLITS_DIR / f"{dataset_name}_train.csv"
-    test_path = SPLITS_DIR / f"{dataset_name}_test.csv"
+    train_path, test_path = split_paths(dataset_name, random_state=random_state)
     train_df.to_csv(train_path, index=False)
     test_df.to_csv(test_path, index=False)
     return train_path, test_path
 
 
-def load_precomputed_split(dataset_name: str, logger: Optional[logging.Logger] = None) -> Optional[Tuple]:
+def load_precomputed_split(
+    dataset_name: str,
+    random_state: int = RANDOM_STATE,
+    logger: Optional[logging.Logger] = None,
+) -> Optional[Tuple]:
     """Return (X_train, X_test, y_train, y_test) for ``dataset_name`` or None."""
-    train_path = SPLITS_DIR / f"{dataset_name}_train.csv"
-    test_path = SPLITS_DIR / f"{dataset_name}_test.csv"
+    train_path, test_path = split_paths(dataset_name, random_state=random_state)
     if not train_path.exists() or not test_path.exists():
         if logger is not None:
-            logger.warning(f"Precomputed split missing for {dataset_name}")
+            logger.warning(f"Precomputed split missing for {dataset_name} (random_state={random_state})")
         return None
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
@@ -199,12 +216,15 @@ def load_precomputed_split(dataset_name: str, logger: Optional[logging.Logger] =
     return X_train, X_test, y_train, y_test
 
 
-def splits_present(dataset_names) -> bool:
+def splits_present(dataset_names, random_states=None) -> bool:
+    from config import RANDOM_STATES
+
+    states = list(random_states) if random_states is not None else list(RANDOM_STATES)
     for name in dataset_names:
-        if not (SPLITS_DIR / f"{name}_train.csv").exists():
-            return False
-        if not (SPLITS_DIR / f"{name}_test.csv").exists():
-            return False
+        for state in states:
+            train_path, test_path = split_paths(name, random_state=state)
+            if not train_path.exists() or not test_path.exists():
+                return False
     return True
 
 

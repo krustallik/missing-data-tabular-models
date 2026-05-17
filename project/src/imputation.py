@@ -69,14 +69,18 @@ def _knn_impute(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[pd.DataFra
     return X_tr.fillna(0.0), X_te.fillna(0.0)
 
 
-def _mice_impute(X_train: pd.DataFrame, X_test: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def _mice_impute(
+    X_train: pd.DataFrame,
+    X_test: pd.DataFrame,
+    random_state: int = RANDOM_STATE,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
     # Enables experimental IterativeImputer. Imported lazily because sklearn
     # may emit a ConvergenceWarning which is fine but noisy.
     from sklearn.experimental import enable_iterative_imputer  # noqa: F401
     from sklearn.impute import IterativeImputer
 
     imputer = IterativeImputer(
-        random_state=RANDOM_STATE, max_iter=MICE_MAX_ITER, sample_posterior=False,
+        random_state=random_state, max_iter=MICE_MAX_ITER, sample_posterior=False,
     )
     X_tr = pd.DataFrame(
         imputer.fit_transform(X_train), columns=X_train.columns, index=X_train.index,
@@ -91,6 +95,7 @@ def impute(
     X_train: pd.DataFrame,
     X_test: pd.DataFrame,
     method: str,
+    random_state: int = RANDOM_STATE,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """Fit an imputer on ``X_train`` and return imputed train / test frames.
 
@@ -113,8 +118,8 @@ def impute(
     if method == "knn":
         return _knn_impute(X_train, X_test)
     if method == "mice":
-        return _mice_impute(X_train, X_test)
+        return _mice_impute(X_train, X_test, random_state=random_state)
     if method == "mice_indicator":
-        X_tr_imp, X_te_imp = _mice_impute(X_train, X_test)
+        X_tr_imp, X_te_imp = _mice_impute(X_train, X_test, random_state=random_state)
         return _append_indicators(X_tr_imp, X_te_imp, X_train, X_test)
     raise ValueError(f"Unhandled method: {method}")

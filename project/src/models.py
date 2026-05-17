@@ -30,9 +30,11 @@ Controlled from ``config``:
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import time
+from pathlib import Path
 from typing import Any, Callable, Dict, Optional, Tuple
 
 import numpy as np
@@ -157,7 +159,9 @@ def _tune_threshold(y_true, proba_pos: np.ndarray) -> float:
     return best_thr
 
 
-def _safe_stratified_holdout(X_tr, y_tr) -> Optional[Tuple[Any, Any, Any, Any]]:
+def _safe_stratified_holdout(
+    X_tr, y_tr, *, random_state: int = RANDOM_STATE,
+) -> Optional[Tuple[Any, Any, Any, Any]]:
     """Return a stratified 80/20 split of train, or None if not feasible.
 
     We perform the actual split and then check whether the validation slice
@@ -173,7 +177,7 @@ def _safe_stratified_holdout(X_tr, y_tr) -> Optional[Tuple[Any, Any, Any, Any]]:
             X_tr, y_tr,
             test_size=THRESHOLD_VAL_FRACTION,
             stratify=y_arr,
-            random_state=RANDOM_STATE,
+            random_state=random_state,
         )
     except Exception:
         return None
@@ -193,6 +197,8 @@ def _fit_predict_with_optional_threshold(
     X_tr,
     y_tr,
     X_te,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Tuple[np.ndarray, Optional[np.ndarray], float]:
     """Fit + predict with optional threshold tuning.
 
@@ -213,7 +219,7 @@ def _fit_predict_with_optional_threshold(
     do_tune = TUNE_THRESHOLD and _is_binary(y_tr)
 
     if do_tune:
-        split = _safe_stratified_holdout(X_tr, y_tr)
+        split = _safe_stratified_holdout(X_tr, y_tr, random_state=random_state)
         if split is not None:
             X_fit, X_val, y_fit, y_val = split
             tmp_model = fit_fn(X_fit, y_fit)
@@ -230,62 +236,221 @@ def _fit_predict_with_optional_threshold(
     return y_pred, proba_test, threshold
 
 
+# ── Universal hyperparameters (random search) ────────────────────────────────
+#
+# Best params per model by lowest mean rank across polish / slovak / taiwan
+# (see ``results/tables/random_search/random_search_universal.csv``).
+
+_UNIVERSAL_PARAMS_RAW: Dict[str, Dict[str, Any]] = {
+    "logistic_regression": {
+        "C": 0.03321845054779745,
+        "class_weight": "balanced",
+    },
+    "random_forest": {
+        "bootstrap": True,
+        "class_weight": "balanced",
+        "criterion": "log_loss",
+        "max_depth": 16,
+        "max_features": 0.5,
+        "min_samples_leaf": 9,
+        "min_samples_split": 18,
+        "n_estimators": 1109,
+    },
+    "gradient_boosting": {
+        "learning_rate": 0.012689224577187292,
+        "max_depth": 7,
+        "max_features": 0.5,
+        "min_samples_leaf": 16,
+        "min_samples_split": 19,
+        "n_estimators": 547,
+        "subsample": 0.818919080403218,
+    },
+    "svm": {
+        "C": 13.32833584397577,
+        "gamma": 0.0007762126017029306,
+        "kernel": "rbf",
+        "shrinking": True,
+        "tol": 0.00016255182102508094,
+    },
+    "mlp": {
+        "activation": "relu",
+        "alpha": 3.1495201488760242e-06,
+        "batch_size": 32,
+        "beta_1": 0.8206705767315433,
+        "beta_2": 0.9808419703837479,
+        "hidden_layer_sizes": (200, 100),
+        "learning_rate": "adaptive",
+        "learning_rate_init": 0.0017710402878801273,
+        "solver": "adam",
+    },
+    "xgboost": {
+        "colsample_bytree": 0.710469734775406,
+        "gamma": 0.07381391757029307,
+        "learning_rate": 0.11752280323158582,
+        "max_delta_step": 5,
+        "max_depth": 10,
+        "min_child_weight": 0.22091178748276066,
+        "n_estimators": 366,
+        "reg_alpha": 3.2832064418905697e-06,
+        "reg_lambda": 9.00301843693915,
+        "subsample": 0.9658542005805508,
+    },
+    "lightgbm": {
+        "colsample_bytree": 0.7333523210556638,
+        "learning_rate": 0.13881071911836915,
+        "max_depth": 16,
+        "min_child_samples": 45,
+        "min_split_gain": 0.00028538198900747604,
+        "n_estimators": 1243,
+        "num_leaves": 139,
+        "reg_alpha": 4.169499791215005e-06,
+        "reg_lambda": 1.0053034687849461e-08,
+        "subsample": 0.5025474515190765,
+        "subsample_freq": 0,
+    },
+    "catboost": {
+        "bagging_temperature": 0.4112330087078798,
+        "border_count": 32,
+        "depth": 7,
+        "grow_policy": "SymmetricTree",
+        "iterations": 1281,
+        "l2_leaf_reg": 1.1747067839262921,
+        "leaf_estimation_iterations": 9,
+        "learning_rate": 0.024100930640918266,
+        "random_strength": 1.1755147132864414,
+    },
+}
+
+
+def _normalize_universal_param(key: str, value: Any) -> Any:
+    if key == "hidden_layer_sizes" and isinstance(value, list):
+        return tuple(value)
+    return value
+
+
+def _parse_universal_params_blob(blob: str) -> Dict[str, Any]:
+    """Parse the JSON ``params`` cell from ``random_search_universal.csv``."""
+    raw = json.loads(blob)
+    out: Dict[str, Any] = {}
+    for k, v in raw.items():
+        name = k[5:] if k.startswith("clf__") else k
+        out[name] = _normalize_universal_param(name, v)
+    return out
+
+
+def load_universal_hyperparameters(
+    csv_path: Optional[Path] = None,
+) -> Dict[str, Dict[str, Any]]:
+    """Load universal params from CSV, or fall back to embedded defaults."""
+    if csv_path is None:
+        csv_path = (
+            Path(__file__).resolve().parent.parent
+            / "results" / "tables" / "random_search" / "random_search_universal.csv"
+        )
+    if csv_path.exists():
+        df = pd.read_csv(csv_path)
+        return {
+            str(row["model"]): _parse_universal_params_blob(str(row["params"]))
+            for _, row in df.iterrows()
+        }
+    return {
+        k: {pk: _normalize_universal_param(pk, pv) for pk, pv in v.items()}
+        for k, v in _UNIVERSAL_PARAMS_RAW.items()
+    }
+
+
+UNIVERSAL_HYPERPARAMETERS: Dict[str, Dict[str, Any]] = load_universal_hyperparameters()
+
+
+def _class_weight_kw(model_key: str, params: Dict[str, Any]) -> Dict[str, Any]:
+    """Honor ``USE_CLASS_WEIGHT`` for keys tuned with class balancing."""
+    if not USE_CLASS_WEIGHT and "class_weight" in params:
+        return {**params, "class_weight": None}
+    return dict(params)
+
+
 # ── Classical model builders ─────────────────────────────────────────────────
 
-def _build_classical(model_key: str, use_gpu: bool = False, y_train=None):
-    cw = "balanced" if USE_CLASS_WEIGHT else None
+def _build_classical(
+    model_key: str,
+    use_gpu: bool = False,
+    y_train=None,
+    *,
+    random_state: int = RANDOM_STATE,
+):
+    hp = UNIVERSAL_HYPERPARAMETERS.get(model_key, {})
 
     if model_key == "logistic_regression":
+        p = _class_weight_kw(model_key, hp)
         return LogisticRegression(
-            max_iter=1000, random_state=RANDOM_STATE, solver="lbfgs",
-            class_weight=cw,
+            solver="lbfgs",
+            max_iter=3000,
+            random_state=random_state,
+            **p,
         )
     if model_key == "random_forest":
+        p = _class_weight_kw(model_key, hp)
         return RandomForestClassifier(
-            n_estimators=100, random_state=RANDOM_STATE, n_jobs=-1,
-            class_weight=cw,
+            random_state=random_state,
+            n_jobs=-1,
+            **p,
         )
     if model_key == "gradient_boosting":
-        # GBM has no class_weight param; we pass sample_weight at fit time.
-        return GradientBoostingClassifier(n_estimators=100, random_state=RANDOM_STATE)
+        return GradientBoostingClassifier(
+            random_state=random_state,
+            **hp,
+        )
     if model_key == "svm":
         return SVC(
-            kernel="rbf", random_state=RANDOM_STATE, probability=True,
-            class_weight=cw,
+            probability=True,
+            random_state=random_state,
+            class_weight="balanced" if USE_CLASS_WEIGHT else None,
+            **hp,
         )
     if model_key == "mlp":
-        # MLPClassifier has neither class_weight nor sample_weight. Minority
-        # recall relies solely on threshold tuning.
         return MLPClassifier(
-            hidden_layer_sizes=(100, 50),
-            max_iter=500,
-            random_state=RANDOM_STATE,
+            max_iter=700,
             early_stopping=True,
+            random_state=random_state,
+            **hp,
         )
     if model_key == "xgboost":
         import xgboost as xgb
 
+        p = dict(hp)
         spw = _scale_pos_weight(y_train) if (USE_CLASS_WEIGHT and y_train is not None) else 1.0
         return xgb.XGBClassifier(
-            n_estimators=100, random_state=RANDOM_STATE,
-            n_jobs=-1, eval_metric="logloss", verbosity=0,
+            random_state=random_state,
+            n_jobs=-1,
+            eval_metric="logloss",
+            verbosity=0,
             tree_method="hist",
             device="cuda" if use_gpu else "cpu",
             scale_pos_weight=spw,
+            **p,
         )
     if model_key == "lightgbm":
         import lightgbm as lgb
 
+        p = _class_weight_kw(model_key, hp)
         return lgb.LGBMClassifier(
-            n_estimators=100, random_state=RANDOM_STATE, n_jobs=-1, verbose=-1,
+            random_state=random_state,
+            n_jobs=-1,
+            verbose=-1,
             device_type="gpu" if use_gpu else "cpu",
-            class_weight=cw,
+            **p,
         )
     raise ValueError(f"Unknown classical model: {model_key!r}")
 
 
 def _train_classical(
-    model_key: str, X_train: pd.DataFrame, X_test: pd.DataFrame, y_train, y_test,
+    model_key: str,
+    X_train: pd.DataFrame,
+    X_test: pd.DataFrame,
+    y_train,
+    y_test,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Dict[str, Any]:
     result: Dict[str, Any] = {
         "metrics": None, "training_time_seconds": None, "error": None,
@@ -308,7 +473,9 @@ def _train_classical(
         start = time.time()
 
         def fit_fn(X, y):
-            model = clone(_build_classical(model_key, use_gpu=use_gpu, y_train=y))
+            model = clone(_build_classical(
+                model_key, use_gpu=use_gpu, y_train=y, random_state=random_state,
+            ))
             sw = _sample_weight_balanced(model_key, y)
             if sw is not None:
                 model.fit(X, y, sample_weight=sw)
@@ -329,6 +496,7 @@ def _train_classical(
 
         y_pred, y_proba, thr = _fit_predict_with_optional_threshold(
             fit_fn, proba_fn, predict_fn, X_tr, y_train, X_te,
+            random_state=random_state,
         )
         elapsed = time.time() - start
         metrics = compute_metrics(_as_array(y_test), y_pred, y_proba)
@@ -413,6 +581,8 @@ def _tabpfn_preflight(logger: Optional[logging.Logger]) -> Dict[str, Any]:
 def _train_tabpfn(
     X_train: pd.DataFrame, X_test: pd.DataFrame, y_train, y_test,
     logger: Optional[logging.Logger] = None,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Dict[str, Any]:
     global _TABPFN_BLOCKED
     result: Dict[str, Any] = {"metrics": None, "training_time_seconds": None, "error": None}
@@ -452,6 +622,7 @@ def _train_tabpfn(
         start = time.time()
         y_pred, y_proba, thr = _fit_predict_with_optional_threshold(
             fit_fn, proba_fn, predict_fn, X_tr, y_train, X_te,
+            random_state=random_state,
         )
         elapsed = time.time() - start
         metrics = compute_metrics(_as_array(y_test), y_pred, y_proba)
@@ -470,6 +641,8 @@ def _train_tabpfn(
 def _train_tabicl(
     X_train: pd.DataFrame, X_test: pd.DataFrame, y_train, y_test,
     logger: Optional[logging.Logger] = None,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Dict[str, Any]:
     result: Dict[str, Any] = {"metrics": None, "training_time_seconds": None, "error": None}
     try:
@@ -505,6 +678,7 @@ def _train_tabicl(
         start = time.time()
         y_pred, y_proba, thr = _fit_predict_with_optional_threshold(
             fit_fn, proba_fn, predict_fn, X_train, y_train, X_test,
+            random_state=random_state,
         )
         elapsed = time.time() - start
         metrics = compute_metrics(_as_array(y_test), y_pred, y_proba)
@@ -519,6 +693,8 @@ def _train_tabicl(
 def _train_catboost(
     X_train: pd.DataFrame, X_test: pd.DataFrame, y_train, y_test,
     logger: Optional[logging.Logger] = None,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Dict[str, Any]:
     result: Dict[str, Any] = {"metrics": None, "training_time_seconds": None, "error": None}
     try:
@@ -531,10 +707,10 @@ def _train_catboost(
     def _fit_once(use_gpu: bool) -> Dict[str, Any]:
         def fit_fn(X, y):
             kwargs = {
-                "iterations": 200,
-                "random_seed": RANDOM_STATE,
+                "random_seed": random_state,
                 "verbose": False,
                 "allow_writing_files": False,
+                **UNIVERSAL_HYPERPARAMETERS.get("catboost", {}),
             }
             if USE_CLASS_WEIGHT:
                 kwargs["auto_class_weights"] = "Balanced"
@@ -561,6 +737,7 @@ def _train_catboost(
         start = time.time()
         y_pred, y_proba, thr = _fit_predict_with_optional_threshold(
             fit_fn, proba_fn, predict_fn, X_train, y_train, X_test,
+            random_state=random_state,
         )
         elapsed = time.time() - start
         metrics = compute_metrics(_as_array(y_test), y_pred, y_proba)
@@ -596,6 +773,8 @@ def train_and_evaluate(
     y_train,
     y_test,
     logger: Optional[logging.Logger] = None,
+    *,
+    random_state: int = RANDOM_STATE,
 ) -> Dict[str, Any]:
     """Dispatch to the right trainer and return a uniform result dict.
 
@@ -605,13 +784,21 @@ def train_and_evaluate(
     """
     key = str(model_key).lower()
     if key == "tabpfn":
-        return _train_tabpfn(X_train, X_test, y_train, y_test, logger=logger)
+        return _train_tabpfn(
+            X_train, X_test, y_train, y_test, logger=logger, random_state=random_state,
+        )
     if key == "tabicl":
-        return _train_tabicl(X_train, X_test, y_train, y_test, logger=logger)
+        return _train_tabicl(
+            X_train, X_test, y_train, y_test, logger=logger, random_state=random_state,
+        )
     if key == "catboost":
-        return _train_catboost(X_train, X_test, y_train, y_test, logger=logger)
+        return _train_catboost(
+            X_train, X_test, y_train, y_test, logger=logger, random_state=random_state,
+        )
     if key in CLASSICAL_MODELS:
-        return _train_classical(key, X_train, X_test, y_train, y_test)
+        return _train_classical(
+            key, X_train, X_test, y_train, y_test, random_state=random_state,
+        )
     return {
         "metrics": None,
         "training_time_seconds": None,

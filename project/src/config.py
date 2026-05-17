@@ -20,9 +20,13 @@ from pathlib import Path
 
 # ── Reproducibility ──────────────────────────────────────────────────────────
 
-RANDOM_STATE = 42
+RANDOM_STATES = [42, 123]
+RANDOM_STATE = RANDOM_STATES[0]
 TEST_SIZE = 0.2
 CV_FOLDS = 5
+
+# Experiment repeats.
+EXPERIMENT_SEEDS = [44, 111, 7]
 
 
 # ── Metrics ──────────────────────────────────────────────────────────────────
@@ -43,6 +47,8 @@ PRIMARY_METRICS = ["accuracy", "balanced_accuracy", "f1_macro", "pr_auc"]
 # Column schema used by every results CSV in this project.
 RESULT_COLUMNS = [
     "dataset",
+    "split_seed",
+    "seed",
     "missing_mechanism",
     "missing_rate",
     "imputation",

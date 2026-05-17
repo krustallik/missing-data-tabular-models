@@ -18,7 +18,7 @@ from typing import Optional
 
 import pandas as pd
 
-from config import OUTPUT_FILES, PRIMARY_METRICS, VIZ_DIR, ensure_output_dirs
+from config import METRICS, OUTPUT_FILES, PRIMARY_METRICS, VIZ_DIR, ensure_output_dirs
 from data_utils import setup_logging
 from models import model_type as _resolve_model_type
 
@@ -60,20 +60,48 @@ def _load_experiment_results(logger: logging.Logger) -> Optional[pd.DataFrame]:
     return df
 
 
-def _save_consolidated(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
-    out = OUTPUT_FILES["consolidated_results"]
-    df.to_csv(out, index=False)
-    logger.info(f"Saved {out.name}: {len(df)} rows")
+def _aggregate_across_seeds(
+    df: pd.DataFrame, logger: Optional[logging.Logger] = None,
+) -> pd.DataFrame:
+    """Mean metrics over split random states and experiment seeds."""
+    n_seeds = int(df["seed"].nunique(dropna=True)) if "seed" in df.columns else 1
+    n_split_seeds = int(df["split_seed"].nunique(dropna=True)) if "split_seed" in df.columns else 1
+    if n_seeds <= 1 and n_split_seeds <= 1:
+        return df
 
-    classical = df[df["model_type"] == "Classical"]
-    foundation = df[df["model_type"] == "Foundation"]
+    group_cols = [
+        "dataset", "missing_mechanism", "missing_rate", "imputation",
+        "model", "model_type",
+    ]
+    present = [c for c in group_cols if c in df.columns]
+    metric_cols = [c for c in METRICS if c in df.columns]
+    extra = [c for c in ("threshold", "training_time_seconds") if c in df.columns]
+
+    agg: dict = {c: "mean" for c in metric_cols + extra}
+    out = df.groupby(present, as_index=False, dropna=False).agg(agg)
+    if logger is not None:
+        logger.info(
+            f"Aggregated {len(df)} repeated rows -> {len(out)} rows "
+            f"(mean over {n_split_seeds} split seeds x {n_seeds} experiment seeds)"
+        )
+    return out
+
+
+def _save_consolidated(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
+    df_plot = _aggregate_across_seeds(df, logger=logger)
+    out = OUTPUT_FILES["consolidated_results"]
+    df_plot.to_csv(out, index=False)
+    logger.info(f"Saved {out.name}: {len(df_plot)} rows")
+
+    classical = df_plot[df_plot["model_type"] == "Classical"]
+    foundation = df_plot[df_plot["model_type"] == "Foundation"]
     classical.to_csv(OUTPUT_FILES["classical_models"], index=False)
     foundation.to_csv(OUTPUT_FILES["foundation_models"], index=False)
     logger.info(
         f"Saved classical_models.csv ({len(classical)} rows) and "
         f"foundation_models.csv ({len(foundation)} rows)"
     )
-    return df
+    return df_plot
 
 
 def _robustness(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
@@ -262,18 +290,18 @@ def consolidate(logger: Optional[logging.Logger] = None) -> Optional[pd.DataFram
         logger.error("No experiment results to consolidate")
         return None
 
-    df = _save_consolidated(df, logger)
-    _robustness(df, logger)
+    df_agg = _save_consolidated(df, logger)
+    _robustness(df_agg, logger)
 
     if not VIZ_AVAILABLE:
         logger.warning("matplotlib/seaborn not installed; skipping visualizations")
-        return df
+        return df_agg
 
-    _plot_missing_rate_curves(df, logger)
-    _plot_classical_vs_foundation(df, logger)
-    _plot_stability_heatmap(df, logger)
-    _plot_per_dataset_ranking(df, logger)
-    return df
+    _plot_missing_rate_curves(df_agg, logger)
+    _plot_classical_vs_foundation(df_agg, logger)
+    _plot_stability_heatmap(df_agg, logger)
+    _plot_per_dataset_ranking(df_agg, logger)
+    return df_agg
 
 
 if __name__ == "__main__":
