@@ -55,6 +55,29 @@ def _df_to_markdown(df: pd.DataFrame, float_fmt: str = ".4f") -> str:
     return "\n".join(lines)
 
 
+NATIVE_MECHANISM = "native"
+NATIVE_RATE = 0.0
+
+
+def _normalize_native(df: pd.DataFrame) -> pd.DataFrame:
+    """Map legacy NaN rows for the no-injection scenario to ``("native", 0.0)``.
+
+    Mirrors the helper in :mod:`consolidation` so this module behaves
+    identically whether it reads ``consolidated_results.csv`` or falls back
+    to ``experiment_results.csv``.
+    """
+    if df.empty or "missing_mechanism" not in df.columns:
+        return df
+    df = df.copy()
+    df["missing_mechanism"] = df["missing_mechanism"].where(
+        df["missing_mechanism"].notna(), NATIVE_MECHANISM,
+    )
+    if "missing_rate" in df.columns:
+        native_mask = df["missing_mechanism"] == NATIVE_MECHANISM
+        df.loc[native_mask & df["missing_rate"].isna(), "missing_rate"] = NATIVE_RATE
+    return df
+
+
 def _load(logger: logging.Logger) -> Optional[pd.DataFrame]:
     path = OUTPUT_FILES["consolidated_results"]
     if not path.exists():
@@ -63,6 +86,7 @@ def _load(logger: logging.Logger) -> Optional[pd.DataFrame]:
         logger.error("Neither consolidated_results.csv nor experiment_results.csv present.")
         return None
     df = pd.read_csv(path)
+    df = _normalize_native(df)
     if "model" in df.columns:
         df["model_type"] = df["model"].map(_resolve_model_type)
     logger.info(f"Loaded {path.name}: {len(df)} rows")
@@ -321,6 +345,7 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
     ]
     rob = succeeded.dropna(subset=["missing_mechanism"])
+    rob = rob[rob["missing_mechanism"] != NATIVE_MECHANISM]
     if not rob.empty:
         grp = (
             rob.groupby(["model", "missing_mechanism"])[ranking_metric]
@@ -340,8 +365,11 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
     ]
     if not succeeded.empty and "missing_rate" in succeeded.columns:
+        rate_src = succeeded.dropna(subset=["missing_rate"])
+        if "missing_mechanism" in rate_src.columns:
+            rate_src = rate_src[rate_src["missing_mechanism"] != NATIVE_MECHANISM]
         rate_pivot = (
-            succeeded.dropna(subset=["missing_rate"])
+            rate_src
             .groupby(["model", "missing_rate"])[ranking_metric]
             .mean()
             .unstack(fill_value=float("nan"))

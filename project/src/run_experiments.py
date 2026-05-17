@@ -32,6 +32,12 @@ Optional filters for step 4 (experiment loop)::
     --rates 0.05 0.10 0.20
     --datasets taiwan_bankruptcy
     --no-native
+
+Resume controls for step 4::
+
+    --resume           # default: continue from experiment_results.csv
+    --no-resume        # ignore existing CSV and start over
+    --force            # retrain every requested combination even if cached
 """
 
 from __future__ import annotations
@@ -218,6 +224,8 @@ def step_run_experiments(
     seeds: Optional[List[int]] = None,
     random_states: Optional[List[int]] = None,
     include_native: bool = True,
+    resume: bool = True,
+    force: bool = False,
 ) -> bool:
     logger.info("=" * 80)
     logger.info("STEP 4: RUN FULL EXPERIMENT MATRIX")
@@ -226,7 +234,9 @@ def step_run_experiments(
         datasets=datasets, mechanisms=mechanisms, rates=rates,
         imputations=imputations, models=models, seeds=seeds,
         random_states=random_states,
-        include_native=include_native, logger=logger,
+        include_native=include_native,
+        resume=resume, force=force,
+        logger=logger,
     )
     return True
 
@@ -287,6 +297,23 @@ def _parse_args() -> argparse.Namespace:
                    help=f"Split random states for step 4 (default: {RANDOM_STATES}).")
     p.add_argument("--no-native", action="store_true",
                    help="Skip the 'native' (no-injection) scenario in step 4.")
+    # Resume controls (step 4). Default behaviour is to resume from any
+    # existing experiment_results.csv. ``--no-resume`` overwrites it; ``--force``
+    # ignores cached rows and re-trains every requested combination.
+    resume_grp = p.add_mutually_exclusive_group()
+    resume_grp.add_argument(
+        "--resume", dest="resume", action="store_true", default=True,
+        help="Step 4: continue from experiment_results.csv (default).",
+    )
+    resume_grp.add_argument(
+        "--no-resume", dest="resume", action="store_false",
+        help="Step 4: ignore existing experiment_results.csv and start over.",
+    )
+    p.add_argument(
+        "--force", action="store_true",
+        help="Step 4: re-train every requested combination even if it is "
+             "already cached. Overrides --resume.",
+    )
     return p.parse_args()
 
 
@@ -322,6 +349,8 @@ def main() -> int:
                     seeds=args.seeds,
                     random_states=args.random_states,
                     include_native=not args.no_native,
+                    resume=args.resume,
+                    force=args.force,
                 )
             else:
                 ok = fn(logger)

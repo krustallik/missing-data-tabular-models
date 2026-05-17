@@ -4,75 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="random greed search">
+    <list default="true" id="7385a496-1911-4468-8f5a-d1747fc6c569" name="Changes" comment="added multiply random seeds and random states">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/logs/pipeline_20260421_205014.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/logs/pipeline_20260427_205251.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/results_discussion_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/reports/suitability_matrix.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/classical_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/consolidated_results_polish.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/dataset_overview.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_results_polish.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/experiment_setup.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/foundation_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/imputation_benchmark.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/missingness_verification.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/tables/robustness_analysis.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/classical_vs_foundation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MCAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/missing_rate_MNAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/per_dataset_ranking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_polish/visualizations/stability_heatmap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/logs/pipeline_20260425_123633.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/logs/pipeline_20260427_205255.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/results_discussion_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/reports/suitability_matrix.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/classical_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/consolidated_results_slovak.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/dataset_overview.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_results_slovak.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/experiment_setup.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/foundation_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/imputation_benchmark.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/missingness_verification.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/tables/robustness_analysis.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/classical_vs_foundation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MCAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/missing_rate_MNAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/per_dataset_ranking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_slovak/visualizations/stability_heatmap.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/logs/pipeline_20260425_220511.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/logs/pipeline_20260427_205259.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/results_discussion_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/reports/suitability_matrix.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/classical_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/consolidated_results_taiwan.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/dataset_overview.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_results.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_results_taiwan.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/experiment_setup.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/foundation_models.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/imputation_benchmark.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/missingness_verification.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/tables/robustness_analysis.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/classical_vs_foundation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MCAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/missing_rate_MNAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/per_dataset_ranking.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/results_taiwan/visualizations/stability_heatmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/polish_1year_test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/polish_1year_train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/slovak_manufacture_13_test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/slovak_manufacture_13_train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/taiwan_bankruptcy_test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/data/splits/taiwan_bankruptcy_train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/consolidation.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/consolidation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/experiment_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/experiment_runner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/reporting.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/reporting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/src/run_experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/src/run_experiments.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="repository" />
+    </option>
   </component>
   <component name="CopilotChats">
     <option name="panelChat">
@@ -305,7 +259,7 @@
       <workItem from="1777442763258" duration="2413000" />
       <workItem from="1778611737485" duration="712000" />
       <workItem from="1778923299959" duration="6478000" />
-      <workItem from="1778929909140" duration="660000" />
+      <workItem from="1778929909140" duration="18825000" />
     </task>
     <task id="LOCAL-00001" summary="4.1 and 4.2">
       <option name="closed" value="true" />
@@ -515,7 +469,55 @@
       <option name="project" value="LOCAL" />
       <updated>1778929957929</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="random greed search">
+      <option name="closed" value="true" />
+      <created>1778942638535</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1778942638535</updated>
+    </task>
+    <task id="LOCAL-00028" summary="random greed search">
+      <option name="closed" value="true" />
+      <created>1778942693939</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1778942693939</updated>
+    </task>
+    <task id="LOCAL-00029" summary="random greed search">
+      <option name="closed" value="true" />
+      <created>1778942711444</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1778942711444</updated>
+    </task>
+    <task id="LOCAL-00030" summary="iter 150">
+      <option name="closed" value="true" />
+      <created>1778942926652</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1778942926652</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added multiply random seeds and random states">
+      <option name="closed" value="true" />
+      <created>1779003244298</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1779003244298</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added multiply random seeds and random states">
+      <option name="closed" value="true" />
+      <created>1779003625038</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1779003625038</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -540,11 +542,13 @@
     <MESSAGE value="reports fix" />
     <MESSAGE value="git ignore" />
     <MESSAGE value="random greed search" />
-    <option name="LAST_COMMIT_MESSAGE" value="random greed search" />
+    <MESSAGE value="iter 150" />
+    <MESSAGE value="added multiply random seeds and random states" />
+    <option name="LAST_COMMIT_MESSAGE" value="added multiply random seeds and random states" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/_$run_phase4_2_experiments.coverage" NAME="run_phase4_2_experiments Coverage Results" MODIFIED="1775901338589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
-    <SUITE FILE_PATH="coverage/INS$run_experiments.coverage" NAME="run_experiments Coverage Results" MODIFIED="1776784042999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
+    <SUITE FILE_PATH="coverage/INS$run_experiments.coverage" NAME="run_experiments Coverage Results" MODIFIED="1779003069302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/_$run_phase4_4_tabpfn.coverage" NAME="run_phase4_4_tabpfn Coverage Results" MODIFIED="1775989484208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/_$run_phase4_6_experiments.coverage" NAME="run_phase4_6_experiments Coverage Results" MODIFIED="1775988827219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />
     <SUITE FILE_PATH="coverage/_$run_phase4_7_experiments.coverage" NAME="run_phase4_7_experiments Coverage Results" MODIFIED="1776092576073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project/src" />

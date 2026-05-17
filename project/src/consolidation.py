@@ -48,12 +48,36 @@ PLOT_DPI = 150
 PLOT_STYLE = "seaborn-v0_8-whitegrid"
 
 
+NATIVE_MECHANISM = "native"
+NATIVE_RATE = 0.0
+
+
+def _normalize_native(df: pd.DataFrame) -> pd.DataFrame:
+    """Convert legacy NaN rows for the no-injection scenario to the stable
+    ``("native", 0.0)`` representation now written by ``experiment_runner``.
+
+    This keeps consolidation/reporting working uniformly regardless of which
+    schema the CSV on disk was written with.
+    """
+    if df.empty or "missing_mechanism" not in df.columns:
+        return df
+    df = df.copy()
+    df["missing_mechanism"] = df["missing_mechanism"].where(
+        df["missing_mechanism"].notna(), NATIVE_MECHANISM,
+    )
+    if "missing_rate" in df.columns:
+        native_mask = df["missing_mechanism"] == NATIVE_MECHANISM
+        df.loc[native_mask & df["missing_rate"].isna(), "missing_rate"] = NATIVE_RATE
+    return df
+
+
 def _load_experiment_results(logger: logging.Logger) -> Optional[pd.DataFrame]:
     path = OUTPUT_FILES["experiment_results"]
     if not path.exists():
         logger.error(f"Experiment results not found: {path}")
         return None
     df = pd.read_csv(path)
+    df = _normalize_native(df)
     if "model" in df.columns:
         df["model_type"] = df["model"].map(_resolve_model_type)
     logger.info(f"Loaded {path.name}: {len(df)} rows")
@@ -105,7 +129,11 @@ def _save_consolidated(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame
 
 
 def _robustness(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
+    # Robustness summary is per missingness mechanism, so the native (no
+    # injection) rows must be excluded. Accept both the new "native" sentinel
+    # and legacy NaN rows.
     sub = df.dropna(subset=["accuracy", "missing_mechanism"])
+    sub = sub[sub["missing_mechanism"] != NATIVE_MECHANISM]
     if sub.empty:
         logger.warning("No missingness-annotated rows for robustness analysis")
         return pd.DataFrame()
@@ -135,6 +163,9 @@ def _plot_missing_rate_curves(df: pd.DataFrame, logger: logging.Logger) -> None:
     if not VIZ_AVAILABLE:
         return
     sub = df.dropna(subset=["missing_rate", "accuracy", "missing_mechanism"])
+    # Exclude the native sentinel rows; the curves are about injected
+    # missingness only.
+    sub = sub[sub["missing_mechanism"] != NATIVE_MECHANISM]
     if sub.empty:
         logger.warning("No data for missing-rate curves")
         return
@@ -248,7 +279,13 @@ def _plot_per_dataset_ranking(df: pd.DataFrame, logger: logging.Logger) -> None:
     if not VIZ_AVAILABLE:
         return
     metric = _ranking_metric(df)
-    sub = df[df["missing_mechanism"].isna()].dropna(subset=[metric])
+    # Per-dataset ranking is drawn on the native scenario. Accept both the
+    # new "native" sentinel and legacy NaN rows.
+    native_mask = (
+        df["missing_mechanism"].isna()
+        | (df["missing_mechanism"] == NATIVE_MECHANISM)
+    )
+    sub = df[native_mask].dropna(subset=[metric])
     if sub.empty:
         return
     best = sub.groupby(["dataset", "model", "model_type"], as_index=False)[metric].mean()

@@ -20,17 +20,32 @@ Skipped combinations (recorded as ``skipped``):
 - Any combination where imputation itself raises (e.g. the KNN matrix-size
   guard); the error is recorded and downstream models are skipped.
 
-Outputs are written incrementally to ``experiment_results.csv`` so that a
-crash mid-way still leaves a usable partial table.
+Outputs are written incrementally to ``experiment_results.csv`` after every
+single model finishes, so an aborted run can be resumed by re-running with
+``resume=True`` (the default).
+
+Resume protocol
+~~~~~~~~~~~~~~~
+
+A finished experiment is uniquely identified by the 7-tuple:
+
+    (dataset, split_seed, seed, missing_mechanism, missing_rate,
+     imputation, model)
+
+For the *native* scenario we store a stable representation
+(``missing_mechanism="native"``, ``missing_rate=0.0``) instead of NaN so the
+key comparison stays robust across CSV round-trips. Legacy CSVs that still
+have NaN for native rows are normalised on load.
 """
 
 from __future__ import annotations
 
 import json
 import logging
+import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 import pandas as pd
 
@@ -59,8 +74,28 @@ _INJECTORS = {
 }
 
 
+# Sentinel values used in CSV for the no-injection scenario. Kept as plain
+# strings/floats so the resume key remains stable across pandas read/write
+# cycles (None/NaN comparisons are fragile in tuple sets).
+NATIVE_MECHANISM = "native"
+NATIVE_RATE = 0.0
+
+# Key columns that uniquely identify a single trained model row.
+KEY_COLUMNS: Tuple[str, ...] = (
+    "dataset",
+    "split_seed",
+    "seed",
+    "missing_mechanism",
+    "missing_rate",
+    "imputation",
+    "model",
+)
+
+ExperimentKey = Tuple[str, int, int, str, float, str, str]
+
+
 def _apply_missingness(X, mechanism: str, rate: float, random_state: int):
-    if mechanism == "native":
+    if mechanism == NATIVE_MECHANISM:
         return X
     return _INJECTORS[mechanism](X.copy(), rate, random_state=random_state)
 
@@ -72,12 +107,25 @@ def _should_skip(model_key: str, imputation: str) -> Optional[str]:
     return None
 
 
+def _scenario_columns(
+    mechanism: str, rate: float,
+) -> Tuple[str, float]:
+    """Return ``(mechanism, rate_pct)`` as they appear in the CSV.
+
+    ``native`` is normalised to ``("native", 0.0)``; all other scenarios use
+    the percentage form (``5.0``, ``10.0``, ...) for ``missing_rate``.
+    """
+    if mechanism == NATIVE_MECHANISM:
+        return NATIVE_MECHANISM, NATIVE_RATE
+    return mechanism, round(float(rate) * 100, 2)
+
+
 def _record(
     dataset: str,
     split_seed: int,
     seed: int,
-    mechanism: Optional[str],
-    rate: Optional[float],
+    mechanism: str,
+    rate: float,
     imputation: str,
     model_key: str,
     outcome: Dict,
@@ -86,10 +134,10 @@ def _record(
     metrics = outcome.get("metrics") if outcome else None
     row = {
         "dataset": dataset,
-        "split_seed": split_seed,
-        "seed": seed,
-        "missing_mechanism": mechanism,
-        "missing_rate": None if rate is None else round(float(rate) * 100, 2),
+        "split_seed": int(split_seed),
+        "seed": int(seed),
+        "missing_mechanism": str(mechanism),
+        "missing_rate": float(rate),
         "imputation": imputation,
         "model": display_name(model_key),
         "model_type": model_type(model_key),
@@ -109,9 +157,103 @@ def _record(
     return row
 
 
-def _write_csv(rows: List[Dict], out_path: Path) -> None:
+def _row_key(row: Dict) -> ExperimentKey:
+    """Build the canonical resume key from a row dict.
+
+    Values are cast to deterministic types so the same tuple is produced
+    whether the row was just created in-memory or round-tripped through a
+    pandas-written CSV.
+    """
+    mech_raw = row.get("missing_mechanism")
+    if mech_raw is None or (isinstance(mech_raw, float) and pd.isna(mech_raw)):
+        mech = NATIVE_MECHANISM
+    else:
+        mech = str(mech_raw)
+    rate_raw = row.get("missing_rate")
+    if rate_raw is None or (isinstance(rate_raw, float) and pd.isna(rate_raw)):
+        rate = NATIVE_RATE
+    else:
+        rate = round(float(rate_raw), 2)
+    return (
+        str(row["dataset"]),
+        int(row["split_seed"]),
+        int(row["seed"]),
+        mech,
+        rate,
+        str(row["imputation"]),
+        str(row["model"]),
+    )
+
+
+def _normalize_existing(df: pd.DataFrame) -> pd.DataFrame:
+    """Bring a previously saved CSV to the new stable native representation.
+
+    - ``missing_mechanism`` NaN → ``"native"``.
+    - ``missing_rate`` NaN for native rows → ``0.0``.
+    """
+    if df.empty:
+        return df
+    df = df.copy()
+    if "missing_mechanism" in df.columns:
+        df["missing_mechanism"] = df["missing_mechanism"].where(
+            df["missing_mechanism"].notna(), NATIVE_MECHANISM,
+        )
+    if "missing_rate" in df.columns and "missing_mechanism" in df.columns:
+        native_mask = df["missing_mechanism"] == NATIVE_MECHANISM
+        df.loc[native_mask & df["missing_rate"].isna(), "missing_rate"] = NATIVE_RATE
+    return df
+
+
+def _load_existing_results(
+    out_path: Path, logger: logging.Logger,
+) -> Tuple[List[Dict], Set[ExperimentKey]]:
+    """Load and normalise the existing results CSV for resume.
+
+    Returns ``(rows, completed_keys)``. ``rows`` is the list of previously
+    saved row dicts (already normalised); ``completed_keys`` is the set of
+    7-tuples we already have a record for.
+    """
+    if not out_path.exists():
+        logger.info(f"Resume: no existing CSV at {out_path} (starting fresh)")
+        return [], set()
+    try:
+        df = pd.read_csv(out_path)
+    except Exception as exc:
+        logger.warning(f"Resume: could not read {out_path.name}: {exc}; starting fresh")
+        return [], set()
+
+    missing = [c for c in KEY_COLUMNS if c not in df.columns]
+    if missing:
+        logger.warning(
+            f"Resume: {out_path.name} is missing key columns {missing}; starting fresh"
+        )
+        return [], set()
+
+    df = _normalize_existing(df)
+    rows = df.to_dict("records")
+    keys = {_row_key(r) for r in rows}
+    logger.info(
+        f"Resume: loaded {len(rows)} rows from {out_path.name} "
+        f"({len(keys)} unique completed keys)"
+    )
+    return rows, keys
+
+
+def _atomic_write_csv(rows: List[Dict], out_path: Path) -> None:
+    """Write ``rows`` to ``out_path`` atomically via a ``.tmp`` sibling.
+
+    A power loss between the two ``Path.replace`` boundaries leaves either
+    the previous CSV intact or the new one — never a truncated half-write.
+    """
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(rows, columns=RESULT_COLUMNS).to_csv(out_path, index=False)
+    tmp_path = out_path.with_name(out_path.name + ".tmp")
+    pd.DataFrame(rows, columns=RESULT_COLUMNS).to_csv(tmp_path, index=False)
+    os.replace(tmp_path, out_path)
+
+
+# Backwards-compat shim: a few callers/tests still use this name.
+def _write_csv(rows: List[Dict], out_path: Path) -> None:
+    _atomic_write_csv(rows, out_path)
 
 
 def run_experiments(
@@ -123,14 +265,25 @@ def run_experiments(
     seeds: Optional[Iterable[int]] = None,
     random_states: Optional[Iterable[int]] = None,
     include_native: bool = True,
+    resume: bool = True,
+    force: bool = False,
     logger: Optional[logging.Logger] = None,
 ) -> pd.DataFrame:
     """Run the full experiment matrix (or any filtered subset).
 
-    Every argument defaults to the full grid declared in :mod:`config`.
-    Progress is logged per inner iteration, and the resulting table is
-    written to :data:`config.OUTPUT_FILES["experiment_results"]` after each
-    dataset finishes so partial runs are preserved.
+    Parameters
+    ----------
+    resume : bool, default True
+        If ``True`` and an ``experiment_results.csv`` already exists, the
+        loop reads the previously completed (dataset, split_seed, seed,
+        mechanism, rate, imputation, model) combinations and skips them.
+    force : bool, default False
+        Override ``resume``: ignore the existing CSV entirely and recompute
+        every requested combination. Equivalent to deleting the file.
+
+    Progress is persisted after **every** model finishes via an atomic
+    ``.tmp`` → ``replace`` write, so a crash at any point leaves a usable,
+    non-truncated CSV.
     """
     ensure_output_dirs()
     if logger is None:
@@ -144,7 +297,27 @@ def run_experiments(
     experiment_seeds = list(seeds) if seeds is not None else list(EXPERIMENT_SEEDS)
     split_seeds = list(random_states) if random_states is not None else list(RANDOM_STATES)
 
-    logger.info("=" * 80)
+    out_path = OUTPUT_FILES["experiment_results"]
+    out_json = OUTPUT_FILES["experiment_results_json"]
+
+    if force:
+        rows: List[Dict] = []
+        completed_keys: Set[ExperimentKey] = set()
+        resume_active = False
+        logger.info("=" * 80)
+        logger.info(f"Resume       : DISABLED (force=True) — ignoring {out_path.name}")
+    elif resume:
+        rows, completed_keys = _load_existing_results(out_path, logger)
+        resume_active = True
+        logger.info("=" * 80)
+        logger.info(f"Resume       : ENABLED (csv={out_path})")
+    else:
+        rows = []
+        completed_keys = set()
+        resume_active = False
+        logger.info("=" * 80)
+        logger.info(f"Resume       : DISABLED (no-resume) — overwriting {out_path.name}")
+
     logger.info(f"Datasets     : {datasets}")
     logger.info(f"Split seeds  : {split_seeds}")
     logger.info(f"Seeds        : {experiment_seeds}")
@@ -152,101 +325,184 @@ def run_experiments(
     logger.info(f"Rates        : {rates}")
     logger.info(f"Imputations  : {imputations}")
     logger.info(f"Models       : {models_}")
+    logger.info(f"Already done : {len(completed_keys)} keys")
     logger.info("=" * 80)
 
-    rows: List[Dict] = []
-    out_path = OUTPUT_FILES["experiment_results"]
-    out_json = OUTPUT_FILES["experiment_results_json"]
+    # If resume is off, wipe the CSV up-front so the first failure does not
+    # leave a stale half-table around. (When resume is on we keep the file
+    # because the in-memory ``rows`` already contains its contents and
+    # ``_atomic_write_csv`` will refresh it on first new record.)
+    if not resume_active and out_path.exists():
+        try:
+            out_path.unlink()
+        except OSError as exc:
+            logger.warning(f"Could not remove stale {out_path.name}: {exc}")
 
     scenarios_per_dataset = (
         (1 if include_native else 0) + len(mechanisms) * len(rates)
     )
-    total_scenarios = len(datasets) * scenarios_per_dataset * len(split_seeds) * len(experiment_seeds)
+    total_scenarios = (
+        len(datasets) * scenarios_per_dataset
+        * len(split_seeds) * len(experiment_seeds)
+    )
     scenario_idx = 0
+    n_skipped_resume = 0
+    n_new_records = 0
+
+    def _persist(row: Dict, key: ExperimentKey, label: str) -> None:
+        """Append ``row``, register its key, and atomically flush to disk."""
+        nonlocal n_new_records
+        rows.append(row)
+        completed_keys.add(key)
+        n_new_records += 1
+        try:
+            _atomic_write_csv(rows, out_path)
+            logger.debug(f"SAVED {label} (total rows in CSV: {len(rows)})")
+        except Exception as exc:
+            logger.error(f"Failed to persist {out_path.name}: {exc}", exc_info=True)
 
     for dataset in datasets:
         if dataset not in DATASETS:
             logger.warning(f"Dataset {dataset!r} not in registry; skipping")
             continue
 
-        scenarios: List = []
+        scenarios: List[Tuple[str, float]] = []
         if include_native:
-            scenarios.append(("native", 0.0))
+            scenarios.append((NATIVE_MECHANISM, NATIVE_RATE))
         for mech in mechanisms:
             for rate in rates:
                 scenarios.append((mech, float(rate)))
 
         for split_seed in split_seeds:
-            loaded = load_precomputed_split(dataset, random_state=split_seed, logger=logger)
-            if loaded is None:
-                logger.error(f"No split for {dataset} with random_state={split_seed}; skipping")
-                continue
-            X_train_full, X_test, y_train, y_test = loaded
-            logger.info(
-                f"\n[{dataset}] split_seed={split_seed} "
-                f"train={X_train_full.shape} test={X_test.shape}"
-            )
+            loaded = None  # lazily loaded only if there is real work to do
+            split_loaded = False
+            X_train_full = X_test = y_train = y_test = None
 
             for seed in experiment_seeds:
                 logger.info(f"  --- split_seed={split_seed} seed={seed} ---")
                 for mech, rate in scenarios:
                     scenario_idx += 1
-                    label = "native" if mech == "native" else f"{mech}_{int(rate*100)}pct"
+                    csv_mech, csv_rate = _scenario_columns(mech, rate)
+                    label = (
+                        "native"
+                        if mech == NATIVE_MECHANISM
+                        else f"{mech}_{int(rate * 100)}pct"
+                    )
                     logger.info(
                         f"[{scenario_idx}/{total_scenarios}] "
                         f"{dataset} split_seed={split_seed} seed={seed} scenario={label}"
                     )
-                    try:
-                        X_train_miss = _apply_missingness(X_train_full, mech, rate, seed)
-                    except Exception as exc:
-                        logger.error(f"  injection failed: {exc}", exc_info=True)
-                        for imp in imputations:
-                            for m in models_:
-                                rows.append(_record(
-                                    dataset, split_seed, seed,
-                                    None if mech == "native" else mech,
-                                    None if mech == "native" else rate,
-                                    imp, m, {"error": f"injection failed: {exc}"},
-                                ))
+
+                    # Fast-path: if every (imputation × model) for this
+                    # scenario is already in the CSV, skip injection entirely.
+                    pending: List[Tuple[str, str]] = []
+                    for imp in imputations:
+                        for m in models_:
+                            key: ExperimentKey = (
+                                dataset, int(split_seed), int(seed),
+                                csv_mech, float(csv_rate),
+                                imp, display_name(m),
+                            )
+                            if key in completed_keys:
+                                n_skipped_resume += 1
+                                logger.debug(
+                                    f"SKIP completed: dataset={dataset}, "
+                                    f"split_seed={split_seed}, seed={seed}, "
+                                    f"mechanism={csv_mech}, rate={csv_rate}, "
+                                    f"imputation={imp}, model={display_name(m)}"
+                                )
+                                continue
+                            pending.append((imp, m))
+                    if not pending:
+                        logger.info(
+                            f"  scenario fully cached for split_seed={split_seed} "
+                            f"seed={seed} {label}; skipping"
+                        )
                         continue
 
-                    for imp in imputations:
+                    # We have at least one new combination — make sure the
+                    # split is loaded.
+                    if not split_loaded:
+                        loaded = load_precomputed_split(
+                            dataset, random_state=split_seed, logger=logger,
+                        )
+                        if loaded is None:
+                            logger.error(
+                                f"No split for {dataset} with "
+                                f"random_state={split_seed}; skipping seed"
+                            )
+                            break  # break out of `for seed` for this split_seed
+                        X_train_full, X_test, y_train, y_test = loaded
+                        split_loaded = True
+                        logger.info(
+                            f"\n[{dataset}] split_seed={split_seed} "
+                            f"train={X_train_full.shape} test={X_test.shape}"
+                        )
+
+                    try:
+                        X_train_miss = _apply_missingness(
+                            X_train_full, mech, rate, seed,
+                        )
+                    except Exception as exc:
+                        logger.error(f"  injection failed: {exc}", exc_info=True)
+                        for imp, m in pending:
+                            row = _record(
+                                dataset, split_seed, seed,
+                                csv_mech, csv_rate,
+                                imp, m, {"error": f"injection failed: {exc}"},
+                            )
+                            _persist(row, _row_key(row), f"{label} {imp} {m}")
+                        continue
+
+                    # Group pending by imputation so we only impute once per
+                    # method even if several models remain to be trained.
+                    by_imp: Dict[str, List[str]] = {}
+                    for imp, m in pending:
+                        by_imp.setdefault(imp, []).append(m)
+
+                    for imp, model_list in by_imp.items():
                         try:
-                            X_tr, X_te = impute(X_train_miss, X_test, imp, random_state=seed)
+                            X_tr, X_te = impute(
+                                X_train_miss, X_test, imp, random_state=seed,
+                            )
                             impute_error = None
                         except Exception as exc:
                             X_tr = X_te = None
                             impute_error = str(exc)
                             logger.warning(f"  imputation {imp} failed: {exc}")
 
-                        for m in models_:
+                        for m in model_list:
+                            run_label = (
+                                f"dataset={dataset} split_seed={split_seed} "
+                                f"seed={seed} {label} imp={imp} model={display_name(m)}"
+                            )
                             if impute_error is not None:
-                                rows.append(_record(
+                                row = _record(
                                     dataset, split_seed, seed,
-                                    None if mech == "native" else mech,
-                                    None if mech == "native" else rate,
-                                    imp, m, {"error": f"imputation failed: {impute_error}"},
-                                ))
+                                    csv_mech, csv_rate, imp, m,
+                                    {"error": f"imputation failed: {impute_error}"},
+                                )
+                                _persist(row, _row_key(row), run_label)
                                 continue
                             skip = _should_skip(m, imp)
                             if skip is not None:
-                                rows.append(_record(
+                                row = _record(
                                     dataset, split_seed, seed,
-                                    None if mech == "native" else mech,
-                                    None if mech == "native" else rate,
-                                    imp, m, {}, skipped_reason=f"skipped: {skip}",
-                                ))
+                                    csv_mech, csv_rate, imp, m,
+                                    {}, skipped_reason=f"skipped: {skip}",
+                                )
+                                _persist(row, _row_key(row), run_label)
                                 continue
+                            logger.info(f"RUN {run_label}")
                             outcome = train_and_evaluate(
                                 m, X_tr, X_te, y_train, y_test,
                                 random_state=seed, logger=logger,
                             )
-                            rows.append(_record(
+                            row = _record(
                                 dataset, split_seed, seed,
-                                None if mech == "native" else mech,
-                                None if mech == "native" else rate,
-                                imp, m, outcome,
-                            ))
+                                csv_mech, csv_rate, imp, m, outcome,
+                            )
+                            _persist(row, _row_key(row), run_label)
                             if outcome.get("error"):
                                 logger.info(
                                     f"    split_seed={split_seed} seed={seed} "
@@ -266,11 +522,12 @@ def run_experiments(
                                     f"f1m={f1m:.4f} prauc={prauc:.4f} thr={thr:.2f} t={t:.1f}s"
                                 )
 
-        # Persist partial table after each dataset.
-        _write_csv(rows, out_path)
-        logger.info(f"Saved partial results: {out_path.name} ({len(rows)} rows)")
+        logger.info(
+            f"Dataset {dataset} done so far: {len(rows)} rows on disk "
+            f"({n_new_records} new, {n_skipped_resume} skipped via resume)"
+        )
 
-    _write_csv(rows, out_path)
+    _atomic_write_csv(rows, out_path)
 
     try:
         out_json.parent.mkdir(parents=True, exist_ok=True)
@@ -279,7 +536,10 @@ def run_experiments(
     except Exception as exc:
         logger.warning(f"Could not write {out_json.name}: {exc}")
 
-    logger.info(f"Done. Total rows: {len(rows)}")
+    logger.info(
+        f"Done. Total rows: {len(rows)} "
+        f"(new this run: {n_new_records}, skipped via resume: {n_skipped_resume})"
+    )
     return pd.DataFrame(rows, columns=RESULT_COLUMNS)
 
 

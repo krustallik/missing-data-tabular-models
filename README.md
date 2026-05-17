@@ -166,6 +166,59 @@ Príklad spustenia iba pre niekoľko modelov:
 python src\run_experiments.py --step 4 --models xgboost lightgbm catboost
 ```
 
+### Resume / pokračovanie hlavného pipelinu
+
+Step 4 (`run_experiments`) si pamätá, čo už natrénoval. Pri každej dokončenej kombinácii zapisuje nový riadok do hlavného CSV:
+
+```text
+project/results/tables/experiment_results.csv
+```
+
+Zápis prebieha atomicky cez `experiment_results.csv.tmp` → `Path.replace(...)`, takže prerušenie behu nikdy nezanechá poškodený CSV.
+
+Jedna „kombinácia" je identifikovaná 7-ticou:
+
+```text
+(dataset, split_seed, seed, missing_mechanism, missing_rate, imputation, model)
+```
+
+Pre native scenár sa do CSV zapisuje stabilná hodnota `missing_mechanism = "native"` a `missing_rate = 0.0` (nikdy `NaN`), aby porovnanie pri resume bolo deterministické. Staršie CSV s `NaN` pre native sa pri načítaní automaticky znormalizujú.
+
+Pokračovať po prerušení (default):
+
+```powershell
+python src\run_experiments.py --step 4 --resume
+```
+
+`--resume` je zapnutý štandardne, takže rovnakú vec robí aj:
+
+```powershell
+python src\run_experiments.py
+python src\run_experiments.py --step 4
+python src\run_experiments.py --from 4
+```
+
+Ignorovať existujúci CSV a spustiť všetko nanovo:
+
+```powershell
+python src\run_experiments.py --step 4 --no-resume
+```
+
+Pretrénovať aj kombinácie, ktoré sú už v CSV (bez vymazania súboru):
+
+```powershell
+python src\run_experiments.py --step 4 --force
+```
+
+Pri zapnutom resume pipeline na začiatku kroku 4 zaloguje:
+
+```text
+Resume: loaded N rows from experiment_results.csv (K unique completed keys)
+Already done : K keys
+```
+
+a počas behu pre každú už hotovú kombináciu vypíše `SKIP completed` (debug) alebo zhrnuté `scenario fully cached ... skipping` (info). Nové tréningy logujú `RUN ...` a `SAVED ...` po každom modeli.
+
 ## Ako Spúšťať Randomized Search
 
 Plný deep randomized search:
