@@ -18,16 +18,21 @@ from typing import Optional
 
 import pandas as pd
 
-from config import METRICS, OUTPUT_FILES, PRIMARY_METRICS, VIZ_DIR, ensure_output_dirs
+from config import (
+    METRICS,
+    OUTPUT_FILES,
+    PRIMARY_METRICS,
+    VIZ_DIR,
+    ensure_output_dirs,
+    ranking_metric_column,
+)
 from data_utils import setup_logging
 from models import model_type as _resolve_model_type
 
 
-# Metric shown on heatmaps / per-dataset ranking / suitability buckets.
-# balanced_accuracy is the honest summary metric on imbalanced datasets;
-# we fall back to accuracy only if the column is missing (old CSV).
+# Metric shown on heatmaps / per-dataset ranking (see config.RANKING_METRIC).
 def _ranking_metric(df: pd.DataFrame) -> str:
-    return "balanced_accuracy" if "balanced_accuracy" in df.columns else "accuracy"
+    return ranking_metric_column(df)
 
 
 def _metrics_in_df(df: pd.DataFrame) -> list:
@@ -151,7 +156,7 @@ def _robustness(df: pd.DataFrame, logger: logging.Logger) -> pd.DataFrame:
         "f1_std": ("f1", "std"),
         "n": ("accuracy", "size"),
     }
-    for m in ("balanced_accuracy", "f1_macro", "pr_auc", "recall_class1"):
+    for m in ("pr_auc", "balanced_accuracy", "f1_macro", "recall_class1"):
         if m in sub.columns:
             agg_spec[f"{m}_mean"] = (m, "mean")
             agg_spec[f"{m}_std"] = (m, "std")

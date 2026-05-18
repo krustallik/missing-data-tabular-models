@@ -42,7 +42,22 @@ METRICS = [
     "recall_class1",
     "pr_auc",
 ]
-PRIMARY_METRICS = ["accuracy", "balanced_accuracy", "f1_macro", "pr_auc"]
+# Panel order for step-5 plots (first entry is the main ranking metric).
+PRIMARY_METRICS = ["pr_auc", "balanced_accuracy", "f1_macro", "accuracy"]
+
+# Primary metric for rankings in consolidation (step 5) and reports (step 6).
+RANKING_METRIC = "pr_auc"
+RANKING_METRIC_FALLBACKS = ("pr_auc", "balanced_accuracy", "f1_macro", "accuracy")
+
+
+def ranking_metric_column(df) -> str:
+    """Return the metric column used for ranking plots and report tables."""
+    cols = df.columns if df is not None else []
+    for col in RANKING_METRIC_FALLBACKS:
+        if col in cols:
+            return col
+    return "accuracy"
+
 
 # Column schema used by every results CSV in this project.
 RESULT_COLUMNS = [
