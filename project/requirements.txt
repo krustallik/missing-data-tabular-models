@@ -10,3 +10,5 @@ tabicl
 xgboost
 lightgbm
 catboost
+matplotlib>=3.8
+seaborn>=0.13

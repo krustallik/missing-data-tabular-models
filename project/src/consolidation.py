@@ -36,6 +36,10 @@ def _metrics_in_df(df: pd.DataFrame) -> list:
 
 
 try:
+    import matplotlib
+
+    # Non-interactive backend: saves PNG without Tcl/Tk (common Windows venv issue).
+    matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import seaborn as sns
 
