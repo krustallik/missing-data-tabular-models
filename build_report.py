@@ -1,13 +1,13 @@
 """Generate the Slovak technical report as a .docx file.
 
-Pulls headline figures from results_polish/, results_slovak/, results_taiwan/
-under project/. Embeds five PNG figures and renders ~4 pages of text in plain
-academic Slovak.
+Pulls headline figures from project/results/*/results/tables and renders the
+same report structure with the current PR-AUC based experiment outputs.
 """
 from __future__ import annotations
 
 from pathlib import Path
 
+import pandas as pd
 from PIL import Image
 from docx import Document
 from docx.enum.table import WD_ALIGN_VERTICAL
@@ -19,16 +19,196 @@ from docx.shared import Cm, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT / "project"
+RESULTS = PROJECT / "results"
 OUT_PATH = ROOT / "Hodnotenie_TabFM_pri_chybajucich_datach.docx"
 
-VIZ = {
-    "polish": PROJECT / "results_polish" / "visualizations",
-    "slovak": PROJECT / "results_slovak" / "visualizations",
-    "taiwan": PROJECT / "results_taiwan" / "visualizations",
+DATASETS = {
+    "polish": {
+        "title": "Polish Companies 1-year",
+        "csv": RESULTS / "polish" / "results" / "tables" / "consolidated_results.csv",
+        "viz": RESULTS / "polish" / "results" / "visualizations",
+    },
+    "slovak": {
+        "title": "Slovak Manufacture 13",
+        "csv": RESULTS / "slovak" / "results" / "tables" / "consolidated_results.csv",
+        "viz": RESULTS / "slovak" / "results" / "visualizations",
+    },
+    "taiwan": {
+        "title": "Taiwan Bankruptcy",
+        "csv": RESULTS / "taiwan_results" / "tables" / "consolidated_results.csv",
+        "viz": RESULTS / "taiwan_results" / "visualizations",
+    },
 }
+VIZ = {key: cfg["viz"] for key, cfg in DATASETS.items()}
 
 SPLIT_DIR = ROOT / "_split_figs"
 SUPTITLE_CROP_PX = 65
+METRICS = ["accuracy", "balanced_accuracy", "f1_macro", "pr_auc"]
+
+
+def fmt(value: float, digits: int = 4) -> str:
+    return f"{value:.{digits}f}".replace(".", ",")
+
+
+def load_dataset_frames() -> dict[str, pd.DataFrame]:
+    frames = {}
+    for key, cfg in DATASETS.items():
+        frames[key] = pd.read_csv(cfg["csv"])
+    return frames
+
+
+def dataset_stats(df: pd.DataFrame) -> dict:
+    model = (
+        df.groupby("model")
+        .agg(
+            accuracy=("accuracy", "mean"),
+            balanced_accuracy=("balanced_accuracy", "mean"),
+            f1_macro=("f1_macro", "mean"),
+            pr_auc=("pr_auc", "mean"),
+            recall_class1=("recall_class1", "mean"),
+            runs=("pr_auc", "count"),
+        )
+        .sort_values("pr_auc", ascending=False)
+    )
+    by_type = df.groupby("model_type").agg(
+        accuracy=("accuracy", "mean"),
+        balanced_accuracy=("balanced_accuracy", "mean"),
+        f1_macro=("f1_macro", "mean"),
+        pr_auc=("pr_auc", "mean"),
+        recall_class1=("recall_class1", "mean"),
+        training_time_seconds=("training_time_seconds", "mean"),
+        n=("pr_auc", "count"),
+    )
+    imputation = (
+        df.groupby("imputation")
+        .agg(
+            pr_auc=("pr_auc", "mean"),
+            balanced_accuracy=("balanced_accuracy", "mean"),
+            n=("pr_auc", "count"),
+        )
+        .sort_values("pr_auc", ascending=False)
+    )
+    return {
+        "summary": df[
+            ["accuracy", "balanced_accuracy", "f1_macro", "pr_auc", "recall_class1"]
+        ].mean(),
+        "model": model,
+        "type": by_type,
+        "imputation": imputation,
+        "rate": df.groupby(["model", "missing_rate"])["pr_auc"].mean().unstack(),
+        "mechanism": df.groupby(["model", "missing_mechanism"])["pr_auc"].mean().unstack(),
+    }
+
+
+def collect_stats(frames: dict[str, pd.DataFrame]) -> dict:
+    stats = {key: dataset_stats(df) for key, df in frames.items()}
+    combined = pd.concat(
+        [df.assign(report_dataset=key) for key, df in frames.items()],
+        ignore_index=True,
+    )
+    stats["combined"] = {
+        "time_by_dataset": combined.groupby(["report_dataset", "model_type"])
+        .agg(
+            mean=("training_time_seconds", "mean"),
+            median=("training_time_seconds", "median"),
+            total=("training_time_seconds", "sum"),
+            n=("training_time_seconds", "count"),
+        ),
+        "time_overall": combined.groupby("model_type").agg(
+            mean=("training_time_seconds", "mean"),
+            median=("training_time_seconds", "median"),
+            total=("training_time_seconds", "sum"),
+            n=("training_time_seconds", "count"),
+        ),
+    }
+    return stats
+
+
+def value(table: pd.DataFrame, row: str, col: str) -> str:
+    return fmt(float(table.loc[row, col]))
+
+
+def ensure_visualizations(frames: dict[str, pd.DataFrame]) -> None:
+    try:
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+    except Exception:
+        print("matplotlib/seaborn not available; figures will not be generated.")
+        return
+
+    for key, df in frames.items():
+        viz = VIZ[key]
+        viz.mkdir(parents=True, exist_ok=True)
+
+        fig, axes = plt.subplots(1, len(METRICS), figsize=(5 * len(METRICS), 5))
+        fig.suptitle("Classical vs Foundation Models - Performance Distribution",
+                     fontsize=14, fontweight="bold")
+        for ax, metric in zip(axes, METRICS):
+            sns.boxplot(
+                data=df.dropna(subset=[metric]),
+                x="model_type",
+                hue="model_type",
+                y=metric,
+                ax=ax,
+                palette={"Classical": "#5B9BD5", "Foundation": "#ED7D31"},
+                legend=False,
+            )
+            ax.set_title(metric.replace("_", " "), fontweight="bold")
+            ax.set_xlabel("")
+            ax.grid(True, alpha=0.3, axis="y")
+        plt.tight_layout()
+        plt.savefig(viz / "classical_vs_foundation.png", dpi=150, bbox_inches="tight")
+        plt.close()
+
+        pivot = (
+            df[df["missing_mechanism"] != "native"]
+            .pivot_table(values="pr_auc", index="model", columns="missing_rate", aggfunc="mean")
+            .round(3)
+        )
+        if not pivot.empty:
+            fig, ax = plt.subplots(figsize=(12, max(4, len(pivot) * 0.6 + 1)))
+            sns.heatmap(
+                pivot,
+                annot=True,
+                fmt=".3f",
+                cmap="RdYlGn",
+                ax=ax,
+                cbar_kws={"label": "pr_auc"},
+            )
+            ax.set_title("Model Stability - PR-AUC across Missing Rates",
+                         fontsize=13, fontweight="bold")
+            ax.set_xlabel("Missing Rate (%)")
+            ax.set_ylabel("Model")
+            plt.tight_layout()
+            plt.savefig(viz / "stability_heatmap.png", dpi=150, bbox_inches="tight")
+            plt.close()
+
+        sub = df[df["missing_mechanism"] == "MCAR"]
+        if not sub.empty:
+            fig, axes = plt.subplots(1, len(METRICS), figsize=(5.2 * len(METRICS), 5))
+            fig.suptitle("Model Performance vs Missing Rate - MCAR",
+                         fontsize=14, fontweight="bold")
+            for ax, metric in zip(axes, METRICS):
+                for model in sorted(sub["model"].dropna().unique()):
+                    model_df = sub[sub["model"] == model]
+                    grouped = model_df.groupby("missing_rate")[metric].mean().sort_index()
+                    mtype = model_df["model_type"].iloc[0]
+                    ax.plot(
+                        grouped.index,
+                        grouped.values,
+                        marker="o",
+                        label=model,
+                        linestyle="-" if mtype == "Foundation" else "--",
+                        linewidth=2.5 if mtype == "Foundation" else 1.5,
+                    )
+                ax.set_xlabel("Missing Rate (%)")
+                ax.set_ylabel(metric)
+                ax.set_title(metric.replace("_", " "))
+                ax.grid(True, alpha=0.3)
+                ax.legend(fontsize=7)
+            plt.tight_layout()
+            plt.savefig(viz / "missing_rate_MCAR.png", dpi=150, bbox_inches="tight")
+            plt.close()
 
 
 def split_figure(src: Path) -> tuple[Path, Path]:
@@ -142,6 +322,10 @@ def make_table(doc, header, rows, widths_cm=None):
 
 
 def build():
+    frames = load_dataset_frames()
+    stats = collect_stats(frames)
+    ensure_visualizations(frames)
+
     doc = Document()
 
     style = doc.styles["Normal"]
@@ -179,12 +363,13 @@ def build():
         "bankruptcy datasetoch (Polish 1-year, Slovak Manufacture 13, "
         "Taiwan Bankruptcy). Skúmame, ako sa výkonnosť modelov mení pri "
         "rôznych mechanizmoch chýbajúcich hodnôt (MCAR, MAR, MNAR) a pri "
-        "rastúcom podiele missing dát (5–40 %). Hodnotené sú metriky "
-        "vhodné pre nevyváženú klasifikáciu (balanced accuracy, macro F1, "
-        "PR-AUC, recall minoritnej triedy). Výsledky ukazujú, že foundation "
-        "modely sú v priemere lepšie a stabilnejšie ako klasické modely, "
-        "pričom najlepšou stratégiou na všetkých troch datasetoch je "
-        "implicitné spracovanie NaN hodnôt modelom (none).",
+        "rastúcom podiele missing dát (5–40 %). Hlavnou metrikou je "
+        "PR-AUC, pretože lepšie vystihuje ranking pozitívnej triedy pri "
+        "silne nevyváženej klasifikácii; balanced accuracy, macro F1 a "
+        "recall minoritnej triedy sú doplnkové metriky. Výsledky ukazujú, "
+        "že foundation modely majú v priemere vyššie PR-AUC ako klasické "
+        "modely, pričom najlepšou stratégiou na všetkých troch datasetoch "
+        "je implicitné spracovanie NaN hodnôt modelom (none).",
         italic=True, size=10, align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
 
@@ -263,8 +448,9 @@ def build():
     add_paragraph(
         doc,
         "Pre každý dataset bolo vytvorené stratifikované rozdelenie "
-        "train/test v pomere 80/20 s pevným random_state = 42. Rovnaké "
-        "splity boli použité pre všetky modely a všetky scenáre, aby bolo "
+        "train/test v pomere 80/20. Výsledky sú priemerované cez dve "
+        "random states pre rozdelenie dát a dve experimentálne random seeds; "
+        "rovnaké splity boli použité pre všetky modely a scenáre, aby bolo "
         "porovnanie objektívne. Chýbajúce hodnoty boli vkladané iba do "
         "tréningovej množiny; testovacia množina zostala kompletná, aby sa "
         "dal merať vplyv neúplných tréningových dát na generalizáciu.",
@@ -358,12 +544,11 @@ def build():
     )
     add_paragraph(
         doc,
-        "Modely boli porovnávané pri použití defaultných alebo vopred "
-        "pevne nastavených hyperparametrov. V experimentoch nebolo "
-        "vykonané systematické ladenie hyperparametrov pomocou grid search "
-        "ani random search; cieľom bolo posúdiť robustnosť modelov pri "
-        "rovnakom experimentálnom nastavení, nie maximalizovať výkon "
-        "každého modelu individuálnym tuningom. Pre Logistic Regression, "
+        "Osem klasických modelov nepoužíva defaultné parametre: pre každý "
+        "dataset boli hyperparametre vybrané samostatným random greedy "
+        "search algoritmom s optimalizáciou podľa PR-AUC. Foundation modely "
+        "TabPFN a TabICL zostali použité ako pretrénované modely bez "
+        "porovnateľného hyperparametrického ladenia. Pre Logistic Regression, "
         "SVM a MLP bola na tréningové dáta aplikovaná štandardizácia "
         "(StandardScaler), ktorá bola fitovaná iba na train sete.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
@@ -372,21 +557,20 @@ def build():
     add_heading(doc, "3.4 Threshold tuning a metriky", level=2)
     add_paragraph(
         doc,
-        "Optimalizovaný bol iba rozhodovací prah pri binárnej "
-        "klasifikácii. Tréningová množina bola rozdelená na 80 % fit "
-        "a 20 % vnútorný validačný split, na ktorom sa hľadal threshold "
-        "maximalizujúci balanced accuracy. Model bol následne pretrénovaný "
-        "na celej tréningovej množine a vybraný threshold bol aplikovaný "
-        "na testovacie predikcie. Test set sa pri tuningu nepoužil, takže "
-        "nedochádza k test leakage.",
+        "Rozhodovací prah pri binárnej klasifikácii bol ladený na vnútornom "
+        "validačnom splite tréningovej množiny, aby sa stabilizovali "
+        "threshold-dependent metriky ako balanced accuracy a recall. Hlavné "
+        "poradie modelov však určuje PR-AUC, ktoré pracuje s rankingom "
+        "skóre a nie s jedným fixným prahom. Test set sa pri tuningu "
+        "nepoužil, takže nedochádza k test leakage.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_paragraph(
         doc,
         "Vzhľadom na výrazne nevyvážené datasety samotná accuracy nestačí "
-        "ako hlavná metrika. Hlavnými hodnotenými metrikami sú balanced "
-        "accuracy, macro F1, PR-AUC a recall minoritnej triedy. ROC-AUC a "
-        "accuracy sú uvádzané iba ako doplnkové metriky.",
+        "ako hlavná metrika. Primárnou metrikou je PR-AUC; balanced "
+        "accuracy, macro F1 a recall minoritnej triedy sú uvádzané ako "
+        "doplnkové pohľady na threshold-dependent výkon modelov.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
 
@@ -395,18 +579,24 @@ def build():
     add_heading(doc, "4.1 Polish Companies 1-year", level=2)
     add_paragraph(
         doc,
-        "Priemerná accuracy bola 0,8304, balanced accuracy 0,7865, PR-AUC 0,4899 a "
-        "recall minoritnej triedy 0,7390. Najlepším modelom bol jasne "
-        "TabPFN s balanced accuracy 0,9169 a PR-AUC 0,8403, nasledovaný "
-        "LightGBM (0,8560), XGBoost (0,8483) a TabICL (0,8373). Foundation "
-        "modely (TabPFN, TabICL) v priemere prekonali klasické modely:",
+        f"Priemerná accuracy bola {fmt(stats['polish']['summary']['accuracy'])}, "
+        f"balanced accuracy {fmt(stats['polish']['summary']['balanced_accuracy'])}, "
+        f"PR-AUC {fmt(stats['polish']['summary']['pr_auc'])} a recall minoritnej "
+        f"triedy {fmt(stats['polish']['summary']['recall_class1'])}. Najlepším "
+        f"modelom bol jasne TabPFN s PR-AUC {value(stats['polish']['model'], 'TabPFN', 'pr_auc')}, "
+        f"nasledovaný LightGBM ({value(stats['polish']['model'], 'LightGBM', 'pr_auc')}), "
+        f"XGBoost ({value(stats['polish']['model'], 'XGBoost', 'pr_auc')}) a "
+        f"TabICL ({value(stats['polish']['model'], 'TabICL', 'pr_auc')}). "
+        "Foundation modely (TabPFN, TabICL) v priemere prekonali klasické modely:",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_bullets(doc, [
-        "Classical models: balanced accuracy 0,7614, macro F1 0,5673, "
-        "PR-AUC 0,4222.",
-        "Foundation models: balanced accuracy 0,8767, macro F1 0,7640, "
-        "PR-AUC 0,7328.",
+        f"Classical models: balanced accuracy {value(stats['polish']['type'], 'Classical', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['polish']['type'], 'Classical', 'f1_macro')}, "
+        f"PR-AUC {value(stats['polish']['type'], 'Classical', 'pr_auc')}.",
+        f"Foundation models: balanced accuracy {value(stats['polish']['type'], 'Foundation', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['polish']['type'], 'Foundation', 'f1_macro')}, "
+        f"PR-AUC {value(stats['polish']['type'], 'Foundation', 'pr_auc')}.",
     ])
     add_paragraph(
         doc,
@@ -422,12 +612,19 @@ def build():
     )
     add_paragraph(
         doc,
-        "Pri rastúcej miere chýbania bol TabPFN najstabilnejší — balanced "
-        "accuracy klesla z 0,9452 pri 5 % na 0,8538 pri 40 %. TabICL "
-        "klesol z 0,9189 na 0,7252, LightGBM z 0,8968 na 0,7775 a XGBoost "
-        "z 0,8944 na 0,7719. Z hľadiska imputácie bola najlepšou "
-        "stratégiou none (balanced accuracy 0,8678), nasledovaná "
-        "MICE + indicator (0,8124); kNN bola najslabšia (0,7477).",
+        f"Pri rastúcej miere chýbania bol TabPFN najstabilnejší v PR-AUC — "
+        f"klesol z {fmt(stats['polish']['rate'].loc['TabPFN', 5.0])} pri 5 % "
+        f"na {fmt(stats['polish']['rate'].loc['TabPFN', 40.0])} pri 40 %. "
+        f"TabICL klesol z {fmt(stats['polish']['rate'].loc['TabICL', 5.0])} "
+        f"na {fmt(stats['polish']['rate'].loc['TabICL', 40.0])}, LightGBM "
+        f"z {fmt(stats['polish']['rate'].loc['LightGBM', 5.0])} na "
+        f"{fmt(stats['polish']['rate'].loc['LightGBM', 40.0])} a XGBoost "
+        f"z {fmt(stats['polish']['rate'].loc['XGBoost', 5.0])} na "
+        f"{fmt(stats['polish']['rate'].loc['XGBoost', 40.0])}. Z hľadiska "
+        f"imputácie bola najlepšou stratégiou none (PR-AUC "
+        f"{value(stats['polish']['imputation'], 'none', 'pr_auc')}), nasledovaná "
+        f"MICE + indicator ({value(stats['polish']['imputation'], 'mice_indicator', 'pr_auc')}); "
+        f"kNN bola najslabšia ({value(stats['polish']['imputation'], 'knn', 'pr_auc')}).",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_paragraph(
@@ -438,7 +635,7 @@ def build():
     )
     add_figure(
         doc, VIZ["polish"] / "stability_heatmap.png",
-        "Obr. 2 — Polish 1-year: balanced accuracy pre kombinácie "
+        "Obr. 2 — Polish 1-year: PR-AUC pre kombinácie "
         "(model × miera chýbania). Tmavšia zelená znamená vyššiu "
         "stabilitu.",
         width_cm=12.5,
@@ -447,20 +644,28 @@ def build():
     add_heading(doc, "4.2 Slovak Manufacture 13", level=2)
     add_paragraph(
         doc,
-        "Priemerná accuracy bola 0,7710, balanced accuracy 0,7172, PR-AUC 0,2032 a "
-        "recall minoritnej triedy 0,6625. Tento dataset si zaslúži "
+        f"Priemerná accuracy bola {fmt(stats['slovak']['summary']['accuracy'])}, "
+        f"balanced accuracy {fmt(stats['slovak']['summary']['balanced_accuracy'])}, "
+        f"PR-AUC {fmt(stats['slovak']['summary']['pr_auc'])} a recall minoritnej "
+        f"triedy {fmt(stats['slovak']['summary']['recall_class1'])}. Tento dataset si zaslúži "
         "osobitnú pozornosť — testovacia množina obsahuje iba 6 "
         "bankrotujúcich prípadov, takže každá chyba sa silno prejaví v "
-        "metrikách. Najlepším modelom bol TabICL s balanced accuracy "
-        "0,8353, ktorý prekonal aj TabPFN (0,7966) aj XGBoost (0,7802) a "
-        "LightGBM (0,7662). CatBoost dosiahol 0,7418. Skupinové porovnanie:",
+        f"metrikách. Najlepším modelom podľa PR-AUC bol TabICL "
+        f"({value(stats['slovak']['model'], 'TabICL', 'pr_auc')}), ktorý prekonal "
+        f"XGBoost ({value(stats['slovak']['model'], 'XGBoost', 'pr_auc')}), "
+        f"TabPFN ({value(stats['slovak']['model'], 'TabPFN', 'pr_auc')}) aj "
+        f"Random Forest ({value(stats['slovak']['model'], 'Random-Forest', 'pr_auc')}). "
+        f"LightGBM dosiahol {value(stats['slovak']['model'], 'LightGBM', 'pr_auc')}. "
+        "Skupinové porovnanie:",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_bullets(doc, [
-        "Classical models: balanced accuracy 0,6896, macro F1 0,4441, "
-        "PR-AUC 0,1720.",
-        "Foundation models: balanced accuracy 0,8159, macro F1 0,5167, "
-        "PR-AUC 0,3149.",
+        f"Classical models: balanced accuracy {value(stats['slovak']['type'], 'Classical', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['slovak']['type'], 'Classical', 'f1_macro')}, "
+        f"PR-AUC {value(stats['slovak']['type'], 'Classical', 'pr_auc')}.",
+        f"Foundation models: balanced accuracy {value(stats['slovak']['type'], 'Foundation', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['slovak']['type'], 'Foundation', 'f1_macro')}, "
+        f"PR-AUC {value(stats['slovak']['type'], 'Foundation', 'pr_auc')}.",
     ])
     add_paragraph(
         doc,
@@ -477,31 +682,42 @@ def build():
     )
     add_paragraph(
         doc,
-        "Robustnosť TabICL bola podľa mechanizmu pomerne stabilná "
-        "(MAR 0,8315, MCAR 0,8249, MNAR 0,8525). Pri zvyšovaní miery "
-        "chýbania TabICL kolísal medzi 0,80 a 0,87, kým TabPFN sa "
-        "pohyboval medzi 0,75 a 0,83. MLP bol veľmi slabý (balanced "
-        "accuracy približne 0,36–0,39). Najlepšou imputačnou stratégiou "
-        "bola opäť none (0,8014), s veľkým odstupom pred ostatnými "
-        "metódami (kNN 0,7147, MICE 0,7119).",
+        f"Robustnosť TabICL bola podľa mechanizmu pomerne stabilná "
+        f"(MAR {fmt(stats['slovak']['mechanism'].loc['TabICL', 'MAR'])}, "
+        f"MCAR {fmt(stats['slovak']['mechanism'].loc['TabICL', 'MCAR'])}, "
+        f"MNAR {fmt(stats['slovak']['mechanism'].loc['TabICL', 'MNAR'])}). "
+        f"Pri zvyšovaní miery chýbania TabICL kolísal okolo 0,30 PR-AUC, "
+        f"kým TabPFN sa pohyboval približne v rozsahu 0,24–0,26. MLP bol "
+        f"veľmi slabý (PR-AUC {value(stats['slovak']['model'], 'MLP', 'pr_auc')}). "
+        f"Najlepšou imputačnou stratégiou bola opäť none "
+        f"({value(stats['slovak']['imputation'], 'none', 'pr_auc')}), pred "
+        f"mice_indicator ({value(stats['slovak']['imputation'], 'mice_indicator', 'pr_auc')}) "
+        f"a kNN ({value(stats['slovak']['imputation'], 'knn', 'pr_auc')}).",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
 
     add_heading(doc, "4.3 Taiwan Bankruptcy", level=2)
     add_paragraph(
         doc,
-        "Priemerná accuracy bola 0,8215, balanced accuracy 0,8406, PR-AUC 0,4438 a recall "
-        "minoritnej triedy 0,8609. Najlepším modelom bol TabPFN "
-        "(balanced accuracy 0,8741), ale s veľmi tesným XGBoost (0,8711) "
-        "a Gradient Boosting (0,8651). TabICL dosiahol 0,8642 a LightGBM "
-        "0,8633. CatBoost mal 0,8525. Foundation modely boli mierne lepšie:",
+        f"Priemerná accuracy bola {fmt(stats['taiwan']['summary']['accuracy'])}, "
+        f"balanced accuracy {fmt(stats['taiwan']['summary']['balanced_accuracy'])}, "
+        f"PR-AUC {fmt(stats['taiwan']['summary']['pr_auc'])} a recall "
+        f"minoritnej triedy {fmt(stats['taiwan']['summary']['recall_class1'])}. "
+        f"Najlepším modelom bol XGBoost (PR-AUC "
+        f"{value(stats['taiwan']['model'], 'XGBoost', 'pr_auc')}), veľmi tesne "
+        f"nasledovaný LightGBM ({value(stats['taiwan']['model'], 'LightGBM', 'pr_auc')}), "
+        f"TabICL ({value(stats['taiwan']['model'], 'TabICL', 'pr_auc')}) a "
+        f"TabPFN ({value(stats['taiwan']['model'], 'TabPFN', 'pr_auc')}). "
+        "Foundation modely boli v skupinovom priemere mierne lepšie:",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_bullets(doc, [
-        "Classical models: balanced accuracy 0,8326, macro F1 0,5651, "
-        "PR-AUC 0,4141.",
-        "Foundation models: balanced accuracy 0,8691, macro F1 0,6149, "
-        "PR-AUC 0,5503.",
+        f"Classical models: balanced accuracy {value(stats['taiwan']['type'], 'Classical', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['taiwan']['type'], 'Classical', 'f1_macro')}, "
+        f"PR-AUC {value(stats['taiwan']['type'], 'Classical', 'pr_auc')}.",
+        f"Foundation models: balanced accuracy {value(stats['taiwan']['type'], 'Foundation', 'balanced_accuracy')}, "
+        f"macro F1 {value(stats['taiwan']['type'], 'Foundation', 'f1_macro')}, "
+        f"PR-AUC {value(stats['taiwan']['type'], 'Foundation', 'pr_auc')}.",
     ])
     add_paragraph(
         doc,
@@ -518,16 +734,22 @@ def build():
     )
     add_paragraph(
         doc,
-        "Stabilita TabPFN pri rastúcej miere chýbania bola výborná — "
-        "balanced accuracy klesla iba z 0,8843 (5 %) na 0,8592 (40 %). "
-        "TabICL bol takmer plochý (0,8722 → 0,8618). XGBoost si držal "
-        "vysokú úroveň približne 0,87–0,88. Random Forest sa pohyboval "
-        "stabilne v rozsahu 0,855–0,861. MLP bol slabší a klesal "
-        "rýchlejšie. Najlepšou imputačnou stratégiou bola opäť none "
-        "(0,8691), nasledovaná MICE + indicator (0,8416). Z hľadiska "
-        "tréningového času zostáva XGBoost a LightGBM najrýchlejšie; "
-        "TabPFN je výrazne pomalší kvôli inferencii pretrénovaného "
-        "modelu, čo treba zohľadniť pri produkčnom nasadení.",
+        f"Stabilita boosting modelov pri rastúcej miere chýbania bola "
+        f"výborná — XGBoost klesol v PR-AUC z "
+        f"{fmt(stats['taiwan']['rate'].loc['XGBoost', 5.0])} (5 %) na "
+        f"{fmt(stats['taiwan']['rate'].loc['XGBoost', 40.0])} (40 %), "
+        f"LightGBM z {fmt(stats['taiwan']['rate'].loc['LightGBM', 5.0])} "
+        f"na {fmt(stats['taiwan']['rate'].loc['LightGBM', 40.0])}. "
+        f"TabICL bol takmer plochý ({fmt(stats['taiwan']['rate'].loc['TabICL', 5.0])} "
+        f"→ {fmt(stats['taiwan']['rate'].loc['TabICL', 40.0])}) a TabPFN "
+        f"klesol z {fmt(stats['taiwan']['rate'].loc['TabPFN', 5.0])} na "
+        f"{fmt(stats['taiwan']['rate'].loc['TabPFN', 40.0])}. Najlepšou "
+        f"imputačnou stratégiou bola opäť none "
+        f"({value(stats['taiwan']['imputation'], 'none', 'pr_auc')}), "
+        f"nasledovaná MICE ({value(stats['taiwan']['imputation'], 'mice', 'pr_auc')}). "
+        f"Z hľadiska tréningového času sú XGBoost a LightGBM rýchlejšie "
+        f"ako najpomalšie klasické ensemble modely, no celkový priemer "
+        f"skupiny Classical zvyšuje najmä CatBoost a Gradient Boosting.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     add_paragraph(
@@ -548,33 +770,35 @@ def build():
     add_heading(doc, "4.4 Porovnanie metód spracovania chýbajúcich hodnôt", level=2)
     add_paragraph(
         doc,
-        "Ak agregujeme balanced accuracy cez všetky modely, mechanizmy a "
+        "Ak agregujeme PR-AUC cez všetky modely, mechanizmy a "
         "miery chýbania, dostaneme jednotné poradie metód imputácie pre "
         "každý dataset (Tabuľka 2). Vo všetkých troch prípadoch je "
         "najlepšia stratégia none, čo znamená, že implicitné spracovanie "
-        "NaN modelom dosahuje vyššiu balanced accuracy ako akákoľvek "
+        "NaN modelom dosahuje vyššie PR-AUC ako akákoľvek "
         "explicitná imputácia. Tento výsledok je výrazný — na Polish "
-        "datasete je rozdiel medzi none (0,8678) a druhou najlepšou "
-        "možnosťou MICE + indicator (0,8124) viac ako 5 percentuálnych "
-        "bodov.",
+        f"datasete je rozdiel medzi none "
+        f"({value(stats['polish']['imputation'], 'none', 'pr_auc')}) a druhou "
+        f"najlepšou možnosťou MICE + indicator "
+        f"({value(stats['polish']['imputation'], 'mice_indicator', 'pr_auc')}) "
+        "viac ako 8 percentuálnych bodov.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
     make_table(
         doc,
         ["Imputácia", "Polish", "Slovak", "Taiwan"],
         [
-            ["none",            "0,8678", "0,8014", "0,8691"],
-            ["mice_indicator",  "0,8124", "0,7049", "0,8416"],
-            ["mean",            "0,7843", "0,7083", "0,8339"],
-            ["MICE",            "0,7809", "0,7119", "0,8367"],
-            ["median",          "0,7672", "0,7039", "0,8394"],
-            ["kNN",             "0,7477", "0,7147", "0,8370"],
+            ["none",            value(stats["polish"]["imputation"], "none", "pr_auc"), value(stats["slovak"]["imputation"], "none", "pr_auc"), value(stats["taiwan"]["imputation"], "none", "pr_auc")],
+            ["mice_indicator",  value(stats["polish"]["imputation"], "mice_indicator", "pr_auc"), value(stats["slovak"]["imputation"], "mice_indicator", "pr_auc"), value(stats["taiwan"]["imputation"], "mice_indicator", "pr_auc")],
+            ["mean",            value(stats["polish"]["imputation"], "mean", "pr_auc"), value(stats["slovak"]["imputation"], "mean", "pr_auc"), value(stats["taiwan"]["imputation"], "mean", "pr_auc")],
+            ["MICE",            value(stats["polish"]["imputation"], "mice", "pr_auc"), value(stats["slovak"]["imputation"], "mice", "pr_auc"), value(stats["taiwan"]["imputation"], "mice", "pr_auc")],
+            ["median",          value(stats["polish"]["imputation"], "median", "pr_auc"), value(stats["slovak"]["imputation"], "median", "pr_auc"), value(stats["taiwan"]["imputation"], "median", "pr_auc")],
+            ["kNN",             value(stats["polish"]["imputation"], "knn", "pr_auc"), value(stats["slovak"]["imputation"], "knn", "pr_auc"), value(stats["taiwan"]["imputation"], "knn", "pr_auc")],
         ],
         widths_cm=[3.6, 3.0, 3.0, 3.0],
     )
     add_paragraph(
         doc,
-        "Tab. 2 — Priemerná balanced accuracy podľa metódy spracovania "
+        "Tab. 2 — Priemerná PR-AUC podľa metódy spracovania "
         "chýbajúcich hodnôt, agregovaná cez všetky modely, mechanizmy a "
         "miery chýbania. Tučné hodnoty by mali zvýrazniť najlepšiu "
         "stratégiu pre každý dataset (vždy none).",
@@ -584,13 +808,13 @@ def build():
         doc,
         "Pri porovnaní medzi imputačnými metódami pozorujeme niekoľko "
         "stabilných vzorcov. Po stratégii none je druhá najlepšia "
-        "spravidla mice_indicator (na Polish a Taiwan), čo potvrdzuje, "
+        "spravidla mice_indicator (na Polish a Slovak), čo potvrdzuje, "
         "že informácia o samotnom fakte chýbania má pre model praktickú "
         "hodnotu. Jednoduché štatistické metódy mean a median sú "
         "konkurencieschopné len pri nižších mierach chýbania a na "
-        "robustnejších datasetoch (Taiwan), kým pri vyššej miere a "
-        "menších datasetoch (Slovak) prepadávajú. kNN imputácia bola na "
-        "Polish dokonca najslabšia, čo môže byť spôsobené tým, že "
+        "robustnejších datasetoch (Taiwan), kde sú rozdiely medzi explicitnými "
+        "imputáciami malé. kNN imputácia bola na "
+        "Polish najslabšia, čo môže byť spôsobené tým, že "
         "metrika podobnosti vo vysokorozmernom finančnom priestore nie "
         "je dostatočne diskriminatívna.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
@@ -617,6 +841,45 @@ def build():
         "cenou pri nedokonvergovaných behoch.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
+
+    add_heading(doc, "4.5 Čas trénovania: Classical vs Foundation", level=2)
+    time_by_dataset = stats["combined"]["time_by_dataset"]
+    time_overall = stats["combined"]["time_overall"]
+    make_table(
+        doc,
+        ["Dataset", "Classical priemer", "Foundation priemer"],
+        [
+            [
+                "Polish",
+                f"{fmt(time_by_dataset.loc[('polish', 'Classical'), 'mean'], 1)} s",
+                f"{fmt(time_by_dataset.loc[('polish', 'Foundation'), 'mean'], 1)} s",
+            ],
+            [
+                "Slovak",
+                f"{fmt(time_by_dataset.loc[('slovak', 'Classical'), 'mean'], 1)} s",
+                f"{fmt(time_by_dataset.loc[('slovak', 'Foundation'), 'mean'], 1)} s",
+            ],
+            [
+                "Taiwan",
+                f"{fmt(time_by_dataset.loc[('taiwan', 'Classical'), 'mean'], 1)} s",
+                f"{fmt(time_by_dataset.loc[('taiwan', 'Foundation'), 'mean'], 1)} s",
+            ],
+            [
+                "Spolu",
+                f"{fmt(time_overall.loc['Classical', 'mean'], 1)} s",
+                f"{fmt(time_overall.loc['Foundation', 'mean'], 1)} s",
+            ],
+        ],
+        widths_cm=[3.4, 4.0, 4.0],
+    )
+    add_paragraph(
+        doc,
+        "Tab. 3 — Priemerný čas fitovania jedného experimentálneho behu. "
+        "Foundation modely boli v priemere rýchlejšie ako skupina Classical, "
+        "pretože jej priemer výrazne zvyšujú pomalé ensemble konfigurácie "
+        "nájdené random greedy searchom, najmä CatBoost a Gradient Boosting.",
+        italic=True, size=9,
+    )
     add_paragraph(
         doc,
         "Z výskumnej otázky o konkurencieschopnosti implicitného "
@@ -633,12 +896,12 @@ def build():
     add_heading(doc, "5. Diskusia a obmedzenia", level=1)
     add_paragraph(
         doc,
-        "Vo všetkých troch datasetoch foundation modely prekonali alebo "
-        "vyrovnali klasické modely v balanced accuracy aj PR-AUC. TabPFN "
-        "bol najlepší na Polish a Taiwan, kým TabICL bol najsilnejší na "
-        "Slovak Manufacture 13 — práve na najmenšom a najnerovnomernejšom "
-        "datasete. To naznačuje, že TabICL môže byť výhodný pri veľmi "
-        "malých minoritných triedach, kde má TabPFN menej kontextu. "
+        "Vo všetkých troch datasetoch foundation modely v skupinovom priemere "
+        "prekonali klasické modely v PR-AUC. TabPFN bol najlepší na Polish, "
+        "TabICL bol najsilnejší na Slovak Manufacture 13 a na Taiwan datasete "
+        "boli najvyššie hodnoty PR-AUC pri XGBoost a LightGBM. To ukazuje, "
+        "že po individuálnom tuningu hyperparametrov zostávajú klasické "
+        "boosting modely veľmi silnou konkurenciou. "
         "Najpozoruhodnejším pozorovaním je, že na všetkých troch "
         "datasetoch bola najlepšou stratégiou ponechanie NaN hodnôt "
         "modelu (none) — implicitné spracovanie chýbajúcich hodnôt teda "
@@ -654,9 +917,10 @@ def build():
         "bankrotujúcich firiem, čo robí jeho výsledky štatisticky veľmi "
         "citlivými. Účinok chýbajúcich hodnôt bol simulovaný kontrolovane, "
         "čo neodráža plne všetky reálne scenáre prirodzeného chýbania. "
-        "Modely boli porovnávané pri defaultných hyperparametroch; "
-        "individuálny tuning by mohol klasickým modelom (najmä MLP a SVM) "
-        "pomôcť, ale cieľom bolo objektívne porovnanie pri rovnakom nastavení.",
+        "Klasické modely boli ladené random greedy searchom, kým foundation "
+        "modely boli použité ako pretrénované metódy; výsledky preto treba "
+        "čítať ako porovnanie praktických pipeline, nie ako izolovaný test "
+        "rovnakého počtu nastaviteľných hyperparametrov.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
 
@@ -665,15 +929,15 @@ def build():
         doc,
         "Práca experimentálne potvrdila, že pretrénované tabular "
         "foundation modely TabPFN a TabICL sú prakticky použiteľné pri "
-        "neúplných tabuľkových dátach. V priemere prekonali všetky "
-        "porovnávané klasické modely v metrikách relevantných pre "
-        "nevyváženú klasifikáciu, pričom najlepšou stratégiou spracovania "
-        "chýbajúcich hodnôt bolo ich implicitné spracovanie modelom. "
-        "Klasické boosting modely (XGBoost, LightGBM, CatBoost) "
-        "zostávajú silnými baseline modelmi, najmä pri väčších datasetoch "
-        "alebo v prostrediach bez GPU. Pre malé a silne nevyvážené úlohy "
-        "(napr. Slovak Manufacture 13) odporúčame TabICL, pre stredne "
-        "veľké datasety s implicitným spracovaním NaN TabPFN.",
+        "neúplných tabuľkových dátach. V priemere dosiahli vyššie PR-AUC "
+        "ako skupina klasických modelov, pričom najlepšou stratégiou "
+        "spracovania chýbajúcich hodnôt bolo ich implicitné spracovanie "
+        "modelom. Klasické boosting modely (XGBoost, LightGBM, CatBoost) "
+        "zostávajú po random greedy search tuningu silnými baseline modelmi, "
+        "najmä pri väčších datasetoch alebo v prostrediach bez GPU. Pre "
+        "malé a silne nevyvážené úlohy (napr. Slovak Manufacture 13) "
+        "odporúčame TabICL, pre Polish dataset TabPFN a pre Taiwan aj "
+        "tuned XGBoost alebo LightGBM.",
         align=WD_ALIGN_PARAGRAPH.JUSTIFY,
     )
 
