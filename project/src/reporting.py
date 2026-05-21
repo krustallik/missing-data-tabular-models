@@ -23,10 +23,12 @@ from config import (
     PERFORMANCE_EXCELLENT,
     PERFORMANCE_GOOD,
     PRIMARY_METRICS,
+    RANKING_METRIC,
     REPORT_AUTHOR,
     REPORT_INSTITUTION,
     REPORT_TITLE,
     ensure_output_dirs,
+    ranking_metric_column,
 )
 from data_utils import setup_logging
 from models import model_type as _resolve_model_type
@@ -145,9 +147,9 @@ def _data_methods_report(df: Optional[pd.DataFrame]) -> str:
         "- **Split**: stratified 80/20 train/test split, `random_state = 42`. "
         "Splits are materialised once in `data/splits/*.csv` and re-used by "
         "every step of the benchmark.",
-        f"- **Primary metrics** (ranking): {', '.join(PRIMARY_METRICS)}. "
-        "On highly imbalanced binary targets `accuracy` is misleading — "
-        "`balanced_accuracy`, `f1_macro` and `pr_auc` are the ones to trust. "
+        f"- **Primary ranking metric**: `{RANKING_METRIC}` (PR-AUC / average precision). "
+        f"Additional panels in plots and tables: {', '.join(m for m in PRIMARY_METRICS if m != RANKING_METRIC)}. "
+        "On highly imbalanced binary targets `accuracy` is misleading. "
         "Additional metrics stored per run: `f1` (weighted), `precision`, "
         "`recall`, `recall_class1`, `roc_auc`, plus the decision `threshold` "
         "actually used after tuning.",
@@ -242,7 +244,7 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
     has_f1m = "f1_macro" in succeeded.columns
     has_prauc = "pr_auc" in succeeded.columns
     has_rc1 = "recall_class1" in succeeded.columns
-    ranking_metric = "balanced_accuracy" if has_bacc else "accuracy"
+    ranking_metric = ranking_metric_column(succeeded)
 
     lines.append(
         f"- Total runs recorded: **{len(df)}**\n"
@@ -251,22 +253,22 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
     )
     if not succeeded.empty:
         lines.append(f"- Unique models: **{succeeded['model'].nunique()}**\n")
+        if has_prauc:
+            lines.append(
+                f"- Mean **pr_auc** (primary ranking metric): "
+                f"**{succeeded['pr_auc'].mean(skipna=True):.4f}**  "
+                f"_(how well the positive class is ranked above negatives)_\n"
+            )
         lines.append(
             f"- Mean **accuracy** across successful runs: "
             f"**{succeeded['accuracy'].mean():.4f}**  "
-            f"_(misleading on imbalanced data — see balanced_accuracy below)_\n"
+            f"_(misleading on imbalanced data — use pr_auc for ranking)_\n"
         )
         if has_bacc:
             lines.append(
                 f"- Mean **balanced_accuracy**: "
                 f"**{succeeded['balanced_accuracy'].mean():.4f}**  "
-                f"_(honest summary — 0.5 = random on binary tasks)_\n"
-            )
-        if has_prauc:
-            lines.append(
-                f"- Mean **pr_auc** (binary tasks): "
-                f"**{succeeded['pr_auc'].mean(skipna=True):.4f}**  "
-                f"_(how well the positive class is ranked above negatives)_\n"
+                f"_(secondary — threshold-dependent; 0.5 = random on binary tasks)_\n"
             )
         if has_rc1:
             lines.append(
@@ -280,8 +282,8 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "## 2. Best configuration per model",
         "",
         f"Mean metrics per model (averaged over datasets and scenarios), "
-        f"ranked by **{ranking_metric}** — the honest summary on imbalanced data. "
-        f"`accuracy` is kept for comparison but is not the primary ranking.",
+        f"ranked by **{ranking_metric}** (primary metric for imbalanced binary tasks). "
+        f"`accuracy` and `balanced_accuracy` are kept for comparison.",
         "",
     ]
     if not succeeded.empty:
@@ -402,8 +404,8 @@ def _results_discussion_report(df: pd.DataFrame) -> str:
         "",
         "- **Foundation models vs classical baselines**: see table in §3 and "
         "the boxplot in `visualizations/classical_vs_foundation.png`.\n"
-        "- **Imputation sensitivity**: §6 ranks imputation methods by mean "
-        "accuracy; `mice_indicator` is expected to shine with higher rates "
+        f"- **Imputation sensitivity**: §6 ranks imputation methods by mean "
+        f"**{ranking_metric}**; `mice_indicator` is expected to shine with higher rates "
         "while simple mean/median are competitive at low rates.\n"
         "- **Missingness mechanism**: MNAR is the hardest scenario (value "
         "itself drives missingness), so gaps between mechanisms in §4 are "
