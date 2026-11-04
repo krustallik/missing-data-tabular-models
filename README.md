@@ -14,7 +14,15 @@ This project studies how model choice and imputation strategy affect binary bank
 
 This repository contains experiment code and input datasets, but no committed benchmark result tables. Treat it as a reproducible research pipeline rather than as a report of established model rankings.
 
-A co-authored technical report records historical findings from a broader experiment. Its selected metrics, methodology, authorship context, and reproduction limits are summarized in [the research summary](docs/research-summary.md). Those reported results have not been reproduced from this checkout.
+A co-authored technical report records historical findings from a broader experiment. Its reported PR-AUC comparisons, TabPFN/TabICL results, missingness response, imputation comparison, authorship context, and reproduction limits are summarized in [the research summary](docs/research-summary.md). The three charts below were newly drawn from numeric tables and values in that report; they are not the report's original figures and have not been reproduced from this checkout.
+
+### Historical report results (not reproduced here)
+
+![Report-level foundation versus classical group-average PR-AUC across three datasets](docs/images/reported-group-pr-auc.png)
+
+![Report-level average PR-AUC for six missing-data strategies](docs/images/reported-imputation-pr-auc.png)
+
+![Selected report-level PR-AUC results at missingness endpoints and by mechanism](docs/images/reported-missingness-robustness.png)
 
 ### Current execution scope
 
@@ -196,7 +204,8 @@ The pipeline may create additional intermediate files as implementation details 
 │   ├── architecture.md
 │   ├── data-attribution.md
 │   ├── experimental-design.md
-│   ├── images/dataset-overview.png
+│   ├── images/                       # Current dataset snapshot and report-derived charts
+│   ├── scripts/plot_reported_results.py
 │   └── scripts/create_dataset_snapshot.py
 ├── project/
 │   ├── data/

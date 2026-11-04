@@ -49,6 +49,8 @@ Average PR-AUC across models, mechanisms, and missingness rates for the reported
 | Median | 0.4035 | 0.1896 | 0.4261 |
 | kNN | 0.3528 | 0.1953 | 0.4235 |
 
+The report's selected missingness-response values are also shown in newly drawn charts embedded in the README. For example, it reports Polish TabPFN PR-AUC declining from 0.8923 at 5% missingness to 0.4275 at 40%; Polish TabICL declines from 0.8339 to 0.2318. For Taiwan, the report gives 5%→40% values of 0.5194→0.4640 for XGBoost, 0.5191→0.4644 for LightGBM, 0.5064→0.4493 for TabICL, and 0.4942→0.4363 for TabPFN. On Slovak Manufacture 13, reported TabICL PR-AUC is 0.3087 under MCAR, 0.3041 under MAR, and 0.2998 under MNAR. These are selected report-level values; the connector lines in the chart join only reported endpoints and do not assert unreported intermediate scores.
+
 These are report-level aggregates, not values recalculated from repository artifacts. The reported comparison is not a controlled test of equal tuning budgets: classical models were tuned with dataset-specific randomized greedy search using PR-AUC, while TabPFN and TabICL were used as pretrained models without comparable hyperparameter tuning. The conclusion is therefore about the practical pipelines evaluated in the report, not an intrinsic ranking under equal optimization budgets. The report also notes that MICE sometimes reached its configured 30-iteration limit without convergence.
 
 ## Authorship and contribution context
