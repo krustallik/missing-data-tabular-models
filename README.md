@@ -14,6 +14,8 @@ This project studies how model choice and imputation strategy affect binary bank
 
 This repository contains experiment code and input datasets, but no committed benchmark result tables. Treat it as a reproducible research pipeline rather than as a report of established model rankings.
 
+A co-authored technical report records historical findings from a broader experiment. Its selected metrics, methodology, authorship context, and reproduction limits are summarized in [the research summary](docs/research-summary.md). Those reported results have not been reproduced from this checkout.
+
 ### Current execution scope
 
 The repository contains three datasets, but the main pipeline currently activates only `taiwan_bankruptcy` in `project/src/config.py`. Its split preparation, missingness checks, imputation benchmark, and default experiment matrix therefore run on Taiwan only. The separate randomized-search script registers all three datasets.
